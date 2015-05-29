@@ -91,7 +91,7 @@ import burlap.oomdp.singleagent.RewardFunction;
 				<pre class="prettyprint lang-java">
 MountainCar mcGen = new MountainCar();
 Domain domain = mcGen.generateDomain();
-TerminalFunction tf = mcGen.new ClassicMCTF();
+TerminalFunction tf = new MountainCar.ClassicMCTF();
 RewardFunction rf = new GoalBasedRF(tf, 100);
 				</pre>
 				<p>
@@ -100,7 +100,7 @@ RewardFunction rf = new GoalBasedRF(tf, 100);
 				<div class = "note">
 				<h2>Note</h2>
 				<p>
-				We could have also changed parameters of the Mountain car domain, such as the strength of gravity, but without using any additional mutators on the instance, it will automatically use the default parameterizations.
+				We could have also changed parameters of the Mountain car domain, such as the strength of gravity, which is found in the <a href="http://burlap.cs.brown.edu/doc/burlap/domain/singleagent/mountaincar/MountainCar.html#physParams">physParams</a> MountainCar data member, but without any modifications, it will automatically use the default parameterizations.
 				</p>
 				</div>
 				<p>
@@ -227,7 +227,7 @@ public static void MCLSPIRBF(){
 
 	MountainCar mcGen = new MountainCar();
 	Domain domain = mcGen.generateDomain();
-	TerminalFunction tf = mcGen.new ClassicMCTF();
+	TerminalFunction tf = new MountainCar.ClassicMCTF();
 	RewardFunction rf = new GoalBasedRF(tf, 100);
 
 	//get a state definition earlier, we'll use it soon.

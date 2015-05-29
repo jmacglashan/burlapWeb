@@ -52,7 +52,7 @@ import burlap.domain.singleagent.cartpole.InvertedPendulum;
 public static void IPSS(){
 
 	InvertedPendulum ip = new InvertedPendulum();
-	ip.actionNoise = 0.;
+	ip.physParams.actionNoise = 0.;
 	Domain domain = ip.generateDomain();
 	RewardFunction rf = new InvertedPendulum.InvertedPendulumRewardFunction(Math.PI/8.);
 	TerminalFunction tf = new InvertedPendulum.InvertedPendulumTerminalFunction(Math.PI/8.);
@@ -62,7 +62,7 @@ public static void IPSS(){
 }
 				</pre>
 				<p>
-				The line "ip.actionNoise = 0.;" sets our domain to have no noise in the actions. The created reward function and terminal function specify task failure conditions to be when the angle between the pole and vertical axis is greater than &pi;/8 radians. Specifically, the agent will receive zero reward everywhere except when the pole's angle is greater than &pi;/8, at which point it will receive -1 reward. The initial state we retrieved from the InvertedPendulum class will return a state in which the pole is  balanced with no initial angular velocity.
+				The line "ip.physParams.actionNoise = 0.;" sets our domain to have no noise in the actions. (<a href="http://burlap.cs.brown.edu/doc/burlap/domain/singleagent/cartpole/InvertedPendulum.html#physParams">physParams</a> is a data member containing all physics parameters that you can modify.) The created reward function and terminal function specify task failure conditions to be when the angle between the pole and vertical axis is greater than &pi;/8 radians. Specifically, the agent will receive zero reward everywhere except when the pole's angle is greater than &pi;/8, at which point it will receive -1 reward. The initial state we retrieved from the InvertedPendulum class will return a state in which the pole is  balanced with no initial angular velocity.
 				</p>
 				<p>
 				The algorithm we're going to use to solve this problem is Sparse Sampling. Instead of trying to approximate the value function for all states, Sparse Sampling will estimate Q-values for only one state a time, with the exception that the Q-values estimated are for a <i>finite horizon</i>, which means it only considers the possible reward received up to a specific number of steps from the current state and then ignores everything that might happen after that point. The approach is called Sparse Sampling, because if the set of possible transition dynamics are very large or infinite, it will only use a small sample from the transition dynamics when computing the Q-values. 
