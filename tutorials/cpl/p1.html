@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<title>Creating a Planning and Learning Algorithm</title>
+		<script src="../../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="../../index.html">BURLAP</a>
+			<span id="nav-items"><a href="../../index.html">Home</a> | <a href="../../information.html">Information</a> | <a href="../../faq.html">F.A.Q.</a> | <a href="../index.html">Tutorials</a> | <a href="../../doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>Tutorial: Creating a Planning and Learning Algorithm</h1>
+				<h2><a href="../index.html">Tutorials</a> > <a href="p1.html">Creating a Planning and Learning Algorithm</a> > Part 1</h2>
+				<div id="index">
+					<b>Tutorial Contents</b>
+					<ul>
+						<li><a href="p1.html#intro"><b>Introduction</b></a></li>
+						<li><a href="p1.html#vio">Value Iteration Overview</a></li>
+						<li><a href="p2.html#vi">VI Code</a></li>
+						<li><a href="p2.html#testvi">Testing VI</a></li>
+						<li><a href="p3.html#qlo">Q-Learning Overview</a></li>
+						<li><a href="p3.html#qlcode">Q-Learning Code</a></li>
+						<li><a href="p3.html#qltest">Testing Q-Learning</a></li>
+						<li><a href="p4.html#conclusions">Conclusions</a></li>
+						<li><a href="p4.html#vicode">Full VI Code</a></li>
+						<li><a href="p4.html#qlcode">Full Q-Learning Code</a></li>
+					</ul>
+				</div>
+				<div id="sectionControls">
+					<a href="p2.html">Next Part</a>
+				</div>
+				
+				<h3><a name="intro">Introduction</a></h3>
+				<p>
+				In the previous tutorials, we walked through how you can use existing planning and learning algorithms in BURLAP on domains  in BURLAP and how to create your own domains on which you can use those algorithms. However, you may also want to extend or create your own planning or learning algorithm in BURLAP that can either be used on existing domains or novel BURLAP domains and easily compared against existing algorithms. In this tutorial, we will show you how to create both a planning algorithm and a learning algorithm. In particular, we will be reimplementing versions of Value Iteration and Q-learning since they are conceptually simple algorithms to implement, but will expose the various properties of BURLAP you would want to use. In general, however, you should defer to using the existing implementations of these algorithms in BURLAP since they will support more features than we will cover here, such as support for planning and learning with Options (temporally extended actions). Using options in BURLAP will be left for a future tutorial.
+				</p>
+				<h3><a name="vio">Value Iteration Overview</a></h3>
+				<p>
+				Value Iteration (VI) is an algorithm that finds the optimal value function (the expected discounted future reward of being in a state an behaving optimally from it), and consequentially the optimal policy, for an MDP's entire state space. Central to the idea of VI is the Bellman Equation, which states that the optimal value of a state
+				is the value of the action with the maximum expected discounted future return (the action with the maximum Q-value) where the Q-value for a state-action pair is defined as the expected value over all
+				possible state transitions of the immediate reward summed with the discounted value of the resulting state. In math:
+				</p>
+				<center>
+				<img src="images/VValue.gif" height="30"/><br/><br/>
+				<img src="images/QValue.gif"  height="45"/>
+				</center>
+				<p>
+				where T(s' | s, a) is the probability of transitioning to state s' when taking action a in state s, R(s, a, s') is the reward received for transitioning to state s' after taking action a in state s, and gamma is a discount factor affecting how much immediate rewards are preferred to later ones.
+				</p>
+				<p>
+				This equation presents some issues in that if an MDP has cycles, it's unclear what the values should be. However, the Value Iteration algorithm will converge to the optimal Value function if you simply initialize the value for each state to some arbitrary value, and then iteratively use the Bellman equation
+				to update the the value for each state.
+				</p>
+				<p>
+				Planning algorithms that make use of the Bellman equation to estimate the Value function are known as Dynamic Programming (DP) planning algorithms. Different DP algorithms specify different priorities for when the estimated value of each state is updated with the Bellman equation. In the case of VI, Bellman updates are performed in entire sweeps of the state space. That is, at the start, the value for all states is initialized to some arbitrary value. Then, for each state in the state space, the Bellman equation is used to update the value function estimate. Sweeps over the entire state space are repeated for some fixed number of iterations or until the maximum change in the value function is small. The algorithm is summarized in the below pseudocode.
+				</p>
+				<h4>Value Iteration</h4>
+				<p>
+				<ol>
+					<li> Initialize value function V(s) arbitrarily for all states s.</li>
+					<li>Repeat until convergence...</li>
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;For each state s</li>
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V(s) := max_a sum_s' T(s' | s, a) [R(s,a,s') + &gamma; V(s')]</li>
+				</ol>
+				</p>
+				<p>
+				Since there are a number of different DP algorithms that can be implemented, BURLAP includes a macro abstract planning algorithm class called <a href="../../doc/burlap/behavior/singleagent/planning/ValueFunctionPlanner.html">ValueFunctionPlanner</a> that includes a number of helpful methods for automatically performing Bellman Updates on states. However, to give a better sense of how
+				to use the more fundamental parts of a planning algorithm in BURLAP, we will instead write our VI algorithm from scratch. The only classes and interfaces we'll use are the <a href="../../doc/burlap/behavior/singleagent/planning/OOMDPPlanner.html"> OOMDPPlanner</a> abstract class and the <a href="../../doc/burlap/behavior/singleagent/planning/QComputablePlanner.html">QComputablePlanner</a> interface, which will set up a bunch of common data members for us and provide the common planning method interfaces that will let our planning algorithm implementation talk to other BURLAP tools.
+				
+				
+				
+				
+				<div id="footerControls">
+					<a href="p2.html">Next Part</a>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

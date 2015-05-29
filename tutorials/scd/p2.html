@@ -1,0 +1,143 @@
+<html>
+	<head>
+		<title>Solving Continuous Domains</title>
+		<script src="../../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="../../index.html">BURLAP</a>
+			<span id="nav-items"><a href="../../index.html">Home</a> | <a href="../../information.html">Information</a> | <a href="../../faq.html">F.A.Q.</a> | <a href="../index.html">Tutorials</a> | <a href="../../doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>Tutorial: Solving Continuous Domains</h1>
+				<h2><a href="../index.html">Tutorials</a> > <a href="p1.html">Solving Continuous Domains</a> > Part 2</h2>
+				<div id="index">
+					<b>Tutorial Contents</b>
+					<ul>
+						<li><a href="p1.html#intro">Introduction</a></li>
+						<li><a href="p1.html#mclspi">Solving Mountain Car with Least-Squares Policy Iteration</a></li>
+						<li><a href="p2.html#ipss"><b>Solving the Inverted Pendulum with Sparse Sampling</b></a></li>
+						<li><a href="p3.html#llsarsa">Solving Lunar Lander with SARSA(&lambda;)</a></li>
+						<li><a href="p4.html#conclusions">Conclusions</a></li>
+						<li><a href="p4.html#finalcode">Final Code</a></li>
+						
+					</ul>
+				</div>
+				<div id="sectionControls">
+					<a href="p1.html">Previous Part</a> | <a href="p3.html">Next Part</a>
+				</div>
+				
+				<h3><a name="ipss">Solving the Inverted Pendulum with Sparse Sampling</a></h3>
+				<p>
+				In this part of the tutorial we will be solving the Inverted Pendulum problem. There are actually a number of different versions of this problem (for other variants, see the <a href="../../doc/burlap/domain/singleagent/cartpole/CartPoleDomain.html">CartPoleDomain</a> and its parameters), but in this example we'll be using one of the more simple forms. The problem is as follows; a cart exists on an infinite track on which force can be applied to move the cart left or right on the track. On top of the cart is a pole (the inverted pendulum) and the goal is to keep the pole balanced and pointing up by using left, right, or no force actions. If the angle between the pole and the vertical axis is larger than some threshold, the task is considered to have been failed. The state is defined by a single object which is defined by the pole angle and its angular velocity. An illustration of the problem, as visualized in BURLAP, is shown below.
+				</p>
+				<center>
+				<img src="images/invertedPendulum.png" width="300"/>
+				<p>
+				The BURLAP visualization of the Inverted Pendulum problem
+				</p>
+				</center>
+				<p>
+				We are going to solve this problem using Sparse Sampling (more on that in a moment). Let us start by making a method (IPSS) for solving this problem and filling it in with code to instantiate the <a href="../../doc/burlap/domain/singleagent/cartpole/InvertedPendulum.html">InvertedPendulum domain</a> and task.
+				</p>
+				<pre class="prettyprint lang-java">
+import burlap.domain.singleagent.cartpole.InvertedPendulum;
+				</pre>
+				<pre class="prettyprint lang-java">
+public static void IPSS(){
+
+	InvertedPendulum ip = new InvertedPendulum();
+	ip.actionNoise = 0.;
+	Domain domain = ip.generateDomain();
+	RewardFunction rf = new InvertedPendulum.InvertedPendulumRewardFunction(Math.PI/8.);
+	TerminalFunction tf = new InvertedPendulum.InvertedPendulumTerminalFunction(Math.PI/8.);
+	State initialState = InvertedPendulum.getInitialState(domain);
+
+
+}
+				</pre>
+				<p>
+				The line "ip.actionNoise = 0.;" sets our domain to have no noise in the actions. The created reward function and terminal function specify task failure conditions to be when the angle between the pole and vertical axis is greater than &pi;/8 radians. Specifically, the agent will receive zero reward everywhere except when the pole's angle is greater than &pi;/8, at which point it will receive -1 reward. The initial state we retrieved from the InvertedPendulum class will return a state in which the pole is  balanced with no initial angular velocity.
+				</p>
+				<p>
+				The algorithm we're going to use to solve this problem is Sparse Sampling. Instead of trying to approximate the value function for all states, Sparse Sampling will estimate Q-values for only one state a time, with the exception that the Q-values estimated are for a <i>finite horizon</i>, which means it only considers the possible reward received up to a specific number of steps from the current state and then ignores everything that might happen after that point. The approach is called Sparse Sampling, because if the set of possible transition dynamics are very large or infinite, it will only use a small sample from the transition dynamics when computing the Q-values. 
+				</p>
+				<p>
+				A disadvantage of Sparse Sampling is that for every state, planning needs to happen all over again (unless the agent happens to arrive in the same exact state, which is often uncommon in continuous state spaces). Furthermore, the computational complexity grows exponentially with the size of the horizon used, so if a large horizon is necessary to achieve a reasonable policy, Sparse Sampling may be prohibitively expensive. However, for our Inverted Pendulum domain, failing the task is only a few easy mistakes away, which means we can use a tractably small horizon to solve the problem.
+				</p>
+				<p>
+				Lets now instantiate <a href="../../doc/burlap/behavior/singleagent/planning/stochastic/sparsesampling/SparseSampling.html">SparseSampling</a> and set up a GreedyQ policy to follow from it.
+				</p>
+				<pre class="prettyprint lang-java">
+import burlap.behavior.singleagent.Policy;
+import burlap.behavior.singleagent.planning.stochastic.sparsesampling.SparseSampling;
+import burlap.behavior.statehashing.NameDependentStateHashFactory;
+				</pre>
+				<pre class="prettyprint lang-java">
+SparseSampling ss = new SparseSampling(domain, rf, tf, 1, 
+            new NameDependentStateHashFactory(), 10, 1);
+ss.setForgetPreviousPlanResults(true);
+Policy p = new GreedyQPolicy(ss);
+				</pre>
+				<p>
+				Note that we're using a discount factor of 1; because we are computing the Q-values for a finite horizon (rather than computing an infinite horizon), a discount factor of 1 will always result in finite Q-values. The state hashing factory that we're using is a <a href="../../doc/burlap/behavior/statehashing/NameDependentStateHashFactory.html">NameDependentStateHashFactory</a>, which is a hashing factory that does not support object identifier invariance, but does support state equality for continuous attribute domains, provided the continuous values of each attribute between states are <i>exactly</i> the same. Since states of this domain only consist of a single object, losing object identifier invariance is irrelevant. Also note that we don't expect to ever see the same state twice in a continuous domain, even within the same planning horizon, but this hashing factory will provide detection of the same states should they ever been seen.
+				</p>
+				<p>
+				The method call setForgetPreviousPlanResults(true) tells Sparse Sampling to forget the previous planning tree it created every time planning for a new state is begun. Since we don't expect to see the same state twice, this is useful to clean up memory that we don't expect to use again. The last parameters of the SparseSampling constructor are the horizon size and the number of transition samples. We set the horizon to 10 and the number of transition samples to 1. Using only 1 transition sampling might be problematic in general, but since we simplified by the problem by removing action noise, everything is deterministic and so we only need one sample anyway! (Later, feel free to add back noise and increase the number samples, though you will find that a fair bit more computation time is needed).
+				</p>
+				<p>
+				The final thing you'll notice in the code is that we never make an explicit call to planning from a state. There is a lack of an explicit planning call because whenever the GreedyQPolicy queries for the Q-values of a state, SparseSampling will automatically plan from that state first (unless we had let it remember past planning results and it was the same state as a state for which it's planned before). 
+				</p>
+				<p>
+				At this point, we're basically done!. All we need to do now is evaluate the policy that we created. We could have an animated visualization, like we did for the Mountain Car domain with LSPI, but since Sparse Sampling requires a bit more computation per step, lets let it cache an episode (with a maximum of 500 steps) to a file, and then visualize the episode using an <a href="../../doc/burlap/behavior/singleagent/EpisodeSequenceVisualizer.html">EpisodeSequnceVisualizer</a> like we've used in previous tutorials.
+				</p>
+				<p>
+				Add the following code to evaluate the policy for at most 500 steps from the initial state, create a visualizer, and load up a EpisodeSequenceVisualizer to review the results. 
+				</p>
+				<pre class="prettyprint lang-java">
+import burlap.behavior.singleagent.EpisodeAnalysis;
+import burlap.behavior.singleagent.EpisodeSequenceVisualizer;
+import burlap.domain.singleagent.cartpole.InvertedPendulumStateParser;
+import burlap.domain.singleagent.cartpole.InvertedPendulumVisualizer;
+import burlap.oomdp.auxiliary.StateParser;
+				</pre>
+				<pre class="prettyprint lang-java">
+EpisodeAnalysis ea = p.evaluateBehavior(initialState, rf, tf, 500);
+StateParser sp = new InvertedPendulumStateParser(domain);
+
+ea.writeToFile("ip/ssPlan", sp);
+System.out.println("Num Steps: " + ea.numTimeSteps());
+
+Visualizer v = InvertedPendulumVisualizer.getInvertedPendulumVisualizer();
+new EpisodeSequenceVisualizer(v, domain, sp, "ip");
+				</pre>
+				<p>
+				If you now point the main method to IPSS and run it, you should first see printed to the console the number of Bellman backups that were performed in the planning for each step of the episode. After 500 steps, it will launch the EpisodeSequenceVisualizer that you can use to review the steps it took. You should have found that it successfully balanced the pole for all 500 steps and the interface should look something like the below.
+				</p>
+				<center>
+				<img src="images/ipEpisode.png" width="300" />
+				<p>
+				The EpisodeSequenceVisualizer GUI after solving the Inverted Pendulum with Sparse Sampling.
+				</p>
+				</center>
+				<p>
+				We're now finished with the Sparse Sampling example! If you're looking for an additional exercise, consider trying to solve this problem with LSPI using what you learned from the previous part of the tutorial. If you do so, we recommend using 5th order Fourier basis functions and collecting 5000 SARS instances by performing random trajectories from the initial balanced state. (To create a StateGenerator that always returns the same initial state for use with the SARS collector, see the <a href="../../doc/burlap/oomdp/auxiliary/common/ConstantStateGenerator.html">ConstantStateGenerator</a> class.)
+				</p>
+				<p>
+				In the final part of this tutorial, we will show how to solve the Lunar Lander domain with gradient descent SARSA lambda.
+				</p>
+
+				<div id="footerControls">
+					<a href="p3.html">Next Part</a>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

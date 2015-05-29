@@ -1,0 +1,104 @@
+<html>
+	<head>
+		<title>BURLAP: Information</title>
+		<script src="../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="index.html">BURLAP</a>
+			<span id="nav-items"><a href="index.html">Home</a> | <a href="information.html">Information</a> | <a href="faq.html">F.A.Q.</a> | <a href="tutorials/index.html">Tutorials</a> | <a href="doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>Contact</h1>
+				<p>
+				If you would like to contact the creator, send an email to James MacGlashan at:<br/> jmacglashan at cs dot brown dot edu.
+				</p>
+				<p>
+				Alternatively, it may be worthwhile to direct your question to the BURLAP Google group at:<br/>
+				<a href="https://groups.google.com/forum/#!forum/burlap-discussion">https://groups.google.com/forum/#!forum/burlap-discussion</a>
+				</p>
+				<h1>Obtaining BURLAP</h1>
+				The full BURLAP source can be found on Github at:<br/>
+				<a href="https://github.com/jmacglashan/burlap" target="external">https://github.com/jmacglashan/burlap</a>
+				</p>
+				<p>
+				Alternatively, you can download 
+				<ul>
+				<li><a href="burlap.jar">a pre-compiled jar</a> with dependencies included, or</li>
+				<li><a href="burlap_no_dep.jar">a pre-compiled jar</a> with<b>out</b> dependencies.</li>
+				</ul>
+				Use the jar without the dependencies if you are having library conflicts
+				and need to manage them yourself. Note that while these jar files
+				will be uploaded periodically, the most up-to-date changes will be
+				in the github repository.
+				<p/>
+				<p>
+				BURLAP has the following dependencies (which are included in the git repo).
+				</p>
+				<ul>
+				<li><a href="http://glue.rl-community.org/wiki/Java_Codec">RLGlue Java Codec</a> - You will need this if you plan on interfacing BURLAP with <a href="http://glue.rl-community.org/wiki/Main_Page">RLGLue</a>.</li>
+				<li><a href="http://commons.apache.org/proper/commons-math/">Apache Math Commons</a> - For performance plotting tools.</li>
+				<li><a href="http://www.jfree.org/jfreechart/">JFree Chart</a> - For Performance Plotting tools.</li>
+				<li><a href="https://code.google.com/p/snakeyaml/">Snake YAML</a> - For reading and writing states into the YAML format.</li>
+				<li><a href="http://jackson.codehaus.org/">Jackson</a> - For reading and writing states into the JSON format.</li>
+				<li><a href="http://www.joptimizer.com/">JOptimizer</a> - For Max Margin Apprenticeship Learning</li>
+				<li><a href="http://scpsolver.org/">SCPSolver</a> - For Minmax, Coco-Q, and Correlated-Q algorithms. (Our choice of underlying LP solver that it uses is lpsolve.)</li>
+				</ul>
+
+				<h1>History and Future</h1>
+				<p>
+				The Brown-UMBC Reinforcement Learning and Planning (BURLAP) Java library is primarily developed and maintained by James MacGlashan, a postdoc at <a href="http://www.brown.edu">Brown University</a>, with a number of contributions from various students. BURLAP originated from James MacGlashan's dissertation work at the <a href="http://www.umbc.edu">University of Maryland, Baltimore County</a> (UMBC) in transfer learning for reinforcement learning (Multi-source Option-based Policy Transfer). This work motivated the need for a reinforcement learning code framework that was built on top of a highly expressive domain representation that could support flexible task definitions. The answer to this demand was the object-oriented Markov Decision process (OO-MDP) formalism, which represents states as a set of objects in the world&mdash;each defined by their own attributes&mdash;and provides a set of high-level propositional functions that operate on the objects in states. At the time, there were no existing libraries that supported OO-MDPs (in fact, OO-MDPs were a fairly new idea in general); instead, most libraries were restricted to RL's more classic fixed feature vector representation. As a consequence, code to rapidly deploy OO-MDP domains was developed.
+				<p/>
+				<p>
+				After James graduated and moved to Brown, the initial OO-MDP code proved to be  valuable in being able to quickly generate a variety of different classes of problems to which already implemented algorithms could be trivially applied. The ability to support lots of different problems enabled the code to be easily used for a number of different projects that more typically would have required reimplementation of standard algorithms for a different representation. In response, a decision was made to polish, expand, and document the code base, and make it all available to the public. The result is BURLAP as it is now.
+				</p>
+				<p>
+				If everything goes well, BURLAP will never be "finished" because it will continue to have more algorithms found in reinforcement learning and planning literature added to it and grow with the field. Ideally, it will also continue grow to support even more classes of problems. As of writing this, BURLAP supports finite, infinite, continuous, and relational state spaces in single-agent or multi-agent (stochastic game) problem spaces with a finite number of parameterizable actions. (Object-oriented) Partially observable MDPs (POMDPs) is currently in development with a number of POMDP algorithms being implemented. BURLAP could also be trivially extended to support continuous action and time domains, but has not yet since there are currently no implemented algorithms in BURLAP to take advantage of it. In the future, we hope to expand into this space as well.
+				</p>
+				<p>
+				If there is a reinforcement learning or planning problem class that BURLAP cannot support that you would like to see, we would love to hear from you so that we can consider adding in support. The ultimate goal of BURLAP is to be able to pick and choose different algorithms for any number of different problems you might want to solve and stop us from reinventing the wheel every time.
+				</p>
+
+				<h1>People</h1>
+				<h2>Organizers</h2>
+				<b>Brown University</b>
+				<ul>
+				<li>James MacGlashan - Creator and primary maintainer. Contact: jmacglashan at cs dot brown dot edu</li>
+				<li>Michael Littman</li>
+				<li>Stefanie Tellex</li>
+				</ul>
+				<b>University of Maryland, Baltimore County</b>
+				<ul>
+				<li>Marie desJardins</li>
+				</ul>
+				<h3>Code Contributers</h3>
+				<ul>
+				<li>David Abel</li>
+				<li>Izaak Baker</li>
+				<li>Gabriel Barth-Maron</li>
+				<li>Stephen Brawner</li>
+				<li>Spandan Dutta</li>
+				<li>Daniel Fernandez</li>
+				<li>Nakul Gopalan</li>
+				<li>Esha Gosh</li>	
+				<li>Ellis Herskowitz</li>
+				<li>Mark Ho</li>
+				<li>Anubhav Malhotra</li>
+				<li>John Meehan</li>
+				<li>Michalis Michaelidis</li>
+				<li>Takehiro Oyakawa</li>
+				<li>Chan Trau</li>
+				<li>Lei Yang</li>
+				</ul>
+
+
+			</div>
+		</div>
+		
+	</body>
+</html>

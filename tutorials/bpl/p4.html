@@ -1,0 +1,223 @@
+<html>
+	<head>
+		<title>Basic Planning and Learning</title>
+		<script src="../../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="../../index.html">BURLAP</a>
+			<span id="nav-items"><a href="../../index.html">Home</a> | <a href="../../information.html">Information</a> | <a href="../../faq.html">F.A.Q.</a> | <a href="../index.html">Tutorials</a> | <a href="../../doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>Tutorial: Basic Planning and Learning</h1>
+				<h2><a href="../index.html">Tutorials</a> > <a href="p1.html">Basic Planning and Learning</a> > Part 4</h2>
+				<div id="index">
+					<b>Tutorial Contents</b>
+					<ul>
+						<li><a href="p1.html#intro">Introduction</a></li>
+						<li><a href="p1.html#shell">Creating the class shell</a></li>
+						<li><a href="p2.html#init">Initializing the data members</a></li>
+						<li><a href="p2.html#vis">Setting up a result visualizer</a></li>
+						<li><a href="p3.html#bfs">Planning with BFS</a></li>
+						<li><a href="p3.html#dfs">Planning with DFS</a></li>
+						<li><a href="p3.html#astar">Planning with A*</a></li>
+						<li><a href="p4.html#vi"><b>Planning with Value Iteration</b></a></li>
+						<li><a href="p4.html#qlearn">Learning with Q-Learning</a></li>
+						<li><a href="p4.html#sarsa">Learning with Sarsa(&lambda;)</a></li>
+						<li><a href="p5.html#liveVis">Live Visualization</a></li>
+						<li><a href="p5.html#vfvis">Value Function and Policy Visualization</a></li>
+						<li><a href="p6.html#expPlot">Experimenter Tools and Performance Plotting</a></li>
+						<li><a href="p6.html#conclusion">Conclusion</a></li>
+						
+					</ul>
+				</div>
+				<div id="sectionControls">
+					<a href="p3.html">Previous Part</a> | <a href="p5.html">Next Part</a>
+				</div>
+				
+				<h3><a name="vi">Planning with Value Iteration</a></h3>
+				<p>
+				A common stochastic planner is Value Iteration (VI). An advantage of VI is that it will compute the
+				policy for the entire state space that is reachable from the initial state that
+				is passed to the planFromState method. To set up a VI planner, define the following method.
+				</p>
+				<pre class="prettyprint lang-java">
+public void ValueIterationExample(String outputPath){
+		
+	if(!outputPath.endsWith("/")){
+		outputPath = outputPath + "/";
+	}
+	
+	
+	OOMDPPlanner planner = new ValueIteration(domain, rf, tf, 0.99, hashingFactory, 0.001, 100);
+	planner.planFromState(initialState);
+	
+	//create a Q-greedy policy from the planner
+	Policy p = new GreedyQPolicy((QComputablePlanner)planner);
+	
+	//record the plan results to a file
+	p.evaluateBehavior(initialState, rf, tf).writeToFile(outputPath + "planResult", sp);
+	
+}
+				</pre>
+				<p>
+				VI is a planning method defined for the classic MDP formalism, so unlike the previous
+				deterministic planners, its constructor takes as input the reward function and termination function,
+				rather than a goal condition. VI also takes as a parameter a discount 
+				factor which specifies how much future rewards are favored over immediate rewards. In this case,
+				a fairly large value of 0.99 is set (which means the agent will prefer later future rewards almost as much as
+				immediate rewards).
+				</p><p>
+				The last two parameters to the constructor specify stopping conditions for the
+				planning. The second to last parameter specifies that when the maximum
+				change in the <a href="http://en.wikipedia.org/wiki/Value_iteration#Value_iteration">value function</a> of any state is 
+				less than that specified threshold value (0.001 in this case), planning will stop. The last parameter specifies a maximum
+				number of updates for each state that can happen before planning is stopped (100 in this case), regardless
+				of whether the maximum value function change threshold was crossed.
+				</p><p>
+				Since VI is a stochastic planning algorithm, rather than a deterministic one like the previous algorithms we
+				used, we cannot capture its planning results in a SDPlannerPolicy Policy class. Instead, a policy can be derived
+				from the value function the planner estimates for each state using the <b>GreedyQPolicy</b> class that can
+				be defined for any planner that adheres to the <b>QComputablePlanner</b> interface, which the VI algorithm does.
+				</p><p>
+				Once the solution is captured in a Policy class object, the results can be captured and visualized in the same way. Try
+				setting the main method to call our newly defined VI example method now.
+				</p>
+				
+				
+				<h3><a name="qlearn">Learning with Q-Learning</a></h3>
+				<p>
+				All of the previous examples were examples of using planning algorithms to solve our task. In this section,
+				we will diverge from that and use a learning algorithm, Q-learning, to solve the task. Ultimately, learning
+				algorithms are utilized in much the same way as planning algorithms, except you run will run multiple
+				episodes of learning to solve it (or one very long episode if it is a continuing task rather than an episodic
+				task). The method you should define to utilize Q-learning is shown below.
+				</p>
+				<pre class="prettyprint lang-java">
+public void QLearningExample(String outputPath){
+		
+	if(!outputPath.endsWith("/")){
+		outputPath = outputPath + "/";
+	}
+	
+	//creating the learning algorithm object; discount= 0.99; initialQ=0.0; learning rate=0.9
+	LearningAgent agent = new QLearning(domain, rf, tf, 0.99, hashingFactory, 0., 0.9);
+	
+	//run learning for 100 episodes
+	for(int i = 0; i < 100; i++){
+		EpisodeAnalysis ea = agent.runLearningEpisodeFrom(initialState);
+		ea.writeToFile(String.format("%se%03d", outputPath, i), sp); 
+		System.out.println(i + ": " + ea.numTimeSteps());
+	}
+	
+}				
+				</pre>
+				<p>
+				Lets first look at the constructor. Rather than a planning instance, we're creating a <b>LearningAgent</b>
+				instance which provides some methods for learning. <b>QLearning</b> is an instance of the LearningAgent class
+				and like the Value Iteration planner, takes a parameters the reward function, termination function, and
+				discount factor rather than a goal condition. The last two parameters of the constructor represent the
+				initial Q-value to use for previously untaken state-action pairs (which we set to 0.0) and the last parameter
+				is the learning rate, which we set fairly high since this is a simple deterministic task. Note that this
+				constructor will by default set Q-learning to use a 0.1 epsilon greedy policy. There are other constructors
+				that allow you to set which learning policy to use and there is also a mutator that allows you to set it
+				if you'd like to use a different policy. Alternatively, you could also pass Q-learning an object that
+				specifies how the Q-value for each state-action pair should be initialized, rather than initializing them all to the same
+				value as we did here. For this tutorial, we will not bother with that, however.
+				
+				</p><p>
+				With the QLearning instance created, next we will run learning episodes rather than tell it to plan a solution.
+				To make sure a decent solution is learned, we will let learning run for 100 episodes, so we set up a loop to do
+				so. To run a learning episode, we call the method <b>runLearningEpisodeFrom</b> on the LearningAgent instance
+				and pass it the initial state from which it should begin the learning episode. Since this method will perform
+				learning for an entire episode, the method will return an EpisodeAnalysis object that stores the results
+				of the episode. Once we have this episode, we simple save it to a file like we did the planning results in previous
+				examples (with care to give each episode a different name so that we can view them all). We also added a line
+				to print the number of steps taken in each learning episode to the terminal so that we can follow its overall
+				progress as it learns.
+				</p><p>
+				After that, you can call this method from your main method and run the results! This time, in the
+				EpisodeSequenceVisualizer launcher you will find there are 100 episode files in the list, one for each
+				episode of learning that occurred. You should find that in the earlier episodes behavior was quite bad, but
+				as the agent experiences the world, its performance became better. You may find that even after a large amount
+				of learning that the behavior is slightly random; this randomness is a result of learning using the epsilon greedy
+				policy which always takes a random action with some probability. Alternatively, you could also capture the final
+				learning results in a <b>GreedyQPolicy</b> like we did with VI and record those results, instead of the results
+				with the learning policy.
+				</p>
+				<div class = "note">
+				<h2>Note</h2>
+				<p>	
+				While QLearning adheres to the LearningAgent interface, it is also an
+				instance of the OOMDPPlanner, which means we could have called the planFromState method on it. For the QLearning
+				algorithm, the planFromState method will run some number of learning episodes automatically for you. By default 
+				it will only run one (which is unlikely to yield very good results!), but you can adjust the number of episodes
+				it would run, similar to how the VI planner decides to stop planning. Specifically, you can set a maximum number of learning
+				episodes to run with the <b>setMaxEpisodesForPlanning</b> method, or you can specify a Q-value change
+				threshold with the <b>setMaxQChangeForPlanningTerminaiton</b> method that will terminate planning when the maximum 
+				Q-value change within an episode less than the threshold.
+				</p>
+				</div>
+				
+				
+				<h3><a name="sarsa">Learning with Sarsa(&lambda;)</a></h3>
+				<p>
+				A similar learning algorithm to Q-learning is Sarsa(&lambda;). The first difference between the two
+				algorithms is that Sarsa(&lambda;) updates Q-values with respect to the Q-value of the next action taken,
+				rather than the maximum Q-value of the next state (see <a href="http://en.wikipedia.org/wiki/SARSA">Wikipedia</a> 
+				for more information). The second, and larger, difference is that at every time step, Sarsa(&lambda;) 
+				will also update the Q-values
+				for state-action pairs experienced previously in an episode with respect to 
+				the amount specified by &lambda; and how long ago the experiences occurred. Define the below method to solve our
+				task with Sarsa(&lambda;).
+				</p>
+				<pre class="prettyprint lang-java">
+public void SarsaLearningExample(String outputPath){
+		
+	if(!outputPath.endsWith("/")){
+		outputPath = outputPath + "/";
+	}
+	
+	//discount= 0.99; initialQ=0.0; learning rate=0.5; lambda=1.0
+	LearningAgent agent = new SarsaLam(domain, rf, tf, 0.99, hashingFactory, 0., 0.5, 1.0);
+	
+	//run learning for 100 episodes
+	for(int i = 0; i < 100; i++){
+		EpisodeAnalysis ea = agent.runLearningEpisodeFrom(initialState);
+		ea.writeToFile(String.format("%se%03d", outputPath, i), sp);
+		System.out.println(i + ": " + ea.numTimeSteps());
+	}
+	
+}				
+				</pre>
+				<p>
+				You will notice that this method looks pretty identical to the Q-learning example, except this time
+				a <b>SarsaLam</b> instance is constructed. Additionally, we lowered the learning rate to 0.5 (typically
+				you should use lower learning rates when you have a higher value of &lambda;). The last parameter of
+				the constructor is the &lambda; value which we set to 1.0. A value of &lambda;=1.0 effectively makes algorithm run an
+				online Monte Carlo in which the effects of all future interactions are fully considered in updating each Q-value
+				of an episode.
+				</p><p>
+				Otherwise, the rest is the same; you can call this method from the main method and give it shot! You should find
+				that learning is much faster than Q-learning when the higher value of &lambda; is used. Like QLearning, the
+				SarsaLam instance also supports the planning method and the conditions for planning termination can be set in the same
+				way (SarsaLam is actually a subclass of QLearning).
+				</p>
+				
+				
+				
+				
+				<div id="footerControls">
+					<a href="p5.html">Next Part</a>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

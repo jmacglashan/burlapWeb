@@ -1,0 +1,250 @@
+<html>
+	<head>
+		<title>BURLAP</title>
+		<script src="google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="index.html">BURLAP</a>
+			<span id="nav-items"><a href="index.html">Home</a> | <a href="information.html">Information</a> | <a href="faq.html">F.A.Q.</a> | <a href="tutorials/index.html">Tutorials</a> | <a href="doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<center>
+				<img src="images/blocksWorldImage.png" height="150" style="margin-right:6em;"/> <img src="images/gwvf.png" height="150" style="margin-right:6em;"/> <img src="images/mountainCarImage.png" height="150" />
+				</center>
+				<br/><br/>
+				<h1>About</h1>
+				<p>
+				The Brown-UMBC Reinforcement Learning and Planning (<b>BURLAP</b>) java code library is for the use and 
+				development of single or multi-agent planning and 
+				learning algorithms and domains to accompany them. At the core of the library is a rich state 
+				and domain representation framework based on the object-oriented MDP (OO-MDP) [1] paradigm that 
+				facilitates the creation of discrete, continuous, or relational domains that can consist of any 
+				number of different "objects" in the world. Planning and learning algorithms range from classic 
+				forward search planning to value function-based stochastic planning and learning algorithms. 
+				Also included is a set of analysis tools such as a common framework for the visualization of 
+				domains and agent performance in various domains.
+				</p>
+				<p>
+				BURLAP is licensed under LGPL so that it can be used freely in any number of circumstances, while remaining open source.
+				</p>
+				<p>
+				For more background information on the project and the people involved, see the <a href="information.html">Information</a> page. 
+				</p>
+
+				
+				
+				
+				<h1>Where to <i>git</i> it</h1>
+				<p>
+				The full BURLAP source can be found on Github at:<br/>
+				<a href="https://github.com/jmacglashan/burlap" target="external">https://github.com/jmacglashan/burlap</a>
+				</p>
+				<p>
+				Alternatively, you can download 
+				<ul>
+				<li><a href="burlap.jar">a pre-compiled jar</a> with dependencies included, or</li>
+				<li><a href="burlap_no_dep.jar">a pre-compiled jar</a> with<b>out</b> dependencies.</li>
+				</ul>
+				Use the jar without the dependencies if you are having library conflicts
+				and need to manage them yourself. Note that while these jar files
+				will be uploaded periodically, the most up-to-date changes will be
+				in the github repository.
+				<p/>
+				<p>
+				BURLAP has the following dependencies.
+				</p>
+				<ul>
+				<li><a href="http://glue.rl-community.org/wiki/Java_Codec">RLGlue Java Codec</a> - You will need this if you plan on interfacing BURLAP with <a href="http://glue.rl-community.org/wiki/Main_Page">RLGLue</a>.</li>
+				<li><a href="http://commons.apache.org/proper/commons-math/">Apache Math Commons</a> - For performance plotting tools.</li>
+				<li><a href="http://www.jfree.org/jfreechart/">JFree Chart</a> - For Performance Plotting tools.</li>
+				<li><a href="https://code.google.com/p/snakeyaml/">Snake YAML</a> - For reading and writing states into the YAML format.</li>
+				<li><a href="http://jackson.codehaus.org/">Jackson</a> - For reading and writing states into the JSON format.</li>
+				<li><a href="http://www.joptimizer.com/">JOptimizer</a> - For Max Margin Apprenticeship Learning</li>
+				<li><a href="http://scpsolver.org/">SCPSolver</a> - For Minmax, Coco-Q, and Correlated-Q algorithms. (Our choice of underlying LP solver that it uses is lpsolve.)</li>
+				</ul>
+				<p>
+				If you download BURLAP from Github, all of these dependencies are included in the lib directory. If you do not plan on using the features that use a given dependency, then
+				you should be able to use the BURLAP jar without that dependency.
+				</p>
+				
+				<h1>Tutorials</h1>
+				<p>
+				Both short video tutorials and longer text tutorials are available for BURLAP, with more planned.
+				In addition to below, tutorials can be found on the <a href="tutorials/index.html">
+				tutorials</a> page.
+				</p>
+				<iframe width="560" height="315" src="http://www.youtube.com/embed/UXJnQq0zgw0" frameborder="0" allowfullscreen></iframe>
+				<h3>Text Tutorials</h3>
+				<ul>
+				<li><a href="tutorials/hgw/p1.html">Hello <i>Grid</i>World!</a> - a tutorial on acquiring and linking with BURLAP</li>
+				<li><a href="tutorials/bd/p1.html">Building a Domain</a></li>
+				<li><a href="tutorials/bpl/p1.html">Using Basic Planning and Learning Algorithms</a></li>
+				<li><a href="tutorials/cpl/p1.html">Creating a Planning and Learning Algorithm</a></li>
+				<li><a href="tutorials/scd/p1.html">Solving Continuous Domains</a></li>
+				</ul>
+				<p>
+				Tutorials that will be released in the near future include
+				</p>
+				<ul>
+					<li>Planning and Learning in Multi-agent domains</li>
+					<li>Using options</li>
+					<li>Using Inverse Reinforcement Learning</li>
+				</ul>
+				<h1>Documentation</h1>
+				<p>
+				Java documentation is provided for all of the source code in BURLAP. 
+				You can find an online copy of the javadoc at the below location.
+				</p>
+				<p>
+				<a href="http://burlap.cs.brown.edu/doc/index.html">http://burlap.cs.brown.edu/doc/index.html</a>
+				</p>
+				<h1>Features</h1>
+				<h2>Current</h2>
+				<p>
+				<ul>
+					<li>
+						Problem Representation using the OO-MDP paradigm which represents states as collections of objects, each represented
+						by their own feature vector. Domains may also be defined with propositional functions that operate on objects in the world
+						that are useful for defining and learning reward functions and transition dynamics.
+						The OO-MDP formalism supports
+						<ul>
+							<li>Discrete attributes</li>
+							<li>Continuous attributes</li>
+							<li>Relational attributes (that link to either one or many other objects in the world)</li>
+							<li>Parameterized actions (e.g., actions 
+							that operate on objects in the world)</li>
+							<li>Actions with preconditions</li>
+							<li>Actions that dynamically create new objects</li>
+						</ul>
+					</li>
+					<li>Support for working in and defining both single agent domains and (multi-agent) stochastic games.</li>
+					<li>Tools for visualizing and defining visualizations of states, episodes, value functions, and policies.</li>
+					<li>Tools for setting up experiments with multiple learning algorithms and plotting the performance using multiple performance metrics.</li>
+					<li>Tools for creating multi-agent tournaments.</li>
+					<li>
+						Classic goal-directed deterministic forward-search planning.
+						<ul>
+							<li>Breadth-first Search</li>
+							<li>Depth-first Search</li>
+							<li>A*</li>
+							<li>IDA* </li>
+							<li>Statically Weighted A* [2]</li>
+							<li> Dynamically Weighted A* [3]</li>
+						</ul>
+					</li>
+					<li>
+						Stochastic Planning.
+						<ul>
+							<li>Value Iteration [4]</li>
+							<li>Policy Iteration</li>
+							<li>Prioritized Sweeping [20]</li>
+							<li>Real-time Dynamic Programming [5]</li>
+							<li>UCT [6]</li>
+							<li>Sparse Sampling [17]</li>
+							<li>Bounded Real-time Dynamic Programming [21]</li>
+						</ul>
+					</li>
+					<li>
+						Learning.
+						<ul>
+							<li>Q-learning [7]</li>
+							<li>SARSA(&lambda;) [8]</li>
+							<li>Actor Critic [9]</li>
+							<li>Potential Shaped RMax [12]</li>
+							<li>ARTDP [5]</li>
+						</ul>
+					</li>
+					<li>
+						Value Function Approximation
+						<ul>
+							<li>Gradient Descent SARSA(&lambda;) [8]</li>
+							<li>Least-Squares Policy Iteration [18]</li>
+							<li>Framework for implementing linear and non-linear VFA</li>
+							<li>CMACs/Tile Coding [10]</li>
+							<li>Radial Basis Functions</li>
+							<li>Fourier Basis Functions [19]</li>
+						</ul>
+					</li>
+					<li>The Options framework [11] (supported in nearly all current single agent planning and learning algorithms).
+					<li>Reward Shaping</li>
+					<li>Inverse Reinforcement Learning
+						<ul>
+							<li>Maximum Margin Apprenticeship Learning [16]</li>
+							<li>Multiple Intentions Maximum-likelihood Inverse Reinforcement Learning [22]</li>
+							<li>Receding Horizon Inverse Reinforcement Learning [23]</li>
+						</ul>
+					</li>
+					<li>Multi-agent Q-learning and Value Iteration, supporting
+						<ul>
+						<li>Q-learning with an n-step action history memory</li>
+						<li>Friend-Q [13]</li>
+						<li>Foe-Q [13] </li>
+						<li>Correlated-Q [14]</li>
+						<li>Coco-Q [15]</li>
+						</ul>
+					</li>
+					<li>
+						Pre-made domains and domain generators.
+						<ul>
+							<li>Grid Worlds</li>
+							<li>Domains represented as graphs</li>
+							<li>Blocks World</li>
+							<li>Lunar Lander</li>
+							<li>Mountain Car</li>
+							<li>Cart Pole</li>
+							<li>Frostbite</li>
+							<li>Grid Games (a multi-agent stochastic games domain)</li>
+							<li>Multiple classic Bimatrix games.
+						</ul>
+					</li>
+					<li><a href="http://glue.rl-community.org/wiki/Main_Page" target="external">RLGlue</a> agent and environment interfacing</li>
+				</ul>
+				</p>
+				<h2>Features in development</h2>
+				<ul>
+					<li>Additional Inverse Reinforcement Learning algorithms</li>
+					<li>Additional value function approximation methods and learning algorithms</li>
+					<li>POMDP Planning algorithms</li>
+					<li>Learning from human feedback algorithms</li>
+					<li>Integration with <a href="http://wiki.ros.org/" target="external">ROS</a> for using BURLAP on physical robots</li>
+				</ul>
+				
+				<h1>References</h1>
+				<p>
+				<ol>
+					<li>Diuk, C., Cohen, A., and Littman, M.L.. "An object-oriented representation for efficient reinforcement learning." Proceedings of the 25th international conference on Machine learning (2008). 240-270.</li>
+					<li>Pohl, Ira. "First results on the effect of error in heuristic search". Machine Intelligence 5 (1970): 219-236.</li>
+					<li>Pohl, Ira. "The avoidance of (relative) catastrophe, heuristic competence, genuine dynamic weighting and computational issues in heuristic problem solving (August, 1973)</li>
+					<li>Puterman, Martin L., and Moon Chirl Shin. "Modified policy iteration algorithms for discounted Markov decision problems." Management Science 24.11 (1978): 1127-1137.</li>
+					<li>Barto, Andrew G., Steven J. Bradtke, and Satinder P. Singh. "Learning to act using real-time dynamic programming." Artificial Intelligence 72.1 (1995): 81-138.</li>
+					<li>Kocsis, Levente, and Csaba Szepesvari. "Bandit based monte-carlo planning." ECML (2006). 282-293.</li>
+					<li>Watkins, Christopher JCH, and Peter Dayan. "Q-learning." Machine learning 8.3-4 (1992): 279-292.</li>
+					<li>Rummery, Gavin A., and Mahesan Niranjan. On-line Q-learning using connectionist systems. University of Cambridge, Department of Engineering, 1994.</li>
+					<li>Barto, Andrew G., Richard S. Sutton, and Charles W. Anderson. "Neuronlike adaptive elements that can solve difficult learning control problems." Systems, Man and Cybernetics, IEEE Transactions on 5 (1983): 834-846.</li>
+					<li>Albus, James S. "A theory of cerebellar function." Mathematical Biosciences 10.1 (1971): 25-61.</li>
+					<li>Sutton, Richard S., Doina Precup, and Satinder Singh. "Between MDPs and semi-MDPs: A framework for temporal abstraction in reinforcement learning." Artificial intelligence 112.1 (1999): 181-211.</li>
+					<li>Asmuth, John, Michael L. Littman, and Robert Zinkov. "Potential-based Shaping in Model-based Reinforcement Learning." AAAI. 2008.</li>
+					<li>Littman, Michael L. "Markov games as a framework for multi-agent reinforcement learning." ICML. Vol. 94. 1994.</li>
+					<li>Greenwald, Amy, Keith Hall, and Roberto Serrano. "Correlated Q-learning." ICML. Vol. 3. 2003.</li>
+					<li>Sodomka, Eric, Hilliard, E., Littman, M., & Greenwald, A. "Coco-Q: Learning in Stochastic Games with Side Payments." Proceedings of the 30th International Conference on Machine Learning (ICML-13). 2013.</li>
+					<li>Abbeel, Pieter, and Andrew Y. Ng. "Apprenticeship learning via inverse reinforcement learning." Proceedings of the twenty-first international conference on Machine learning. ACM, 2004.</li>
+					<li>Kearns, Michael, Yishay Mansour, and Andrew Y. Ng. "A sparse sampling algorithm for near-optimal planning in large Markov decision processes." Machine Learning 49.2-3 (2002): 193-208.</li>
+					<li>Lagoudakis, Michail G., and Ronald Parr. "Least-squares policy iteration." The Journal of Machine Learning Research 4 (2003): 1107-1149</li>
+					<li>G.D. Konidaris, S. Osentoski and P.S. Thomas. Value Function Approximation in Reinforcement Learning using the Fourier Basis. In Proceedings of the Twenty-Fifth Conference on Artificial Intelligence, pages 380-385, August 2011.</li>
+					<li>Li, Lihong, Michael L. Littman, and L. Littman. Prioritized sweeping converges to the optimal value function. Tech. Rep. DCS-TR-631, 2008.</li>
+					<li>McMahan, H. Brendan, Maxim Likhachev, and Geoffrey J. Gordon. "Bounded real-time dynamic programming: RTDP with monotone upper bounds and performance guarantees."  Proceedings of the 22nd international conference on Machine learning. ACM, 2005.</li>
+					<li>Babes, Monica, et al. "Apprenticeship learning about multiple intentions." Proceedings of the 28th International Conference on Machine Learning (ICML-11). 2011.</li>
+					<li>MacGlashan, James and Littman, Micahel, "Between imitation and intention learning," in Proceedings of the International Joint Conference on Artificial Intelligence, 2015.</li>
+				</ol>
+				</p>
+			</div>
+		</div>
+		
+	</body>
+</html>

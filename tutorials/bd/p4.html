@@ -1,0 +1,273 @@
+<html>
+	<head>
+		<title>Building a Domain</title>
+		<script src="../../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="../../index.html">BURLAP</a>
+			<span id="nav-items"><a href="../../index.html">Home</a> | <a href="../../information.html">Information</a> | <a href="../../faq.html">F.A.Q.</a> | <a href="../index.html">Tutorials</a> | <a href="../../doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>Tutorial: Building a Domain</h1>
+				<h2><a href="../index.html">Tutorials</a> > <a href="p1.html">Building a Domain</a> > Part 4</h2>
+				<div id="index">
+					<b>Tutorial Contents</b>
+					<ul>
+						<li><a href="p1.html#intro">Introduction</a></li>
+						<li><a href="p1.html#mdp">Markov Decision Process</a></li>
+						<li><a href="p2.html#oomdp">OO-MDPs</a></li>
+						<li><a href="p2.html#burlapoverview">BURLAP OO-MDP Java Class Overview</a></li>
+						<li><a href="p3.html#oclasses">Defining GridWorld Object Classes</a></li>
+						<li><a href="p3.html#actions">Defining GridWorld Actions</a></li>
+						<li><a href="p3.html#opfs">Defining Propositional Functions</a></li>
+						<li><a href="p3.html#testing">Testing the Domain</a></li>
+						<li><a href="p4.html#viscomps"><b>The Components of a Visualizer</b></a></li>
+						<li><a href="p4.html#painters">Implementing the Painters</a></li>
+						<li><a href="p5.html#rftf">Reward Functions and Terminal Functions</a></li>
+						<li><a href="p5.html#conclusions">Conclusions</a></li>
+						<li><a href="p5.html#code">Final Code</a></li>
+					</ul>
+				</div>
+				<div id="sectionControls">
+					<a href="p3.html">Previous Part</a> | <a href="p5.html">Next Part</a>
+				</div>
+				
+				<h3><a name="viscomps">The Components of a Visualizer</a></h3>
+				<p>
+				Different visualization components in BURLAP are built around implementing the <a href="../../doc/burlap/oomdp/visualizer/RenderLayer.html"> RenderLayer</a> interface, which requires being passed a graphics context on which the implementing class will paint. Having everything built around RenderLayer objects
+				means you can trivially stack different kinds of information on
+				top of each other. For example, you might have a render layer to display a state, and another one to display value function information, layered on top. In this tutorial we will focus on
+				rendering the state, for which there is a specific implementation of the RenderLayer interface that we can use called <a href="../../doc/burlap/oomdp/visualizer/StateRenderLayer.html">StateRenderLayer</a>, which after constructing we can pass to the <a href="../../doc/burlap/oomdp/visualizer/StateRenderLayer.html">Visualizer</a> class, which will create a Java canvas to which are StateRenderLayer can paint.
+				</p>
+				<p>
+				The StateRenderLayer is provided a number of different subpainters that it will call sequentially to paint to the canvas. Each subpainter is either a <a href="../../doc/burlap/oomdp/visualizer/StaticPainter.html">StaticPainter</a> or an <a href="../../doc/burlap/oomdp/visualizer/ObjectPainter.html">ObjectPainter</a>. The StaticPainter is an interface that requires implementing a method that takes a graphics context, an OO-MDP State object, and the width and height of the canvas that then paints to the canvas information about the overall state or the domain to which the state belongs. For example, in the grid world we've been creating, walls are not explicitly represented in our OO-MDP state object, but when rendering a state, we'd like to paint where the walls are. 
+				</p>
+				<p>
+				The ObjectPainter is an interface that requires implementing a method that takes a graphics context, an OO-MDP state, a specific OO-MDP ObjectInstance from that state, and the width and height of the canvas that then paints to the canvas information about that specific object instance. In our GridWorld, we would want to provide a different ObjectPainter for
+				the agent class objects and location class objects.
+				</p>
+				<p>
+				When our StateRenderLayer object is provided a bunch of StaticPainter and ObjectPainter objects, during it's state paint method it will first paint to the graphics context with the StaticPainter objects. Then for each OO-MDP object in the state, it will paint to the canvas using the corresponding ObjectPainter
+				that we will associate with that class.
+				</p>
+
+				<h3><a name="painters">Implementing the Painters</a></h3>
+				<p>
+				To implement a StaticPainter for painting the walls of our grid world as black rectangles, add the below class inside the ExampleGridWord class code we've been writing.
+				</p>
+				<pre class="prettyprint lang-java">
+public class WallPainter implements StaticPainter{
+
+	@Override
+	public void paint(Graphics2D g2, State s, float cWidth, float cHeight) {
+		
+		//walls will be filled in black
+		g2.setColor(Color.BLACK);
+		
+		//set up floats for the width and height of our domain
+		float fWidth = ExampleGridWorld.this.map.length;
+		float fHeight = ExampleGridWorld.this.map[0].length;
+		
+		//determine the width of a single cell on our canvas 
+		//such that the whole map can be painted
+		float width = cWidth / fWidth;
+		float height = cHeight / fHeight;
+		
+		//pass through each cell of our map and if it's a wall, paint a black 
+		//rectangle on our cavas of dimension widthxheight
+		for(int i = 0; i < ExampleGridWorld.this.map.length; i++){
+			for(int j = 0; j < ExampleGridWorld.this.map[0].length; j++){
+				
+				//is there a wall here?
+				if(ExampleGridWorld.this.map[i][j] == 1){
+				
+					//left corrdinate of cell on our canvas
+					float rx = i*width;
+					
+					//top coordinate of cell on our canvas
+					//coordinate system adjustment because the java canvas
+					//origin is in the top left instead of the bottom right
+					float ry = cHeight - height - j*height;
+				
+					//paint the rectangle
+					g2.fill(new Rectangle2D.Float(rx, ry, width, height));
+					
+				}
+				
+				
+			}
+		}
+		
+	}
+	
+
+}
+				</pre>
+				<p>
+				The main idea of this code is to first determine how wide and tall cells in our grid world will be rendered on a canvas of the given size. This is simply with width/height of the canvas divided
+				by the number of cells in our grid world along each dimension.
+				Then we iterate through our map and draw a rectangle in the corresponding position when the map has a wall listed as being there. The only extra thing to take care of is that the Java
+				painting coordinate system is in the top left corner, whereas
+				we've defined our map with a bottom left coordinate system, so we perform a coordinate system switch in the rendering as shown.
+				</p>
+				<p>
+				Now lets create a painter for the OO-MDP agent class, which we'll represent as a gray circle in the word. This code
+				will look almost identical to our map painter code except instead of iterating through the map, we'll get the agent x and y position from the OO-MDP ObjectInstance our painter is provided and instead of painting a black rectangle we'll paint a gray circle. As before add the below class inside our ExampleGridWorld class.
+				</p>
+				<pre class="prettyprint lang-java">
+public class AgentPainter implements ObjectPainter{
+
+	@Override
+	public void paintObject(Graphics2D g2, State s, ObjectInstance ob,
+			float cWidth, float cHeight) {
+		
+		//agent will be filled in gray
+		g2.setColor(Color.GRAY);
+		
+		//set up floats for the width and height of our domain
+		float fWidth = ExampleGridWorld.this.map.length;
+		float fHeight = ExampleGridWorld.this.map[0].length;
+		
+		//determine the width of a single cell on our canvas 
+		//such that the whole map can be painted
+		float width = cWidth / fWidth;
+		float height = cHeight / fHeight;
+		
+		int ax = ob.getDiscValForAttribute(ATTX);
+		int ay = ob.getDiscValForAttribute(ATTY);
+		
+		//left coordinate of cell on our canvas
+		float rx = ax*width;
+		
+		//top coordinate of cell on our canvas
+		//coordinate system adjustment because the java canvas 
+		//origin is in the top left instead of the bottom right
+		float ry = cHeight - height - ay*height;
+	
+		//paint the rectangle
+		g2.fill(new Ellipse2D.Float(rx, ry, width, height));
+		
+		
+	}
+	
+	
+	
+}
+				</pre>
+				<p>
+				We'll also do the same for a location object, but we'll use a blue rectangle instead.
+				</p>
+				<pre class="prettyprint lang-java">
+public class LocationPainter implements ObjectPainter{
+
+	@Override
+	public void paintObject(Graphics2D g2, State s, ObjectInstance ob,
+			float cWidth, float cHeight) {
+		
+		//agent will be filled in blue
+		g2.setColor(Color.BLUE);
+		
+		//set up floats for the width and height of our domain
+		float fWidth = ExampleGridWorld.this.map.length;
+		float fHeight = ExampleGridWorld.this.map[0].length;
+		
+		//determine the width of a single cell on our canvas 
+		//such that the whole map can be painted
+		float width = cWidth / fWidth;
+		float height = cHeight / fHeight;
+		
+		int ax = ob.getDiscValForAttribute(ATTX);
+		int ay = ob.getDiscValForAttribute(ATTY);
+		
+		//left coordinate of cell on our canvas
+		float rx = ax*width;
+		
+		//top coordinate of cell on our canvas
+		//coordinate system adjustment because the java canvas 
+		//origin is in the top left instead of the bottom right
+		float ry = cHeight - height - ay*height;
+	
+		//paint the rectangle
+		g2.fill(new Rectangle2D.Float(rx, ry, width, height));
+		
+		
+	}
+	
+	
+	
+}
+				</pre>
+				<p>
+				Finally, we'll want to add some methods to our ExampleGridWorld domain generator to create a StateRenderLayer and corresponding
+				Visualizer to hold it. The StateRenderLayer merely needs to be given a WallPainter instance and told to use a AgentPainter instance for objects of OO-MDP class agent and a LocationPainter instance for objects of OO-MDP class location. Once a StateRenderLayer object is created, a Visualizer object merely needs to be pointed to it. To do so, add the following methods to our ExampleGridWorld class.
+				</p>
+				<pre class="prettyprint lang-java">
+public StateRenderLayer getStateRenderLayer(){
+	StateRenderLayer rl = new StateRenderLayer();
+	rl.addStaticPainter(new WallPainter());
+	rl.addObjectClassPainter(CLASSLOCATION, new LocationPainter());
+	rl.addObjectClassPainter(CLASSAGENT, new AgentPainter());
+	
+	return rl;
+}
+
+public Visualizer getVisualizer(){
+	return new Visualizer(this.getStateRenderLayer());
+}
+				</pre>
+				<p>
+				Note that in the getStateRenderLayer method we added the location object painter before the agent object painter. This implicitly tells the StateRenderLayer the order in which objects should be painted; first objects of class location and then objects of class agent. The result is that when an agent is at the same position as a location, the agent will be rendered on top of it.
+				</p>
+				<p>
+				Now that we can construct a visualizer, lets swap out our TermainalExplorer in our main method for a <a href="../../doc/burlap/oomdp/singleagent/explorer/VisualExplorer.html">VisualExplorer</a>. The VisualExplorer can be controlled by manually typing in actions into a text field, but it's often easier to control the agent with the keyboard. To do so, we can specify a binding between a key press and an action name with the addKeyAction method. In this case, we'll set 'w' to correspond to north; 's' south; 'd' east; and 'a' west. Change your main method to now look like the below.
+				</p>
+				<pre class="prettyprint lang-java">
+public static void main(String [] args){
+		
+	ExampleGridWorld gen = new ExampleGridWorld();
+	Domain domain = gen.generateDomain();
+	
+	State initialState = ExampleGridWorld.getExampleState(domain);
+	
+	//TerminalExplorer exp = new TerminalExplorer(domain);
+	//exp.exploreFromState(initialState);
+	
+	
+	Visualizer v = gen.getVisualizer();
+	VisualExplorer exp = new VisualExplorer(domain, v, initialState);
+	
+	exp.addKeyAction("w", ACTIONNORTH);
+	exp.addKeyAction("s", ACTIONSOUTH);
+	exp.addKeyAction("d", ACTIONEAST);
+	exp.addKeyAction("a", ACTIONWEST);
+	
+	exp.initGUI();
+	
+	
+}
+				</pre>
+				<p>
+				Now when you run your code, you'll be presented a visualization of the state and you can interact with it with the "wasd" keys, similar to what you see in the below image. Note that you may need to click on the image for it to begin accepting key presses.
+				</p>
+				<center>
+				<img src="images/visualExplorer.png" width="400"/>
+				</center>
+				<p>
+				 Remember, since we made movement stochastic, you may find the agent moving in unintended directions some of the time. Also note that when the agent enters the same position as the location object that in the bottom text box in the window you'll see "at(agent0, location0)" appear. This text box always lists all propositional functions that are true in the current state automatically.
+				 </p>
+
+				<div id="footerControls">
+					<a href="p5.html">Next Part</a>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

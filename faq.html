@@ -1,0 +1,198 @@
+<html>
+	<head>
+		<title>BURLAP: FAQ</title>
+		<script src="../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+	</head>
+	<body>
+	
+		<div id="nav">
+			
+			<span id="nav-content">
+			<a href="index.html">BURLAP</a>
+			<span id="nav-items"><a href="index.html">Home</a> | <a href="information.html">Information</a> | <a href="faq.html">F.A.Q.</a> | <a href="tutorials/index.html">Tutorials</a> | <a href="doc/index.html">Java Doc</a></span>
+			</span>
+
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>F.A.Q.</h1>
+				<h2>Question Index</h2>
+				<ul>
+				<li><a href="#whatIsBurlap">What is BURLAP?</a></li>
+				<li><a href="#license">What is BURLAP's software license?</a></li>
+				<li><a href="#contact">Who do I contact if I have a question or comment?</a></li>
+				<li><a href="#java">Why Java and not language x?</a></li>
+				<li><a href="#oomdp">What is an object-oriented Markov decision process (OO-MDP)?</a></li>
+				<li><a href="#grounded">What is the difference between an Action and a GroundedAction? What about a PropositionalFunction and a GroundedProp?</a></li>
+				<li><a href="#abstractGrounded">What is an AbstractGroundedAction class?</a></li>
+				<li><a href="#params">It seems that Action parameters correspond to typed OO-MDP state objects; can I define an action with non-object parameters?</a></li>
+				<li><a href="#hashFactory">What is a StateHashFactory?</a></li>
+				<li><a href="#identifierInvariance">What is object identifier invariance?</a></li>
+				<li><a href="#whyNotInvariance">If object identifier invariance leads to smaller state spaces, why wouldn't I want to use it?</a></li>
+				<li><a href="#terminal">How are terminal states defined in BURLAP?</a></li>
+				<li><a href="#stateSpace">Domains don't seem to provide access to the entire state space. Why not and how can I get it?</a></li>
+				<li><a href="#transitionDynamics">Where are transition dynamics defined?</a></li>
+				<li><a href="#preconditions">Can actions have preconditions?</a></li>
+				<li><a href="#singleAction">What is a SingleAction class?</a></li>
+				<li><a href="#pog">What is a parameter order group?</a></li>
+				<li><a href="#environment">Is there a way to set up an Environment that maintains the current state with which the agent interacts?</a></li>
+				<li><a href="#memory">My planning or learning algorithm is running out of memory, is there anything that I can do?</a></li>
+				<li><a href="#robot">Can I have BURLAP control a robot?</a></li>
+				<li><a href="#cite">How do I cite BURLAP?</a></li>
+				</ul>
+
+
+
+				<h3>Answers</h3>
+				<ul>
+					<li><b><a name="whatIsBurlap"/>What is BURLAP?</b>
+					<p>
+					BURLAP stands for Brown-UMBC Reinforcement Learning And Planning and is a Java library for the use and development of single or multi-agent planning and learning algorithms and domains to accompany them.
+					</p>
+					</li>
+					<li><b><a name="license"/>What is BURLAP's software license?</b>
+					<p>
+					BURLAP is licensed under LGPL. In brief, that means you can use it for free and even link to it in sold software.
+					</p>
+					</li>
+					<li><b><a name="contact"/>Who do I contact if I have a question or comment?</b>
+					<p>
+					You can either field the question to the community in our <a href="https://groups.google.com/forum/#!forum/burlap-discussion">Google group</a> or you can send an email to the creator, James MacGlashan, at jmacglashan at cs dot brown dot edu.
+					</p>
+					</li>
+					<li><b><a name="java"/>Why Java and not language x?</b>
+					<p>
+					Java provides a nice balance between high portability and efficiency, while also being fairly well known with a wide range of available libraries. Additionally, many modern languages, such as Scala and Groovy, compile to the JVM, which makes BURLAP instantly compatible with them.
+					</p>
+					</li>
+					<li><b><a name="oomdp"/>What is an object-oriented Markov decision process (OO-MDP)?</b>
+					<p>
+					This topic is more fully described on <a href="tutorials/bd/p2.html">page 2 of the Building a Domain tutorial</a>. In short, an OO-MDP defines states as a set of objects, each with their own attribute values, and adds a set of propositional functions that operate on the objects in a state, thereby providing additional high-level information. This representation is very powerful and allows for a range of different kinds of problems to be easily defined.
+					</p>
+					</li>
+					<li><b><a name="grounded"/>What is the difference between an <a href="doc/burlap/oomdp/singleagent/Action.html">Action</a> and a <a href="doc/burlap/oomdp/singleagent/GroundedAction.html">GroundedAction</a>? What about a <a href="doc/burlap/oomdp/core/PropositionalFunction.html">PropositionalFunction</a> and a <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/core/GroundedProp.html">GroundedProp</a>?</b>
+					<p>
+					An Action object defines an action's name, set of parameters, and the code that defines the physics of an action. Because actions can be parameterized, there needs to be a way to refer to each specific application of an action. A GroundedAction serves this purpose by being a reference to an Action object along with a set of parameters with which the action is to be applied.</p>
+					<p>
+					To give an example, in a blocks world, the "pickup" Action object defines an action that is parameterized to a block object and how the state changes when it is applied to any given block. In a world with three blocks, there would be three different GroundedAction objects that reference the "pickup" Action object; one for each block. If an Action does not define any parameters, then a corresponding GroundedAction for it will have an empty set of specified parameter values.</p>
+					<p>
+					The difference between a PropositionalFunction object and a GroundedProp object is similar. A PropositionalFunction defines how a propositional function evaluates and to which object classes it is parameterized. A GroundedProp is a reference to a propositional function and the parameters with which it should be evaluated.
+					</p>
+					</li>
+					<li><b><a name="abstractGrounded"/>What is an <a href="doc/burlap/oomdp/core/AbstractGroundedAction.html">AbstractGroundedAction</a> class?</b>
+					<p>
+					AbstractGroundedAction is an abstract super class for the GroundedAction class and others. The reason it exists is because BURLAP supports a variety of planning and learning problem types, including multi-agent (stochastic games) domains, which require a bit different under-the-hood management. However, because BURLAP seeks to reuse code as much as possible, difference pieces can be connected as long as they inherit from the same super class. For example, the <a href="doc/burlap/oomdp/stochasticgames/GroundedSingleAction.html">GroundedSingleAction</a> and <a href="doc/burlap/oomdp/stochasticgames/JointAction.html">JointAction</a> objects are also subclasses of AbstractGroundedAction, which means tools like Policy objects can be reused for both single agent domains and multi-agent domains.
+					</p>
+					</li>
+					<li><b><a name="params"/>It seems that Action parameters correspond to typed OO-MDP state objects; can I define an action with non-object parameters?</b>
+					<p>
+					Yes! Although the default behavior for action parameters are to correspond to OO-MDP objects in a state, you can have any kind of parameterization that you want. To have your action use a different kind of parameterization you need to do two things. First, for the Action in question, override the method getAllApplicableGroundedActions(State) to return the list of GroundedAction objects with all parameterizations of your Action possible in the given state. Because the parameters in a GroundedAction are specified with String objects, you can represent any number of parameter data types in their string form. Second, override the method parametersAreObjects() and have it return false (this lets planning and learning algorithms know that because the parameters are not objects, it does not need to account for object identifier invariance in the actions).
+					</p>
+					<p>With those changes, the parameters passed to the standard Action object methods (e.g., performAction(State, String[])), will always be one of the possible parameterizations that you've defined. The parameters always come in String data types, which means you can provide any kind of information that you can represent in a String.
+					</p>
+					</li>
+					<li><b><a name="hashFactory"/>What is a <a href="doc/burlap/behavior/statehashing/StateHashFactory.html">StateHashFactory?</a></b>
+					<p>
+					Tabular learning and planning algorithms need a way to quickly look up values or stored actions (or otherwise) for different states, which makes Java HashMaps and HashSets especially appealing. Of course, that requires that we be able to compute hash codes for OO-MDP <a href="doc/burlap/oomdp/core/State.html">State</a> objects and perform equality evaluations between them. Depending the kind of problem you're solving there may be different ways that you need to compute the hash code and perform equality evaluations. For example, perhaps you want to plan in an abstract space that ignores certain objects or attribute values. Or maybe you need to discretize real-valued attributes before comparing the states. Or maybe you don't want to use object identifier invariance.</p>
+					<p>
+					Since different problems may require different ways of hashing and comparing states, different StateHashFactory implementations will produce different <a href="http://burlap.cs.brown.edu/doc/burlap/behavior/statehashing/StateHashTuple.html">StateHashTuple</a> objects that compute hash codes and perform state equality evaluations differently. There are a number of different variants already in BURLAP, but if you need to perform State equality evaluations in an entirely unique way, the power of BURLAP is that you can implement your own and hand it off to the planning and learning algorithm!
+					</p>
+					</li>
+					<li><b><a name="identifierInvariance"/>What is object identifier invariance?</b>
+					<p>For a larger discussion of this topic, see <a href="tutorials/bd/p2.html">page 2 of the Building a Domain tutorial</a>. In short, if a domain and StateHashFactory is object identifier invariant, then it means that the equality of two states is independent of the order of the objects (or their name) in the states. Instead, two states will be considered equal as long as there is a bijection between their objects such that each matched object is equal to one another. Using object identifier invariance results in a compression of the state space size since you don't have to treat every ordering of the same objects as different states</p>
+					</li>
+					<li><b><a name="whyNotInvariance"/>If object identifier invariance leads to smaller state spaces, why wouldn't I want to use it?</b>
+					<p>
+					When you don't! :-) For example, if you want to define a goal in which the condition for a <i>specific</i> object is satisfied, you need to differentiate between objects with different identifiers.</p>
+					<p>Additionally, if you are creating a relational domain, then you must have object identifier dependence, because being invariant to object identifiers in a relational domain would require solving graph isomorphism which is thought to be NP-hard. So while detecting graph isomorphism is doable, BURLAP does not support (by default) object identifier invariance in relational domains since it's not tractable.</p>
+					</li>
+					<li><b><a name="terminal"/>How are terminal states defined in BURLAP?</b>
+					<p>
+					Terminal states are defined with an object that implements the <a href="doc/burlap/oomdp/core/TerminalFunction.html">TerminalFunction</a> interface. Following the Sutton and Barto paradigm, planning and learning algorithms in BURLAP mathematically interpret terminal states as states from which the agent deterministically transitions back to the same state with a reward of zero. This is equivalent to all action ceasing once a terminal state is reached. Because terminal states are indicated with a TerminalFunction class, this property of the transition dynamics does not need to be specifically coded into the action transition dynamics, which makes it easy to define various ad hoc tasks for the same domain.</p>
+					<p>
+					Given this interpretation, the value of terminal states should be fixed at zero (and is in the existing BURLAP planning and learning algorithms). If you are are student reading from the Russell Norvig AI textbook and want to implement their small grid world, keep in mind that that their small grid world  treats the terminal state has having a non-zero value.</p>
+					</li> 
+					<li><b><a name="stateSpace"/>Domains don't seem to provide access to the entire state space. Why not and how can I get it?</b>
+					<p>
+					In an OO-MDP, the state space is infinite because you can always just imagine another world with an additional object. Although in practice your state space may always be well defined, the domain generators in BURLAP can support much more than any single instance, which may make enumerating the state space for any domain instance non-trivial. For example, even in grid worlds you can imagine any number of different grid worlds. In other cases, it can just be hard to manually enumerate all possible state, which would make requiring it for domains a burden on the designer.</p>
+					<p>
+					However, if you'd like to gather all the possible states from a domain instance that you've created, a good way to go about this is to let BURLAP do the heavy lifting for you by using the <a href="doc/burlap/behavior/singleagent/auxiliary/StateReachability.html">StateReachability</a> class, which takes as input a source state and domain, and returns all states that are reachable from the state. If your domain has states that are disconnected from each other, then you may need to run it from multiple seed states in each disconnected component. You may also find the <a href="http://burlap.cs.brown.edu/doc/burlap/behavior/singleagent/auxiliary/StateEnumerator.html">StateEnumerator</a> class helpful, which will let you iteratively add additional states to its set and assign a unique identifier to each.
+					</p>
+					<p>
+					If you are working in a continuous state space, then the number of states is probably uncountably infinite, which obviously makes state enumeration impossible; however, if you want a representation of the space, you may want to consider the <a href="doc/burlap/behavior/singleagent/auxiliary/StateGridder.html">StateGridder</a> class, which will sample states in the space along a regular grid that you can define.
+					</p>
+					<p>
+					And if you're using a planning algorithm that needs the full state space, such as value iteration, the implementations in BURLAP will automatically handle enumeration of the states from the source state that you give it.
+					</p>
+					</li>
+					<li><b><a name="transitionDynamics"/>Where are transition dynamics defined?</b>
+					<p>
+					Transition dynamics for a single-agent domain are defined in the <a href="doc/burlap/oomdp/singleagent/Action.html">Action</a> classes that you (or an existing domain) implement. Specifically, there are two Action class methods related to the transition dynamics: performActionHelper(State, String[]) and getTransitions(State String[]). The performActionHelper method, as the name implies performs the action on the given state (and the given parameters, if any, in the String array) and returns the outcome state (the input state can be directly modified and returned safely since the perfomAction method copies the state before passing it to performActionHelper). If the domain is stochastic, then the method should randomly sample an outcome state according to the distribution. Note that this method does not require the probability of the sampled outcome state to be returned, which in some domains may be non-trivial to compute. This method must be overridden to implement an Action.
+					</p>
+					<p>The getTransitions method returns a list of all the possible outcome states with non-zero probability as well as their probability of occurring. Although this method does not need to be implemented, some algorithms, such as dynamic programming variants, require it to be implemented. If you (or the existing domain) do not override the method, then when it is called by an algorithm that requires it, an UnsupportedOperation exception will be thrown. If your action is deterministic, the getTransitions method can be trivially implemented by returning the result of the deterministicTranstion(State, String[]) method, which will get the outcome state by calling the performAction method, wrap it in a TransitionProbability object (with assigned probability 1.0) and insert it in a list with just that element.
+					</p>
+					<p>
+					For multi-agent domains, similar methods that need to be overridden exist in the <a href="doc/burlap/oomdp/stochasticgames/JointActionModel.html">JointActionModel</a> abstract class: actionHelper(State, JointAction) and transitionProbsFor(State, JointAction), respectively.
+					</p>
+					</li>
+					<li><b><a name="preconditions"/>Can actions have preconditions?</b>
+					<p>
+					Yes! By default, actions are assumed to always be applicable in all states, but you can add preconditions by implementing the Action method applicableInState(State, String[]). For multi-agent domains, you should similarly implement the isApplicableInState(State, String[]) method in the <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/stochasticgames/SingleAction.html">SingleAction</a> class. This method should return true when the Action being implemented can be applied in the given state with the given parameters and false when it cannot be applied.
+					</p>
+					</li>
+					<li><b><a name="singleAction"/>What is a <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/stochasticgames/SingleAction.html">SingleAction</a> class?</b>
+					<p>
+					A SingleAction defines an action that can be taken by single agent in a multi-agent stochastic games domain. For a world with a given set of agents acting the world, each single action selected by each agent makes up the total <a href="doc/burlap/oomdp/stochasticgames/JointAction.html">JointAction</a> that is taken a in single time step of the world. Unlike the Action class in single agent domains, SingleAction objects do not implement transition dynamics, because the change in world state is dependent on the joint action taken by all agents. Instead the multi-agent domain transition dynamics are defined in the <a href="doc/burlap/oomdp/stochasticgames/JointActionModel.html">JointActionModel</a> abstract class.
+					</p>
+					</li>
+					<li><b><a name="pog"/>What is a parameter order group?</b>
+					<p>
+					You will see this term used in the definition of parameters for actions and propositional functions (in particular as possible arguments in some of the possible constructors). Parameters that belong to the same parameter order group (POG) can have their values swapped without changing the effect of the action or evaluation of the propositional function. For example, consider the propositional function prototype touching(X, Y), which returns true when the object assigned to X is touching the object assigned to Y. This evaluation should be be transitive. That is, if touching(a, b) is true, then touching(b, a) is true (and inversely when one evaluates to false, flipping the parameters should still result in a false evaluation). To encode that the parameters are transitive, we assign them to the same POG (which can be named anything as long as it's the same name for both). If they are not transitive, then we would assign different POGs to them. If you use an Action constructor or PropositionalFunction constructor without the POG values argument, it will automatically assign each parameter to a different POG (that is, non-transitivity is the default assumption).
+					</p>
+					<p>
+					Specifying the parameter transitivity with POGs is useful because when you request a list of all grounded versions of an action (with the getAllApplicableGroundedActions(State) method) or propositional function (with the getAllGroundedPropsForState(State) method), it will not produce a grounding that is transitively identical to another already in the list. In our touching(X, Y) example, for instance, it will return a list with only the grounding for touching(a, b), or touching(b, a), but not both.
+					</p>
+					</li>
+					<li><b><a name="environment"/>Is there a way to set up an Environment that maintains the current state with which the agent interacts?</b>
+					<p>
+					Yes. In general, the learning algorithms in BURLAP do not require environments to be set up; you can just tell them run a learning episode from a given initial state and they will do so. However, sometimes an environment is useful, especially if you need to have humans be able to modify the environment dynamically in some way. For these purposes, you can subclass the <a href="doc/burlap/oomdp/singleagent/environment/Environment.html">Environment</a> class. To have an agent learn in the environment, you can then set up a <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/singleagent/environment/DomainEnvironmentWrapper.html">DomainEnvironmentWrapper</a>, which creates a domain that funnels all perfomAction methods through the Environment. When the domain that a learning algorithm is provided is DomainEnvironmentWrapper, it forces learning through the environment.
+					</p>
+					<p>
+					In general, however, you probably do not need to use an Environment class.
+					</p>
+					<li><b><a name="memory"/>My planning or learning algorithm is running out of memory, is there anything that I can do?</b>
+					<p>
+					Possibly. The first thing to do is to make sure that Java's JVM is being given a large enough heap. If it's not, it's possible that it's artificially using less memory than you have. To set the amount of memory Java's JVM can use, you want to add a -Xmx argument when you call java; e.g., java -Xmx2048M [class path here]. The -Xmx argument lets you specify the heap size. In the example, it would provide it with 2048MB (2GB). If you're running in Eclipse or IntelliJ, then in the run configuration you should find a text field that lets you set your VM arguments; that's where you would put that flag.
+					</p>
+					<p>
+					If you're still running out of memory then there are a couple of things to consider. First, try and figure out if there is a more compact way to define your states. For example, do you really need as many OO-MDP objects you've defined, or can they be compressed into a smaller set?
+					</p>
+					<p>
+					Second, you might want to override the <a href="doc/burlap/oomdp/singleagent/Action.html">Action</a> class' performAction(State String[]) method. Note, this is *not* the same as the performActionHelper(State String[]) that you're typically required to override. The role of the performAction method is to first copy the input state and then pass it to the performActionHelper method, which ensures that the performActionHelper method can modify the input state without affecting the state of the world in which the action is applied. To save some memory, a trick you can do is instead of calling the <a href="doc/burlap/oomdp/core/State.html">State</a> copy() method, call the semiDeepCopy() method. The semiDeepCopy method takes as arguments a list of object instances that need to be deep copied. In the returned state, only the specified objects will have been deep copied and the rest will have been shallow copied. As long as you deep copy the objects that the Action will modify, this semiDeepCopy operation will be safe. The exception is if some other code goes back and edits the value of some previous state's object values that were not deep copied, then all of the shallow copies of it in each state will change.
+					</p>
+					<li><b><a name="robot"/>Can I have BURLAP control a robot?</b>
+					<p>
+					Sure! All you would need to do is implement a domain in which the Action object's performActionHelper method makes calls to the robot's actuators and returns a state based on its sensor readings after the actuator completes.
+					</p>
+					<p>
+					Alternatively, we have a related project in which we're developing standardized code to easily interface BURLAP with <a href="http://www.ros.org">Robot Operating System</a>. We will be releasing that soon and linking to it from BURLAP's main website as a separate but related project. Stay tuned.
+					</p>
+					</li>
+					<li><b><a name="cite"/>How do I cite BURLAP?</b>
+					<p>
+					For the moment, you'll have to cite this web page and can use James MacGlashan as the author. An academic publication is forthcoming, which you can use once it's available.
+					</p>
+					</li>
+
+				</ul>
+
+
+				
+
+
+			</div>
+		</div>
+		
+	</body>
+</html>
