@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<title>Building a Domain</title>
+		<script src="../../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="../../index.html">BURLAP</a>
+			<span id="nav-items"><a href="../../index.html">Home</a> | <a href="../../updates.html">Updates</a> | <a href="../../information.html">Information</a> | <a href="../../faq.html">F.A.Q.</a> | <a href="../index.html">Tutorials</a> | <a href="../../doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>Tutorial: Building a Domain</h1>
+				<h2><a href="../index.html">Tutorials</a> > <a href="p1.html">Building a Domain</a> > Part 2</h2>
+				<div id="index">
+					<b>Tutorial Contents</b>
+					<ul>
+						<li><a href="p1.html#intro">Introduction</a></li>
+						<li><a href="p1.html#mdp">Markov Decision Process</a></li>
+						<li><a href="p2.html#oomdp"><b>OO-MDPs</b></a></li>
+						<li><a href="p2.html#burlapoverview">BURLAP OO-MDP Java Class Overview</a></li>
+						<li><a href="p3.html#oclasses">Defining GridWorld Object Classes</a></li>
+						<li><a href="p3.html#actions">Defining GridWorld Actions</a></li>
+						<li><a href="p3.html#opfs">Defining Propositional Functions</a></li>
+						<li><a href="p3.html#testing">Testing the Domain</a></li>
+						<li><a href="p4.html#viscomps">The Components of a Visualizer</a></li>
+						<li><a href="p4.html#painters">Implementing the Painters</a></li>
+						<li><a href="p5.html#rftf">Reward Functions and Terminal Functions</a></li>
+						<li><a href="p5.html#conclusions">Conclusions</a></li>
+						<li><a href="p5.html#code">Final Code</a></li>
+					</ul>
+				</div>
+				<div id="sectionControls">
+					<a href="p1.html">Previous Part</a> | <a href="p3.html">Next Part</a>
+				</div>
+				
+				<h3><a name="oomdp">OO-MDPs</a></h3>
+				<p>
+				In the classic MDP formalism, each state is simply described by its identity. The cell in the bottom left corner of the grid world would simply be state "0" and the one above it might simply be state "11." This is known as a <i>flat</i> state representation because there is no other information about the states other than their identity. Although many planning/learning algorithms work just fine with flat representations, using a flat state representation makes defining transition dynamics and reward functions inconvenient. In fact, when we described the grid
+				world in the previous section, we used words regarding spatial adjacency and direction to explain it. It would similarly be nice to define the states, transitions, etc. using such concepts. For these reasons (and others), it is often
+				much easier to use a <i>factored</i> state representation, which can be exploited when defining the MDP transition dynamics and other properties.</p> 
+
+				<p>
+				A classic way to define a factored state representation is with a set of state variables or <i>attributes</i>. In our grid world, for example, we would define the state by an x-position attribute and a y-position attribute. The bottom left cell of the world would be state (0, 0); the cell directly above it would be (0, 1); and so on.
+				</p>
+
+				<p>
+				The factored representation that BURAP uses is the object-oriented MDP (OO-MDP), which rather than representing states by a set of attributes, states are represented by a set of <i>objects</i>. Each object  belongs to an object class, and each object class has an associated set of attributes. Each attribute can be of a different type with its own value domain. An object in a state is simply a value assignment to its class' attributes. In our grid world, we can define an "agent" class that has two integer attributes associated with it with a value domain spanning the width and height of the grid world. In this definition, a state would contain an object instance belonging to the agent class with a value assignment specifying the agent's x and y position.
+				</p>
+				<p>
+				Although grid worlds are simple enough to describe without using an OO-MDP representation, there are a number of reasons why the OO-MDP representation is useful. For example, it's trivial to define transition dynamics that create new objects in the world or remove them, merely by having the objects added or removed from the list of objects present in a state. If there are multiple objects belonging to the same class, states can also be defined invariantly to the reference or order of the objects in the state. For instance, consider a state (s0) with block objects defined by 2D spatial positions. Now imagine a new state (s1) that is the result of swapping the positions of the block objects as show in the below image.
+				</p>
+				<center>
+				<img src="images/identifierInvariance.png" height="200" />
+				</center>
+				<p>
+				Even though the object identifiers associated with the blocks is different between s0 and s1, the states are isomorphic (that is, if block0 was renamed to block1 and block1 to block0, the states would be the same); therefore, from a decision making algorithm perspective it may be useful to treat the states as equal, rather than distinct states that each require independent computation and reasoning. In an OO-MDP paradigm it is possible to treat these states as equal and BURLAP will do that automatically (unless otherwise specified)!
+				</p>
+				<p>
+				Another advantage to the OO-MDP paradigm is that it leverages the object-oriented nature to provide additional high-level state features in the form of propositional functions that operate on objects in the world. In our grid world, we can introduce an additional object class for location objects (similarly defined by x,y position attributes) and then define a propositional function called "at" that operates on the agent object and a location object and evaluates to true when they are in the same location. Including propositional functions is useful for bridging the gap between MDPs and more classic AI approaches that are based on logical representations. In this tutorial we will implement the "at" propositional function 
+				in our grid world to demonstrate how to create them.
+				</p>
+
+				<h3><a name="burlapoverview">BURLAP OO-MDP Java Class Overview</a></h3>
+				<p>
+				BURLAP implements the OO-MDP paradigm in Java with the following class structure, which can be found in the packages <a href="../../doc/burlap/oomdp/core/package-summary.html">burlap.oomdp.core</a> and <a href="../../doc/burlap/oomdp/singleagent/package-summary.html">burlap.oomdp.singleagent</a>.
+				</p>
+				<ul>
+				<li><a href="../../doc/burlap/oomdp/core/Attribute.html">Attribute</a> - this class defines an attribute name, data type, and value range. Attribute data types can be discrete (categorical or integers), real-valued, relational, strings, or int and double arrays for very large data.</li>
+				<li><a href="../../doc/burlap/oomdp/core/ObjectClass.html">ObjectClass</a> - this class defines an object class name and is defined with an associated set of Attribute objects.</li>
+				<li><a href="../../doc/burlap/oomdp/core/Value.html">Value</a> - this class provides a value assignment for a specific attribute. There is a different Value subclass for each attribute data type, but management of it is handled behind the scenes. </li>
+				<li><a href="../../doc/burlap/oomdp/core/ObjectInstance.html">ObjectInstance</a> - this class is used to represent an OO-MDP object, which is defined by an ObjectClass and a set of Value assignments to each of the class' Attribute objects.</li>
+				<li><a href="../../doc/burlap/oomdp/core/State.html">State</a> - this class provides an OO-MDP state definition, which is specified as a list of ObjectInstance objects.</li>
+				<li><a href="../../doc/burlap/oomdp/core/PropositionalFunction.html">PropositionalFunction</a> - this abstract class is subclassed to define propositional functions of an OO-MDP that operate on objects in State objects.</li>
+				<li><a href="../../doc/burlap/oomdp/singleagent/Action.html">Action</a> - this abstract class is subclassed to provide the actions an agent can take in the world. The action subclass defines the transition dynamics for the action, preconditions (if any), and parameters the action takes (if any).</li>
+				<li><a href="../../doc/burlap/oomdp/core/TransitionProbability.html">TransitionProbability</a> - this class is a pair that defines the probability of transitioning to another state and is returned by the Action class when querying for its transition dynamics.</li>
+				<li><a href="../../doc/burlap/oomdp/singleagent/GroundedAction.html">GroundedAction</a> - this class provides a reference to an action and the specific parameters (if any) with which it should be applied.</li>
+				<li><a href="../../doc/burlap/oomdp/core/GroundedProp.html">GroundedProp</a> - this class provides a reference to a PropositionalFunction and the parameters with which it will be evaluated.</li>
+				<li><a href="../../doc/burlap/oomdp/singleagent/SADomain.html">SADomain</a> - this class provides the definition of an OO-MDP domain, and includes the references to all of the ObjectClass objects, Attribute objects, PropositionalFunction objects, and Action objects that define the domain.</li>
+				<li><a href="../../doc/burlap/oomdp/core/TerminalFunction.html">TerminalFunction</a> - this interface is implemented to specify the terminal states of a task in a specific OO-MDP domain.</li>
+				<li><a href="../../doc/burlap/oomdp/singleagent/RewardFunction.html">RewardFunction</a> - this interface is implemented to specify the rewards received for any state, action, next state transition.</li>
+				</ul>
+
+				
+				<div id="footerControls">
+					<a href="p3.html">Next Part</a>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>
