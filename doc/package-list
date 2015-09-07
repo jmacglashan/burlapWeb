@@ -38,6 +38,7 @@ burlap.behavior.singleagent.planning.stochastic.policyiteration
 burlap.behavior.singleagent.planning.stochastic.rtdp
 burlap.behavior.singleagent.planning.stochastic.sparsesampling
 burlap.behavior.singleagent.planning.stochastic.valueiteration
+burlap.behavior.singleagent.planning.vfa.fittedvi
 burlap.behavior.singleagent.shaping
 burlap.behavior.singleagent.shaping.potential
 burlap.behavior.singleagent.vfa

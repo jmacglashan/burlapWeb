@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>BURLAP - Updates</title>
+		<script src="google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="index.html">BURLAP</a>
+			<span id="nav-items"><a href="index.html">Home</a> | <a href="updates.html">Updates</a> | <a href="information.html">Information</a> | <a href="faq.html">F.A.Q.</a> | <a href="tutorials/index.html">Tutorials</a> | <a href="doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>May 29, 2015</h1>
+				<p>
+				The latest version of BURLAP has had various changes. Most changes will be transparent or are feature additions. For example, domains for BlockDude and 
+				Frostbite have been added, and terminal explorers now accept console commands
+				for directly modifying states, similar to what you will find in the VisualExplorer
+				console. However, there is one change that may require some small changes to your
+				code. Specifically, all domain's DomainGenerators can have their physics/model parameters modified to generate a new domain, without affecting the behavior of previously generated domains from the same DomainGenerator instance. For many domains, like MountainCar, InvertedPendulum, LunarLander, etc., this change was
+				implemented by storing all physics parameters in a data member called physParams.
+				physParams has public data members for each physics parameter that was normally part of
+				its corresponding DomainGenerator, so if you have code that changes a physics parameter, you will now need to reference it from the physParams data member. Note that physParams gets fully copied whenever generateDomain is called so that future changes will not affect previously generated domains.
+				</p>
+				<p>Along with embedding physics/model parameters inside a single object that is copied, the MountainCar ClassicMCTF class is now a static class. To see how these changes affect code, see the <a href="http://burlap.cs.brown.edu/tutorials/scd/p1.html">Solving a Continuous Domain Tutorial</a> which has had its code updated to reflect the changes. Also be sure to examine the Java doc for each DomainGenerator you are using.</p>
+
+				<p>Finally, we are planning a fairly significant change to BURLAP's state
+				definitions. Currently, State is a mutable class for defining OO-MDP states with a
+				list of ObjectInstance objects (that are also hash-indexed by their name). Although this works fine for many domains, we have found that more complex domains we are investigating would benefit from different state memory management and indexing methods. Therefore, we are planning on changing State
+				to become an interface with the current State being a standard implementation that is available. This will enable users freedom to optimize their state definitions for the needs of their domain, providing increased CPU performance and reduced memory usage. If you would like to track the progress of this work, see the <a href="https://github.com/jmacglashan/burlap/tree/state_interface">state_interface branch</a> on git. Once that branch is fully developed, we will
+				branch the current version of master to something else so it's always there and then pull state_interface into master. If you have comments about this new direction, please share them on the <a href="https://groups.google.com/forum/#!forum/burlap-discussion">BURLAP google group</a>.
+			</div>
+		</div>
+		
+	</body>
+</html>
