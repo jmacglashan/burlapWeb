@@ -9,7 +9,7 @@
 		<div id="nav">
 			<span id="nav-content">
 			<a href="index.html">BURLAP</a>
-			<span id="nav-items"><a href="index.html">Home</a> | <a href="information.html">Information</a> | <a href="faq.html">F.A.Q.</a> | <a href="tutorials/index.html">Tutorials</a> | <a href="doc/index.html">Java Doc</a></span>
+			<span id="nav-items"><a href="index.html">Home</a> | <a href="updates.html">Updates</a> | <a href="information.html">Information</a> | <a href="faq.html">F.A.Q.</a> | <a href="tutorials/index.html">Tutorials</a> | <a href="doc/index.html">Java Doc</a></span>
 			</span>
 		</div>
 		<div id="page">
@@ -67,6 +67,7 @@
 				<li><a href="http://jackson.codehaus.org/">Jackson</a> - For reading and writing states into the JSON format.</li>
 				<li><a href="http://www.joptimizer.com/">JOptimizer</a> - For Max Margin Apprenticeship Learning</li>
 				<li><a href="http://scpsolver.org/">SCPSolver</a> - For Minmax, Coco-Q, and Correlated-Q algorithms. (Our choice of underlying LP solver that it uses is lpsolve.)</li>
+				<li><a href="http://www.cs.waikato.ac.nz/ml/weka/">Weka</a> - For providing a range of regression algorithms for Fitted Value Iteration.</li>
 				</ul>
 				<p>
 				If you download BURLAP from Github, all of these dependencies are included in the lib directory. If you do not plan on using the features that use a given dependency, then
@@ -165,6 +166,7 @@
 						<ul>
 							<li>Gradient Descent SARSA(&lambda;) [8]</li>
 							<li>Least-Squares Policy Iteration [18]</li>
+							<li>Fitted Value Iteration [24]</li>
 							<li>Framework for implementing linear and non-linear VFA</li>
 							<li>CMACs/Tile Coding [10]</li>
 							<li>Radial Basis Functions</li>
@@ -199,20 +201,21 @@
 							<li>Mountain Car</li>
 							<li>Cart Pole</li>
 							<li>Frostbite</li>
+							<li>Blockdude</li>
 							<li>Grid Games (a multi-agent stochastic games domain)</li>
 							<li>Multiple classic Bimatrix games.
 						</ul>
 					</li>
 					<li><a href="http://glue.rl-community.org/wiki/Main_Page" target="external">RLGlue</a> agent and environment interfacing</li>
+					<li><a href="https://github.com/h2r/burlap_rosbridge" target="external">Extensions</a> for controlling <a href="http://www.ros.org/" target="external">ROS</a>-powered robots</li>
+					<li><a href="https://github.com/h2r/burlapcraft" target="external">Extensions</a> for controlling <a href="http://www.minecraft.net" target="external">Minecraft</a></li>
 				</ul>
 				</p>
 				<h2>Features in development</h2>
 				<ul>
-					<li>Additional Inverse Reinforcement Learning algorithms</li>
-					<li>Additional value function approximation methods and learning algorithms</li>
 					<li>POMDP Planning algorithms</li>
 					<li>Learning from human feedback algorithms</li>
-					<li>Integration with <a href="http://wiki.ros.org/" target="external">ROS</a> for using BURLAP on physical robots</li>
+					<li>General growth of all other algorithm classes already included</li>
 				</ul>
 				
 				<h1>References</h1>
@@ -241,6 +244,7 @@
 					<li>McMahan, H. Brendan, Maxim Likhachev, and Geoffrey J. Gordon. "Bounded real-time dynamic programming: RTDP with monotone upper bounds and performance guarantees."  Proceedings of the 22nd international conference on Machine learning. ACM, 2005.</li>
 					<li>Babes, Monica, et al. "Apprenticeship learning about multiple intentions." Proceedings of the 28th International Conference on Machine Learning (ICML-11). 2011.</li>
 					<li>MacGlashan, James and Littman, Micahel, "Between imitation and intention learning," in Proceedings of the International Joint Conference on Artificial Intelligence, 2015.</li>
+					<li>Gordon, Geoffrey J. "Stable function approximation in dynamic programming." Proceedings of the twelfth international conference on machine learning. 1995.</li>
 				</ol>
 				</p>
 			</div>

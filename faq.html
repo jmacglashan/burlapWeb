@@ -10,7 +10,7 @@
 			
 			<span id="nav-content">
 			<a href="index.html">BURLAP</a>
-			<span id="nav-items"><a href="index.html">Home</a> | <a href="information.html">Information</a> | <a href="faq.html">F.A.Q.</a> | <a href="tutorials/index.html">Tutorials</a> | <a href="doc/index.html">Java Doc</a></span>
+			<span id="nav-items"><a href="index.html">Home</a> | <a href="updates.html">Updates</a> | <a href="information.html">Information</a> | <a href="faq.html">F.A.Q.</a> | <a href="tutorials/index.html">Tutorials</a> | <a href="doc/index.html">Java Doc</a></span>
 			</span>
 
 		</div>
@@ -39,6 +39,7 @@
 				<li><a href="#environment">Is there a way to set up an Environment that maintains the current state with which the agent interacts?</a></li>
 				<li><a href="#memory">My planning or learning algorithm is running out of memory, is there anything that I can do?</a></li>
 				<li><a href="#robot">Can I have BURLAP control a robot?</a></li>
+				<li><a href="#minecraft">I heard that you can use BURLAP for AI in Minecraft, how can I do that?</a></li>
 				<li><a href="#cite">How do I cite BURLAP?</a></li>
 				</ul>
 
@@ -156,10 +157,12 @@
 					</li>
 					<li><b><a name="environment"/>Is there a way to set up an Environment that maintains the current state with which the agent interacts?</b>
 					<p>
-					Yes. In general, the learning algorithms in BURLAP do not require environments to be set up; you can just tell them run a learning episode from a given initial state and they will do so. However, sometimes an environment is useful, especially if you need to have humans be able to modify the environment dynamically in some way. For these purposes, you can subclass the <a href="doc/burlap/oomdp/singleagent/environment/Environment.html">Environment</a> class. To have an agent learn in the environment, you can then set up a <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/singleagent/environment/DomainEnvironmentWrapper.html">DomainEnvironmentWrapper</a>, which creates a domain that funnels all perfomAction methods through the Environment. When the domain that a learning algorithm is provided is DomainEnvironmentWrapper, it forces learning through the environment.
+					Yes. In general, the learning algorithms in BURLAP do not require environments to be set up; you can just tell them run a learning episode from a given initial state and they will do so. However, sometimes an environment is useful, especially when the state of the environment can change from external forces (e.g., robotics in which the real world changes on its own, or humans manipulating the state of your environment). For such purposes, you can subclass the <a href="doc/burlap/oomdp/singleagent/environment/Environment.html">Environment</a> class. To have an agent learn in the environment, you can then set up a <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/singleagent/environment/DomainEnvironmentWrapper.html">DomainEnvironmentWrapper</a>, which creates a domain that funnels all perfomAction methods through the Environment. 
+					To use a standard BURLAP <a href="http://burlap.cs.brown.edu/doc/index.html">LearningAgent</a> instance with an Environment, upon construction of the LearningAgent, set its domain to be the DomainEnvironmentWrapper that you created for your environment, and then tell it to learn from whatever the current state of the Environment is (which you can retrieve using the <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/singleagent/environment/Environment.html#getCurState()">getCurState()</a> method).
+
 					</p>
 					<p>
-					In general, however, you probably do not need to use an Environment class.
+					In general, however, if you do not have outside forces affecting the state of your learning problem, you probably don't need to set up an Environment class.
 					</p>
 					<li><b><a name="memory"/>My planning or learning algorithm is running out of memory, is there anything that I can do?</b>
 					<p>
@@ -173,10 +176,18 @@
 					</p>
 					<li><b><a name="robot"/>Can I have BURLAP control a robot?</b>
 					<p>
-					Sure! All you would need to do is implement a domain in which the Action object's performActionHelper method makes calls to the robot's actuators and returns a state based on its sensor readings after the actuator completes.
+					Sure! There are three ways you can do this. You can (1) define your domain to directly control the robot (and update the world state) through your <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/singleagent/Action.html" target="external">Action</a> classes (specifically via your implementations of <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/singleagent/Action.html#performActionHelper(burlap.oomdp.core.State,%20java.lang.String[])" target="external">performActionHelper</a>); (2) implement
+					an <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/singleagent/environment/Environment.html" target="external">Environment</a> class to manage the connection, control, and state perception of your robot; or (3) use our BURLAP library extension 
+					(<a href="https://github.com/h2r/burlap_rosbridge" target="external">burlap_rosbridge</a>) for communicating with robots controlled with <a href="http://www.ros.org" target="external">ROS</a>. 
 					</p>
 					<p>
-					Alternatively, we have a related project in which we're developing standardized code to easily interface BURLAP with <a href="http://www.ros.org">Robot Operating System</a>. We will be releasing that soon and linking to it from BURLAP's main website as a separate but related project. Stay tuned.
+					<a href="https://github.com/h2r/burlap_rosbridge" target="external">burlap_rosbridge</a> provides a standard <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/singleagent/environment/Environment.html" target="external">Environment</a> class implementation that maintains the state of the real world and controls
+					the physical robot by communicating to ROS over <a href="http://wiki.ros.org/rosbridge_suite" target="external">Rosbridge</a>. On the ROS side, it is expected that you create a ROS topic that is publishing BURLAP state messages (formatted according our defined <a href="https://github.com/h2r/burlap_msgs" target="external">burlap_msgs</a> type) and that there is a topic BURLAP can push to that accepts action commands as a string type. See burlap_rosbridge's <a href="https://github.com/h2r/burlap_rosbridge" target="external">github
+					page</a> for more information on how to use it.
+					</li>
+					<li><b><a name="minecraft"/>I heard that you can use BURLAP for AI in Minecraft, how can I do that?</b>
+					<p>
+					Yes, we have been building a mod for <a href="https://minecraft.net/" target="external">Minecraft</a> that allows you to use BURLAP's planning and learning algorithms to control the player. For more information on that project, see its <a href="https://github.com/h2r/burlapcraft" target="external">github page</a> and its accompanying <a href="https://github.com/h2r/burlapcraft/wiki" target="external">wiki page</a>.
 					</p>
 					</li>
 					<li><b><a name="cite"/>How do I cite BURLAP?</b>

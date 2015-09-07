@@ -9,7 +9,7 @@
 		<div id="nav">
 			<span id="nav-content">
 			<a href="index.html">BURLAP</a>
-			<span id="nav-items"><a href="index.html">Home</a> | <a href="information.html">Information</a> | <a href="faq.html">F.A.Q.</a> | <a href="tutorials/index.html">Tutorials</a> | <a href="doc/index.html">Java Doc</a></span>
+			<span id="nav-items"><a href="index.html">Home</a> | <a href="updates.html">Updates</a> | <a href="information.html">Information</a> | <a href="faq.html">F.A.Q.</a> | <a href="tutorials/index.html">Tutorials</a> | <a href="doc/index.html">Java Doc</a></span>
 			</span>
 		</div>
 		<div id="page">
@@ -48,6 +48,7 @@
 				<li><a href="http://jackson.codehaus.org/">Jackson</a> - For reading and writing states into the JSON format.</li>
 				<li><a href="http://www.joptimizer.com/">JOptimizer</a> - For Max Margin Apprenticeship Learning</li>
 				<li><a href="http://scpsolver.org/">SCPSolver</a> - For Minmax, Coco-Q, and Correlated-Q algorithms. (Our choice of underlying LP solver that it uses is lpsolve.)</li>
+				<li><a href="http://www.cs.waikato.ac.nz/ml/weka/">Weka</a> - For providing a range of regression algorithms for Fitted Value Iteration.</li>
 				</ul>
 
 				<h1>History and Future</h1>
@@ -62,6 +63,15 @@
 				</p>
 				<p>
 				If there is a reinforcement learning or planning problem class that BURLAP cannot support that you would like to see, we would love to hear from you so that we can consider adding in support. The ultimate goal of BURLAP is to be able to pick and choose different algorithms for any number of different problems you might want to solve and stop us from reinventing the wheel every time.
+				</p>
+
+				<h1>BURLAP Extensions</h1>
+				<p>
+				Currently there are two BURLAP library extension projects used to connect BURLAP up with other systems.
+				<ol>
+					<li><b><a href="https://github.com/h2r/burlap_rosbridge" target="external">BURLAP Rosbridge</a></b> This extension allows you to control ROS-powered robots with BURLAP planning and learning algorithms by providing a standard BURLAP <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/singleagent/environment/Environment.html" target="external">Environment</a> class that communicates to ROS over <a href="http://wiki.ros.org/rosbridge_suite"  target="external">Rosbridge</a>.</li>
+					<li><b><a href="https://github.com/h2r/burlapcraft" target="external">BurlapCraft</a></b> This extension allows you to use BURLAP planning and learning algorithms to control a player in the video game <a href="http://www.minecraft.net" target="external">Minecraft</a>.</li>
+				</ol>
 				</p>
 
 				<h1>People</h1>
@@ -91,6 +101,7 @@
 				<li>Anubhav Malhotra</li>
 				<li>John Meehan</li>
 				<li>Michalis Michaelidis</li>
+				<li>Philippe Morere</li>
 				<li>Takehiro Oyakawa</li>
 				<li>Chan Trau</li>
 				<li>Lei Yang</li>
