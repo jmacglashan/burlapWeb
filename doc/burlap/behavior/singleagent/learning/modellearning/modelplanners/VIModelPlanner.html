@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.learning.modellearning.modelplanners.VIModelPlanner</li>
+<li>burlap.behavior.singleagent.learning.modellearning.modelplanners.VIModelLearningPlanner</li>
 </ul>
 </li>
 </ul>
@@ -131,14 +131,14 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.singleagent.learning.modellearning.ModelPlanner">
+<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.singleagent.learning.modellearning.ModelLearningPlanner">
 <!--   -->
 </a>
 <h3>Nested classes/interfaces inherited from interface&nbsp;burlap.behavior.singleagent.learning.modellearning.<a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html" title="interface in burlap.behavior.singleagent.learning.modellearning">ModelPlanner</a></h3>
 <code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.ModelPlannerGenerator.html" title="interface in burlap.behavior.singleagent.learning.modellearning">ModelPlanner.ModelPlannerGenerator</a></code></li>
 </ul>
 <ul class="blockList">
-<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.singleagent.planning.QComputablePlanner">
+<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.valuefunction.QFunction">
 <!--   -->
 </a>
 <h3>Nested classes/interfaces inherited from interface&nbsp;burlap.behavior.singleagent.planning.<a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a></h3>
@@ -171,7 +171,7 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#hashingFactory">hashingFactory</a></strong></code>
 <div class="block">The hashing factory to use</div>
 </td>
@@ -196,12 +196,12 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#modelPolicy">modelPolicy</a></strong></code>
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#sourcePolicy">sourcePolicy</a></strong></code>
 <div class="block">The greedy policy that results from VI</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected java.util.Set&lt;<a href="../../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>&gt;</code></td>
+<td class="colFirst"><code>protected java.util.Set&lt;<a href="../../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#observedStates">observedStates</a></strong></code>
 <div class="block">States the agent has observed during learning.</div>
 </td>
@@ -243,7 +243,7 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
               <a href="../../../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a>&nbsp;rf,
               <a href="../../../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;tf,
               double&nbsp;gamma,
-              <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+              <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
               double&nbsp;maxDelta,
               int&nbsp;maxIterations)</code>
 <div class="block">Initializes</div>
@@ -266,14 +266,14 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent">QValue</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#getQ(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction)">getQ</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#getQ(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction)">getQ</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
     <a href="../../../../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a>&nbsp;a)</code>
 <div class="block">Returns the <a href="../../../../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent"><code>QValue</code></a> for the given state-action pair.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../../../../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent">QValue</a>&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#getQs(burlap.oomdp.core.State)">getQs</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#getQs(burlap.oomdp.core.states.State)">getQs</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">Returns a <code>List</code> of <a href="../../../../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent"><code>QValue</code></a> objects for ever permissible action for the given input state.</div>
 </td>
 </tr>
@@ -285,20 +285,20 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#initializePlannerIn(burlap.oomdp.core.State)">initializePlannerIn</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#initializePlannerIn(burlap.oomdp.core.states.State)">initializePlannerIn</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">This is method is expected to be called at the beginning of any new learning episode.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#modelChanged(burlap.oomdp.core.State)">modelChanged</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;changedState)</code>
-<div class="block">Tells the planner that the model has changed and that it will need to replan accordingly</div>
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#modelChanged(burlap.oomdp.core.states.State)">modelChanged</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;changedState)</code>
+<div class="block">Tells the valueFunction that the model has changed and that it will need to replan accordingly</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#modelPlannedPolicy()">modelPlannedPolicy</a></strong>()</code>
-<div class="block">Returns a policy encoding the planner's results.</div>
+<div class="block">Returns a policy encoding the valueFunction'o results.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -310,7 +310,7 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/modelplanners/VIModelPlanner.html#resetPlanner()">resetPlanner</a></strong>()</code>
-<div class="block">Resets planner as if no planning had never been called.</div>
+<div class="block">Resets valueFunction as if no planning had never been called.</div>
 </td>
 </tr>
 </table>
@@ -345,13 +345,13 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 <div class="block">The value iteration planning object</div>
 </li>
 </ul>
-<a name="modelPolicy">
+<a name="sourcePolicy">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>modelPolicy</h4>
-<pre>protected&nbsp;<a href="../../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a> modelPolicy</pre>
+<h4>sourcePolicy</h4>
+<pre>protected&nbsp;<a href="../../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a> sourcePolicy</pre>
 <div class="block">The greedy policy that results from VI</div>
 </li>
 </ul>
@@ -411,7 +411,7 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 <ul class="blockList">
 <li class="blockList">
 <h4>hashingFactory</h4>
-<pre>protected&nbsp;<a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a> hashingFactory</pre>
+<pre>protected&nbsp;<a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a> hashingFactory</pre>
 <div class="block">The hashing factory to use</div>
 </li>
 </ul>
@@ -441,7 +441,7 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 <ul class="blockListLast">
 <li class="blockList">
 <h4>observedStates</h4>
-<pre>protected&nbsp;java.util.Set&lt;<a href="../../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>&gt; observedStates</pre>
+<pre>protected&nbsp;java.util.Set&lt;<a href="../../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>&gt; observedStates</pre>
 <div class="block">States the agent has observed during learning.</div>
 </li>
 </ul>
@@ -453,7 +453,7 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="VIModelPlanner(burlap.oomdp.core.Domain, burlap.oomdp.singleagent.RewardFunction, burlap.oomdp.core.TerminalFunction, double, burlap.behavior.statehashing.StateHashFactory, double, int)">
+<a name="VIModelPlanner(burlap.oomdp.core.Domain, burlap.oomdp.singleagent.RewardFunction, burlap.oomdp.core.TerminalFunction, double, burlap.oomdp.statehashing.HashableStateFactory, double, int)">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -463,7 +463,7 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
               <a href="../../../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a>&nbsp;rf,
               <a href="../../../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;tf,
               double&nbsp;gamma,
-              <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+              <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
               double&nbsp;maxDelta,
               int&nbsp;maxIterations)</pre>
 <div class="block">Initializes</div>
@@ -484,15 +484,15 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 <ul class="blockList">
 <li class="blockList">
 <h4>initializePlannerIn</h4>
-<pre>public&nbsp;void&nbsp;initializePlannerIn(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#initializePlannerIn(burlap.oomdp.core.State)">ModelPlanner</a></code></strong></div>
+<pre>public&nbsp;void&nbsp;initializePlannerIn(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#initializePlannerIn(burlap.oomdp.core.states.State)">ModelPlanner</a></code></strong></div>
 <div class="block">This is method is expected to be called at the beginning of any new learning episode. This may be useful for planning algorithms
  that do not solve the policy for every state since new episodes may starts in epsidoes the planning algorithm had not previously considered.
  before a learning episode begins.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#initializePlannerIn(burlap.oomdp.core.State)">initializePlannerIn</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html" title="interface in burlap.behavior.singleagent.learning.modellearning">ModelPlanner</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the input state</dd></dl>
+<dd><code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#initializePlannerIn(burlap.oomdp.core.states.State)">initializePlannerIn</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html" title="interface in burlap.behavior.singleagent.learning.modellearning">ModelPlanner</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the input state</dd></dl>
 </li>
 </ul>
 <a name="modelChanged(burlap.oomdp.core.State)">
@@ -502,11 +502,11 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 <li class="blockList">
 <h4>modelChanged</h4>
 <pre>public&nbsp;void&nbsp;modelChanged(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;changedState)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#modelChanged(burlap.oomdp.core.State)">ModelPlanner</a></code></strong></div>
-<div class="block">Tells the planner that the model has changed and that it will need to replan accordingly</div>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#modelChanged(burlap.oomdp.core.states.State)">ModelPlanner</a></code></strong></div>
+<div class="block">Tells the valueFunction that the model has changed and that it will need to replan accordingly</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#modelChanged(burlap.oomdp.core.State)">modelChanged</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html" title="interface in burlap.behavior.singleagent.learning.modellearning">ModelPlanner</a></code></dd>
+<dd><code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#modelChanged(burlap.oomdp.core.states.State)">modelChanged</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html" title="interface in burlap.behavior.singleagent.learning.modellearning">ModelPlanner</a></code></dd>
 <dt><span class="strong">Parameters:</span></dt><dd><code>changedState</code> - the source state that caused a change in the model.</dd></dl>
 </li>
 </ul>
@@ -518,7 +518,7 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 <h4>modelPlannedPolicy</h4>
 <pre>public&nbsp;<a href="../../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a>&nbsp;modelPlannedPolicy()</pre>
 <div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#modelPlannedPolicy()">ModelPlanner</a></code></strong></div>
-<div class="block">Returns a policy encoding the planner's results.</div>
+<div class="block">Returns a policy encoding the valueFunction'o results.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#modelPlannedPolicy()">modelPlannedPolicy</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html" title="interface in burlap.behavior.singleagent.learning.modellearning">ModelPlanner</a></code></dd>
@@ -533,7 +533,7 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 <h4>resetPlanner</h4>
 <pre>public&nbsp;void&nbsp;resetPlanner()</pre>
 <div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#resetPlanner()">ModelPlanner</a></code></strong></div>
-<div class="block">Resets planner as if no planning had never been called.</div>
+<div class="block">Resets valueFunction as if no planning had never been called.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#resetPlanner()">resetPlanner</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html" title="interface in burlap.behavior.singleagent.learning.modellearning">ModelPlanner</a></code></dd>
@@ -546,30 +546,30 @@ implements <a href="../../../../../../burlap/behavior/singleagent/learning/model
 <ul class="blockList">
 <li class="blockList">
 <h4>getQs</h4>
-<pre>public&nbsp;java.util.List&lt;<a href="../../../../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent">QValue</a>&gt;&nbsp;getQs(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html#getQs(burlap.oomdp.core.State)">QComputablePlanner</a></code></strong></div>
+<pre>public&nbsp;java.util.List&lt;<a href="../../../../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent">QValue</a>&gt;&nbsp;getQs(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html#getQs(burlap.oomdp.core.states.State)">QComputablePlanner</a></code></strong></div>
 <div class="block">Returns a <code>List</code> of <a href="../../../../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent"><code>QValue</code></a> objects for ever permissible action for the given input state.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html#getQs(burlap.oomdp.core.State)">getQs</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state for which Q-values are to be returned.</dd>
+<dd><code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html#getQs(burlap.oomdp.core.states.State)">getQs</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state for which Q-values are to be returned.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>a <code>List</code> of <a href="../../../../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent"><code>QValue</code></a> objects for ever permissible action for the given input state.</dd></dl>
 </li>
 </ul>
-<a name="getQ(burlap.oomdp.core.State, burlap.oomdp.core.AbstractGroundedAction)">
+<a name="getQ(burlap.oomdp.core.states.State, burlap.oomdp.core.AbstractGroundedAction)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getQ</h4>
-<pre>public&nbsp;<a href="../../../../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent">QValue</a>&nbsp;getQ(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;<a href="../../../../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent">QValue</a>&nbsp;getQ(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
           <a href="../../../../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a>&nbsp;a)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html#getQ(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction)">QComputablePlanner</a></code></strong></div>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html#getQ(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction)">QComputablePlanner</a></code></strong></div>
 <div class="block">Returns the <a href="../../../../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent"><code>QValue</code></a> for the given state-action pair.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html#getQ(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction)">getQ</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the input state</dd><dd><code>a</code> - the input action</dd>
+<dd><code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html#getQ(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction)">getQ</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the input state</dd><dd><code>a</code> - the input action</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the <a href="../../../../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent"><code>QValue</code></a> for the given state-action pair.</dd></dl>
 </li>
 </ul>

@@ -101,7 +101,7 @@
 <li>javax.swing.JFrame</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.EpisodeSequenceVisualizer</li>
+<li>burlap.behavior.singleagent.auxiliary.EpisodeSequenceVisualizer</li>
 </ul>
 </li>
 </ul>
@@ -128,11 +128,11 @@
 extends javax.swing.JFrame</pre>
 <div class="block">This class is used to visualize a set of episodes that have been saved to files in a common directory or which are
  provided to the object as a list of <a href="../../../burlap/behavior/singleagent/EpisodeAnalysis.html" title="class in burlap.behavior.singleagent"><code>EpisodeAnalysis</code></a> objects.
- In the GUI's list of an episodes actions, the action name is
+ In the GUI'o list of an episodes actions, the action name is
  selected action in the currently rendered state.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>James MacGlashan</dd>
-<dt><span class="strong">See Also:</span></dt><dd><a href="../../../serialized-form.html#burlap.behavior.singleagent.EpisodeSequenceVisualizer">Serialized Form</a></dd></dl>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../serialized-form.html#burlap.behavior.singleagent.auxiliary.EpisodeSequenceVisualizer">Serialized Form</a></dd></dl>
 </li>
 </ul>
 </div>
@@ -260,7 +260,7 @@ extends javax.swing.JFrame</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a></code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/EpisodeSequenceVisualizer.html#sp">sp</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/EpisodeSequenceVisualizer.html#op">op</a></strong></code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -330,7 +330,7 @@ extends javax.swing.JFrame</pre>
 <tr class="altColor">
 <td class="colOne"><code><strong><a href="../../../burlap/behavior/singleagent/EpisodeSequenceVisualizer.html#EpisodeSequenceVisualizer(burlap.oomdp.visualizer.Visualizer,%20burlap.oomdp.core.Domain,%20burlap.oomdp.auxiliary.StateParser,%20java.lang.String)">EpisodeSequenceVisualizer</a></strong>(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                          <a href="../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;d,
-                         <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp,
+                         <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op,
                          java.lang.String&nbsp;experimentDirectory)</code>
 <div class="block">Initializes the EpisodeSequenceVisualizer.</div>
 </td>
@@ -338,7 +338,7 @@ extends javax.swing.JFrame</pre>
 <tr class="rowColor">
 <td class="colOne"><code><strong><a href="../../../burlap/behavior/singleagent/EpisodeSequenceVisualizer.html#EpisodeSequenceVisualizer(burlap.oomdp.visualizer.Visualizer,%20burlap.oomdp.core.Domain,%20burlap.oomdp.auxiliary.StateParser,%20java.lang.String,%20int,%20int)">EpisodeSequenceVisualizer</a></strong>(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                          <a href="../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;d,
-                         <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp,
+                         <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op,
                          java.lang.String&nbsp;experimentDirectory,
                          int&nbsp;w,
                          int&nbsp;h)</code>
@@ -372,7 +372,7 @@ extends javax.swing.JFrame</pre>
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/EpisodeSequenceVisualizer.html#init(burlap.oomdp.visualizer.Visualizer,%20burlap.oomdp.core.Domain,%20burlap.oomdp.auxiliary.StateParser,%20java.lang.String,%20int,%20int)">init</a></strong>(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
     <a href="../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;d,
-    <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp,
+    <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op,
     java.lang.String&nbsp;experimentDirectory,
     int&nbsp;w,
     int&nbsp;h)</code>
@@ -405,7 +405,7 @@ extends javax.swing.JFrame</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/EpisodeSequenceVisualizer.html#updatePropTextArea(burlap.oomdp.core.State)">updatePropTextArea</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/EpisodeSequenceVisualizer.html#updatePropTextArea(burlap.oomdp.core.states.State)">updatePropTextArea</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -570,13 +570,13 @@ extends javax.swing.JFrame</pre>
 <pre>protected&nbsp;javax.swing.DefaultListModel episodesListModel</pre>
 </li>
 </ul>
-<a name="sp">
+<a name="op">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>sp</h4>
-<pre>protected&nbsp;<a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a> sp</pre>
+<h4>op</h4>
+<pre>protected&nbsp;<a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a> op</pre>
 </li>
 </ul>
 <a name="directEpisodes">
@@ -632,7 +632,7 @@ extends javax.swing.JFrame</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="EpisodeSequenceVisualizer(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.core.Domain, burlap.oomdp.auxiliary.StateParser, java.lang.String)">
+<a name="EpisodeSequenceVisualizer(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.core.Domain, burlap.oomdp.legacy.StateParser, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -640,13 +640,13 @@ extends javax.swing.JFrame</pre>
 <h4>EpisodeSequenceVisualizer</h4>
 <pre>public&nbsp;EpisodeSequenceVisualizer(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                          <a href="../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;d,
-                         <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp,
+                         <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op,
                          java.lang.String&nbsp;experimentDirectory)</pre>
 <div class="block">Initializes the EpisodeSequenceVisualizer. By default the state visualizer will be set to the size 800x800 pixels.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the episodes took place</dd><dd><code>sp</code> - a state parser that can be used to parse the states stored in the episode files</dd><dd><code>experimentDirectory</code> - the path to the directory containing the episode files.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the episodes took place</dd><dd><code>op</code> - a state parser that can be used to parse the states stored in the episode files</dd><dd><code>experimentDirectory</code> - the path to the directory containing the episode files.</dd></dl>
 </li>
 </ul>
-<a name="EpisodeSequenceVisualizer(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.core.Domain, burlap.oomdp.auxiliary.StateParser, java.lang.String, int, int)">
+<a name="EpisodeSequenceVisualizer(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.core.Domain, burlap.oomdp.legacy.StateParser, java.lang.String, int, int)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -654,12 +654,12 @@ extends javax.swing.JFrame</pre>
 <h4>EpisodeSequenceVisualizer</h4>
 <pre>public&nbsp;EpisodeSequenceVisualizer(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                          <a href="../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;d,
-                         <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp,
+                         <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op,
                          java.lang.String&nbsp;experimentDirectory,
                          int&nbsp;w,
                          int&nbsp;h)</pre>
 <div class="block">Initializes the EpisodeSequenceVisualizer.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the episodes took place</dd><dd><code>sp</code> - a state parser that can be used to parse the states stored in the episode files</dd><dd><code>experimentDirectory</code> - the path to the directory containing the episode files.</dd><dd><code>w</code> - the width of the state visualizer canvas</dd><dd><code>h</code> - the height of the state visualizer canvas</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the episodes took place</dd><dd><code>op</code> - a state parser that can be used to parse the states stored in the episode files</dd><dd><code>experimentDirectory</code> - the path to the directory containing the episode files.</dd><dd><code>w</code> - the width of the state visualizer canvas</dd><dd><code>h</code> - the height of the state visualizer canvas</dd></dl>
 </li>
 </ul>
 <a name="EpisodeSequenceVisualizer(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.core.Domain, java.util.List)">
@@ -699,7 +699,7 @@ extends javax.swing.JFrame</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="init(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.core.Domain, burlap.oomdp.auxiliary.StateParser, java.lang.String, int, int)">
+<a name="init(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.core.Domain, burlap.oomdp.legacy.StateParser, java.lang.String, int, int)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -707,12 +707,12 @@ extends javax.swing.JFrame</pre>
 <h4>init</h4>
 <pre>public&nbsp;void&nbsp;init(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
         <a href="../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;d,
-        <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp,
+        <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op,
         java.lang.String&nbsp;experimentDirectory,
         int&nbsp;w,
         int&nbsp;h)</pre>
 <div class="block">Initializes the EpisodeSequenceVisualizer with episodes read from disk.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the episodes took place</dd><dd><code>sp</code> - a state parser that can be used to parse the states stored in the episode files</dd><dd><code>experimentDirectory</code> - the path to the directory containing the episode files.</dd><dd><code>w</code> - the width of the state visualizer canvas</dd><dd><code>h</code> - the height of the state visualizer canvas</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the episodes took place</dd><dd><code>op</code> - a state parser that can be used to parse the states stored in the episode files</dd><dd><code>experimentDirectory</code> - the path to the directory containing the episode files.</dd><dd><code>w</code> - the width of the state visualizer canvas</dd><dd><code>h</code> - the height of the state visualizer canvas</dd></dl>
 </li>
 </ul>
 <a name="initWithDirectEpisodes(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.core.Domain, java.util.List, int, int)">
@@ -782,7 +782,7 @@ extends javax.swing.JFrame</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>updatePropTextArea</h4>
-<pre>protected&nbsp;void&nbsp;updatePropTextArea(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
+<pre>protected&nbsp;void&nbsp;updatePropTextArea(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
 </li>
 </ul>
 </li>

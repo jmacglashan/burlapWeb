@@ -35,8 +35,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../burlap/behavior/statehashing/NameDependentStateHashFactory.NameDependentStateHashTuple.html" title="class in burlap.behavior.statehashing"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../burlap/behavior/statehashing/NameDependentStateHashFactory.NameDependentStateHashTuple.html" title="class in burlap.oomdp.statehashing"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?burlap/behavior/statehashing/StateHashFactory.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.statehashing</div>
+<div class="subTitle">burlap.oomdp.statehashing</div>
 <h2 title="Interface StateHashFactory" class="title">Interface StateHashFactory</h2>
 </div>
 <div class="contentContainer">
@@ -87,12 +87,12 @@
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../burlap/behavior/statehashing/DiscreteMaskHashingFactory.html" title="class in burlap.behavior.statehashing">DiscreteMaskHashingFactory</a>, <a href="../../../burlap/behavior/statehashing/DiscreteStateHashFactory.html" title="class in burlap.behavior.statehashing">DiscreteStateHashFactory</a>, <a href="../../../burlap/behavior/statehashing/DiscretizingStateHashFactory.html" title="class in burlap.behavior.statehashing">DiscretizingStateHashFactory</a>, <a href="../../../burlap/behavior/statehashing/NameDependentStateHashFactory.html" title="class in burlap.behavior.statehashing">NameDependentStateHashFactory</a></dd>
+<dd><a href="../../../burlap/behavior/statehashing/DiscreteMaskHashingFactory.html" title="class in burlap.oomdp.statehashing">DiscreteMaskHashingFactory</a>, <a href="../../../burlap/behavior/statehashing/DiscreteStateHashFactory.html" title="class in burlap.oomdp.statehashing">DiscreteStateHashFactory</a>, <a href="../../../burlap/behavior/statehashing/DiscretizingStateHashFactory.html" title="class in burlap.oomdp.statehashing">DiscretizingStateHashFactory</a>, <a href="../../../burlap/behavior/statehashing/NameDependentStateHashFactory.html" title="class in burlap.oomdp.statehashing">NameDependentStateHashFactory</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="strong">StateHashFactory</span></pre>
-<div class="block">This interface is to be used by classes that can produce <a href="../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing"><code>StateHashTuple</code></a> objects, object
+<div class="block">This interface is to be used by classes that can produce <a href="../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing"><code>StateHashTuple</code></a> objects, object
  that provide a hash values for <a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> objects. This is useful for tabular
  planning and learning algorithms that make use of hash-backed sets or maps for fast retrieval.</div>
 <dl><dt><span class="strong">Author:</span></dt>
@@ -116,8 +116,8 @@
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a></code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/behavior/statehashing/StateHashFactory.html#hashState(burlap.oomdp.core.State)">hashState</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>&nbsp;</td>
+<td class="colFirst"><code><a href="../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a></code></td>
+<td class="colLast"><code><strong><a href="../../../burlap/behavior/statehashing/StateHashFactory.html#hashState(burlap.oomdp.core.states.State)">hashState</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -140,7 +140,7 @@
 <ul class="blockListLast">
 <li class="blockList">
 <h4>hashState</h4>
-<pre><a href="../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>&nbsp;hashState(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
+<pre><a href="../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>&nbsp;hashState(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
 </li>
 </ul>
 </li>
@@ -168,8 +168,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../burlap/behavior/statehashing/NameDependentStateHashFactory.NameDependentStateHashTuple.html" title="class in burlap.behavior.statehashing"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../burlap/behavior/statehashing/NameDependentStateHashFactory.NameDependentStateHashTuple.html" title="class in burlap.oomdp.statehashing"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?burlap/behavior/statehashing/StateHashFactory.html" target="_top">Frames</a></li>

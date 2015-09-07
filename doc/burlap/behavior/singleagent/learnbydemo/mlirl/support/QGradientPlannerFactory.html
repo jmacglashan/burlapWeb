@@ -35,8 +35,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.DifferentiableVIFactory.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.DifferentiableVIFactory.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.singleagent.learnbydemo.mlirl.support</div>
+<div class="subTitle">burlap.behavior.singleagent.learnfromdemo.mlirl.support</div>
 <h2 title="Interface QGradientPlannerFactory" class="title">Interface QGradientPlannerFactory</h2>
 </div>
 <div class="contentContainer">
@@ -87,15 +87,15 @@
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.DifferentiableVIFactory.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">QGradientPlannerFactory.DifferentiableVIFactory</a></dd>
+<dd><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.DifferentiableVIFactory.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">QGradientPlannerFactory.DifferentiableVIFactory</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="strong">QGradientPlannerFactory</span></pre>
-<div class="block">A factory for generating <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>QGradientPlanner</code></a> objects.
- This class is use for <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MultipleIntentionsMLIRL</code></a>, so that it
- can generate a different differentiable planner for each cluster; that way, after a maximization step,
- it can query the policy for each cluster in any state without replanning,rather than using a single planner
+<div class="block">A factory for generating <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>QGradientPlanner</code></a> objects.
+ This class is use for <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MultipleIntentionsMLIRL</code></a>, so that it
+ can generate a different differentiable valueFunction for each cluster; that way, after a maximization step,
+ it can query the policy for each cluster in any state without replanning,rather than using a single valueFunction
  instance that would require replanning for each cluster (since it would have to switch the reward function).</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>James MacGlashan.</dd></dl>
@@ -119,8 +119,8 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.DifferentiableVIFactory.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">QGradientPlannerFactory.DifferentiableVIFactory</a></strong></code>
-<div class="block">A <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/DifferentiableVI.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.differentiableplanners"><code>DifferentiableVI</code></a> factory.</div>
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.DifferentiableVIFactory.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">QGradientPlannerFactory.DifferentiableVIFactory</a></strong></code>
+<div class="block">A <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/DifferentiableVI.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.differentiableplanners"><code>DifferentiableVI</code></a> factory.</div>
 </td>
 </tr>
 </table>
@@ -139,10 +139,10 @@
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support">QGradientPlanner</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html#generateDifferentiablePlannerForRequest(burlap.behavior.singleagent.learnbydemo.mlirl.MLIRLRequest)">generateDifferentiablePlannerForRequest</a></strong>(<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRLRequest</a>&nbsp;request)</code>
-<div class="block">Returns a <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>QGradientPlanner</code></a> for an
- <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRLRequest</code></a> object's domain,
+<td class="colFirst"><code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support">QGradientPlanner</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html#generateDifferentiablePlannerForRequest(burlap.behavior.singleagent.learnfromdemo.mlirl.MLIRLRequest)">generateDifferentiablePlannerForRequest</a></strong>(<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRLRequest</a>&nbsp;request)</code>
+<div class="block">Returns a <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>QGradientPlanner</code></a> for an
+ <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRLRequest</code></a> object'o domain,
  reward function, discount factor, and Boltzmann beta parameter.</div>
 </td>
 </tr>
@@ -161,18 +161,18 @@
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="generateDifferentiablePlannerForRequest(burlap.behavior.singleagent.learnbydemo.mlirl.MLIRLRequest)">
+<a name="generateDifferentiablePlannerForRequest(burlap.behavior.singleagent.learnfromdemo.mlirl.MLIRLRequest)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>generateDifferentiablePlannerForRequest</h4>
-<pre><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support">QGradientPlanner</a>&nbsp;generateDifferentiablePlannerForRequest(<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRLRequest</a>&nbsp;request)</pre>
-<div class="block">Returns a <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>QGradientPlanner</code></a> for an
- <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRLRequest</code></a> object's domain,
+<pre><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support">QGradientPlanner</a>&nbsp;generateDifferentiablePlannerForRequest(<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRLRequest</a>&nbsp;request)</pre>
+<div class="block">Returns a <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>QGradientPlanner</code></a> for an
+ <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRLRequest</code></a> object'o domain,
  reward function, discount factor, and Boltzmann beta parameter.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>request</code> - the request defining the problem the planner should solve.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>a <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>QGradientPlanner</code></a> instance.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>request</code> - the request defining the problem the valueFunction should solve.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>a <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>QGradientPlanner</code></a> instance.</dd></dl>
 </li>
 </ul>
 </li>
@@ -200,8 +200,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.DifferentiableVIFactory.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.DifferentiableVIFactory.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html" target="_top">Frames</a></li>

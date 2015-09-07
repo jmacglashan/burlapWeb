@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.ValueFunctionInitialization.ConstantValueFunctionInitialization</li>
+<li>burlap.behavior.valuefunction.ValueFunctionInitialization.ConstantValueFunctionInitialization</li>
 </ul>
 </li>
 </ul>
@@ -122,7 +122,7 @@ implements <a href="../../../burlap/behavior/singleagent/ValueFunctionInitializa
 </a>
 <h3>Nested Class Summary</h3>
 <ul class="blockList">
-<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.singleagent.ValueFunctionInitialization">
+<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.valuefunction.ValueFunctionInitialization">
 <!--   -->
 </a>
 <h3>Nested classes/interfaces inherited from interface&nbsp;burlap.behavior.singleagent.<a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.html" title="interface in burlap.behavior.singleagent">ValueFunctionInitialization</a></h3>
@@ -189,14 +189,14 @@ implements <a href="../../../burlap/behavior/singleagent/ValueFunctionInitializa
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.ConstantValueFunctionInitialization.html#qValue(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction)">qValue</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.ConstantValueFunctionInitialization.html#qValue(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction)">qValue</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
       <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a>&nbsp;a)</code>
 <div class="block">Returns the initialization value of the Q-value function for a given state and action pair.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.ConstantValueFunctionInitialization.html#value(burlap.oomdp.core.State)">value</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.ConstantValueFunctionInitialization.html#value(burlap.oomdp.core.states.State)">value</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">Returns the value function evaluation of the given state.</div>
 </td>
 </tr>
@@ -275,31 +275,31 @@ implements <a href="../../../burlap/behavior/singleagent/ValueFunctionInitializa
 <ul class="blockList">
 <li class="blockList">
 <h4>value</h4>
-<pre>public&nbsp;double&nbsp;value(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../burlap/behavior/singleagent/planning/ValueFunction.html#value(burlap.oomdp.core.State)">ValueFunction</a></code></strong></div>
+<pre>public&nbsp;double&nbsp;value(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../burlap/behavior/singleagent/planning/ValueFunction.html#value(burlap.oomdp.core.states.State)">ValueFunction</a></code></strong></div>
 <div class="block">Returns the value function evaluation of the given state. If the value is not stored, then the default value
  specified by the ValueFunctionInitialization object of this class is returned.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../burlap/behavior/singleagent/planning/ValueFunction.html#value(burlap.oomdp.core.State)">value</a></code>&nbsp;in interface&nbsp;<code><a href="../../../burlap/behavior/singleagent/planning/ValueFunction.html" title="interface in burlap.behavior.singleagent.planning">ValueFunction</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state to evaluate.</dd>
+<dd><code><a href="../../../burlap/behavior/singleagent/planning/ValueFunction.html#value(burlap.oomdp.core.states.State)">value</a></code>&nbsp;in interface&nbsp;<code><a href="../../../burlap/behavior/singleagent/planning/ValueFunction.html" title="interface in burlap.behavior.singleagent.planning">ValueFunction</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state to evaluate.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the value function evaluation of the given state.</dd></dl>
 </li>
 </ul>
-<a name="qValue(burlap.oomdp.core.State, burlap.oomdp.core.AbstractGroundedAction)">
+<a name="qValue(burlap.oomdp.core.states.State, burlap.oomdp.core.AbstractGroundedAction)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>qValue</h4>
-<pre>public&nbsp;double&nbsp;qValue(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;double&nbsp;qValue(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
             <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a>&nbsp;a)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.html#qValue(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction)">ValueFunctionInitialization</a></code></strong></div>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.html#qValue(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction)">ValueFunctionInitialization</a></code></strong></div>
 <div class="block">Returns the initialization value of the Q-value function for a given state and action pair.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.html#qValue(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction)">qValue</a></code>&nbsp;in interface&nbsp;<code><a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.html" title="interface in burlap.behavior.singleagent">ValueFunctionInitialization</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state for which to get the initial value of the Q-value function.</dd><dd><code>a</code> - the action for which to get the initial value of the Q-value function.</dd>
+<dd><code><a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.html#qValue(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction)">qValue</a></code>&nbsp;in interface&nbsp;<code><a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.html" title="interface in burlap.behavior.singleagent">ValueFunctionInitialization</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state for which to get the initial value of the Q-value function.</dd><dd><code>a</code> - the action for which to get the initial value of the Q-value function.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the initialization value of the Q-value function for a given state and action pair.</dd></dl>
 </li>
 </ul>

@@ -35,8 +35,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/MultiAgentQSourceProvider.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.HashBackedQSource.html" title="class in burlap.behavior.stochasticgame.mavaluefunction"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/MultiAgentQSourceProvider.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.HashBackedQSource.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.stochasticgame.mavaluefunction</div>
+<div class="subTitle">burlap.behavior.stochasticgames.madynamicprogramming</div>
 <h2 title="Interface QSourceForSingleAgent" class="title">Interface QSourceForSingleAgent</h2>
 </div>
 <div class="contentContainer">
@@ -87,13 +87,13 @@
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.BackupBasedQSource.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">MAValueFunctionPlanner.BackupBasedQSource</a>, <a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.HashBackedQSource.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">QSourceForSingleAgent.HashBackedQSource</a></dd>
+<dd><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.BackupBasedQSource.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">MAValueFunctionPlanner.BackupBasedQSource</a>, <a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.HashBackedQSource.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">QSourceForSingleAgent.HashBackedQSource</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="strong">QSourceForSingleAgent</span></pre>
 <div class="block">And interface for objects that can store and retrive Q-value objects for a specific agent and state and joint action query. The 
- <a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/JAQValue.html" title="class in burlap.behavior.stochasticgame.mavaluefunction"><code>JAQValue</code></a> returned can have their q datamember directly modified to modify the Q-values stored and retreived in this object.
+ <a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/JAQValue.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming"><code>JAQValue</code></a> returned can have their q datamember directly modified to modify the Q-values stored and retreived in this object.
  A hash-backed implementation is also provided in this interface definition.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>James MacGlashan</dd></dl>
@@ -117,8 +117,8 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.HashBackedQSource.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">QSourceForSingleAgent.HashBackedQSource</a></strong></code>
-<div class="block">An implementation of the <a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction"><code>QSourceForSingleAgent</code></a> interface that has Q-values backed by hashmaps.</div>
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.HashBackedQSource.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">QSourceForSingleAgent.HashBackedQSource</a></strong></code>
+<div class="block">An implementation of the <a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming"><code>QSourceForSingleAgent</code></a> interface that has Q-values backed by hashmaps.</div>
 </td>
 </tr>
 </table>
@@ -137,10 +137,10 @@
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/JAQValue.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">JAQValue</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.html#getQValueFor(burlap.oomdp.core.State,%20burlap.oomdp.stochasticgames.JointAction)">getQValueFor</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colFirst"><code><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/JAQValue.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">JAQValue</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.html#getQValueFor(burlap.oomdp.core.states.State,%20burlap.oomdp.stochasticgames.JointAction)">getQValueFor</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
             <a href="../../../../burlap/oomdp/stochasticgames/JointAction.html" title="class in burlap.oomdp.stochasticgames">JointAction</a>&nbsp;ja)</code>
-<div class="block">Returns a Q-value (represented with a <a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/JAQValue.html" title="class in burlap.behavior.stochasticgame.mavaluefunction"><code>JAQValue</code></a> object) stored for the given state and joint action.</div>
+<div class="block">Returns a Q-value (represented with a <a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/JAQValue.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming"><code>JAQValue</code></a> object) stored for the given state and joint action.</div>
 </td>
 </tr>
 </table>
@@ -158,18 +158,18 @@
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getQValueFor(burlap.oomdp.core.State, burlap.oomdp.stochasticgames.JointAction)">
+<a name="getQValueFor(burlap.oomdp.core.states.State, burlap.oomdp.stochasticgames.JointAction)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getQValueFor</h4>
-<pre><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/JAQValue.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">JAQValue</a>&nbsp;getQValueFor(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/JAQValue.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">JAQValue</a>&nbsp;getQValueFor(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                     <a href="../../../../burlap/oomdp/stochasticgames/JointAction.html" title="class in burlap.oomdp.stochasticgames">JointAction</a>&nbsp;ja)</pre>
-<div class="block">Returns a Q-value (represented with a <a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/JAQValue.html" title="class in burlap.behavior.stochasticgame.mavaluefunction"><code>JAQValue</code></a> object) stored for the given state and joint action. Modification to the returned object
+<div class="block">Returns a Q-value (represented with a <a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/JAQValue.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming"><code>JAQValue</code></a> object) stored for the given state and joint action. Modification to the returned object
  will directly modify the stored value that will be returned in subsequent calls to this method.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the Q-value's associated state</dd><dd><code>ja</code> - the Q-value's associated joint aciton</dd>
-<dt><span class="strong">Returns:</span></dt><dd>a <a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/JAQValue.html" title="class in burlap.behavior.stochasticgame.mavaluefunction"><code>JAQValue</code></a> for the given state and joint action.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the Q-value'o associated state</dd><dd><code>ja</code> - the Q-value'o associated joint aciton</dd>
+<dt><span class="strong">Returns:</span></dt><dd>a <a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/JAQValue.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming"><code>JAQValue</code></a> for the given state and joint action.</dd></dl>
 </li>
 </ul>
 </li>
@@ -197,8 +197,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/MultiAgentQSourceProvider.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.HashBackedQSource.html" title="class in burlap.behavior.stochasticgame.mavaluefunction"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/MultiAgentQSourceProvider.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.HashBackedQSource.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?burlap/behavior/stochasticgame/mavaluefunction/QSourceForSingleAgent.html" target="_top">Frames</a></li>

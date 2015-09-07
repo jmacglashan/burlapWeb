@@ -36,7 +36,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgame.agents.naiveq"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgames.agents.naiveq"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQFactory.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.stochasticgame.agents.naiveq</div>
+<div class="subTitle">burlap.behavior.stochasticgames.agents.naiveq</div>
 <h2 title="Class SGNaiveQFactory" class="title">Class SGNaiveQFactory</h2>
 </div>
 <div class="contentContainer">
@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.stochasticgame.agents.naiveq.SGNaiveQFactory</li>
+<li>burlap.behavior.stochasticgames.agents.naiveq.SGNaiveQFactory</li>
 </ul>
 </li>
 </ul>
@@ -102,7 +102,7 @@
 <pre>public class <span class="strong">SGNaiveQFactory</span>
 extends java.lang.Object
 implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.html" title="interface in burlap.oomdp.stochasticgames">AgentFactory</a></pre>
-<div class="block">An agent factory that produces <a href="../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgame.agents.naiveq"><code>SGNaiveQLAgent</code></a>s.</div>
+<div class="block">An agent factory that produces <a href="../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgames.agents.naiveq"><code>SGNaiveQLAgent</code></a>o.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>James MacGlashan</dd></dl>
 </li>
@@ -148,7 +148,7 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQFactory.html#stateHash">stateHash</a></strong></code>
 <div class="block">The state hashing factory the Q-learning algorithm will use</div>
 </td>
@@ -178,7 +178,7 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
                double&nbsp;discount,
                double&nbsp;learningRate,
                double&nbsp;defaultQ,
-               <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;stateHash)</code>
+               <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;stateHash)</code>
 <div class="block">Initializes the factory.</div>
 </td>
 </tr>
@@ -187,7 +187,7 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
                double&nbsp;discount,
                double&nbsp;learningRate,
                double&nbsp;defaultQ,
-               <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;stateHash,
+               <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;stateHash,
                <a href="../../../../../burlap/oomdp/auxiliary/StateAbstraction.html" title="interface in burlap.oomdp.auxiliary">StateAbstraction</a>&nbsp;storedAbstraction)</code>
 <div class="block">Initializes the factory.</div>
 </td>
@@ -287,7 +287,7 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
 <ul class="blockList">
 <li class="blockList">
 <h4>stateHash</h4>
-<pre>protected&nbsp;<a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a> stateHash</pre>
+<pre>protected&nbsp;<a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a> stateHash</pre>
 <div class="block">The state hashing factory the Q-learning algorithm will use</div>
 </li>
 </ul>
@@ -309,7 +309,7 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="SGNaiveQFactory(burlap.oomdp.stochasticgames.SGDomain, double, double, double, burlap.behavior.statehashing.StateHashFactory)">
+<a name="SGNaiveQFactory(burlap.oomdp.stochasticgames.SGDomain, double, double, double, burlap.oomdp.statehashing.StateHashFactory)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -319,12 +319,12 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
                double&nbsp;discount,
                double&nbsp;learningRate,
                double&nbsp;defaultQ,
-               <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;stateHash)</pre>
+               <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;stateHash)</pre>
 <div class="block">Initializes the factory. No state abstraction is set to be used.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - The stochastic games domain in which the agent will act</dd><dd><code>discount</code> - The discount rate the Q-learning algorithm will use</dd><dd><code>learningRate</code> - The learning rate the Q-learning algorithm will use</dd><dd><code>defaultQ</code> - The default Q-value to which Q-values will be initialized</dd><dd><code>stateHash</code> - The state hashing factory the Q-learning algorithm will use</dd></dl>
 </li>
 </ul>
-<a name="SGNaiveQFactory(burlap.oomdp.stochasticgames.SGDomain, double, double, double, burlap.behavior.statehashing.StateHashFactory, burlap.oomdp.auxiliary.StateAbstraction)">
+<a name="SGNaiveQFactory(burlap.oomdp.stochasticgames.SGDomain, double, double, double, burlap.oomdp.statehashing.HashableStateFactory, burlap.oomdp.auxiliary.StateAbstraction)">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -334,7 +334,7 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
                double&nbsp;discount,
                double&nbsp;learningRate,
                double&nbsp;defaultQ,
-               <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;stateHash,
+               <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;stateHash,
                <a href="../../../../../burlap/oomdp/auxiliary/StateAbstraction.html" title="interface in burlap.oomdp.auxiliary">StateAbstraction</a>&nbsp;storedAbstraction)</pre>
 <div class="block">Initializes the factory. No state abstraction is set to be used.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - The stochastic games domain in which the agent will act</dd><dd><code>discount</code> - The discount rate the Q-learning algorithm will use</dd><dd><code>learningRate</code> - The learning rate the Q-learning algorithm will use</dd><dd><code>defaultQ</code> - The default Q-value to which Q-values will be initialized</dd><dd><code>stateHash</code> - The state hashing factory the Q-learning algorithm will use</dd><dd><code>storedAbstraction</code> - the state abstraction the Q-learning algorithm will use</dd></dl>
@@ -400,7 +400,7 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgame.agents.naiveq"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgames.agents.naiveq"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQFactory.html" target="_top">Frames</a></li>

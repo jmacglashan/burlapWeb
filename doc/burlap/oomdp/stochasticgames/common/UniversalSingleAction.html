@@ -61,7 +61,7 @@
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#fields_inherited_from_class_burlap.oomdp.stochasticgames.SingleAction">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#fields_inherited_from_class_burlap.oomdp.stochasticgames.agentactions.SGAgentAction">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
 </ul>
@@ -86,10 +86,10 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html" title="class in burlap.oomdp.stochasticgames">burlap.oomdp.stochasticgames.SingleAction</a></li>
+<li><a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html" title="class in burlap.oomdp.stochasticgames">burlap.oomdp.stochasticgames.agentactions.SGAgentAction</a></li>
 <li>
 <ul class="inheritance">
-<li>burlap.oomdp.stochasticgames.common.UniversalSingleAction</li>
+<li>burlap.oomdp.stochasticgames.common.UniversalSGAgentAction</li>
 </ul>
 </li>
 </ul>
@@ -119,7 +119,7 @@ extends <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html" tit
 </a>
 <h3>Field Summary</h3>
 <ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_burlap.oomdp.stochasticgames.SingleAction">
+<li class="blockList"><a name="fields_inherited_from_class_burlap.oomdp.stochasticgames.agentactions.SGAgentAction">
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;burlap.oomdp.stochasticgames.<a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html" title="class in burlap.oomdp.stochasticgames">SingleAction</a></h3>
@@ -178,7 +178,7 @@ extends <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html" tit
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/oomdp/stochasticgames/common/UniversalSingleAction.html#isApplicableInState(burlap.oomdp.core.State,%20java.lang.String,%20java.lang.String[])">isApplicableInState</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../burlap/oomdp/stochasticgames/common/UniversalSingleAction.html#isApplicableInState(burlap.oomdp.core.states.State,%20java.lang.String,%20java.lang.String[])">isApplicableInState</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                    java.lang.String&nbsp;actingAgent,
                    java.lang.String[]&nbsp;params)</code>
 <div class="block">Returns true if this action can be applied in the given state by the given agent with the given parameters.</div>
@@ -186,11 +186,11 @@ extends <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html" tit
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_burlap.oomdp.stochasticgames.SingleAction">
+<li class="blockList"><a name="methods_inherited_from_class_burlap.oomdp.stochasticgames.agentactions.SGAgentAction">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;burlap.oomdp.stochasticgames.<a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html" title="class in burlap.oomdp.stochasticgames">SingleAction</a></h3>
-<code><a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#equals(java.lang.Object)">equals</a>, <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#getAllGroundedActionsFor(burlap.oomdp.core.State,%20java.lang.String)">getAllGroundedActionsFor</a>, <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#getAllPossibleGroundedSingleActions(burlap.oomdp.core.State,%20java.lang.String,%20java.util.List)">getAllPossibleGroundedSingleActions</a>, <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#hashCode()">hashCode</a>, <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#isPamaeterized()">isPamaeterized</a>, <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#parametersAreObjects()">parametersAreObjects</a></code></li>
+<code><a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#equals(java.lang.Object)">equals</a>, <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#getAllGroundedActionsFor(burlap.oomdp.core.states.State,%20java.lang.String)">getAllGroundedActionsFor</a>, <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#getAllPossibleGroundedSingleActions(burlap.oomdp.core.states.State,%20java.lang.String,%20java.util.List)">getAllPossibleGroundedSingleActions</a>, <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#hashCode()">hashCode</a>, <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#isPamaeterized()">isPamaeterized</a>, <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#parametersAreObjects()">parametersAreObjects</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -265,21 +265,21 @@ extends <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html" tit
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="isApplicableInState(burlap.oomdp.core.State, java.lang.String, java.lang.String[])">
+<a name="isApplicableInState(burlap.oomdp.core.states.State, java.lang.String, java.lang.String[])">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>isApplicableInState</h4>
-<pre>public&nbsp;boolean&nbsp;isApplicableInState(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;boolean&nbsp;isApplicableInState(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                           java.lang.String&nbsp;actingAgent,
                           java.lang.String[]&nbsp;params)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#isApplicableInState(burlap.oomdp.core.State,%20java.lang.String,%20java.lang.String[])">SingleAction</a></code></strong></div>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#isApplicableInState(burlap.oomdp.core.states.State,%20java.lang.String,%20java.lang.String[])">SingleAction</a></code></strong></div>
 <div class="block">Returns true if this action can be applied in the given state by the given agent with the given parameters.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#isApplicableInState(burlap.oomdp.core.State,%20java.lang.String,%20java.lang.String[])">isApplicableInState</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html" title="class in burlap.oomdp.stochasticgames">SingleAction</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which the action would be executed.</dd><dd><code>actingAgent</code> - the agent who would be executing the action</dd><dd><code>params</code> - the parameters applied</dd>
+<dd><code><a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html#isApplicableInState(burlap.oomdp.core.states.State,%20java.lang.String,%20java.lang.String[])">isApplicableInState</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html" title="class in burlap.oomdp.stochasticgames">SingleAction</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which the action would be executed.</dd><dd><code>actingAgent</code> - the agent who would be executing the action</dd><dd><code>params</code> - the parameters applied</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if this action can be executed; false otherwise.</dd></dl>
 </li>
 </ul>
@@ -334,7 +334,7 @@ extends <a href="../../../../burlap/oomdp/stochasticgames/SingleAction.html" tit
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#fields_inherited_from_class_burlap.oomdp.stochasticgames.SingleAction">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#fields_inherited_from_class_burlap.oomdp.stochasticgames.agentactions.SGAgentAction">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
 </ul>

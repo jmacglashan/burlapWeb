@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.singleagent.learnbydemo</div>
+<div class="subTitle">burlap.behavior.singleagent.learnfromdemo</div>
 <h2 title="Class IRLRequest" class="title">Class IRLRequest</h2>
 </div>
 <div class="contentContainer">
@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.learnbydemo.IRLRequest</li>
+<li>burlap.behavior.singleagent.learnfromdemo.IRLRequest</li>
 </ul>
 </li>
 </ul>
@@ -95,7 +95,7 @@
 <li class="blockList">
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../../burlap/behavior/singleagent/learnbydemo/apprenticeship/ApprenticeshipLearningRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.apprenticeship">ApprenticeshipLearningRequest</a>, <a href="../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRLRequest</a></dd>
+<dd><a href="../../../../burlap/behavior/singleagent/learnbydemo/apprenticeship/ApprenticeshipLearningRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.apprenticeship">ApprenticeshipLearningRequest</a>, <a href="../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRLRequest</a></dd>
 </dl>
 <hr>
 <br>
@@ -142,7 +142,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#planner">planner</a></strong></code>
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#valueFunction">valueFunction</a></strong></code>
 <div class="block">The planning algorithm used to compute the policy for a given reward function</div>
 </td>
 </tr>
@@ -167,7 +167,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#IRLRequest(burlap.oomdp.core.Domain,%20burlap.behavior.singleagent.planning.OOMDPPlanner,%20java.util.List)">IRLRequest</a></strong>(<a href="../../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;domain,
-          <a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a>&nbsp;planner,
+          <a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a>&nbsp;valueFunction,
           java.util.List&lt;<a href="../../../../burlap/behavior/singleagent/EpisodeAnalysis.html" title="class in burlap.behavior.singleagent">EpisodeAnalysis</a>&gt;&nbsp;expertEpisodes)</code>
 <div class="block">Initializes.</div>
 </td>
@@ -257,13 +257,13 @@ extends java.lang.Object</pre>
 <div class="block">The domain in which IRL is to be performed</div>
 </li>
 </ul>
-<a name="planner">
+<a name="valueFunction">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>planner</h4>
-<pre>protected&nbsp;<a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a> planner</pre>
+<h4>valueFunction</h4>
+<pre>protected&nbsp;<a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a> valueFunction</pre>
 <div class="block">The planning algorithm used to compute the policy for a given reward function</div>
 </li>
 </ul>
@@ -302,20 +302,20 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>IRLRequest</h4>
 <pre>public&nbsp;IRLRequest()</pre>
-<div class="block">Values will not be initialized. You must use the setters for the domain, planner, and expert episodes.</div>
+<div class="block">Values will not be initialized. You must use the setters for the domain, valueFunction, and expert episodes.</div>
 </li>
 </ul>
-<a name="IRLRequest(burlap.oomdp.core.Domain, burlap.behavior.singleagent.planning.OOMDPPlanner, java.util.List)">
+<a name="IRLRequest(burlap.oomdp.core.Domain, burlap.behavior.singleagent.MDPSolver, java.util.List)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>IRLRequest</h4>
 <pre>public&nbsp;IRLRequest(<a href="../../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;domain,
-          <a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a>&nbsp;planner,
+          <a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a>&nbsp;valueFunction,
           java.util.List&lt;<a href="../../../../burlap/behavior/singleagent/EpisodeAnalysis.html" title="class in burlap.behavior.singleagent">EpisodeAnalysis</a>&gt;&nbsp;expertEpisodes)</pre>
 <div class="block">Initializes. Discount factor will be defaulted to 0.99, which can optionally be changed with a setter.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain in which IRL is to be performed</dd><dd><code>planner</code> - the planning algorithm the IRL algorithm will invoke.</dd><dd><code>expertEpisodes</code> - the example expert trajectories/episodes.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain in which IRL is to be performed</dd><dd><code>valueFunction</code> - the planning algorithm the IRL algorithm will invoke.</dd><dd><code>expertEpisodes</code> - the example expert trajectories/episodes.</dd></dl>
 </li>
 </ul>
 </li>

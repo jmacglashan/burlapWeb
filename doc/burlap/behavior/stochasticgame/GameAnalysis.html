@@ -36,7 +36,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html" title="class in burlap.behavior.stochasticgame"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html" title="class in burlap.behavior.stochasticgames"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?burlap/behavior/stochasticgame/GameAnalysis.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.stochasticgame</div>
+<div class="subTitle">burlap.behavior.stochasticgames</div>
 <h2 title="Class GameAnalysis" class="title">Class GameAnalysis</h2>
 </div>
 <div class="contentContainer">
@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.stochasticgame.GameAnalysis</li>
+<li>burlap.behavior.stochasticgames.GameAnalysis</li>
 </ul>
 </li>
 </ul>
@@ -100,8 +100,8 @@ extends java.lang.Object</pre>
 <div class="block">This class provides a means to record all the interactions in a stochastic game; specifically, the sequence of states, joint actions taken, and joint reward received.
  It also has methods to converting everything to a string/file and parsing a string/file back into this object so that results can be recorded and saved to disk.
  <p/>
- This class should be used either by constructing with an initial state (<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#GameAnalysis(burlap.oomdp.core.State)"><code>GameAnalysis(State)</code></a>) or by constructing with the default constructor and then
- using the <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#initializeGameWithInitialState(burlap.oomdp.core.State)"><code>initializeGameWithInitialState(State)</code></a> method before recording any further transitions. Transitions should then be recorded with the
+ This class should be used either by constructing with an initial state (<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#GameAnalysis(burlap.oomdp.core.states.State)"><code>GameAnalysis(State)</code></a>) or by constructing with the default constructor and then
+ using the <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#initializeGameWithInitialState(burlap.oomdp.core.states.State)"><code>initializeGameWithInitialState(State)</code></a> method before recording any further transitions. Transitions should then be recorded with the
  <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#recordTransitionTo(burlap.oomdp.stochasticgames.JointAction,%20burlap.oomdp.core.State,%20java.util.Map)"><code>recordTransitionTo(JointAction, State, Map)</code></a> method which takes as input the next state to which the agent transtions, the joint action taken
  in the previously recorded state that causes the transition, and the joint reward received for the transition.
  <p/>
@@ -176,7 +176,7 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#GameAnalysis(burlap.oomdp.core.State)">GameAnalysis</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;initialState)</code>
+<td class="colOne"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#GameAnalysis(burlap.oomdp.core.states.State)">GameAnalysis</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;initialState)</code>
 <div class="block">Initializes with an initial state of the game.</div>
 </td>
 </tr>
@@ -265,7 +265,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#initializeGameWithInitialState(burlap.oomdp.core.State)">initializeGameWithInitialState</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;initialState)</code>
+<td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#initializeGameWithInitialState(burlap.oomdp.core.states.State)">initializeGameWithInitialState</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;initialState)</code>
 <div class="block">Clears out any already recorded states, joint actions, and rewards, and sets the initial state of the game.</div>
 </td>
 </tr>
@@ -282,25 +282,25 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a></code></td>
+<td class="colFirst"><code>static <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a></code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#parseFileIntoGA(java.lang.String,%20burlap.oomdp.stochasticgames.SGDomain,%20burlap.oomdp.auxiliary.StateParser)">parseFileIntoGA</a></strong>(java.lang.String&nbsp;path,
                <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;domain,
-               <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp)</code>
-<div class="block">Reads a game that was written to a file and turns into a <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> object.</div>
+               <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op)</code>
+<div class="block">Reads a game that was written to a file and turns into a <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> object.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#parseIntoString(burlap.oomdp.auxiliary.StateParser)">parseIntoString</a></strong>(<a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp)</code>
+<td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#parseIntoString(burlap.oomdp.legacy.StateParser)">parseIntoString</a></strong>(<a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op)</code>
 <div class="block">Converts this game into a string representation.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a></code></td>
+<td class="colFirst"><code>static <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a></code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#parseStringIntoGameAnalysis(java.lang.String,%20burlap.oomdp.stochasticgames.SGDomain,%20burlap.oomdp.auxiliary.StateParser)">parseStringIntoGameAnalysis</a></strong>(java.lang.String&nbsp;str,
                            <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;domain,
-                           <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp)</code>
-<div class="block">Parses a string representing a <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> object into an actual <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> object.</div>
+                           <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op)</code>
+<div class="block">Parses a string representing a <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> object into an actual <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> object.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -315,7 +315,7 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#writeToFile(java.lang.String,%20burlap.oomdp.auxiliary.StateParser)">writeToFile</a></strong>(java.lang.String&nbsp;path,
-           <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp)</code>
+           <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op)</code>
 <div class="block">Writes this game to a file.</div>
 </td>
 </tr>
@@ -396,7 +396,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>GameAnalysis</h4>
 <pre>public&nbsp;GameAnalysis()</pre>
-<div class="block">Initialzes the datastructures. Note that the method <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#initializeGameWithInitialState(burlap.oomdp.core.State)"><code>initializeGameWithInitialState(State)</code></a> should be called
+<div class="block">Initialzes the datastructures. Note that the method <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html#initializeGameWithInitialState(burlap.oomdp.core.states.State)"><code>initializeGameWithInitialState(State)</code></a> should be called
  to set the initial state of the game before any transitions are recorded.</div>
 </li>
 </ul>
@@ -542,7 +542,7 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>the max time step index in this game</dd></dl>
 </li>
 </ul>
-<a name="recordTransitionTo(burlap.oomdp.stochasticgames.JointAction, burlap.oomdp.core.State, java.util.Map)">
+<a name="recordTransitionTo(burlap.oomdp.stochasticgames.JointAction, burlap.oomdp.core.states.State, java.util.Map)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -606,9 +606,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>parseIntoString</h4>
-<pre>public&nbsp;java.lang.String&nbsp;parseIntoString(<a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp)</pre>
+<pre>public&nbsp;java.lang.String&nbsp;parseIntoString(<a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op)</pre>
 <div class="block">Converts this game into a string representation.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>sp</code> - the state parser to use to convert state objects to string representations.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>op</code> - the state parser to use to convert state objects to string representations.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>a string representation of this episode.</dd></dl>
 </li>
 </ul>
@@ -619,10 +619,10 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>writeToFile</h4>
 <pre>public&nbsp;void&nbsp;writeToFile(java.lang.String&nbsp;path,
-               <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp)</pre>
+               <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op)</pre>
 <div class="block">Writes this game to a file. If the the directory for the specified file path do not exist, then they will be created.
  If the file extension is not ".game" will automatically be added.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>path</code> - the path to the file in which to write this game.</dd><dd><code>sp</code> - the state parser to use to convert state objects to string representations.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>path</code> - the path to the file in which to write this game.</dd><dd><code>op</code> - the state parser to use to convert state objects to string representations.</dd></dl>
 </li>
 </ul>
 <a name="parseStringIntoGameAnalysis(java.lang.String, burlap.oomdp.stochasticgames.SGDomain, burlap.oomdp.auxiliary.StateParser)">
@@ -631,12 +631,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>parseStringIntoGameAnalysis</h4>
-<pre>public static&nbsp;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a>&nbsp;parseStringIntoGameAnalysis(java.lang.String&nbsp;str,
+<pre>public static&nbsp;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a>&nbsp;parseStringIntoGameAnalysis(java.lang.String&nbsp;str,
                                        <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;domain,
-                                       <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp)</pre>
-<div class="block">Parses a string representing a <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> object into an actual <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> object.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>str</code> - the string representation</dd><dd><code>domain</code> - the stochastic games domain to which the actions belong</dd><dd><code>sp</code> - the state parser used to represent states</dd>
-<dt><span class="strong">Returns:</span></dt><dd>a <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> object.</dd></dl>
+                                       <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op)</pre>
+<div class="block">Parses a string representing a <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> object into an actual <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> object.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>str</code> - the string representation</dd><dd><code>domain</code> - the stochastic games domain to which the actions belong</dd><dd><code>op</code> - the state parser used to represent states</dd>
+<dt><span class="strong">Returns:</span></dt><dd>a <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> object.</dd></dl>
 </li>
 </ul>
 <a name="parseFileIntoGA(java.lang.String, burlap.oomdp.stochasticgames.SGDomain, burlap.oomdp.auxiliary.StateParser)">
@@ -645,12 +645,12 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>parseFileIntoGA</h4>
-<pre>public static&nbsp;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a>&nbsp;parseFileIntoGA(java.lang.String&nbsp;path,
+<pre>public static&nbsp;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a>&nbsp;parseFileIntoGA(java.lang.String&nbsp;path,
                            <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;domain,
-                           <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp)</pre>
-<div class="block">Reads a game that was written to a file and turns into a <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> object.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>path</code> - the path to the game file.</dd><dd><code>domain</code> - the stochastic games domain to which the states and actions belong</dd><dd><code>sp</code> - a state parser that can parse the state string representation in the file</dd>
-<dt><span class="strong">Returns:</span></dt><dd>an <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> object.</dd></dl>
+                           <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op)</pre>
+<div class="block">Reads a game that was written to a file and turns into a <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> object.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>path</code> - the path to the game file.</dd><dd><code>domain</code> - the stochastic games domain to which the states and actions belong</dd><dd><code>op</code> - a state parser that can parse the state string representation in the file</dd>
+<dt><span class="strong">Returns:</span></dt><dd>an <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> object.</dd></dl>
 </li>
 </ul>
 </li>
@@ -679,7 +679,7 @@ extends java.lang.Object</pre>
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html" title="class in burlap.behavior.stochasticgame"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html" title="class in burlap.behavior.stochasticgames"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?burlap/behavior/stochasticgame/GameAnalysis.html" target="_top">Frames</a></li>

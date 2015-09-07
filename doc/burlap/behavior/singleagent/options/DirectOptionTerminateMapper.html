@@ -119,15 +119,15 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/DirectOptionTerminateMapper.html#generateOptionTerminalState(burlap.oomdp.core.State)">generateOptionTerminalState</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/DirectOptionTerminateMapper.html#generateOptionTerminalState(burlap.oomdp.core.states.State)">generateOptionTerminalState</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">Returns the termination state that will result from applying the option associated with this object
  in the given initiation state.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/DirectOptionTerminateMapper.html#getCumulativeReward(burlap.oomdp.core.State,%20burlap.oomdp.core.State,%20burlap.oomdp.singleagent.RewardFunction,%20double)">getCumulativeReward</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
-                   <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sp,
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/DirectOptionTerminateMapper.html#getCumulativeReward(burlap.oomdp.core.states.State,%20burlap.oomdp.core.State,%20burlap.oomdp.singleagent.RewardFunction,%20double)">getCumulativeReward</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
+                   <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;op,
                    <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a>&nbsp;rf,
                    double&nbsp;discount)</code>
 <div class="block">Returns the cumulative discounted reward that would be received from applying the option associated with this object
@@ -136,10 +136,10 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/DirectOptionTerminateMapper.html#getNumSteps(burlap.oomdp.core.State,%20burlap.oomdp.core.State)">getNumSteps</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
-           <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sp)</code>
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/DirectOptionTerminateMapper.html#getNumSteps(burlap.oomdp.core.states.State,%20burlap.oomdp.core.State)">getNumSteps</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
+           <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;op)</code>
 <div class="block">Returns the number of steps that would have occurred for taking the option associated with this object
- from state <code>s</code> and terminating in state <code>sp</code>.</div>
+ from state <code>o</code> and terminating in state <code>op</code>.</div>
 </td>
 </tr>
 </table>
@@ -163,40 +163,40 @@
 <ul class="blockList">
 <li class="blockList">
 <h4>generateOptionTerminalState</h4>
-<pre><a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;generateOptionTerminalState(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
+<pre><a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;generateOptionTerminalState(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
 <div class="block">Returns the termination state that will result from applying the option associated with this object
  in the given initiation state.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the initiation state in which the option associated with this object will be applied.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the initiation state in which the option associated with this object will be applied.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the resulting terminal state of the option.</dd></dl>
 </li>
 </ul>
-<a name="getNumSteps(burlap.oomdp.core.State, burlap.oomdp.core.State)">
+<a name="getNumSteps(burlap.oomdp.core.states.State, burlap.oomdp.core.State)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getNumSteps</h4>
-<pre>int&nbsp;getNumSteps(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
-              <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sp)</pre>
+<pre>int&nbsp;getNumSteps(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
+              <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;op)</pre>
 <div class="block">Returns the number of steps that would have occurred for taking the option associated with this object
- from state <code>s</code> and terminating in state <code>sp</code>.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the initiation state in which the option associated with this object will be applied.</dd><dd><code>sp</code> - the terminal state the option will reach</dd>
+ from state <code>o</code> and terminating in state <code>op</code>.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the initiation state in which the option associated with this object will be applied.</dd><dd><code>op</code> - the terminal state the option will reach</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the number of steps that would have occurred</dd></dl>
 </li>
 </ul>
-<a name="getCumulativeReward(burlap.oomdp.core.State, burlap.oomdp.core.State, burlap.oomdp.singleagent.RewardFunction, double)">
+<a name="getCumulativeReward(burlap.oomdp.core.states.State, burlap.oomdp.core.states.State, burlap.oomdp.singleagent.RewardFunction, double)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getCumulativeReward</h4>
-<pre>double&nbsp;getCumulativeReward(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
-                         <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sp,
+<pre>double&nbsp;getCumulativeReward(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
+                         <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;op,
                          <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a>&nbsp;rf,
                          double&nbsp;discount)</pre>
 <div class="block">Returns the cumulative discounted reward that would be received from applying the option associated with this object
  in the given initiation state.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the initiation state in which the option associated with this object will be applied.</dd><dd><code>sp</code> - the terminal state the option will reach</dd><dd><code>rf</code> - the reward function being used</dd><dd><code>discount</code> - the discount factor</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the initiation state in which the option associated with this object will be applied.</dd><dd><code>op</code> - the terminal state the option will reach</dd><dd><code>rf</code> - the reward function being used</dd><dd><code>discount</code> - the discount factor</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the cumulative discounted reward</dd></dl>
 </li>
 </ul>

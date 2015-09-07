@@ -35,8 +35,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.singleagent.learnbydemo.mlirl</div>
+<div class="subTitle">burlap.behavior.singleagent.learnfromdemo.mlirl</div>
 <h2 title="Class MultipleIntentionsMLIRL" class="title">Class MultipleIntentionsMLIRL</h2>
 </div>
 <div class="contentContainer">
@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.learnbydemo.mlirl.MultipleIntentionsMLIRL</li>
+<li>burlap.behavior.singleagent.learnfromdemo.mlirl.MultipleIntentionsMLIRL</li>
 </ul>
 </li>
 </ul>
@@ -100,7 +100,7 @@ extends java.lang.Object</pre>
 <div class="block">An implementation of Multiple Intentions Maximum-likelihood Inverse Reinforcement Learning [1]. This algorithm
  takes as input a set of expert trajectories, a number of clusters, and a differentiable reward function model; and
  clusters the trajectories assigning each cluster its own reward function parameter values. The algorithm uses
- EM to find the reward function parameter values for each cluster and uses <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRL</code></a>
+ EM to find the reward function parameter values for each cluster and uses <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRL</code></a>
  to perform the maximization step of the parameter values. EM is run for a specified number of iterations.
  <p/>
  At initialization, the reward function parameters for each behavior cluster will be randomly assigned values between
@@ -136,9 +136,9 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRLRequest</a>&gt;</code></td>
+<td class="colFirst"><code>protected java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRLRequest</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html#clusterRequests">clusterRequests</a></strong></code>
-<div class="block">The invididual <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRLRequest</code></a> objects for each behavior cluster.</div>
+<div class="block">The invididual <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRLRequest</code></a> objects for each behavior cluster.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -148,9 +148,9 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRL</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRL</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html#mlirlInstance">mlirlInstance</a></strong></code>
-<div class="block">The <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRL</code></a> instance used to perform the maximization step
+<div class="block">The <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRL</code></a> instance used to perform the maximization step
  for each clusters reward function parameter values.</div>
 </td>
 </tr>
@@ -163,11 +163,11 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>protected java.util.Random</code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html#rand">rand</a></strong></code>
-<div class="block">A random object used for initializing each cluster's RF parameters randomly.</div>
+<div class="block">A random object used for initializing each cluster'o RF parameters randomly.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MultipleIntentionsMLIRLRequest</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MultipleIntentionsMLIRLRequest</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html#request">request</a></strong></code>
 <div class="block">The source problem request defining the problem to be solved.</div>
 </td>
@@ -187,7 +187,7 @@ extends java.lang.Object</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html#MultipleIntentionsMLIRL(burlap.behavior.singleagent.learnbydemo.mlirl.MultipleIntentionsMLIRLRequest,%20int,%20double,%20double,%20int)">MultipleIntentionsMLIRL</a></strong>(<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MultipleIntentionsMLIRLRequest</a>&nbsp;request,
+<td class="colOne"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html#MultipleIntentionsMLIRL(burlap.behavior.singleagent.learnfromdemo.mlirl.MultipleIntentionsMLIRLRequest,%20int,%20double,%20double,%20int)">MultipleIntentionsMLIRL</a></strong>(<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MultipleIntentionsMLIRLRequest</a>&nbsp;request,
                        int&nbsp;emIterations,
                        double&nbsp;mlIRLLearningRate,
                        double&nbsp;maxMLIRLLikelihoodChange,
@@ -239,9 +239,9 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a>&gt;</code></td>
+<td class="colFirst"><code>java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html#getClusterRFs()">getClusterRFs</a></strong>()</code>
-<div class="block">Returns the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>DifferentiableRF</code></a> obejcts defining each behavior cluster.</div>
+<div class="block">Returns the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>DifferentiableRF</code></a> obejcts defining each behavior cluster.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -252,16 +252,16 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html#initializeClusterRFParameters(java.util.List)">initializeClusterRFParameters</a></strong>(java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a>&gt;&nbsp;rfs)</code>
-<div class="block">Initializes the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>DifferentiableRF</code></a> parameters
+<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html#initializeClusterRFParameters(java.util.List)">initializeClusterRFParameters</a></strong>(java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a>&gt;&nbsp;rfs)</code>
+<div class="block">Initializes the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>DifferentiableRF</code></a> parameters
  for each cluster.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html#initializeClusters(int,%20burlap.behavior.singleagent.learnbydemo.mlirl.support.QGradientPlannerFactory)">initializeClusters</a></strong>(int&nbsp;k,
-                  <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support">QGradientPlannerFactory</a>&nbsp;plannerFactory)</code>
-<div class="block">Initializes cluster data; i.e., it initializes RF parameters, cluster prior parameters (to uniform), and creates <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRLRequest</code></a>
+                  <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support">QGradientPlannerFactory</a>&nbsp;plannerFactory)</code>
+<div class="block">Initializes cluster data; i.e., it initializes RF parameters, cluster prior parameters (to uniform), and creates <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRLRequest</code></a>
  objects for each cluster.</div>
 </td>
 </tr>
@@ -317,7 +317,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>request</h4>
-<pre>protected&nbsp;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MultipleIntentionsMLIRLRequest</a> request</pre>
+<pre>protected&nbsp;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MultipleIntentionsMLIRLRequest</a> request</pre>
 <div class="block">The source problem request defining the problem to be solved.</div>
 </li>
 </ul>
@@ -327,8 +327,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>clusterRequests</h4>
-<pre>protected&nbsp;java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRLRequest</a>&gt; clusterRequests</pre>
-<div class="block">The invididual <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRLRequest</code></a> objects for each behavior cluster.</div>
+<pre>protected&nbsp;java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRLRequest</a>&gt; clusterRequests</pre>
+<div class="block">The invididual <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRLRequest</code></a> objects for each behavior cluster.</div>
 </li>
 </ul>
 <a name="clusterPriors">
@@ -347,8 +347,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>mlirlInstance</h4>
-<pre>protected&nbsp;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRL</a> mlirlInstance</pre>
-<div class="block">The <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRL</code></a> instance used to perform the maximization step
+<pre>protected&nbsp;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRL</a> mlirlInstance</pre>
+<div class="block">The <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRL</code></a> instance used to perform the maximization step
  for each clusters reward function parameter values.</div>
 </li>
 </ul>
@@ -379,7 +379,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>rand</h4>
 <pre>protected&nbsp;java.util.Random rand</pre>
-<div class="block">A random object used for initializing each cluster's RF parameters randomly.</div>
+<div class="block">A random object used for initializing each cluster'o RF parameters randomly.</div>
 </li>
 </ul>
 </li>
@@ -390,19 +390,19 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="MultipleIntentionsMLIRL(burlap.behavior.singleagent.learnbydemo.mlirl.MultipleIntentionsMLIRLRequest, int, double, double, int)">
+<a name="MultipleIntentionsMLIRL(burlap.behavior.singleagent.learnfromdemo.mlirl.MultipleIntentionsMLIRLRequest, int, double, double, int)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MultipleIntentionsMLIRL</h4>
-<pre>public&nbsp;MultipleIntentionsMLIRL(<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MultipleIntentionsMLIRLRequest</a>&nbsp;request,
+<pre>public&nbsp;MultipleIntentionsMLIRL(<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MultipleIntentionsMLIRLRequest</a>&nbsp;request,
                        int&nbsp;emIterations,
                        double&nbsp;mlIRLLearningRate,
                        double&nbsp;maxMLIRLLikelihoodChange,
                        int&nbsp;maxMLIRLSteps)</pre>
 <div class="block">Initializes. Reward function parameters for each cluster will be initialized randomly between -1 and 1.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>request</code> - the request that defines the problem.</dd><dd><code>emIterations</code> - the number of EM iterations to perform.</dd><dd><code>mlIRLLearningRate</code> - the learning rate of the underlying <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRL</code></a> instance.</dd><dd><code>maxMLIRLLikelihoodChange</code> - the likelihood change threshold that causes <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRL</code></a> gradient ascent to stop.</dd><dd><code>maxMLIRLSteps</code> - the maximum number of gradient ascent steps allowd by the underlying <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRLRequest</code></a> gradient ascent.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>request</code> - the request that defines the problem.</dd><dd><code>emIterations</code> - the number of EM iterations to perform.</dd><dd><code>mlIRLLearningRate</code> - the learning rate of the underlying <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRL</code></a> instance.</dd><dd><code>maxMLIRLLikelihoodChange</code> - the likelihood change threshold that causes <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRL</code></a> gradient ascent to stop.</dd><dd><code>maxMLIRLSteps</code> - the maximum number of gradient ascent steps allowd by the underlying <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRLRequest</code></a> gradient ascent.</dd></dl>
 </li>
 </ul>
 </li>
@@ -441,9 +441,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getClusterRFs</h4>
-<pre>public&nbsp;java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a>&gt;&nbsp;getClusterRFs()</pre>
-<div class="block">Returns the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>DifferentiableRF</code></a> obejcts defining each behavior cluster.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>DifferentiableRF</code></a> obejcts defining each behavior cluster.</dd></dl>
+<pre>public&nbsp;java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a>&gt;&nbsp;getClusterRFs()</pre>
+<div class="block">Returns the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>DifferentiableRF</code></a> obejcts defining each behavior cluster.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>DifferentiableRF</code></a> obejcts defining each behavior cluster.</dd></dl>
 </li>
 </ul>
 <a name="getClusterPriors()">
@@ -523,17 +523,17 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Returns:</span></dt><dd>log [ \sum_i Pr(c_i) * Pr(t | c_i) ]</dd></dl>
 </li>
 </ul>
-<a name="initializeClusters(int, burlap.behavior.singleagent.learnbydemo.mlirl.support.QGradientPlannerFactory)">
+<a name="initializeClusters(int, burlap.behavior.singleagent.learnfromdemo.mlirl.support.QGradientPlannerFactory)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>initializeClusters</h4>
 <pre>protected&nbsp;void&nbsp;initializeClusters(int&nbsp;k,
-                      <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support">QGradientPlannerFactory</a>&nbsp;plannerFactory)</pre>
-<div class="block">Initializes cluster data; i.e., it initializes RF parameters, cluster prior parameters (to uniform), and creates <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRLRequest</code></a>
+                      <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support">QGradientPlannerFactory</a>&nbsp;plannerFactory)</pre>
+<div class="block">Initializes cluster data; i.e., it initializes RF parameters, cluster prior parameters (to uniform), and creates <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRLRequest</code></a>
  objects for each cluster.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>k</code> - the number of clusters</dd><dd><code>plannerFactory</code> - the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>QGradientPlannerFactory</code></a> to use to generate a planner for each cluster.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>k</code> - the number of clusters</dd><dd><code>plannerFactory</code> - the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>QGradientPlannerFactory</code></a> to use to generate a valueFunction for each cluster.</dd></dl>
 </li>
 </ul>
 <a name="initializeClusterRFParameters(java.util.List)">
@@ -542,10 +542,10 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>initializeClusterRFParameters</h4>
-<pre>protected&nbsp;void&nbsp;initializeClusterRFParameters(java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a>&gt;&nbsp;rfs)</pre>
-<div class="block">Initializes the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>DifferentiableRF</code></a> parameters
+<pre>protected&nbsp;void&nbsp;initializeClusterRFParameters(java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a>&gt;&nbsp;rfs)</pre>
+<div class="block">Initializes the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>DifferentiableRF</code></a> parameters
  for each cluster. Will set the parameters randomly between -1 and 1.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>rfs</code> - the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>DifferentiableRF</code></a> whose parameters are to be initialized.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>rfs</code> - the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>DifferentiableRF</code></a> whose parameters are to be initialized.</dd></dl>
 </li>
 </ul>
 <a name="randomizeParameters(double[])">
@@ -584,8 +584,8 @@ extends java.lang.Object</pre>
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?burlap/behavior/singleagent/learnbydemo/mlirl/MultipleIntentionsMLIRL.html" target="_top">Frames</a></li>

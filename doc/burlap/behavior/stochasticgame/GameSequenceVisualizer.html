@@ -35,8 +35,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../burlap/behavior/stochasticgame/JointPolicy.html" title="class in burlap.behavior.stochasticgame"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../burlap/behavior/stochasticgame/JointPolicy.html" title="class in burlap.behavior.stochasticgames"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?burlap/behavior/stochasticgame/GameSequenceVisualizer.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.stochasticgame</div>
+<div class="subTitle">burlap.behavior.stochasticgames</div>
 <h2 title="Class GameSequenceVisualizer" class="title">Class GameSequenceVisualizer</h2>
 </div>
 <div class="contentContainer">
@@ -101,7 +101,7 @@
 <li>javax.swing.JFrame</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.stochasticgame.GameSequenceVisualizer</li>
+<li>burlap.behavior.stochasticgames.auxiliary.GameSequenceVisualizer</li>
 </ul>
 </li>
 </ul>
@@ -128,12 +128,12 @@
 extends javax.swing.JFrame</pre>
 <div class="block">This class is used to visualize a set of games that have been
  saved to files in a common directory or which are
- provided to the object as a list of <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> objects.
- In the GUI's list of a game's actions, the action name is
+ provided to the object as a list of <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> objects.
+ In the GUI'o list of a game'o actions, the action name is
  selected joint action in the currently rendered state.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>James MacGlashan</dd>
-<dt><span class="strong">See Also:</span></dt><dd><a href="../../../serialized-form.html#burlap.behavior.stochasticgame.GameSequenceVisualizer">Serialized Form</a></dd></dl>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../serialized-form.html#burlap.behavior.stochasticgames.auxiliary.GameSequenceVisualizer">Serialized Form</a></dd></dl>
 </li>
 </ul>
 </div>
@@ -208,7 +208,7 @@ extends javax.swing.JFrame</pre>
 <td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html#controlContainer">controlContainer</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a></code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html#curGA">curGA</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -216,7 +216,7 @@ extends javax.swing.JFrame</pre>
 <td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html#cWidth">cWidth</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a>&gt;</code></td>
+<td class="colFirst"><code>protected java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html#directGames">directGames</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -261,7 +261,7 @@ extends javax.swing.JFrame</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a></code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html#sp">sp</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html#op">op</a></strong></code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -315,23 +315,23 @@ extends javax.swing.JFrame</pre>
 <tr class="altColor">
 <td class="colOne"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html#GameSequenceVisualizer(burlap.oomdp.visualizer.Visualizer,%20burlap.oomdp.stochasticgames.SGDomain,%20java.util.List)">GameSequenceVisualizer</a></strong>(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                       <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
-                      java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a>&gt;&nbsp;games)</code>
-<div class="block">Initializes the GameSequenceVisualizer with programmatially supplied list of <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> objects to view.</div>
+                      java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a>&gt;&nbsp;games)</code>
+<div class="block">Initializes the GameSequenceVisualizer with programmatially supplied list of <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> objects to view.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html#GameSequenceVisualizer(burlap.oomdp.visualizer.Visualizer,%20burlap.oomdp.stochasticgames.SGDomain,%20java.util.List,%20int,%20int)">GameSequenceVisualizer</a></strong>(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                       <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
-                      java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a>&gt;&nbsp;games,
+                      java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a>&gt;&nbsp;games,
                       int&nbsp;w,
                       int&nbsp;h)</code>
-<div class="block">Initializes the GameSequenceVisualizer with programmatially supplied list of <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> objects to view.</div>
+<div class="block">Initializes the GameSequenceVisualizer with programmatially supplied list of <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> objects to view.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html#GameSequenceVisualizer(burlap.oomdp.visualizer.Visualizer,%20burlap.oomdp.stochasticgames.SGDomain,%20burlap.oomdp.auxiliary.StateParser,%20java.lang.String)">GameSequenceVisualizer</a></strong>(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                       <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
-                      <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp,
+                      <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op,
                       java.lang.String&nbsp;experimentDirectory)</code>
 <div class="block">Initializes the GameSequenceVisualizer.</div>
 </td>
@@ -339,7 +339,7 @@ extends javax.swing.JFrame</pre>
 <tr class="rowColor">
 <td class="colOne"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html#GameSequenceVisualizer(burlap.oomdp.visualizer.Visualizer,%20burlap.oomdp.stochasticgames.SGDomain,%20burlap.oomdp.auxiliary.StateParser,%20java.lang.String,%20int,%20int)">GameSequenceVisualizer</a></strong>(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                       <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
-                      <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp,
+                      <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op,
                       java.lang.String&nbsp;experimentDirectory,
                       int&nbsp;width,
                       int&nbsp;height)</code>
@@ -365,7 +365,7 @@ extends javax.swing.JFrame</pre>
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html#init(burlap.oomdp.visualizer.Visualizer,%20burlap.oomdp.stochasticgames.SGDomain,%20burlap.oomdp.auxiliary.StateParser,%20java.lang.String,%20int,%20int)">init</a></strong>(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
     <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
-    <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp,
+    <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op,
     java.lang.String&nbsp;experimentDirectory,
     int&nbsp;w,
     int&nbsp;h)</code>
@@ -382,7 +382,7 @@ extends javax.swing.JFrame</pre>
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html#initWithDirectGames(burlap.oomdp.visualizer.Visualizer,%20burlap.oomdp.stochasticgames.SGDomain,%20java.util.List,%20int,%20int)">initWithDirectGames</a></strong>(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                    <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
-                   java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a>&gt;&nbsp;games,
+                   java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a>&gt;&nbsp;games,
                    int&nbsp;w,
                    int&nbsp;h)</code>
 <div class="block">Initializes the GameSequenceVisualizer.</div>
@@ -551,13 +551,13 @@ extends javax.swing.JFrame</pre>
 <pre>protected&nbsp;javax.swing.DefaultListModel episodesListModel</pre>
 </li>
 </ul>
-<a name="sp">
+<a name="op">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>sp</h4>
-<pre>protected&nbsp;<a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a> sp</pre>
+<h4>op</h4>
+<pre>protected&nbsp;<a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a> op</pre>
 </li>
 </ul>
 <a name="directGames">
@@ -566,7 +566,7 @@ extends javax.swing.JFrame</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>directGames</h4>
-<pre>protected&nbsp;java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a>&gt; directGames</pre>
+<pre>protected&nbsp;java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a>&gt; directGames</pre>
 </li>
 </ul>
 <a name="curGA">
@@ -575,7 +575,7 @@ extends javax.swing.JFrame</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>curGA</h4>
-<pre>protected&nbsp;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a> curGA</pre>
+<pre>protected&nbsp;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a> curGA</pre>
 </li>
 </ul>
 <a name="iterationListModel">
@@ -613,7 +613,7 @@ extends javax.swing.JFrame</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="GameSequenceVisualizer(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.stochasticgames.SGDomain, burlap.oomdp.auxiliary.StateParser, java.lang.String)">
+<a name="GameSequenceVisualizer(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.stochasticgames.SGDomain, burlap.oomdp.legacy.StateParser, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -621,10 +621,10 @@ extends javax.swing.JFrame</pre>
 <h4>GameSequenceVisualizer</h4>
 <pre>public&nbsp;GameSequenceVisualizer(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                       <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
-                      <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp,
+                      <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op,
                       java.lang.String&nbsp;experimentDirectory)</pre>
 <div class="block">Initializes the GameSequenceVisualizer. By default the state visualizer will be set to the size 800x800 pixels.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the games took place</dd><dd><code>sp</code> - a state parser that can be used to parse the states stored in the game files</dd><dd><code>experimentDirectory</code> - the path to the directory containing the game files.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the games took place</dd><dd><code>op</code> - a state parser that can be used to parse the states stored in the game files</dd><dd><code>experimentDirectory</code> - the path to the directory containing the game files.</dd></dl>
 </li>
 </ul>
 <a name="GameSequenceVisualizer(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.stochasticgames.SGDomain, java.util.List)">
@@ -635,13 +635,13 @@ extends javax.swing.JFrame</pre>
 <h4>GameSequenceVisualizer</h4>
 <pre>public&nbsp;GameSequenceVisualizer(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                       <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
-                      java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a>&gt;&nbsp;games)</pre>
-<div class="block">Initializes the GameSequenceVisualizer with programmatially supplied list of <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> objects to view.
+                      java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a>&gt;&nbsp;games)</pre>
+<div class="block">Initializes the GameSequenceVisualizer with programmatially supplied list of <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> objects to view.
  By default the state visualizer will be 800x800 pixels.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the games took place</dd><dd><code>games</code> - the games to view</dd></dl>
 </li>
 </ul>
-<a name="GameSequenceVisualizer(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.stochasticgames.SGDomain, burlap.oomdp.auxiliary.StateParser, java.lang.String, int, int)">
+<a name="GameSequenceVisualizer(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.stochasticgames.SGDomain, burlap.oomdp.legacy.StateParser, java.lang.String, int, int)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -649,12 +649,12 @@ extends javax.swing.JFrame</pre>
 <h4>GameSequenceVisualizer</h4>
 <pre>public&nbsp;GameSequenceVisualizer(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                       <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
-                      <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp,
+                      <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op,
                       java.lang.String&nbsp;experimentDirectory,
                       int&nbsp;width,
                       int&nbsp;height)</pre>
 <div class="block">Initializes the GameSequenceVisualizer.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the games took place</dd><dd><code>sp</code> - a state parser that can be used to parse the states stored in the game files</dd><dd><code>experimentDirectory</code> - the path to the directory containing the game files.</dd><dd><code>width</code> - the width of the state visualizer canvas</dd><dd><code>height</code> - the height of the state visualizer canvas</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the games took place</dd><dd><code>op</code> - a state parser that can be used to parse the states stored in the game files</dd><dd><code>experimentDirectory</code> - the path to the directory containing the game files.</dd><dd><code>width</code> - the width of the state visualizer canvas</dd><dd><code>height</code> - the height of the state visualizer canvas</dd></dl>
 </li>
 </ul>
 <a name="GameSequenceVisualizer(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.stochasticgames.SGDomain, java.util.List, int, int)">
@@ -665,10 +665,10 @@ extends javax.swing.JFrame</pre>
 <h4>GameSequenceVisualizer</h4>
 <pre>public&nbsp;GameSequenceVisualizer(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                       <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
-                      java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a>&gt;&nbsp;games,
+                      java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a>&gt;&nbsp;games,
                       int&nbsp;w,
                       int&nbsp;h)</pre>
-<div class="block">Initializes the GameSequenceVisualizer with programmatially supplied list of <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><code>GameAnalysis</code></a> objects to view.</div>
+<div class="block">Initializes the GameSequenceVisualizer with programmatially supplied list of <a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><code>GameAnalysis</code></a> objects to view.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the games took place</dd><dd><code>games</code> - the games to view</dd><dd><code>w</code> - the width of the state visualizer canvas</dd><dd><code>h</code> - the height of the state visualizer canvas</dd></dl>
 </li>
 </ul>
@@ -680,7 +680,7 @@ extends javax.swing.JFrame</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="init(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.stochasticgames.SGDomain, burlap.oomdp.auxiliary.StateParser, java.lang.String, int, int)">
+<a name="init(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.stochasticgames.SGDomain, burlap.oomdp.legacy.StateParser, java.lang.String, int, int)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -688,12 +688,12 @@ extends javax.swing.JFrame</pre>
 <h4>init</h4>
 <pre>public&nbsp;void&nbsp;init(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
         <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
-        <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;sp,
+        <a href="../../../burlap/oomdp/auxiliary/StateParser.html" title="interface in burlap.oomdp.auxiliary">StateParser</a>&nbsp;op,
         java.lang.String&nbsp;experimentDirectory,
         int&nbsp;w,
         int&nbsp;h)</pre>
 <div class="block">Initializes the GameSequenceVisualizer.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the games took place</dd><dd><code>sp</code> - a state parser that can be used to parse the states stored in the game files</dd><dd><code>experimentDirectory</code> - the path to the directory containing the game files.</dd><dd><code>w</code> - the width of the state visualizer canvas</dd><dd><code>h</code> - the height of the state visualizer canvas</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>v</code> - the visualizer used to render states</dd><dd><code>d</code> - the domain in which the games took place</dd><dd><code>op</code> - a state parser that can be used to parse the states stored in the game files</dd><dd><code>experimentDirectory</code> - the path to the directory containing the game files.</dd><dd><code>w</code> - the width of the state visualizer canvas</dd><dd><code>h</code> - the height of the state visualizer canvas</dd></dl>
 </li>
 </ul>
 <a name="initWithDirectGames(burlap.oomdp.visualizer.Visualizer, burlap.oomdp.stochasticgames.SGDomain, java.util.List, int, int)">
@@ -704,7 +704,7 @@ extends javax.swing.JFrame</pre>
 <h4>initWithDirectGames</h4>
 <pre>public&nbsp;void&nbsp;initWithDirectGames(<a href="../../../burlap/oomdp/visualizer/Visualizer.html" title="class in burlap.oomdp.visualizer">Visualizer</a>&nbsp;v,
                        <a href="../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
-                       java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame">GameAnalysis</a>&gt;&nbsp;games,
+                       java.util.List&lt;<a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames">GameAnalysis</a>&gt;&nbsp;games,
                        int&nbsp;w,
                        int&nbsp;h)</pre>
 <div class="block">Initializes the GameSequenceVisualizer.</div>
@@ -746,8 +746,8 @@ extends javax.swing.JFrame</pre>
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgame"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../burlap/behavior/stochasticgame/JointPolicy.html" title="class in burlap.behavior.stochasticgame"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../burlap/behavior/stochasticgame/GameAnalysis.html" title="class in burlap.behavior.stochasticgames"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../burlap/behavior/stochasticgame/JointPolicy.html" title="class in burlap.behavior.stochasticgames"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?burlap/behavior/stochasticgame/GameSequenceVisualizer.html" target="_top">Frames</a></li>

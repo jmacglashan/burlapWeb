@@ -35,7 +35,7 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing"><span class="strong">Prev Class</span></a></li>
 <li>Next Class</li>
 </ul>
 <ul class="navList">
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.statehashing</div>
+<div class="subTitle">burlap.oomdp.statehashing</div>
 <h2 title="Class StateHashTuple" class="title">Class StateHashTuple</h2>
 </div>
 <div class="contentContainer">
@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.statehashing.StateHashTuple</li>
+<li>burlap.oomdp.statehashing.HashableState</li>
 </ul>
 </li>
 </ul>
@@ -95,7 +95,7 @@
 <li class="blockList">
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../burlap/behavior/statehashing/DiscreteStateHashFactory.DiscreteStateHashTuple.html" title="class in burlap.behavior.statehashing">DiscreteStateHashFactory.DiscreteStateHashTuple</a>, <a href="../../../burlap/behavior/statehashing/DiscretizingStateHashFactory.DiscretizedStateHashTuple.html" title="class in burlap.behavior.statehashing">DiscretizingStateHashFactory.DiscretizedStateHashTuple</a>, <a href="../../../burlap/behavior/statehashing/NameDependentStateHashFactory.NameDependentStateHashTuple.html" title="class in burlap.behavior.statehashing">NameDependentStateHashFactory.NameDependentStateHashTuple</a></dd>
+<dd><a href="../../../burlap/behavior/statehashing/DiscreteStateHashFactory.DiscreteStateHashTuple.html" title="class in burlap.oomdp.statehashing">DiscreteStateHashFactory.DiscreteStateHashTuple</a>, <a href="../../../burlap/behavior/statehashing/DiscretizingStateHashFactory.DiscretizedStateHashTuple.html" title="class in burlap.oomdp.statehashing">DiscretizingStateHashFactory.DiscretizedStateHashTuple</a>, <a href="../../../burlap/behavior/statehashing/NameDependentStateHashFactory.NameDependentStateHashTuple.html" title="class in burlap.oomdp.statehashing">NameDependentStateHashFactory.NameDependentStateHashTuple</a></dd>
 </dl>
 <hr>
 <br>
@@ -140,7 +140,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a></code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/behavior/statehashing/StateHashTuple.html#s">s</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../burlap/behavior/statehashing/StateHashTuple.html#o">o</a></strong></code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -157,7 +157,7 @@ extends java.lang.Object</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../burlap/behavior/statehashing/StateHashTuple.html#StateHashTuple(burlap.oomdp.core.State)">StateHashTuple</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colOne"><code><strong><a href="../../../burlap/behavior/statehashing/StateHashTuple.html#StateHashTuple(burlap.oomdp.core.states.State)">StateHashTuple</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">Initializes the StateHashTuple with the given <a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> object.</div>
 </td>
 </tr>
@@ -212,13 +212,13 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a name="s">
+<a name="o">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>s</h4>
-<pre>public&nbsp;<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a> s</pre>
+<h4>o</h4>
+<pre>public&nbsp;<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a> o</pre>
 </li>
 </ul>
 <a name="hashCode">
@@ -253,9 +253,9 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>StateHashTuple</h4>
-<pre>public&nbsp;StateHashTuple(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
+<pre>public&nbsp;StateHashTuple(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
 <div class="block">Initializes the StateHashTuple with the given <a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> object.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state object this object will wrap</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state object this object will wrap</dd></dl>
 </li>
 </ul>
 </li>
@@ -327,7 +327,7 @@ extends java.lang.Object</pre>
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing"><span class="strong">Prev Class</span></a></li>
 <li>Next Class</li>
 </ul>
 <ul class="navList">

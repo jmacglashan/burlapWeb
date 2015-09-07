@@ -35,8 +35,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html" title="class in burlap.behavior.stochasticgame"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgame"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html" title="class in burlap.behavior.stochasticgames"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgames"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?burlap/behavior/stochasticgame/JointPolicy.html" target="_top">Frames</a></li>
@@ -60,7 +60,7 @@
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested_classes_inherited_from_class_burlap.behavior.singleagent.Policy">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested_classes_inherited_from_class_burlap.behavior.policy.Policy">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.stochasticgame</div>
+<div class="subTitle">burlap.behavior.stochasticgames</div>
 <h2 title="Class JointPolicy" class="title">Class JointPolicy</h2>
 </div>
 <div class="contentContainer">
@@ -86,10 +86,10 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">burlap.behavior.singleagent.Policy</a></li>
+<li><a href="../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">burlap.behavior.policy.Policy</a></li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.stochasticgame.JointPolicy</li>
+<li>burlap.behavior.stochasticgames.JointPolicy</li>
 </ul>
 </li>
 </ul>
@@ -100,7 +100,7 @@
 <li class="blockList">
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../burlap/behavior/stochasticgame/mavaluefunction/MAQSourcePolicy.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">MAQSourcePolicy</a></dd>
+<dd><a href="../../../burlap/behavior/stochasticgame/mavaluefunction/MAQSourcePolicy.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">MAQSourcePolicy</a></dd>
 </dl>
 <hr>
 <br>
@@ -111,7 +111,7 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
  An agent definition consists of an agent name and their <a href="../../../burlap/oomdp/stochasticgames/AgentType.html" title="class in burlap.oomdp.stochasticgames"><code>AgentType</code></a>, the latter of which specifies the set of individual actions
  that they can take and which object class represents their state.
  <p/>
- It is not uncommon for some joint policies to be defined from a privledged agent's position. This class also contains an abstract method
+ It is not uncommon for some joint policies to be defined from a privledged agent'o position. This class also contains an abstract method
  for setting that target privledge agent: <a href="../../../burlap/behavior/stochasticgame/JointPolicy.html#setTargetAgent(java.lang.String)"><code>setTargetAgent(String)</code></a>. If the joint policy is agent agnostic, then this method
  does not need to do anything.
  <p/>
@@ -133,7 +133,7 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
 </a>
 <h3>Nested Class Summary</h3>
 <ul class="blockList">
-<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.singleagent.Policy">
+<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.policy.Policy">
 <!--   -->
 </a>
 <h3>Nested classes/interfaces inherited from class&nbsp;burlap.behavior.singleagent.<a href="../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></h3>
@@ -179,7 +179,7 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_burlap.behavior.singleagent.Policy">
+<li class="blockList"><a name="fields_inherited_from_class_burlap.behavior.policy.Policy">
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;burlap.behavior.singleagent.<a href="../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></h3>
@@ -217,7 +217,7 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>abstract <a href="../../../burlap/behavior/stochasticgame/JointPolicy.html" title="class in burlap.behavior.stochasticgame">JointPolicy</a></code></td>
+<td class="colFirst"><code>abstract <a href="../../../burlap/behavior/stochasticgame/JointPolicy.html" title="class in burlap.behavior.stochasticgames">JointPolicy</a></code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/JointPolicy.html#copy()">copy</a></strong>()</code>
 <div class="block">Creates a copy of this joint policy and returns it.</div>
 </td>
@@ -231,7 +231,7 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a></code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/JointPolicy.html#getAgentSynchronizedActionSelection(java.lang.String,%20burlap.oomdp.core.State)">getAgentSynchronizedActionSelection</a></strong>(java.lang.String&nbsp;agentName,
-                                   <a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+                                   <a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">This method returns the action for a single agent by a synchonrized sampling of this joint policy,
  which enables multiple agents to query this policy object and act according to the same selected joint
  actions from it.</div>
@@ -239,8 +239,8 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../../../burlap/oomdp/stochasticgames/JointAction.html" title="class in burlap.oomdp.stochasticgames">JointAction</a>&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/JointPolicy.html#getAllJointActions(burlap.oomdp.core.State)">getAllJointActions</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
-<div class="block">Returns all possible joint actions that can be taken in state s for the set of agents defined to be used in this joint policy.</div>
+<td class="colLast"><code><strong><a href="../../../burlap/behavior/stochasticgame/JointPolicy.html#getAllJointActions(burlap.oomdp.core.states.State)">getAllJointActions</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
+<div class="block">Returns all possible joint actions that can be taken in state o for the set of agents defined to be used in this joint policy.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -269,11 +269,11 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.singleagent.Policy">
+<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.policy.Policy">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;burlap.behavior.singleagent.<a href="../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></h3>
-<code><a href="../../../burlap/behavior/singleagent/Policy.html#evaluateBehavior(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.RewardFunction,%20int)">evaluateBehavior</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#evaluateBehavior(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.RewardFunction,%20burlap.oomdp.core.TerminalFunction)">evaluateBehavior</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#evaluateBehavior(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.RewardFunction,%20burlap.oomdp.core.TerminalFunction,%20int)">evaluateBehavior</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#evaluateMethodsShouldAnnotateOptionDecomposition(boolean)">evaluateMethodsShouldAnnotateOptionDecomposition</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#evaluateMethodsShouldDecomposeOption(boolean)">evaluateMethodsShouldDecomposeOption</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#getAction(burlap.oomdp.core.State)">getAction</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#getActionDistributionForState(burlap.oomdp.core.State)">getActionDistributionForState</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#getDeterministicPolicy(burlap.oomdp.core.State)">getDeterministicPolicy</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#getProbOfAction(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction)">getProbOfAction</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#getProbOfActionGivenDistribution(burlap.oomdp.core.AbstractGroundedAction,%20java.util.List)">getProbOfActionGivenDistribution</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#getProbOfActionGivenDistribution(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction,%20java.util.List)">getProbOfActionGivenDistribution</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#isDefinedFor(burlap.oomdp.core.State)">isDefinedFor</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#isStochastic()">isStochastic</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#sampleFromActionDistribution(burlap.oomdp.core.State)">sampleFromActionDistribution</a></code></li>
+<code><a href="../../../burlap/behavior/singleagent/Policy.html#evaluateBehavior(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.RewardFunction,%20int)">evaluateBehavior</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#evaluateBehavior(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.RewardFunction,%20burlap.oomdp.core.TerminalFunction)">evaluateBehavior</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#evaluateBehavior(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.RewardFunction,%20burlap.oomdp.core.TerminalFunction,%20int)">evaluateBehavior</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#evaluateMethodsShouldAnnotateOptionDecomposition(boolean)">evaluateMethodsShouldAnnotateOptionDecomposition</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#evaluateMethodsShouldDecomposeOption(boolean)">evaluateMethodsShouldDecomposeOption</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#getAction(burlap.oomdp.core.states.State)">getAction</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#getActionDistributionForState(burlap.oomdp.core.states.State)">getActionDistributionForState</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#getDeterministicPolicy(burlap.oomdp.core.states.State)">getDeterministicPolicy</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#getProbOfAction(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction)">getProbOfAction</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#getProbOfActionGivenDistribution(burlap.oomdp.core.AbstractGroundedAction,%20java.util.List)">getProbOfActionGivenDistribution</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#getProbOfActionGivenDistribution(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction,%20java.util.List)">getProbOfActionGivenDistribution</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#isDefinedFor(burlap.oomdp.core.states.State)">isDefinedFor</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#isStochastic()">isStochastic</a>, <a href="../../../burlap/behavior/singleagent/Policy.html#sampleFromActionDistribution(burlap.oomdp.core.states.State)">sampleFromActionDistribution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -400,9 +400,9 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
 <ul class="blockList">
 <li class="blockList">
 <h4>getAllJointActions</h4>
-<pre>public&nbsp;java.util.List&lt;<a href="../../../burlap/oomdp/stochasticgames/JointAction.html" title="class in burlap.oomdp.stochasticgames">JointAction</a>&gt;&nbsp;getAllJointActions(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block">Returns all possible joint actions that can be taken in state s for the set of agents defined to be used in this joint policy.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which all joint actions should be returned.</dd>
+<pre>public&nbsp;java.util.List&lt;<a href="../../../burlap/oomdp/stochasticgames/JointAction.html" title="class in burlap.oomdp.stochasticgames">JointAction</a>&gt;&nbsp;getAllJointActions(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block">Returns all possible joint actions that can be taken in state o for the set of agents defined to be used in this joint policy.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which all joint actions should be returned.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the set of all possible <a href="../../../burlap/oomdp/stochasticgames/JointAction.html" title="class in burlap.oomdp.stochasticgames"><code>JointAction</code></a> objects.</dd></dl>
 </li>
 </ul>
@@ -425,7 +425,7 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
 <li class="blockList">
 <h4>getAgentSynchronizedActionSelection</h4>
 <pre>public&nbsp;<a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a>&nbsp;getAgentSynchronizedActionSelection(java.lang.String&nbsp;agentName,
-                                                         <a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
+                                                         <a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
 <div class="block">This method returns the action for a single agent by a synchonrized sampling of this joint policy,
  which enables multiple agents to query this policy object and act according to the same selected joint
  actions from it. This is useful when decisions are made from a "referee" who selects the joint action
@@ -434,7 +434,7 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
  A new joint action is only selected after each agent defined in this objects <a href="../../../burlap/behavior/stochasticgame/JointPolicy.html#agentsInJointPolicy"><code>agentsInJointPolicy</code></a> member 
  has queried this method for their action or until an action for a different state is queried (that is, *either* condition
  will cause the joint action to be resampled).</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>agentName</code> - the agent name whose action in this joint policy is being queried</dd><dd><code>s</code> - the state in which the action is to be selected.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>agentName</code> - the agent name whose action in this joint policy is being queried</dd><dd><code>o</code> - the state in which the action is to be selected.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the single agent action to be taken according to the synchonrized joint action that was selected.</dd></dl>
 </li>
 </ul>
@@ -455,7 +455,7 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
 <ul class="blockListLast">
 <li class="blockList">
 <h4>copy</h4>
-<pre>public abstract&nbsp;<a href="../../../burlap/behavior/stochasticgame/JointPolicy.html" title="class in burlap.behavior.stochasticgame">JointPolicy</a>&nbsp;copy()</pre>
+<pre>public abstract&nbsp;<a href="../../../burlap/behavior/stochasticgame/JointPolicy.html" title="class in burlap.behavior.stochasticgames">JointPolicy</a>&nbsp;copy()</pre>
 <div class="block">Creates a copy of this joint policy and returns it. This is useful when generating different agents using the same kind of policy, but have different target
  agents evaluating it.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>a copy of this joint policy.</dd></dl>
@@ -486,8 +486,8 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html" title="class in burlap.behavior.stochasticgame"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgame"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../burlap/behavior/stochasticgame/GameSequenceVisualizer.html" title="class in burlap.behavior.stochasticgames"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgames"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?burlap/behavior/stochasticgame/JointPolicy.html" target="_top">Frames</a></li>
@@ -511,7 +511,7 @@ extends <a href="../../../burlap/behavior/singleagent/Policy.html" title="class 
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested_classes_inherited_from_class_burlap.behavior.singleagent.Policy">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested_classes_inherited_from_class_burlap.behavior.policy.Policy">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>

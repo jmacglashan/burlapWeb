@@ -35,8 +35,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/backupOperators/CorrelatedQ.html" title="class in burlap.behavior.stochasticgame.mavaluefunction.backupOperators"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/backupOperators/MinMaxQ.html" title="class in burlap.behavior.stochasticgame.mavaluefunction.backupOperators"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/backupOperators/CorrelatedQ.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming.backupOperators"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/backupOperators/MinMaxQ.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming.backupOperators"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?burlap/behavior/stochasticgame/mavaluefunction/backupOperators/MaxQ.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.stochasticgame.mavaluefunction.backupOperators</div>
+<div class="subTitle">burlap.behavior.stochasticgames.madynamicprogramming.backupOperators</div>
 <h2 title="Class MaxQ" class="title">Class MaxQ</h2>
 </div>
 <div class="contentContainer">
@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.stochasticgame.mavaluefunction.backupOperators.MaxQ</li>
+<li>burlap.behavior.stochasticgames.madynamicprogramming.backupOperators.MaxQ</li>
 </ul>
 </li>
 </ul>
@@ -95,13 +95,13 @@
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">SGBackupOperator</a></dd>
+<dd><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">SGBackupOperator</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="strong">MaxQ</span>
 extends java.lang.Object
-implements <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">SGBackupOperator</a></pre>
+implements <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">SGBackupOperator</a></pre>
 <div class="block">A classic MDP-style max backup operator in which an agent back ups his max Q-value in the state.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>James MacGlashan</dd></dl>
@@ -142,10 +142,10 @@ implements <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunctio
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/backupOperators/MaxQ.html#performBackup(burlap.oomdp.core.State,%20java.lang.String,%20java.util.Map,%20burlap.behavior.stochasticgame.mavaluefunction.AgentQSourceMap)">performBackup</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/backupOperators/MaxQ.html#performBackup(burlap.oomdp.core.states.State,%20java.lang.String,%20java.util.Map,%20burlap.behavior.stochasticgame.mavaluefunction.AgentQSourceMap)">performBackup</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
              java.lang.String&nbsp;forAgent,
              java.util.Map&lt;java.lang.String,<a href="../../../../../burlap/oomdp/stochasticgames/AgentType.html" title="class in burlap.oomdp.stochasticgames">AgentType</a>&gt;&nbsp;agentDefinitions,
-             <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/AgentQSourceMap.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">AgentQSourceMap</a>&nbsp;qSourceMap)</code>&nbsp;</td>
+             <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/AgentQSourceMap.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">AgentQSourceMap</a>&nbsp;qSourceMap)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -186,19 +186,19 @@ implements <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunctio
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="performBackup(burlap.oomdp.core.State, java.lang.String, java.util.Map, burlap.behavior.stochasticgame.mavaluefunction.AgentQSourceMap)">
+<a name="performBackup(burlap.oomdp.core.states.State, java.lang.String, java.util.Map, burlap.behavior.stochasticgames.madynamicprogramming.AgentQSourceMap)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>performBackup</h4>
-<pre>public&nbsp;double&nbsp;performBackup(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;double&nbsp;performBackup(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                    java.lang.String&nbsp;forAgent,
                    java.util.Map&lt;java.lang.String,<a href="../../../../../burlap/oomdp/stochasticgames/AgentType.html" title="class in burlap.oomdp.stochasticgames">AgentType</a>&gt;&nbsp;agentDefinitions,
-                   <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/AgentQSourceMap.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">AgentQSourceMap</a>&nbsp;qSourceMap)</pre>
+                   <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/AgentQSourceMap.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">AgentQSourceMap</a>&nbsp;qSourceMap)</pre>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html#performBackup(burlap.oomdp.core.State,%20java.lang.String,%20java.util.Map,%20burlap.behavior.stochasticgame.mavaluefunction.AgentQSourceMap)">performBackup</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">SGBackupOperator</a></code></dd>
+<dd><code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html#performBackup(burlap.oomdp.core.states.State,%20java.lang.String,%20java.util.Map,%20burlap.behavior.stochasticgame.mavaluefunction.AgentQSourceMap)">performBackup</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">SGBackupOperator</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -227,8 +227,8 @@ implements <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunctio
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/backupOperators/CorrelatedQ.html" title="class in burlap.behavior.stochasticgame.mavaluefunction.backupOperators"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/backupOperators/MinMaxQ.html" title="class in burlap.behavior.stochasticgame.mavaluefunction.backupOperators"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/backupOperators/CorrelatedQ.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming.backupOperators"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/backupOperators/MinMaxQ.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming.backupOperators"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?burlap/behavior/stochasticgame/mavaluefunction/backupOperators/MaxQ.html" target="_top">Frames</a></li>

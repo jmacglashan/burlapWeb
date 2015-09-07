@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.oomdp.stochasticgames.Agent</li>
+<li>burlap.oomdp.stochasticgames.SGAgent</li>
 </ul>
 </li>
 </ul>
@@ -95,7 +95,7 @@
 <li class="blockList">
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../burlap/behavior/stochasticgame/agents/twoplayer/singlestage/equilibriumplayer/EquilibriumPlayingAgent.html" title="class in burlap.behavior.stochasticgame.agents.twoplayer.singlestage.equilibriumplayer">EquilibriumPlayingAgent</a>, <a href="../../../burlap/behavior/stochasticgame/agents/twoplayer/repeatedsinglestage/GrimTrigger.html" title="class in burlap.behavior.stochasticgame.agents.twoplayer.repeatedsinglestage">GrimTrigger</a>, <a href="../../../burlap/behavior/stochasticgame/agents/maql/MultiAgentQLearning.html" title="class in burlap.behavior.stochasticgame.agents.maql">MultiAgentQLearning</a>, <a href="../../../burlap/behavior/stochasticgame/agents/mavf/MultiAgentVFPlanningAgent.html" title="class in burlap.behavior.stochasticgame.agents.mavf">MultiAgentVFPlanningAgent</a>, <a href="../../../burlap/behavior/stochasticgame/agents/RandomAgent.html" title="class in burlap.behavior.stochasticgame.agents">RandomAgent</a>, <a href="../../../burlap/behavior/stochasticgame/agents/SetStrategyAgent.html" title="class in burlap.behavior.stochasticgame.agents">SetStrategyAgent</a>, <a href="../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgame.agents.naiveq">SGNaiveQLAgent</a>, <a href="../../../burlap/behavior/stochasticgame/agents/interfacing/singleagent/SingleAgentInterface.html" title="class in burlap.behavior.stochasticgame.agents.interfacing.singleagent">SingleAgentInterface</a>, <a href="../../../burlap/behavior/stochasticgame/agents/twoplayer/repeatedsinglestage/TitForTat.html" title="class in burlap.behavior.stochasticgame.agents.twoplayer.repeatedsinglestage">TitForTat</a></dd>
+<dd><a href="../../../burlap/behavior/stochasticgame/agents/twoplayer/singlestage/equilibriumplayer/EquilibriumPlayingAgent.html" title="class in burlap.behavior.stochasticgames.agents.twoplayer.singlestage.equilibriumplayer">EquilibriumPlayingAgent</a>, <a href="../../../burlap/behavior/stochasticgame/agents/twoplayer/repeatedsinglestage/GrimTrigger.html" title="class in burlap.behavior.stochasticgames.agents.twoplayer.repeatedsinglestage">GrimTrigger</a>, <a href="../../../burlap/behavior/stochasticgame/agents/maql/MultiAgentQLearning.html" title="class in burlap.behavior.stochasticgames.agents.maql">MultiAgentQLearning</a>, <a href="../../../burlap/behavior/stochasticgame/agents/mavf/MultiAgentVFPlanningAgent.html" title="class in burlap.behavior.stochasticgames.agents.madp">MultiAgentVFPlanningAgent</a>, <a href="../../../burlap/behavior/stochasticgame/agents/RandomAgent.html" title="class in burlap.behavior.stochasticgames.agents">RandomAgent</a>, <a href="../../../burlap/behavior/stochasticgame/agents/SetStrategyAgent.html" title="class in burlap.behavior.stochasticgames.agents">SetStrategyAgent</a>, <a href="../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgames.agents.naiveq">SGNaiveQLAgent</a>, <a href="../../../burlap/behavior/stochasticgame/agents/interfacing/singleagent/SingleAgentInterface.html" title="class in burlap.behavior.stochasticgames.agents.interfacing.singleagent">SingleAgentInterface</a>, <a href="../../../burlap/behavior/stochasticgame/agents/twoplayer/repeatedsinglestage/TitForTat.html" title="class in burlap.behavior.stochasticgames.agents.twoplayer.repeatedsinglestage">TitForTat</a></dd>
 </dl>
 <hr>
 <br>
@@ -195,20 +195,20 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>abstract <a href="../../../burlap/oomdp/stochasticgames/GroundedSingleAction.html" title="class in burlap.oomdp.stochasticgames">GroundedSingleAction</a></code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/Agent.html#getAction(burlap.oomdp.core.State)">getAction</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/Agent.html#getAction(burlap.oomdp.core.states.State)">getAction</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">This method is called by the world when it needs the agent to choose an action</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/Agent.html#getAgentName()">getAgentName</a></strong>()</code>
-<div class="block">Returns this agent's name</div>
+<div class="block">Returns this agent'o name</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../burlap/oomdp/stochasticgames/AgentType.html" title="class in burlap.oomdp.stochasticgames">AgentType</a></code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/Agent.html#getAgentType()">getAgentType</a></strong>()</code>
-<div class="block">Returns this agent's type</div>
+<div class="block">Returns this agent'o type</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -230,7 +230,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>abstract void</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/Agent.html#observeOutcome(burlap.oomdp.core.State,%20burlap.oomdp.stochasticgames.JointAction,%20java.util.Map,%20burlap.oomdp.core.State,%20boolean)">observeOutcome</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/Agent.html#observeOutcome(burlap.oomdp.core.states.State,%20burlap.oomdp.stochasticgames.JointAction,%20java.util.Map,%20burlap.oomdp.core.State,%20boolean)">observeOutcome</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
               <a href="../../../burlap/oomdp/stochasticgames/JointAction.html" title="class in burlap.oomdp.stochasticgames">JointAction</a>&nbsp;jointAction,
               java.util.Map&lt;java.lang.String,java.lang.Double&gt;&nbsp;jointReward,
               <a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sprime,
@@ -386,8 +386,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getAgentName</h4>
 <pre>public&nbsp;java.lang.String&nbsp;getAgentName()</pre>
-<div class="block">Returns this agent's name</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>this agent's name</dd></dl>
+<div class="block">Returns this agent'o name</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>this agent'o name</dd></dl>
 </li>
 </ul>
 <a name="getAgentType()">
@@ -397,8 +397,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getAgentType</h4>
 <pre>public&nbsp;<a href="../../../burlap/oomdp/stochasticgames/AgentType.html" title="class in burlap.oomdp.stochasticgames">AgentType</a>&nbsp;getAgentType()</pre>
-<div class="block">Returns this agent's type</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>this agent's type</dd></dl>
+<div class="block">Returns this agent'o type</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>this agent'o type</dd></dl>
 </li>
 </ul>
 <a name="gameStarting()">
@@ -417,26 +417,26 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getAction</h4>
-<pre>public abstract&nbsp;<a href="../../../burlap/oomdp/stochasticgames/GroundedSingleAction.html" title="class in burlap.oomdp.stochasticgames">GroundedSingleAction</a>&nbsp;getAction(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
+<pre>public abstract&nbsp;<a href="../../../burlap/oomdp/stochasticgames/GroundedSingleAction.html" title="class in burlap.oomdp.stochasticgames">GroundedSingleAction</a>&nbsp;getAction(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
 <div class="block">This method is called by the world when it needs the agent to choose an action</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the current state of the world</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the current state of the world</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the action this agent wishes to take</dd></dl>
 </li>
 </ul>
-<a name="observeOutcome(burlap.oomdp.core.State, burlap.oomdp.stochasticgames.JointAction, java.util.Map, burlap.oomdp.core.State, boolean)">
+<a name="observeOutcome(burlap.oomdp.core.states.State, burlap.oomdp.stochasticgames.JointAction, java.util.Map, burlap.oomdp.core.states.State, boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>observeOutcome</h4>
-<pre>public abstract&nbsp;void&nbsp;observeOutcome(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public abstract&nbsp;void&nbsp;observeOutcome(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                   <a href="../../../burlap/oomdp/stochasticgames/JointAction.html" title="class in burlap.oomdp.stochasticgames">JointAction</a>&nbsp;jointAction,
                   java.util.Map&lt;java.lang.String,java.lang.Double&gt;&nbsp;jointReward,
                   <a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sprime,
                   boolean&nbsp;isTerminal)</pre>
 <div class="block">This method is called by the world when every agent in the world has taken their action. It conveys the result of
  the joint action.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which the last action of each agent was taken</dd><dd><code>jointAction</code> - the joint action of all agents in the world</dd><dd><code>jointReward</code> - the joint reward of all agents in the world</dd><dd><code>sprime</code> - the next state to which the agent transitioned</dd><dd><code>isTerminal</code> - whether the new state is a terminal state</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which the last action of each agent was taken</dd><dd><code>jointAction</code> - the joint action of all agents in the world</dd><dd><code>jointReward</code> - the joint reward of all agents in the world</dd><dd><code>sprime</code> - the next state to which the agent transitioned</dd><dd><code>isTerminal</code> - whether the new state is a terminal state</dd></dl>
 </li>
 </ul>
 <a name="gameTerminated()">

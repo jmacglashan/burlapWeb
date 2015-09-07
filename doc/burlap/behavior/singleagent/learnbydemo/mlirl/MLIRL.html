@@ -36,7 +36,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.singleagent.learnbydemo.mlirl</div>
+<div class="subTitle">burlap.behavior.singleagent.learnfromdemo.mlirl</div>
 <h2 title="Class MLIRL" class="title">Class MLIRL</h2>
 </div>
 <div class="contentContainer">
@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.learnbydemo.mlirl.MLIRL</li>
+<li>burlap.behavior.singleagent.learnfromdemo.mlirl.MLIRL</li>
 </ul>
 </li>
 </ul>
@@ -98,13 +98,13 @@
 <pre>public class <span class="strong">MLIRL</span>
 extends java.lang.Object</pre>
 <div class="block">An implementation of Maximum-likelihood Inverse Reinforcement Learning [1]. This class takes as input (from an
- <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRLRequest</code></a> object) a set of expert trajectories
- through a domain and a <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>DifferentiableRF</code></a> model,
+ <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRLRequest</code></a> object) a set of expert trajectories
+ through a domain and a <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>DifferentiableRF</code></a> model,
  and learns the parameters of the reward function model that maximizes the likelihood of the trajectories.
  The reward function parameter spaces is searched using gradient ascent. Since the policy gradient it uses
- is non-linear, it's possible that it may get stuck in local optimas. Computing the policy gradient is done
- by iteratively replanning after each gradient ascent step with a <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>QGradientPlanner</code></a>
- instance provided in the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRLRequest</code></a> object.
+ is non-linear, it'o possible that it may get stuck in local optimas. Computing the policy gradient is done
+ by iteratively replanning after each gradient ascent step with a <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>QGradientPlanner</code></a>
+ instance provided in the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRLRequest</code></a> object.
  <p/>
  The gradient ascent will stop either after a fixed number of steps or until the change in likelihood is smaller
  than some threshold. If the max number of steps is set to -1, then it will continue until the change in likelihood
@@ -159,7 +159,7 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRLRequest</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRLRequest</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html#request">request</a></strong></code>
 <div class="block">The MLRIL request defining the IRL problem.</div>
 </td>
@@ -179,7 +179,7 @@ extends java.lang.Object</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html#MLIRL(burlap.behavior.singleagent.learnbydemo.mlirl.MLIRLRequest,%20double,%20double,%20int)">MLIRL</a></strong>(<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRLRequest</a>&nbsp;request,
+<td class="colOne"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html#MLIRL(burlap.behavior.singleagent.learnfromdemo.mlirl.MLIRLRequest,%20double,%20double,%20int)">MLIRL</a></strong>(<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRLRequest</a>&nbsp;request,
      double&nbsp;learningRate,
      double&nbsp;maxLikelihoodChange,
      int&nbsp;maxSteps)</code>
@@ -235,7 +235,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>double[]</code></td>
-<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html#logPolicyGrad(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction)">logPolicyGrad</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html#logPolicyGrad(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction)">logPolicyGrad</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
              <a href="../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;ga)</code>
 <div class="block">Computes and returns the gradient of the Boltzmann policy for the given state and action.</div>
 </td>
@@ -254,8 +254,8 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html#setRequest(burlap.behavior.singleagent.learnbydemo.mlirl.MLIRLRequest)">setRequest</a></strong>(<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRLRequest</a>&nbsp;request)</code>
-<div class="block">Sets the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRLRequest</code></a> object defining the IRL problem.</div>
+<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html#setRequest(burlap.behavior.singleagent.learnfromdemo.mlirl.MLIRLRequest)">setRequest</a></strong>(<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRLRequest</a>&nbsp;request)</code>
+<div class="block">Sets the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRLRequest</code></a> object defining the IRL problem.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -292,7 +292,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>request</h4>
-<pre>protected&nbsp;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRLRequest</a> request</pre>
+<pre>protected&nbsp;<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRLRequest</a> request</pre>
 <div class="block">The MLRIL request defining the IRL problem.</div>
 </li>
 </ul>
@@ -345,13 +345,13 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="MLIRL(burlap.behavior.singleagent.learnbydemo.mlirl.MLIRLRequest, double, double, int)">
+<a name="MLIRL(burlap.behavior.singleagent.learnfromdemo.mlirl.MLIRLRequest, double, double, int)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MLIRL</h4>
-<pre>public&nbsp;MLIRL(<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRLRequest</a>&nbsp;request,
+<pre>public&nbsp;MLIRL(<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRLRequest</a>&nbsp;request,
      double&nbsp;learningRate,
      double&nbsp;maxLikelihoodChange,
      int&nbsp;maxSteps)</pre>
@@ -367,15 +367,15 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="setRequest(burlap.behavior.singleagent.learnbydemo.mlirl.MLIRLRequest)">
+<a name="setRequest(burlap.behavior.singleagent.learnfromdemo.mlirl.MLIRLRequest)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setRequest</h4>
-<pre>public&nbsp;void&nbsp;setRequest(<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl">MLIRLRequest</a>&nbsp;request)</pre>
-<div class="block">Sets the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRLRequest</code></a> object defining the IRL problem.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>request</code> - the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><code>MLIRLRequest</code></a> object defining the IRL problem.</dd></dl>
+<pre>public&nbsp;void&nbsp;setRequest(<a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl">MLIRLRequest</a>&nbsp;request)</pre>
+<div class="block">Sets the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRLRequest</code></a> object defining the IRL problem.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>request</code> - the <a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><code>MLIRLRequest</code></a> object defining the IRL problem.</dd></dl>
 </li>
 </ul>
 <a name="toggleDebugPrinting(boolean)">
@@ -386,7 +386,7 @@ extends java.lang.Object</pre>
 <h4>toggleDebugPrinting</h4>
 <pre>public&nbsp;void&nbsp;toggleDebugPrinting(boolean&nbsp;printDebug)</pre>
 <div class="block">Sets whether information during learning is printed to the terminal. Will automatically toggle the debug printing
- for the underlying planner as well.</div>
+ for the underlying valueFunction as well.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>printDebug</code> - if true, information is printed to the terminal; if false then it is silent.</dd></dl>
 </li>
 </ul>
@@ -457,17 +457,17 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>the gradient of the log-likelihood of all trajectories</dd></dl>
 </li>
 </ul>
-<a name="logPolicyGrad(burlap.oomdp.core.State, burlap.oomdp.singleagent.GroundedAction)">
+<a name="logPolicyGrad(burlap.oomdp.core.states.State, burlap.oomdp.singleagent.GroundedAction)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>logPolicyGrad</h4>
-<pre>public&nbsp;double[]&nbsp;logPolicyGrad(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;double[]&nbsp;logPolicyGrad(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                      <a href="../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;ga)</pre>
 <div class="block">Computes and returns the gradient of the Boltzmann policy for the given state and action.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which the policy is queried</dd><dd><code>ga</code> - the action for which the policy is queried.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>s the gradient of the Boltzmann policy for the given state and action.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which the policy is queried</dd><dd><code>ga</code> - the action for which the policy is queried.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>o the gradient of the Boltzmann policy for the given state and action.</dd></dl>
 </li>
 </ul>
 <a name="addToVector(double[], double[])">
@@ -508,7 +508,7 @@ extends java.lang.Object</pre>
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/MLIRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?burlap/behavior/singleagent/learnbydemo/mlirl/MLIRL.html" target="_top">Frames</a></li>

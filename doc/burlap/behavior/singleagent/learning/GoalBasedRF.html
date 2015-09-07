@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.learning.GoalBasedRF</li>
+<li>burlap.oomdp.singleagent.common.GoalBasedRF</li>
 </ul>
 </li>
 </ul>
@@ -151,18 +151,18 @@ implements <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" ti
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/learning/GoalBasedRF.html#GoalBasedRF(burlap.behavior.singleagent.planning.StateConditionTest)">GoalBasedRF</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;gc)</code>
+<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/learning/GoalBasedRF.html#GoalBasedRF(burlap.oomdp.auxiliary.stateconditiontest.StateConditionTest)">GoalBasedRF</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;gc)</code>
 <div class="block">Initializes with transitions to goal states returning a reward of 1 and all others returning 0</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/learning/GoalBasedRF.html#GoalBasedRF(burlap.behavior.singleagent.planning.StateConditionTest,%20double)">GoalBasedRF</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;gc,
+<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/learning/GoalBasedRF.html#GoalBasedRF(burlap.oomdp.auxiliary.stateconditiontest.StateConditionTest,%20double)">GoalBasedRF</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;gc,
            double&nbsp;goalReward)</code>
 <div class="block">Initializes with transitions to goal states returning the given reward and all others returning 0.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/learning/GoalBasedRF.html#GoalBasedRF(burlap.behavior.singleagent.planning.StateConditionTest,%20double,%20double)">GoalBasedRF</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;gc,
+<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/learning/GoalBasedRF.html#GoalBasedRF(burlap.oomdp.auxiliary.stateconditiontest.StateConditionTest,%20double,%20double)">GoalBasedRF</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;gc,
            double&nbsp;goalReward,
            double&nbsp;defaultReward)</code>
 <div class="block">Initializes with transitions to goal states returning the given reward and all others returning 0.</div>
@@ -209,10 +209,10 @@ implements <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" ti
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/learning/GoalBasedRF.html#reward(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">reward</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/learning/GoalBasedRF.html#reward(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">reward</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
       <a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;a,
       <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sprime)</code>
-<div class="block">Returns the reward received when action a is executed in state s and the agent transitions to state sprime.</div>
+<div class="block">Returns the reward received when action a is executed in state o and the agent transitions to state sprime.</div>
 </td>
 </tr>
 </table>
@@ -283,7 +283,7 @@ implements <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" ti
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>gc</code> - <a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning"><code>StateConditionTest</code></a> object that specifies goal states.</dd></dl>
 </li>
 </ul>
-<a name="GoalBasedRF(burlap.behavior.singleagent.planning.StateConditionTest, double)">
+<a name="GoalBasedRF(burlap.oomdp.auxiliary.stateconditiontest.StateConditionTest, double)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -295,7 +295,7 @@ implements <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" ti
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>gc</code> - <a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning"><code>StateConditionTest</code></a> object that specifies goal states.</dd><dd><code>goalReward</code> - the reward returned for transitions to goal states.</dd></dl>
 </li>
 </ul>
-<a name="GoalBasedRF(burlap.behavior.singleagent.planning.StateConditionTest, double, double)">
+<a name="GoalBasedRF(burlap.oomdp.auxiliary.stateconditiontest.StateConditionTest, double, double)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -363,22 +363,22 @@ implements <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" ti
 <dl><dt><span class="strong">Returns:</span></dt><dd>the goal condition for this reward function.</dd></dl>
 </li>
 </ul>
-<a name="reward(burlap.oomdp.core.State, burlap.oomdp.singleagent.GroundedAction, burlap.oomdp.core.State)">
+<a name="reward(burlap.oomdp.core.states.State, burlap.oomdp.singleagent.GroundedAction, burlap.oomdp.core.State)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>reward</h4>
-<pre>public&nbsp;double&nbsp;reward(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;double&nbsp;reward(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
             <a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;a,
             <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sprime)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../burlap/oomdp/singleagent/RewardFunction.html#reward(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">RewardFunction</a></code></strong></div>
-<div class="block">Returns the reward received when action a is executed in state s and the agent transitions to state sprime.</div>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../burlap/oomdp/singleagent/RewardFunction.html#reward(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">RewardFunction</a></code></strong></div>
+<div class="block">Returns the reward received when action a is executed in state o and the agent transitions to state sprime.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../burlap/oomdp/singleagent/RewardFunction.html#reward(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">reward</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which the action was executed</dd><dd><code>a</code> - the action executed</dd><dd><code>sprime</code> - the state to which the agent transitioned</dd>
-<dt><span class="strong">Returns:</span></dt><dd>the reward received when action a is executed in state s and the agent transitions to state sprime.</dd></dl>
+<dd><code><a href="../../../../burlap/oomdp/singleagent/RewardFunction.html#reward(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">reward</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which the action was executed</dd><dd><code>a</code> - the action executed</dd><dd><code>sprime</code> - the state to which the agent transitioned</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the reward received when action a is executed in state o and the agent transitions to state sprime.</dd></dl>
 </li>
 </ul>
 </li>

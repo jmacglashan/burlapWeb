@@ -60,7 +60,7 @@
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested_classes_inherited_from_class_burlap.behavior.stochasticgame.mavaluefunction.MAValueFunctionPlanner">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested_classes_inherited_from_class_burlap.behavior.stochasticgames.madynamicprogramming.MADynamicProgramming">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.stochasticgame.mavaluefunction.vfplanners</div>
+<div class="subTitle">burlap.behavior.stochasticgames.madynamicprogramming.dpplanners</div>
 <h2 title="Class MAValueIteration" class="title">Class MAValueIteration</h2>
 </div>
 <div class="contentContainer">
@@ -86,10 +86,10 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">burlap.behavior.stochasticgame.mavaluefunction.MAValueFunctionPlanner</a></li>
+<li><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">burlap.behavior.stochasticgames.madynamicprogramming.MADynamicProgramming</a></li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.stochasticgame.mavaluefunction.vfplanners.MAValueIteration</li>
+<li>burlap.behavior.stochasticgames.madynamicprogramming.dpplanners.MAValueIteration</li>
 </ul>
 </li>
 </ul>
@@ -100,19 +100,19 @@
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MultiAgentQSourceProvider.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">MultiAgentQSourceProvider</a></dd>
+<dd><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MultiAgentQSourceProvider.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">MultiAgentQSourceProvider</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="strong">MAValueIteration</span>
-extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">MAValueFunctionPlanner</a></pre>
-<div class="block">A class for performing multi-agent value iteration. This class extends the <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgame.mavaluefunction"><code>MAValueFunctionPlanner</code></a> class to provide value iteration-like
- value function estimation. When an input state is provided via the <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/vfplanners/MAValueIteration.html#planFromState(burlap.oomdp.core.State)"><code>planFromState(State)</code></a> method, if the state has already been seen
+extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">MAValueFunctionPlanner</a></pre>
+<div class="block">A class for performing multi-agent value iteration. This class extends the <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming"><code>MAValueFunctionPlanner</code></a> class to provide value iteration-like
+ value function estimation. When an input state is provided via the <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/vfplanners/MAValueIteration.html#planFromState(burlap.oomdp.core.states.State)"><code>planFromState(State)</code></a> method, if the state has already been seen
  and planned for, then nothing happens. If the state has never been seen before, then a state reachiability analysis is first performed in which
  all states possibly reachable from the input state are found. Then Value iteration proceeds for all states that have been found in the past.
  The <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/vfplanners/MAValueIteration.html#runVI()"><code>runVI()</code></a> method can also be called directly to force value iteration to be performed on all states that have been previously found,
  but the state reachability must have been performed at least once before to seed the state space. State reachability can be performed manually
- by calling the <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/vfplanners/MAValueIteration.html#performStateReachabilityFrom(burlap.oomdp.core.State)"><code>performStateReachabilityFrom(State)</code></a> method.
+ by calling the <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/vfplanners/MAValueIteration.html#performStateReachabilityFrom(burlap.oomdp.core.states.State)"><code>performStateReachabilityFrom(State)</code></a> method.
  <p/>
  Value iteration will continue until either the maximum change in Q-value is less than some user provided threshold or until a max number
  of iterations have passed.</div>
@@ -131,11 +131,11 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
 </a>
 <h3>Nested Class Summary</h3>
 <ul class="blockList">
-<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.stochasticgame.mavaluefunction.MAValueFunctionPlanner">
+<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.stochasticgames.madynamicprogramming.MADynamicProgramming">
 <!--   -->
 </a>
-<h3>Nested classes/interfaces inherited from class&nbsp;burlap.behavior.stochasticgame.mavaluefunction.<a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">MAValueFunctionPlanner</a></h3>
-<code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.BackupBasedQSource.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">MAValueFunctionPlanner.BackupBasedQSource</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.JointActionTransitions.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">MAValueFunctionPlanner.JointActionTransitions</a></code></li>
+<h3>Nested classes/interfaces inherited from class&nbsp;burlap.behavior.stochasticgames.madynamicprogramming.<a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">MAValueFunctionPlanner</a></h3>
+<code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.BackupBasedQSource.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">MAValueFunctionPlanner.BackupBasedQSource</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.JointActionTransitions.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">MAValueFunctionPlanner.JointActionTransitions</a></code></li>
 </ul>
 </li>
 </ul>
@@ -170,17 +170,17 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected java.util.Set&lt;<a href="../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>&gt;</code></td>
+<td class="colFirst"><code>protected java.util.Set&lt;<a href="../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/vfplanners/MAValueIteration.html#states">states</a></strong></code>
 <div class="block">The set of states that have been found</div>
 </td>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_burlap.behavior.stochasticgame.mavaluefunction.MAValueFunctionPlanner">
+<li class="blockList"><a name="fields_inherited_from_class_burlap.behavior.stochasticgames.madynamicprogramming.MADynamicProgramming">
 <!--   -->
 </a>
-<h3>Fields inherited from class&nbsp;burlap.behavior.stochasticgame.mavaluefunction.<a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">MAValueFunctionPlanner</a></h3>
+<h3>Fields inherited from class&nbsp;burlap.behavior.stochasticgames.madynamicprogramming.<a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">MAValueFunctionPlanner</a></h3>
 <code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#agentDefinitions">agentDefinitions</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#backupOperator">backupOperator</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#discount">discount</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#domain">domain</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#hashingFactory">hashingFactory</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#jointActionModel">jointActionModel</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#jointReward">jointReward</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#planningStarted">planningStarted</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#qSources">qSources</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#terminalFunction">terminalFunction</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#vInit">vInit</a></code></li>
 </ul>
 </li>
@@ -202,9 +202,9 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
                 <a href="../../../../../burlap/oomdp/stochasticgames/JointReward.html" title="interface in burlap.oomdp.stochasticgames">JointReward</a>&nbsp;jointReward,
                 <a href="../../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;terminalFunction,
                 double&nbsp;discount,
-                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
                 double&nbsp;qInit,
-                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">SGBackupOperator</a>&nbsp;backupOperator,
+                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">SGBackupOperator</a>&nbsp;backupOperator,
                 double&nbsp;maxDelta,
                 int&nbsp;maxIterations)</code>
 <div class="block">Initializes.</div>
@@ -216,9 +216,9 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
                 <a href="../../../../../burlap/oomdp/stochasticgames/JointReward.html" title="interface in burlap.oomdp.stochasticgames">JointReward</a>&nbsp;jointReward,
                 <a href="../../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;terminalFunction,
                 double&nbsp;discount,
-                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
                 <a href="../../../../../burlap/behavior/singleagent/ValueFunctionInitialization.html" title="interface in burlap.behavior.singleagent">ValueFunctionInitialization</a>&nbsp;qInit,
-                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">SGBackupOperator</a>&nbsp;backupOperator,
+                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">SGBackupOperator</a>&nbsp;backupOperator,
                 double&nbsp;maxDelta,
                 int&nbsp;maxIterations)</code>
 <div class="block">Initializes.</div>
@@ -231,9 +231,9 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
                 <a href="../../../../../burlap/oomdp/stochasticgames/JointReward.html" title="interface in burlap.oomdp.stochasticgames">JointReward</a>&nbsp;jointReward,
                 <a href="../../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;terminalFunction,
                 double&nbsp;discount,
-                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
                 double&nbsp;vInit,
-                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">SGBackupOperator</a>&nbsp;backupOperator,
+                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">SGBackupOperator</a>&nbsp;backupOperator,
                 double&nbsp;maxDelta,
                 int&nbsp;maxIterations)</code>
 <div class="block">Initializes.</div>
@@ -246,9 +246,9 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
                 <a href="../../../../../burlap/oomdp/stochasticgames/JointReward.html" title="interface in burlap.oomdp.stochasticgames">JointReward</a>&nbsp;jointReward,
                 <a href="../../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;terminalFunction,
                 double&nbsp;discount,
-                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
                 <a href="../../../../../burlap/behavior/singleagent/ValueFunctionInitialization.html" title="interface in burlap.behavior.singleagent">ValueFunctionInitialization</a>&nbsp;vInit,
-                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">SGBackupOperator</a>&nbsp;backupOperator,
+                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">SGBackupOperator</a>&nbsp;backupOperator,
                 double&nbsp;maxDelta,
                 int&nbsp;maxIterations)</code>
 <div class="block">Initializes.</div>
@@ -271,14 +271,14 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/vfplanners/MAValueIteration.html#performStateReachabilityFrom(burlap.oomdp.core.State)">performStateReachabilityFrom</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
-<div class="block">Finds and stores all states that are reachable from input state s.</div>
+<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/vfplanners/MAValueIteration.html#performStateReachabilityFrom(burlap.oomdp.core.states.State)">performStateReachabilityFrom</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
+<div class="block">Finds and stores all states that are reachable from input state o.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/vfplanners/MAValueIteration.html#planFromState(burlap.oomdp.core.State)">planFromState</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
-<div class="block">Calling this method causes planning to be performed from State s.</div>
+<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/vfplanners/MAValueIteration.html#planFromState(burlap.oomdp.core.states.State)">planFromState</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
+<div class="block">Calling this method causes planning to be performed from State o.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -289,11 +289,11 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.stochasticgame.mavaluefunction.MAValueFunctionPlanner">
+<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.stochasticgames.madynamicprogramming.MADynamicProgramming">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;burlap.behavior.stochasticgame.mavaluefunction.<a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">MAValueFunctionPlanner</a></h3>
-<code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#backupAllValueFunctions(burlap.oomdp.core.State)">backupAllValueFunctions</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#getQSources()">getQSources</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#hasStartedPlanning()">hasStartedPlanning</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#initMAVF(burlap.oomdp.stochasticgames.SGDomain,%20java.util.Map,%20burlap.oomdp.stochasticgames.JointActionModel,%20burlap.oomdp.stochasticgames.JointReward,%20burlap.oomdp.core.TerminalFunction,%20double,%20burlap.behavior.statehashing.StateHashFactory,%20burlap.behavior.singleagent.ValueFunctionInitialization,%20burlap.behavior.stochasticgame.mavaluefunction.SGBackupOperator)">initMAVF</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#setAgentDefinitions(java.util.Map)">setAgentDefinitions</a></code></li>
+<h3>Methods inherited from class&nbsp;burlap.behavior.stochasticgames.madynamicprogramming.<a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">MAValueFunctionPlanner</a></h3>
+<code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#backupAllValueFunctions(burlap.oomdp.core.states.State)">backupAllValueFunctions</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#getQSources()">getQSources</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#hasStartedPlanning()">hasStartedPlanning</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#initMAVF(burlap.oomdp.stochasticgames.SGDomain,%20java.util.Map,%20burlap.oomdp.stochasticgames.JointActionModel,%20burlap.oomdp.stochasticgames.JointReward,%20burlap.oomdp.core.TerminalFunction,%20double,%20burlap.behavior.statehashing.StateHashFactory,%20burlap.behavior.singleagent.ValueFunctionInitialization,%20burlap.behavior.stochasticgame.mavaluefunction.SGBackupOperator)">initMAVF</a>, <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#setAgentDefinitions(java.util.Map)">setAgentDefinitions</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -322,7 +322,7 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
 <ul class="blockList">
 <li class="blockList">
 <h4>states</h4>
-<pre>protected&nbsp;java.util.Set&lt;<a href="../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>&gt; states</pre>
+<pre>protected&nbsp;java.util.Set&lt;<a href="../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>&gt; states</pre>
 <div class="block">The set of states that have been found</div>
 </li>
 </ul>
@@ -364,7 +364,7 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="MAValueIteration(burlap.oomdp.stochasticgames.SGDomain, burlap.oomdp.stochasticgames.JointActionModel, burlap.oomdp.stochasticgames.JointReward, burlap.oomdp.core.TerminalFunction, double, burlap.behavior.statehashing.StateHashFactory, double, burlap.behavior.stochasticgame.mavaluefunction.SGBackupOperator, double, int)">
+<a name="MAValueIteration(burlap.oomdp.stochasticgames.SGDomain, burlap.oomdp.stochasticgames.JointActionModel, burlap.oomdp.stochasticgames.JointReward, burlap.oomdp.core.TerminalFunction, double, burlap.oomdp.statehashing.HashableStateFactory, double, burlap.behavior.stochasticgames.madynamicprogramming.SGBackupOperator, double, int)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -375,16 +375,16 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
                 <a href="../../../../../burlap/oomdp/stochasticgames/JointReward.html" title="interface in burlap.oomdp.stochasticgames">JointReward</a>&nbsp;jointReward,
                 <a href="../../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;terminalFunction,
                 double&nbsp;discount,
-                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
                 double&nbsp;qInit,
-                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">SGBackupOperator</a>&nbsp;backupOperator,
+                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">SGBackupOperator</a>&nbsp;backupOperator,
                 double&nbsp;maxDelta,
                 int&nbsp;maxIterations)</pre>
 <div class="block">Initializes.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain in which to perform planing</dd><dd><code>jointActionModel</code> - the joint action model</dd><dd><code>jointReward</code> - the joint reward function</dd><dd><code>terminalFunction</code> - the terminal state function</dd><dd><code>discount</code> - the discount</dd><dd><code>hashingFactory</code> - the hashing factory to use for storing states</dd><dd><code>qInit</code> - the default Q-value to initialize all values to</dd><dd><code>backupOperator</code> - the backup operator that defines the solution concept being solved</dd><dd><code>maxDelta</code> - the threshold that causes VI to terminate when the max Q-value change is less than it</dd><dd><code>maxIterations</code> - the maximum number of iterations allowed</dd></dl>
 </li>
 </ul>
-<a name="MAValueIteration(burlap.oomdp.stochasticgames.SGDomain, burlap.oomdp.stochasticgames.JointActionModel, burlap.oomdp.stochasticgames.JointReward, burlap.oomdp.core.TerminalFunction, double, burlap.behavior.statehashing.StateHashFactory, burlap.behavior.singleagent.ValueFunctionInitialization, burlap.behavior.stochasticgame.mavaluefunction.SGBackupOperator, double, int)">
+<a name="MAValueIteration(burlap.oomdp.stochasticgames.SGDomain, burlap.oomdp.stochasticgames.JointActionModel, burlap.oomdp.stochasticgames.JointReward, burlap.oomdp.core.TerminalFunction, double, burlap.oomdp.statehashing.HashableStateFactory, burlap.behavior.valuefunction.ValueFunctionInitialization, burlap.behavior.stochasticgames.madynamicprogramming.SGBackupOperator, double, int)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -395,16 +395,16 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
                 <a href="../../../../../burlap/oomdp/stochasticgames/JointReward.html" title="interface in burlap.oomdp.stochasticgames">JointReward</a>&nbsp;jointReward,
                 <a href="../../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;terminalFunction,
                 double&nbsp;discount,
-                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
                 <a href="../../../../../burlap/behavior/singleagent/ValueFunctionInitialization.html" title="interface in burlap.behavior.singleagent">ValueFunctionInitialization</a>&nbsp;qInit,
-                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">SGBackupOperator</a>&nbsp;backupOperator,
+                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">SGBackupOperator</a>&nbsp;backupOperator,
                 double&nbsp;maxDelta,
                 int&nbsp;maxIterations)</pre>
 <div class="block">Initializes.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain in which to perform planing</dd><dd><code>jointActionModel</code> - the joint action model</dd><dd><code>jointReward</code> - the joint reward function</dd><dd><code>terminalFunction</code> - the terminal state function</dd><dd><code>discount</code> - the discount</dd><dd><code>hashingFactory</code> - the hashing factory to use for storing states</dd><dd><code>qInit</code> - the q-value initialization function to use.</dd><dd><code>backupOperator</code> - the backup operator that defines the solution concept being solved</dd><dd><code>maxDelta</code> - the threshold that causes VI to terminate when the max Q-value change is less than it</dd><dd><code>maxIterations</code> - the maximum number of iterations allowed</dd></dl>
 </li>
 </ul>
-<a name="MAValueIteration(burlap.oomdp.stochasticgames.SGDomain, java.util.Map, burlap.oomdp.stochasticgames.JointActionModel, burlap.oomdp.stochasticgames.JointReward, burlap.oomdp.core.TerminalFunction, double, burlap.behavior.statehashing.StateHashFactory, double, burlap.behavior.stochasticgame.mavaluefunction.SGBackupOperator, double, int)">
+<a name="MAValueIteration(burlap.oomdp.stochasticgames.SGDomain, java.util.Map, burlap.oomdp.stochasticgames.JointActionModel, burlap.oomdp.stochasticgames.JointReward, burlap.oomdp.core.TerminalFunction, double, burlap.oomdp.statehashing.HashableStateFactory, double, burlap.behavior.stochasticgames.madynamicprogramming.SGBackupOperator, double, int)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -416,16 +416,16 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
                 <a href="../../../../../burlap/oomdp/stochasticgames/JointReward.html" title="interface in burlap.oomdp.stochasticgames">JointReward</a>&nbsp;jointReward,
                 <a href="../../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;terminalFunction,
                 double&nbsp;discount,
-                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
                 double&nbsp;vInit,
-                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">SGBackupOperator</a>&nbsp;backupOperator,
+                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">SGBackupOperator</a>&nbsp;backupOperator,
                 double&nbsp;maxDelta,
                 int&nbsp;maxIterations)</pre>
 <div class="block">Initializes.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain in which to perform planing</dd><dd><code>agentDefinitions</code> - the agents involved in the planning problem</dd><dd><code>jointActionModel</code> - the joint action model</dd><dd><code>jointReward</code> - the joint reward function</dd><dd><code>terminalFunction</code> - the terminal state function</dd><dd><code>discount</code> - the discount</dd><dd><code>hashingFactory</code> - the hashing factory to use for storing states</dd><dd><code>vInit</code> - the default value to initialize all state values to</dd><dd><code>backupOperator</code> - the backup operator that defines the solution concept being solved</dd><dd><code>maxDelta</code> - the threshold that causes VI to terminate when the max Q-value change is less than it</dd><dd><code>maxIterations</code> - the maximum number of iterations allowed</dd></dl>
 </li>
 </ul>
-<a name="MAValueIteration(burlap.oomdp.stochasticgames.SGDomain, java.util.Map, burlap.oomdp.stochasticgames.JointActionModel, burlap.oomdp.stochasticgames.JointReward, burlap.oomdp.core.TerminalFunction, double, burlap.behavior.statehashing.StateHashFactory, burlap.behavior.singleagent.ValueFunctionInitialization, burlap.behavior.stochasticgame.mavaluefunction.SGBackupOperator, double, int)">
+<a name="MAValueIteration(burlap.oomdp.stochasticgames.SGDomain, java.util.Map, burlap.oomdp.stochasticgames.JointActionModel, burlap.oomdp.stochasticgames.JointReward, burlap.oomdp.core.TerminalFunction, double, burlap.oomdp.statehashing.HashableStateFactory, burlap.behavior.valuefunction.ValueFunctionInitialization, burlap.behavior.stochasticgames.madynamicprogramming.SGBackupOperator, double, int)">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -437,9 +437,9 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
                 <a href="../../../../../burlap/oomdp/stochasticgames/JointReward.html" title="interface in burlap.oomdp.stochasticgames">JointReward</a>&nbsp;jointReward,
                 <a href="../../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;terminalFunction,
                 double&nbsp;discount,
-                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+                <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
                 <a href="../../../../../burlap/behavior/singleagent/ValueFunctionInitialization.html" title="interface in burlap.behavior.singleagent">ValueFunctionInitialization</a>&nbsp;vInit,
-                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgame.mavaluefunction">SGBackupOperator</a>&nbsp;backupOperator,
+                <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/SGBackupOperator.html" title="interface in burlap.behavior.stochasticgames.madynamicprogramming">SGBackupOperator</a>&nbsp;backupOperator,
                 double&nbsp;maxDelta,
                 int&nbsp;maxIterations)</pre>
 <div class="block">Initializes.</div>
@@ -460,13 +460,13 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
 <ul class="blockList">
 <li class="blockList">
 <h4>planFromState</h4>
-<pre>public&nbsp;void&nbsp;planFromState(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#planFromState(burlap.oomdp.core.State)">MAValueFunctionPlanner</a></code></strong></div>
-<div class="block">Calling this method causes planning to be performed from State s.</div>
+<pre>public&nbsp;void&nbsp;planFromState(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#planFromState(burlap.oomdp.core.states.State)">MAValueFunctionPlanner</a></code></strong></div>
+<div class="block">Calling this method causes planning to be performed from State o.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#planFromState(burlap.oomdp.core.State)">planFromState</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">MAValueFunctionPlanner</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state from which planning is to be performed.</dd></dl>
+<dd><code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html#planFromState(burlap.oomdp.core.states.State)">planFromState</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">MAValueFunctionPlanner</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state from which planning is to be performed.</dd></dl>
 </li>
 </ul>
 <a name="runVI()">
@@ -477,10 +477,10 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
 <h4>runVI</h4>
 <pre>public&nbsp;void&nbsp;runVI()</pre>
 <div class="block">Runs Value Iteration over the set of states that have been discovered. VI terminates either when the max change in Q-value is less than the threshold stored
- in this object's maxDelta parameter
- or when the number of iterations exceeds  this object's maxIterations parameter.
+ in this object'o maxDelta parameter
+ or when the number of iterations exceeds  this object'o maxIterations parameter.
  <p/>
- If <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/vfplanners/MAValueIteration.html#performStateReachabilityFrom(burlap.oomdp.core.State)"><code>performStateReachabilityFrom(State)</code></a> has not yet been called, then the state set will be empty and a runtime exception will be thrown.</div>
+ If <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/vfplanners/MAValueIteration.html#performStateReachabilityFrom(burlap.oomdp.core.states.State)"><code>performStateReachabilityFrom(State)</code></a> has not yet been called, then the state set will be empty and a runtime exception will be thrown.</div>
 </li>
 </ul>
 <a name="performStateReachabilityFrom(burlap.oomdp.core.State)">
@@ -489,10 +489,10 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
 <ul class="blockListLast">
 <li class="blockList">
 <h4>performStateReachabilityFrom</h4>
-<pre>public&nbsp;boolean&nbsp;performStateReachabilityFrom(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block">Finds and stores all states that are reachable from input state s.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state from which all reachable states will be indexed</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if input s was not previously indexed resulting in new states being found; false if s was already previously indexed resulting in no change in the discovered state set.</dd></dl>
+<pre>public&nbsp;boolean&nbsp;performStateReachabilityFrom(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block">Finds and stores all states that are reachable from input state o.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state from which all reachable states will be indexed</dd>
+<dt><span class="strong">Returns:</span></dt><dd>true if input o was not previously indexed resulting in new states being found; false if o was already previously indexed resulting in no change in the discovered state set.</dd></dl>
 </li>
 </ul>
 </li>
@@ -545,7 +545,7 @@ extends <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/M
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested_classes_inherited_from_class_burlap.behavior.stochasticgame.mavaluefunction.MAValueFunctionPlanner">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested_classes_inherited_from_class_burlap.behavior.stochasticgames.madynamicprogramming.MADynamicProgramming">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>

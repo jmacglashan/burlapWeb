@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.planning.ActionTransitions</li>
+<li>burlap.behavior.singleagent.planning.stochastic.ActionTransitions</li>
 </ul>
 </li>
 </ul>
@@ -145,15 +145,15 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/ActionTransitions.html#ActionTransitions(burlap.oomdp.singleagent.GroundedAction,%20java.util.List,%20burlap.behavior.statehashing.StateHashFactory)">ActionTransitions</a></strong>(<a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;ga,
                  java.util.List&lt;<a href="../../../../burlap/oomdp/core/TransitionProbability.html" title="class in burlap.oomdp.core">TransitionProbability</a>&gt;&nbsp;transitions,
-                 <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</code>
+                 <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</code>
 <div class="block">Constructs the the ActionTransitions from the <a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent"><code>GroundedAction</code></a> that generated the transitions and the 
  set of transition probabilities.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/ActionTransitions.html#ActionTransitions(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.behavior.statehashing.StateHashFactory)">ActionTransitions</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/ActionTransitions.html#ActionTransitions(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.behavior.statehashing.StateHashFactory)">ActionTransitions</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                  <a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;ga,
-                 <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</code>
+                 <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</code>
 <div class="block">Constructs the the ActionTransitions from a source state, and an action to apply in that source state.</div>
 </td>
 </tr>
@@ -226,7 +226,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="ActionTransitions(burlap.oomdp.singleagent.GroundedAction, java.util.List, burlap.behavior.statehashing.StateHashFactory)">
+<a name="ActionTransitions(burlap.oomdp.singleagent.GroundedAction, java.util.List, burlap.oomdp.statehashing.StateHashFactory)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -234,23 +234,23 @@ extends java.lang.Object</pre>
 <h4>ActionTransitions</h4>
 <pre>public&nbsp;ActionTransitions(<a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;ga,
                  java.util.List&lt;<a href="../../../../burlap/oomdp/core/TransitionProbability.html" title="class in burlap.oomdp.core">TransitionProbability</a>&gt;&nbsp;transitions,
-                 <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</pre>
+                 <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</pre>
 <div class="block">Constructs the the ActionTransitions from the <a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent"><code>GroundedAction</code></a> that generated the transitions and the 
  set of transition probabilities.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>ga</code> - the GroundedAction that generated the possible transitions</dd><dd><code>transitions</code> - the transition probabilities</dd><dd><code>hashingFactory</code> - a hashingFactory that can be used to hash the states in the TransitionProbability data structure.</dd></dl>
 </li>
 </ul>
-<a name="ActionTransitions(burlap.oomdp.core.State, burlap.oomdp.singleagent.GroundedAction, burlap.behavior.statehashing.StateHashFactory)">
+<a name="ActionTransitions(burlap.oomdp.core.states.State, burlap.oomdp.singleagent.GroundedAction, burlap.oomdp.statehashing.StateHashFactory)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>ActionTransitions</h4>
-<pre>public&nbsp;ActionTransitions(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;ActionTransitions(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                  <a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;ga,
-                 <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</pre>
+                 <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</pre>
 <div class="block">Constructs the the ActionTransitions from a source state, and an action to apply in that source state.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state from which to generate the hashed transitions</dd><dd><code>ga</code> - the GroundedAction to be applied in the source state</dd><dd><code>hashingFactory</code> - a hashingFactory that can be used to hash the states in the TransitionProbability data structures that are returned from applying ga in s.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state from which to generate the hashed transitions</dd><dd><code>ga</code> - the GroundedAction to be applied in the source state</dd><dd><code>hashingFactory</code> - a hashingFactory that can be used to hash the states in the TransitionProbability data structures that are returned from applying ga in o.</dd></dl>
 </li>
 </ul>
 </li>
@@ -270,7 +270,7 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;boolean&nbsp;matchingTransitions(<a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;oga)</pre>
 <div class="block">Returns whether these action transitions are for the specified <a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent"><code>GroundedAction</code></a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>oga</code> - the <a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent"><code>GroundedAction</code></a> to check against</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if this object's transition probabilities were generated with <a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent"><code>GroundedAction</code></a> oga; false otherwise.</dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>true if this object'o transition probabilities were generated with <a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent"><code>GroundedAction</code></a> oga; false otherwise.</dd></dl>
 </li>
 </ul>
 </li>

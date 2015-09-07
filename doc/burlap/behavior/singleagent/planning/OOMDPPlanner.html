@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.planning.OOMDPPlanner</li>
+<li>burlap.behavior.singleagent.planning.MDPSolver</li>
 </ul>
 </li>
 </ul>
@@ -95,7 +95,7 @@
 <li class="blockList">
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../../burlap/behavior/singleagent/learning/actorcritic/ActorCritic.html" title="class in burlap.behavior.singleagent.learning.actorcritic">ActorCritic</a>, <a href="../../../../burlap/behavior/singleagent/learning/modellearning/artdp/ARTDP.html" title="class in burlap.behavior.singleagent.learning.modellearning.artdp">ARTDP</a>, <a href="../../../../burlap/behavior/singleagent/planning/deterministic/DeterministicPlanner.html" title="class in burlap.behavior.singleagent.planning.deterministic">DeterministicPlanner</a>, <a href="../../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/DifferentiableSparseSampling.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.differentiableplanners">DifferentiableSparseSampling</a>, <a href="../../../../burlap/behavior/singleagent/planning/vfa/fittedvi/FittedVI.html" title="class in burlap.behavior.singleagent.planning.vfa.fittedvi">FittedVI</a>, <a href="../../../../burlap/behavior/singleagent/learning/tdmethods/vfa/GradientDescentSarsaLam.html" title="class in burlap.behavior.singleagent.learning.tdmethods.vfa">GradientDescentSarsaLam</a>, <a href="../../../../burlap/behavior/singleagent/learning/lspi/LSPI.html" title="class in burlap.behavior.singleagent.learning.lspi">LSPI</a>, <a href="../../../../burlap/behavior/singleagent/learning/modellearning/rmax/PotentialShapedRMax.html" title="class in burlap.behavior.singleagent.learning.modellearning.rmax">PotentialShapedRMax</a>, <a href="../../../../burlap/behavior/singleagent/learning/tdmethods/QLearning.html" title="class in burlap.behavior.singleagent.learning.tdmethods">QLearning</a>, <a href="../../../../burlap/behavior/singleagent/planning/stochastic/sparsesampling/SparseSampling.html" title="class in burlap.behavior.singleagent.planning.stochastic.sparsesampling">SparseSampling</a>, <a href="../../../../burlap/behavior/singleagent/planning/stochastic/montecarlo/uct/UCT.html" title="class in burlap.behavior.singleagent.planning.stochastic.montecarlo.uct">UCT</a>, <a href="../../../../burlap/behavior/singleagent/planning/ValueFunctionPlanner.html" title="class in burlap.behavior.singleagent.planning">ValueFunctionPlanner</a></dd>
+<dd><a href="../../../../burlap/behavior/singleagent/learning/actorcritic/ActorCritic.html" title="class in burlap.behavior.singleagent.learning.actorcritic">ActorCritic</a>, <a href="../../../../burlap/behavior/singleagent/learning/modellearning/artdp/ARTDP.html" title="class in burlap.behavior.singleagent.learning.modellearning.artdp">ARTDP</a>, <a href="../../../../burlap/behavior/singleagent/planning/deterministic/DeterministicPlanner.html" title="class in burlap.behavior.singleagent.planning.deterministic">DeterministicPlanner</a>, <a href="../../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/DifferentiableSparseSampling.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.differentiableplanners">DifferentiableSparseSampling</a>, <a href="../../../../burlap/behavior/singleagent/planning/vfa/fittedvi/FittedVI.html" title="class in burlap.behavior.singleagent.planning.vfa.fittedvi">FittedVI</a>, <a href="../../../../burlap/behavior/singleagent/learning/tdmethods/vfa/GradientDescentSarsaLam.html" title="class in burlap.behavior.singleagent.learning.tdmethods.vfa">GradientDescentSarsaLam</a>, <a href="../../../../burlap/behavior/singleagent/learning/lspi/LSPI.html" title="class in burlap.behavior.singleagent.learning.lspi">LSPI</a>, <a href="../../../../burlap/behavior/singleagent/learning/modellearning/rmax/PotentialShapedRMax.html" title="class in burlap.behavior.singleagent.learning.modellearning.rmax">PotentialShapedRMax</a>, <a href="../../../../burlap/behavior/singleagent/learning/tdmethods/QLearning.html" title="class in burlap.behavior.singleagent.learning.tdmethods">QLearning</a>, <a href="../../../../burlap/behavior/singleagent/planning/stochastic/sparsesampling/SparseSampling.html" title="class in burlap.behavior.singleagent.planning.stochastic.sparsesampling">SparseSampling</a>, <a href="../../../../burlap/behavior/singleagent/planning/stochastic/montecarlo/uct/UCT.html" title="class in burlap.behavior.singleagent.planning.stochastic.montecarlo.uct">UCT</a>, <a href="../../../../burlap/behavior/singleagent/planning/ValueFunctionPlanner.html" title="class in burlap.behavior.singleagent.planning">ValueFunctionPlanner</a></dd>
 </dl>
 <hr>
 <br>
@@ -126,13 +126,13 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code>protected java.util.List&lt;<a href="../../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#actions">actions</a></strong></code>
-<div class="block">The list of actions this planner can use.</div>
+<div class="block">The list of actions this valueFunction can use.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#containsParameterizedActions">containsParameterizedActions</a></strong></code>
-<div class="block">Indicates whether the action set for this planner includes parametrized actions</div>
+<div class="block">Indicates whether the action set for this valueFunction includes parametrized actions</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -154,13 +154,13 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#hashingFactory">hashingFactory</a></strong></code>
 <div class="block">The hashing factory to use for hashing states</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected java.util.Map&lt;<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>,<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>&gt;</code></td>
+<td class="colFirst"><code>protected java.util.Map&lt;<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>,<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#mapToStateIndex">mapToStateIndex</a></strong></code>
 <div class="block">A mapping to internal states that are stored.</div>
 </td>
@@ -212,26 +212,26 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#addNonDomainReferencedAction(burlap.oomdp.singleagent.Action)">addNonDomainReferencedAction</a></strong>(<a href="../../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a>&nbsp;a)</code>
-<div class="block">Adds an additional action the planner that is not included in the domain definition.</div>
+<div class="block">Adds an additional action the valueFunction that is not included in the domain definition.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#getActions()">getActions</a></strong>()</code>
-<div class="block">Returns a copy of all actions this planner uses for reasoning; including added actions that are not part of the
- domain specification (e.g., <a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options"><code>Option</code></a>s).</div>
+<div class="block">Returns a copy of all actions this valueFunction uses for reasoning; including added actions that are not part of the
+ domain specification (e.g., <a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options"><code>Option</code></a>o).</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected java.util.List&lt;<a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#getAllGroundedActions(burlap.oomdp.core.State)">getAllGroundedActions</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
-<div class="block">Returns all grounded actions in the provided state for all the actions that this planner can use.</div>
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#getAllGroundedActions(burlap.oomdp.core.states.State)">getAllGroundedActions</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
+<div class="block">Returns all grounded actions in the provided state for all the actions that this valueFunction can use.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#getDebugCode()">getDebugCode</a></strong>()</code>
-<div class="block">Returns the debug code used by this planner for calls to <a href="../../../../burlap/debugtools/DPrint.html" title="class in burlap.debugtools"><code>DPrint</code></a></div>
+<div class="block">Returns the debug code used by this valueFunction for calls to <a href="../../../../burlap/debugtools/DPrint.html" title="class in burlap.debugtools"><code>DPrint</code></a></div>
 </td>
 </tr>
 <tr class="altColor">
@@ -241,13 +241,13 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#getGamma()">getGamma</a></strong>()</code>
-<div class="block">Returns gamma, the discount factor used by this planner</div>
+<div class="block">Returns gamma, the discount factor used by this valueFunction</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a></code></td>
+<td class="colFirst"><code><a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#getHashingFactory()">getHashingFactory</a></strong>()</code>
-<div class="block">Returns the <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing"><code>StateHashFactory</code></a> this planner uses.</div>
+<div class="block">Returns the <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing"><code>StateHashFactory</code></a> this valueFunction uses.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -257,7 +257,7 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#getRF()">getRF</a></strong>()</code>
-<div class="block">Returns the <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent"><code>RewardFunction</code></a> this planner uses.</div>
+<div class="block">Returns the <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent"><code>RewardFunction</code></a> this valueFunction uses.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -267,13 +267,13 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#getTF()">getTF</a></strong>()</code>
-<div class="block">Returns the <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core"><code>TerminalFunction</code></a> this planner uses.</div>
+<div class="block">Returns the <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core"><code>TerminalFunction</code></a> this valueFunction uses.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#planFromState(burlap.oomdp.core.State)">planFromState</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;initialState)</code>
-<div class="block">This method will cause the planner to begin planning from the specified initial state</div>
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#planFromState(burlap.oomdp.core.states.State)">planFromState</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;initialState)</code>
+<div class="block">This method will cause the valueFunction to begin planning from the specified initial state</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -282,21 +282,21 @@ extends java.lang.Object</pre>
            <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a>&nbsp;rf,
            <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;tf,
            double&nbsp;gamma,
-           <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</code>
-<div class="block">Initializes the planner with the common planning elements</div>
+           <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</code>
+<div class="block">Initializes the valueFunction with the common planning elements</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#resetPlannerResults()">resetPlannerResults</a></strong>()</code>
-<div class="block">Use this method to reset all planner results so that planning can be started fresh with a call to <a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#planFromState(burlap.oomdp.core.State)"><code>planFromState(State)</code></a>
+<div class="block">Use this method to reset all valueFunction results so that planning can be started fresh with a call to <a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#planFromState(burlap.oomdp.core.states.State)"><code>planFromState(State)</code></a>
  as if no planning had ever been performed before.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#setActions(java.util.List)">setActions</a></strong>(java.util.List&lt;<a href="../../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a>&gt;&nbsp;actions)</code>
-<div class="block">Sets the action set the planner should use.</div>
+<div class="block">Sets the action set the valueFunction should use.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -308,37 +308,37 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#setDomain(burlap.oomdp.core.Domain)">setDomain</a></strong>(<a href="../../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;domain)</code>
-<div class="block">Sets the domain of this planner.</div>
+<div class="block">Sets the domain of this valueFunction.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#setGamma(double)">setGamma</a></strong>(double&nbsp;gamma)</code>
-<div class="block">Sets gamma, the discount factor used by this planner</div>
+<div class="block">Sets gamma, the discount factor used by this valueFunction</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#setRf(burlap.oomdp.singleagent.RewardFunction)">setRf</a></strong>(<a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a>&nbsp;rf)</code>
-<div class="block">Sets the reward function used by this planner</div>
+<div class="block">Sets the reward function used by this valueFunction</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#setTf(burlap.oomdp.core.TerminalFunction)">setTf</a></strong>(<a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;tf)</code>
-<div class="block">Sets the terminal state function used by this planner</div>
+<div class="block">Sets the terminal state function used by this valueFunction</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#stateHash(burlap.oomdp.core.State)">stateHash</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colFirst"><code><a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#stateHash(burlap.oomdp.core.states.State)">stateHash</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">A shorthand method for hashing a state.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#toggleDebugPrinting(boolean)">toggleDebugPrinting</a></strong>(boolean&nbsp;toggle)</code>
-<div class="block">Toggles whether the planner's calls to <a href="../../../../burlap/debugtools/DPrint.html" title="class in burlap.debugtools"><code>DPrint</code></a> should be printed.</div>
+<div class="block">Toggles whether the valueFunction'o calls to <a href="../../../../burlap/debugtools/DPrint.html" title="class in burlap.debugtools"><code>DPrint</code></a> should be printed.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -387,7 +387,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>hashingFactory</h4>
-<pre>protected&nbsp;<a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a> hashingFactory</pre>
+<pre>protected&nbsp;<a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a> hashingFactory</pre>
 <div class="block">The hashing factory to use for hashing states</div>
 </li>
 </ul>
@@ -428,7 +428,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>actions</h4>
 <pre>protected&nbsp;java.util.List&lt;<a href="../../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a>&gt; actions</pre>
-<div class="block">The list of actions this planner can use. May include non-domain specified actions like options.</div>
+<div class="block">The list of actions this valueFunction can use. May include non-domain specified actions like options.</div>
 </li>
 </ul>
 <a name="mapToStateIndex">
@@ -437,7 +437,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>mapToStateIndex</h4>
-<pre>protected&nbsp;java.util.Map&lt;<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>,<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>&gt; mapToStateIndex</pre>
+<pre>protected&nbsp;java.util.Map&lt;<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>,<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>&gt; mapToStateIndex</pre>
 <div class="block">A mapping to internal states that are stored. Useful since two identical states may have different object instance name identifiers
  that can affect the parameters in GroundedActions.</div>
 </li>
@@ -449,7 +449,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>containsParameterizedActions</h4>
 <pre>protected&nbsp;boolean containsParameterizedActions</pre>
-<div class="block">Indicates whether the action set for this planner includes parametrized actions</div>
+<div class="block">Indicates whether the action set for this valueFunction includes parametrized actions</div>
 </li>
 </ul>
 <a name="debugCode">
@@ -494,7 +494,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>planFromState</h4>
 <pre>public abstract&nbsp;void&nbsp;planFromState(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;initialState)</pre>
-<div class="block">This method will cause the planner to begin planning from the specified initial state</div>
+<div class="block">This method will cause the valueFunction to begin planning from the specified initial state</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>initialState</code> - the initial state of the planning problem</dd></dl>
 </li>
 </ul>
@@ -505,16 +505,16 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>resetPlannerResults</h4>
 <pre>public abstract&nbsp;void&nbsp;resetPlannerResults()</pre>
-<div class="block">Use this method to reset all planner results so that planning can be started fresh with a call to <a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#planFromState(burlap.oomdp.core.State)"><code>planFromState(State)</code></a>
+<div class="block">Use this method to reset all valueFunction results so that planning can be started fresh with a call to <a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#planFromState(burlap.oomdp.core.states.State)"><code>planFromState(State)</code></a>
  as if no planning had ever been performed before. Specifically, data produced from calls to the 
- <a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#planFromState(burlap.oomdp.core.State)"><code>planFromState(State)</code></a> will be cleared, but all other planner settings should remain the same.
+ <a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#planFromState(burlap.oomdp.core.states.State)"><code>planFromState(State)</code></a> will be cleared, but all other valueFunction settings should remain the same.
  This is useful if the reward function or transition dynamics have changed, thereby
- requiring new results to be computed. If there were other objects this planner was provided that may have changed
- and need to be reset, you will need to reset them yourself. For instance, if you told a planner to follow a policy
- that had a temperature parameter decrease with time, you will need to reset the policy's temperature yourself.</div>
+ requiring new results to be computed. If there were other objects this valueFunction was provided that may have changed
+ and need to be reset, you will need to reset them yourself. For instance, if you told a valueFunction to follow a policy
+ that had a temperature parameter decrease with time, you will need to reset the policy'o temperature yourself.</div>
 </li>
 </ul>
-<a name="plannerInit(burlap.oomdp.core.Domain, burlap.oomdp.singleagent.RewardFunction, burlap.oomdp.core.TerminalFunction, double, burlap.behavior.statehashing.StateHashFactory)">
+<a name="plannerInit(burlap.oomdp.core.Domain, burlap.oomdp.singleagent.RewardFunction, burlap.oomdp.core.TerminalFunction, double, burlap.oomdp.statehashing.StateHashFactory)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -524,9 +524,9 @@ extends java.lang.Object</pre>
                <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a>&nbsp;rf,
                <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;tf,
                double&nbsp;gamma,
-               <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</pre>
-<div class="block">Initializes the planner with the common planning elements</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain in which planning will be performed</dd><dd><code>rf</code> - the reward function</dd><dd><code>tf</code> - the terminal state function</dd><dd><code>gamma</code> - the discount factor</dd><dd><code>hashingFactory</code> - the hashing factory used to store states (may be set to null if the planner is not tabular)</dd></dl>
+               <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</pre>
+<div class="block">Initializes the valueFunction with the common planning elements</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain in which planning will be performed</dd><dd><code>rf</code> - the reward function</dd><dd><code>tf</code> - the terminal state function</dd><dd><code>gamma</code> - the discount factor</dd><dd><code>hashingFactory</code> - the hashing factory used to store states (may be set to null if the valueFunction is not tabular)</dd></dl>
 </li>
 </ul>
 <a name="addNonDomainReferencedAction(burlap.oomdp.singleagent.Action)">
@@ -536,9 +536,9 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>addNonDomainReferencedAction</h4>
 <pre>public&nbsp;void&nbsp;addNonDomainReferencedAction(<a href="../../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a>&nbsp;a)</pre>
-<div class="block">Adds an additional action the planner that is not included in the domain definition. For instance, an <a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options"><code>Option</code></a>
+<div class="block">Adds an additional action the valueFunction that is not included in the domain definition. For instance, an <a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options"><code>Option</code></a>
  should be added using this method.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>a</code> - the action to add to the planner</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>a</code> - the action to add to the valueFunction</dd></dl>
 </li>
 </ul>
 <a name="setActions(java.util.List)">
@@ -548,8 +548,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setActions</h4>
 <pre>public&nbsp;void&nbsp;setActions(java.util.List&lt;<a href="../../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a>&gt;&nbsp;actions)</pre>
-<div class="block">Sets the action set the planner should use.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>actions</code> - the actions the planner should use.</dd></dl>
+<div class="block">Sets the action set the valueFunction should use.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>actions</code> - the actions the valueFunction should use.</dd></dl>
 </li>
 </ul>
 <a name="getActions()">
@@ -559,10 +559,10 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getActions</h4>
 <pre>public&nbsp;java.util.List&lt;<a href="../../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a>&gt;&nbsp;getActions()</pre>
-<div class="block">Returns a copy of all actions this planner uses for reasoning; including added actions that are not part of the
- domain specification (e.g., <a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options"><code>Option</code></a>s). Modifying
- the returned list will not modify the action list this planner uses.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>a <code>List</code> of all actions this planner uses.</dd></dl>
+<div class="block">Returns a copy of all actions this valueFunction uses for reasoning; including added actions that are not part of the
+ domain specification (e.g., <a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options"><code>Option</code></a>o). Modifying
+ the returned list will not modify the action list this valueFunction uses.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>a <code>List</code> of all actions this valueFunction uses.</dd></dl>
 </li>
 </ul>
 <a name="getTF()">
@@ -572,8 +572,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getTF</h4>
 <pre>public&nbsp;<a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;getTF()</pre>
-<div class="block">Returns the <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core"><code>TerminalFunction</code></a> this planner uses.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core"><code>TerminalFunction</code></a> this planner uses.</dd></dl>
+<div class="block">Returns the <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core"><code>TerminalFunction</code></a> this valueFunction uses.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core"><code>TerminalFunction</code></a> this valueFunction uses.</dd></dl>
 </li>
 </ul>
 <a name="getRF()">
@@ -583,8 +583,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getRF</h4>
 <pre>public&nbsp;<a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a>&nbsp;getRF()</pre>
-<div class="block">Returns the <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent"><code>RewardFunction</code></a> this planner uses.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent"><code>RewardFunction</code></a> this planner uses.</dd></dl>
+<div class="block">Returns the <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent"><code>RewardFunction</code></a> this valueFunction uses.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the <a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent"><code>RewardFunction</code></a> this valueFunction uses.</dd></dl>
 </li>
 </ul>
 <a name="getHashingFactory()">
@@ -593,9 +593,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getHashingFactory</h4>
-<pre>public&nbsp;<a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;getHashingFactory()</pre>
-<div class="block">Returns the <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing"><code>StateHashFactory</code></a> this planner uses.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing"><code>StateHashFactory</code></a> this planner uses.</dd></dl>
+<pre>public&nbsp;<a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;getHashingFactory()</pre>
+<div class="block">Returns the <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing"><code>StateHashFactory</code></a> this valueFunction uses.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing"><code>StateHashFactory</code></a> this valueFunction uses.</dd></dl>
 </li>
 </ul>
 <a name="setRf(burlap.oomdp.singleagent.RewardFunction)">
@@ -605,8 +605,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setRf</h4>
 <pre>public&nbsp;void&nbsp;setRf(<a href="../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a>&nbsp;rf)</pre>
-<div class="block">Sets the reward function used by this planner</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>rf</code> - the reward function to be used by this planner</dd></dl>
+<div class="block">Sets the reward function used by this valueFunction</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>rf</code> - the reward function to be used by this valueFunction</dd></dl>
 </li>
 </ul>
 <a name="setTf(burlap.oomdp.core.TerminalFunction)">
@@ -616,8 +616,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setTf</h4>
 <pre>public&nbsp;void&nbsp;setTf(<a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;tf)</pre>
-<div class="block">Sets the terminal state function used by this planner</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>tf</code> - the terminal function to be used by this planner</dd></dl>
+<div class="block">Sets the terminal state function used by this valueFunction</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>tf</code> - the terminal function to be used by this valueFunction</dd></dl>
 </li>
 </ul>
 <a name="getGamma()">
@@ -627,8 +627,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getGamma</h4>
 <pre>public&nbsp;double&nbsp;getGamma()</pre>
-<div class="block">Returns gamma, the discount factor used by this planner</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>gamma, the discount factor used by this planner</dd></dl>
+<div class="block">Returns gamma, the discount factor used by this valueFunction</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>gamma, the discount factor used by this valueFunction</dd></dl>
 </li>
 </ul>
 <a name="setGamma(double)">
@@ -638,8 +638,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setGamma</h4>
 <pre>public&nbsp;void&nbsp;setGamma(double&nbsp;gamma)</pre>
-<div class="block">Sets gamma, the discount factor used by this planner</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>gamma</code> - the discount factor used by this planner</dd></dl>
+<div class="block">Sets gamma, the discount factor used by this valueFunction</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>gamma</code> - the discount factor used by this valueFunction</dd></dl>
 </li>
 </ul>
 <a name="setDebugCode(int)">
@@ -660,8 +660,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getDebugCode</h4>
 <pre>public&nbsp;int&nbsp;getDebugCode()</pre>
-<div class="block">Returns the debug code used by this planner for calls to <a href="../../../../burlap/debugtools/DPrint.html" title="class in burlap.debugtools"><code>DPrint</code></a></div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the debug code used by this planner for calls to <a href="../../../../burlap/debugtools/DPrint.html" title="class in burlap.debugtools"><code>DPrint</code></a></dd></dl>
+<div class="block">Returns the debug code used by this valueFunction for calls to <a href="../../../../burlap/debugtools/DPrint.html" title="class in burlap.debugtools"><code>DPrint</code></a></div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the debug code used by this valueFunction for calls to <a href="../../../../burlap/debugtools/DPrint.html" title="class in burlap.debugtools"><code>DPrint</code></a></dd></dl>
 </li>
 </ul>
 <a name="toggleDebugPrinting(boolean)">
@@ -671,7 +671,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>toggleDebugPrinting</h4>
 <pre>public&nbsp;void&nbsp;toggleDebugPrinting(boolean&nbsp;toggle)</pre>
-<div class="block">Toggles whether the planner's calls to <a href="../../../../burlap/debugtools/DPrint.html" title="class in burlap.debugtools"><code>DPrint</code></a> should be printed.</div>
+<div class="block">Toggles whether the valueFunction'o calls to <a href="../../../../burlap/debugtools/DPrint.html" title="class in burlap.debugtools"><code>DPrint</code></a> should be printed.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>toggle</code> - whether to print the calls to <a href="../../../../burlap/debugtools/DPrint.html" title="class in burlap.debugtools"><code>DPrint</code></a></dd></dl>
 </li>
 </ul>
@@ -682,10 +682,10 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setDomain</h4>
 <pre>public&nbsp;void&nbsp;setDomain(<a href="../../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;domain)</pre>
-<div class="block">Sets the domain of this planner. NOTE: this will also reset the actions this planner uses to the actions of the
+<div class="block">Sets the domain of this valueFunction. NOTE: this will also reset the actions this valueFunction uses to the actions of the
  provided domain. If you have previously added non-domain referenced actiosn through the <a href="../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html#addNonDomainReferencedAction(burlap.oomdp.singleagent.Action)"><code>addNonDomainReferencedAction(burlap.oomdp.singleagent.Action)</code></a>
  method, you will have to do so again.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain this planner should use.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain this valueFunction should use.</dd></dl>
 </li>
 </ul>
 <a name="getDomain()">
@@ -724,7 +724,7 @@ extends java.lang.Object</pre>
 <pre>protected&nbsp;<a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;translateAction(<a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;a,
                              java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;matching)</pre>
 <div class="block">Takes a source parameterized GroundedAction and a matching between object instances of two different states and returns a GroudnedAction
- with parameters using the matched parameters. This method is useful a stored state and action pair in the planner data structure has different
+ with parameters using the matched parameters. This method is useful a stored state and action pair in the valueFunction data structure has different
  object name identifiers than a query state that is otherwise identical. The matching is from the state in which the source action is applied
  to some target state that is not provided to this method.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>a</code> - the source action that needs to be translated</dd><dd><code>matching</code> - a map from object instance names to other object instance names.</dd>
@@ -737,9 +737,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>stateHash</h4>
-<pre>public&nbsp;<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>&nbsp;stateHash(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
+<pre>public&nbsp;<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>&nbsp;stateHash(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
 <div class="block">A shorthand method for hashing a state.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state to hash</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state to hash</dd>
 <dt><span class="strong">Returns:</span></dt><dd>a StateHashTuple produce from this planners StateHashFactory.</dd></dl>
 </li>
 </ul>
@@ -749,9 +749,9 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getAllGroundedActions</h4>
-<pre>protected&nbsp;java.util.List&lt;<a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&gt;&nbsp;getAllGroundedActions(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block">Returns all grounded actions in the provided state for all the actions that this planner can use.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the source state for which to get all GroundedActions.</dd>
+<pre>protected&nbsp;java.util.List&lt;<a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&gt;&nbsp;getAllGroundedActions(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block">Returns all grounded actions in the provided state for all the actions that this valueFunction can use.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the source state for which to get all GroundedActions.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>all GroundedActions.</dd></dl>
 </li>
 </ul>

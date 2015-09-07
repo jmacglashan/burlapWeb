@@ -89,7 +89,7 @@
 <li><a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">burlap.oomdp.core.AbstractGroundedAction</a></li>
 <li>
 <ul class="inheritance">
-<li>burlap.oomdp.stochasticgames.GroundedSingleAction</li>
+<li>burlap.oomdp.stochasticgames.GroundedSGAgentAction</li>
 </ul>
 </li>
 </ul>
@@ -211,7 +211,7 @@ extends <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a></code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/GroundedSingleAction.html#executeIn(burlap.oomdp.core.State)">executeIn</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/GroundedSingleAction.html#executeIn(burlap.oomdp.core.states.State)">executeIn</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">Executes the grounded action on a given state</div>
 </td>
 </tr>
@@ -222,7 +222,7 @@ extends <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/GroundedSingleAction.html#isExecutable()">isExecutable</a></strong>()</code>
-<div class="block">Returns true if this grounded action can be directly executed on a state with the <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#executeIn(burlap.oomdp.core.State)"><code>AbstractGroundedAction.executeIn(State)</code></a> method.</div>
+<div class="block">Returns true if this grounded action can be directly executed on a state with the <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#executeIn(burlap.oomdp.core.states.State)"><code>AbstractGroundedAction.executeIn(State)</code></a> method.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -247,7 +247,7 @@ extends <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;burlap.oomdp.core.<a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a></h3>
-<code><a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#isParameterized()">isParameterized</a>, <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#translateParameters(burlap.oomdp.core.State,%20burlap.oomdp.core.State)">translateParameters</a></code></li>
+<code><a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#isParameterized()">isParameterized</a>, <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#translateParameters(burlap.oomdp.core.states.State,%20burlap.oomdp.core.State)">translateParameters</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -298,7 +298,7 @@ extends <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="GroundedSingleAction(java.lang.String, burlap.oomdp.stochasticgames.SingleAction, java.lang.String[])">
+<a name="GroundedSingleAction(java.lang.String, burlap.oomdp.stochasticgames.agentactions.SGAgentAction, java.lang.String[])">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -311,7 +311,7 @@ extends <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>actingAgent</code> - the acting agent.</dd><dd><code>a</code> - the <a href="../../../burlap/oomdp/stochasticgames/SingleAction.html" title="class in burlap.oomdp.stochasticgames"><code>SingleAction</code></a>.</dd><dd><code>p</code> - a String array specifying the parameters bound to a.</dd></dl>
 </li>
 </ul>
-<a name="GroundedSingleAction(java.lang.String, burlap.oomdp.stochasticgames.SingleAction, java.lang.String)">
+<a name="GroundedSingleAction(java.lang.String, burlap.oomdp.stochasticgames.agentactions.SGAgentAction, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -405,7 +405,7 @@ extends <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="
 <h4>isExecutable</h4>
 <pre>public&nbsp;boolean&nbsp;isExecutable()</pre>
 <div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#isExecutable()">AbstractGroundedAction</a></code></strong></div>
-<div class="block">Returns true if this grounded action can be directly executed on a state with the <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#executeIn(burlap.oomdp.core.State)"><code>AbstractGroundedAction.executeIn(State)</code></a> method. For example, a single agent domain grounded action is executable; a stochastic games single grounded action
+<div class="block">Returns true if this grounded action can be directly executed on a state with the <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#executeIn(burlap.oomdp.core.states.State)"><code>AbstractGroundedAction.executeIn(State)</code></a> method. For example, a single agent domain grounded action is executable; a stochastic games single grounded action
  is not, because the action of all other agents must also be known in order to get the next state.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
@@ -419,13 +419,13 @@ extends <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="
 <ul class="blockList">
 <li class="blockList">
 <h4>executeIn</h4>
-<pre>public&nbsp;<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;executeIn(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#executeIn(burlap.oomdp.core.State)">AbstractGroundedAction</a></code></strong></div>
+<pre>public&nbsp;<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;executeIn(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#executeIn(burlap.oomdp.core.states.State)">AbstractGroundedAction</a></code></strong></div>
 <div class="block">Executes the grounded action on a given state</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#executeIn(burlap.oomdp.core.State)">executeIn</a></code>&nbsp;in class&nbsp;<code><a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state on which to execute the action</dd>
+<dd><code><a href="../../../burlap/oomdp/core/AbstractGroundedAction.html#executeIn(burlap.oomdp.core.states.State)">executeIn</a></code>&nbsp;in class&nbsp;<code><a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state on which to execute the action</dd>
 <dt><span class="strong">Returns:</span></dt><dd>The state after the action has been executed</dd></dl>
 </li>
 </ul>

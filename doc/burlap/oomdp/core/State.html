@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.oomdp.core.State</li>
+<li>burlap.oomdp.core.states.State</li>
 </ul>
 </li>
 </ul>
@@ -160,8 +160,8 @@ extends java.lang.Object</pre>
 <td class="colOne"><code><strong><a href="../../../burlap/oomdp/core/State.html#State()">State</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../burlap/oomdp/core/State.html#State(burlap.oomdp.core.State)">State</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
-<div class="block">Initializes this state as a deep copy of the object instances in the provided source state s</div>
+<td class="colOne"><code><strong><a href="../../../burlap/oomdp/core/State.html#State(burlap.oomdp.core.states.State)">State</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
+<div class="block">Initializes this state as a deep copy of the object instances in the provided source state o</div>
 </td>
 </tr>
 </table>
@@ -181,7 +181,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/oomdp/core/State.html#addObject(burlap.oomdp.core.ObjectInstance)">addObject</a></strong>(<a href="../../../burlap/oomdp/core/ObjectInstance.html" title="class in burlap.oomdp.core">ObjectInstance</a>&nbsp;o)</code>
+<td class="colLast"><code><strong><a href="../../../burlap/oomdp/core/State.html#addObject(burlap.oomdp.core.objects.ObjectInstance)">addObject</a></strong>(<a href="../../../burlap/oomdp/core/ObjectInstance.html" title="class in burlap.oomdp.core">ObjectInstance</a>&nbsp;o)</code>
 <div class="block">Adds object instance o to this state.</div>
 </td>
 </tr>
@@ -275,7 +275,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.String&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/oomdp/core/State.html#getObjectMatchingTo(burlap.oomdp.core.State,%20boolean)">getObjectMatchingTo</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;so,
+<td class="colLast"><code><strong><a href="../../../burlap/oomdp/core/State.html#getObjectMatchingTo(burlap.oomdp.core.states.State,%20boolean)">getObjectMatchingTo</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;so,
                    boolean&nbsp;enforceStateExactness)</code>
 <div class="block">This method computes a matching from objects in the receiver to value-identical objects in the parameter state so.</div>
 </td>
@@ -343,7 +343,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/oomdp/core/State.html#removeObject(burlap.oomdp.core.ObjectInstance)">removeObject</a></strong>(<a href="../../../burlap/oomdp/core/ObjectInstance.html" title="class in burlap.oomdp.core">ObjectInstance</a>&nbsp;o)</code>
+<td class="colLast"><code><strong><a href="../../../burlap/oomdp/core/State.html#removeObject(burlap.oomdp.core.objects.ObjectInstance)">removeObject</a></strong>(<a href="../../../burlap/oomdp/core/ObjectInstance.html" title="class in burlap.oomdp.core">ObjectInstance</a>&nbsp;o)</code>
 <div class="block">Removes the object instance o from this state.</div>
 </td>
 </tr>
@@ -355,7 +355,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/oomdp/core/State.html#renameObject(burlap.oomdp.core.ObjectInstance,%20java.lang.String)">renameObject</a></strong>(<a href="../../../burlap/oomdp/core/ObjectInstance.html" title="class in burlap.oomdp.core">ObjectInstance</a>&nbsp;o,
+<td class="colLast"><code><strong><a href="../../../burlap/oomdp/core/State.html#renameObject(burlap.oomdp.core.objects.ObjectInstance,%20java.lang.String)">renameObject</a></strong>(<a href="../../../burlap/oomdp/core/ObjectInstance.html" title="class in burlap.oomdp.core">ObjectInstance</a>&nbsp;o,
             java.lang.String&nbsp;newName)</code>
 <div class="block">Renames the identifier for object instance o in this state to newName.</div>
 </td>
@@ -369,7 +369,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a></code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/oomdp/core/State.html#semiDeepCopy(burlap.oomdp.core.ObjectInstance...)">semiDeepCopy</a></strong>(<a href="../../../burlap/oomdp/core/ObjectInstance.html" title="class in burlap.oomdp.core">ObjectInstance</a>...&nbsp;deepCopyObjects)</code>
+<td class="colLast"><code><strong><a href="../../../burlap/oomdp/core/State.html#semiDeepCopy(burlap.oomdp.core.objects.ObjectInstance...)">semiDeepCopy</a></strong>(<a href="../../../burlap/oomdp/core/ObjectInstance.html" title="class in burlap.oomdp.core">ObjectInstance</a>...&nbsp;deepCopyObjects)</code>
 <div class="block">Performs a semi-deep copy of the state in which only the objects in deepCopyObjects are deep copied and the rest of the
  objects are shallowed copied.</div>
 </td>
@@ -483,9 +483,9 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>State</h4>
-<pre>public&nbsp;State(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block">Initializes this state as a deep copy of the object instances in the provided source state s</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the source state from which this state will be initialized.</dd></dl>
+<pre>public&nbsp;State(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block">Initializes this state as a deep copy of the object instances in the provided source state o</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the source state from which this state will be initialized.</dd></dl>
 </li>
 </ul>
 </li>
@@ -520,7 +520,7 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Returns:</span></dt><dd>a new state that is a mix of a shallow and deep copy of this state.</dd></dl>
 </li>
 </ul>
-<a name="semiDeepCopy(burlap.oomdp.core.ObjectInstance...)">
+<a name="semiDeepCopy(burlap.oomdp.core.objects.ObjectInstance...)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -600,7 +600,7 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>originalName</code> - the original name of the object instance to be renamed in this state</dd><dd><code>newName</code> - the new name of the object instance</dd></dl>
 </li>
 </ul>
-<a name="renameObject(burlap.oomdp.core.ObjectInstance, java.lang.String)">
+<a name="renameObject(burlap.oomdp.core.objects.ObjectInstance, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -612,7 +612,7 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the object instance to rename in this state</dd><dd><code>newName</code> - the new name of the object instance</dd></dl>
 </li>
 </ul>
-<a name="getObjectMatchingTo(burlap.oomdp.core.State, boolean)">
+<a name="getObjectMatchingTo(burlap.oomdp.core.states.State, boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -626,8 +626,8 @@ extends java.lang.Object</pre>
  are not OO-MDP-wise identical (i.e., if there is a not a bijection
   between value-identical objects of the two states). If enforceExactness is false and the states are not identical,
   the the method will return the largest matching between objects that can be made.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>so</code> - the state to whose objects the receiving state's objects should be matched</dd><dd><code>enforceStateExactness</code> - whether to require that states are identical to return a matching</dd>
-<dt><span class="strong">Returns:</span></dt><dd>a matching from this receiving state's objects to objects in so that have identical values.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>so</code> - the state to whose objects the receiving state'o objects should be matched</dd><dd><code>enforceStateExactness</code> - whether to require that states are identical to return a matching</dd>
+<dt><span class="strong">Returns:</span></dt><dd>a matching from this receiving state'o objects to objects in so that have identical values.</dd></dl>
 </li>
 </ul>
 <a name="equals(java.lang.Object)">
@@ -856,7 +856,7 @@ public&nbsp;java.util.List&lt;<a href="../../../burlap/oomdp/core/ObjectInstance
 <pre>@Deprecated
 public&nbsp;java.util.List&lt;<a href="../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&gt;&nbsp;getAllGroundedActionsFor(<a href="../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a>&nbsp;a)</pre>
 <div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
-<div class="block">Deprecated; use the <a href="../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent"><code>Action</code></a> class' <a href="../../../burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActions(burlap.oomdp.core.State)"><code>Action.getAllApplicableGroundedActions(State)</code></a> method instead.
+<div class="block">Deprecated; use the <a href="../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent"><code>Action</code></a> class' <a href="../../../burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActions(burlap.oomdp.core.states.State)"><code>Action.getAllApplicableGroundedActions(State)</code></a> method instead.
  Returns all GroundedAction objects for the source action a in this state.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>a</code> - the action from which to generate GroundedAction objects.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>all GroundedAction objects for the source action a in this state.</dd></dl>
@@ -886,7 +886,7 @@ public&nbsp;java.util.List&lt;<a href="../../../burlap/oomdp/singleagent/Grounde
 <pre>@Deprecated
 public&nbsp;java.util.List&lt;<a href="../../../burlap/oomdp/core/GroundedProp.html" title="class in burlap.oomdp.core">GroundedProp</a>&gt;&nbsp;getAllGroundedPropsFor(<a href="../../../burlap/oomdp/core/PropositionalFunction.html" title="class in burlap.oomdp.core">PropositionalFunction</a>&nbsp;pf)</pre>
 <div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
-<div class="block">Deprecated; use the <a href="../../../burlap/oomdp/core/PropositionalFunction.html" title="class in burlap.oomdp.core"><code>PropositionalFunction</code></a> class' <a href="../../../burlap/oomdp/core/PropositionalFunction.html#getAllGroundedPropsForState(burlap.oomdp.core.State)"><code>PropositionalFunction.getAllGroundedPropsForState(State)</code></a> method instead.
+<div class="block">Deprecated; use the <a href="../../../burlap/oomdp/core/PropositionalFunction.html" title="class in burlap.oomdp.core"><code>PropositionalFunction</code></a> class' <a href="../../../burlap/oomdp/core/PropositionalFunction.html#getAllGroundedPropsForState(burlap.oomdp.core.states.State)"><code>PropositionalFunction.getAllGroundedPropsForState(State)</code></a> method instead.
  Returns all GroundedProp objects for the source propositional function pf in this state.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>pf</code> - the propositional function from which to generate GroundedProp objects.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>all GroundedProp objects for the source propositional function pf in this state.</dd></dl>
@@ -901,7 +901,7 @@ public&nbsp;java.util.List&lt;<a href="../../../burlap/oomdp/core/GroundedProp.h
 <pre>@Deprecated
 public&nbsp;boolean&nbsp;somePFGroundingIsTrue(<a href="../../../burlap/oomdp/core/PropositionalFunction.html" title="class in burlap.oomdp.core">PropositionalFunction</a>&nbsp;pf)</pre>
 <div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
-<div class="block">Deprecated; use the <a href="../../../burlap/oomdp/core/PropositionalFunction.html" title="class in burlap.oomdp.core"><code>PropositionalFunction</code></a> class' <a href="../../../burlap/oomdp/core/PropositionalFunction.html#somePFGroundingIsTrue(burlap.oomdp.core.State)"><code>PropositionalFunction.somePFGroundingIsTrue(State)</code></a> method instead.
+<div class="block">Deprecated; use the <a href="../../../burlap/oomdp/core/PropositionalFunction.html" title="class in burlap.oomdp.core"><code>PropositionalFunction</code></a> class' <a href="../../../burlap/oomdp/core/PropositionalFunction.html#somePFGroundingIsTrue(burlap.oomdp.core.states.State)"><code>PropositionalFunction.somePFGroundingIsTrue(State)</code></a> method instead.
  Returns whether some GroundedProp of pf is true in this state</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>pf</code> - the propositional function to check</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if some GroundedProp of pf is true in this state; false otherwise</dd></dl>

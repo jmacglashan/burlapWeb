@@ -36,7 +36,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?burlap/behavior/singleagent/learnbydemo/mlirl/support/BoltzmannPolicyGradient.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.singleagent.learnbydemo.mlirl.support</div>
+<div class="subTitle">burlap.behavior.singleagent.learnfromdemo.mlirl.support</div>
 <h2 title="Class BoltzmannPolicyGradient" class="title">Class BoltzmannPolicyGradient</h2>
 </div>
 <div class="contentContainer">
@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.learnbydemo.mlirl.support.BoltzmannPolicyGradient</li>
+<li>burlap.behavior.singleagent.learnfromdemo.mlirl.support.BoltzmannPolicyGradient</li>
 </ul>
 </li>
 </ul>
@@ -99,7 +99,7 @@
 extends java.lang.Object</pre>
 <div class="block">This class provides methods to compute the gradient of a Boltzmann policy. Numerous logarithmic tricks are
  performed to to avoid overflow issues that a straight computation of the exponentials might induce. The methods
- require that that input come from a differentiable planner and reward functions, which means that the planner
+ require that that input come from a differentiable valueFunction and reward functions, which means that the valueFunction
  should be implementing a Boltzmann value backup instead of a Bellman value backup.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>James MacGlashan.</dd></dl>
@@ -140,23 +140,23 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static double[]</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/BoltzmannPolicyGradient.html#computeBoltzmannPolicyGradient(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.behavior.singleagent.learnbydemo.mlirl.support.QGradientPlanner,%20double)">computeBoltzmannPolicyGradient</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/BoltzmannPolicyGradient.html#computeBoltzmannPolicyGradient(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.behavior.singleagent.learnbydemo.mlirl.support.QGradientPlanner,%20double)">computeBoltzmannPolicyGradient</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                               <a href="../../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;a,
-                              <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support">QGradientPlanner</a>&nbsp;planner,
+                              <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support">QGradientPlanner</a>&nbsp;valueFunction,
                               double&nbsp;beta)</code>
-<div class="block">Computes the gradient of a Boltzmann policy using the given differentiable planner.</div>
+<div class="block">Computes the gradient of a Boltzmann policy using the given differentiable valueFunction.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static double[]</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/BoltzmannPolicyGradient.html#computePolicyGradient(burlap.behavior.singleagent.learnbydemo.mlirl.support.DifferentiableRF,%20double,%20double[],%20double,%20double,%20double[][],%20int)">computePolicyGradient</a></strong>(<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a>&nbsp;rf,
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/BoltzmannPolicyGradient.html#computePolicyGradient(burlap.behavior.singleagent.learnfromdemo.mlirl.support.DifferentiableRF,%20double,%20double[],%20double,%20double,%20double[][],%20int)">computePolicyGradient</a></strong>(<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a>&nbsp;rf,
                      double&nbsp;beta,
                      double[]&nbsp;qs,
                      double&nbsp;maxBetaScaled,
                      double&nbsp;logSum,
                      double[][]&nbsp;gqs,
                      int&nbsp;aInd)</code>
-<div class="block">Computes the gradient of a Boltzmann policy using values derived from a Differentiable Botlzmann backup planner.</div>
+<div class="block">Computes the gradient of a Boltzmann policy using values derived from a Differentiable Botlzmann backup valueFunction.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -213,36 +213,36 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="computeBoltzmannPolicyGradient(burlap.oomdp.core.State, burlap.oomdp.singleagent.GroundedAction, burlap.behavior.singleagent.learnbydemo.mlirl.support.QGradientPlanner, double)">
+<a name="computeBoltzmannPolicyGradient(burlap.oomdp.core.states.State, burlap.oomdp.singleagent.GroundedAction, burlap.behavior.singleagent.learnfromdemo.mlirl.support.QGradientPlanner, double)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>computeBoltzmannPolicyGradient</h4>
-<pre>public static&nbsp;double[]&nbsp;computeBoltzmannPolicyGradient(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public static&nbsp;double[]&nbsp;computeBoltzmannPolicyGradient(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                                       <a href="../../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;a,
-                                      <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support">QGradientPlanner</a>&nbsp;planner,
+                                      <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support">QGradientPlanner</a>&nbsp;valueFunction,
                                       double&nbsp;beta)</pre>
-<div class="block">Computes the gradient of a Boltzmann policy using the given differentiable planner.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the input state of the policy gradient</dd><dd><code>a</code> - the action whose policy probability gradient being queried</dd><dd><code>planner</code> - the differentiable <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>QGradientPlanner</code></a> planner</dd><dd><code>beta</code> - the Boltzmann beta parameter. This parameter is the inverse of the Botlzmann temperature. As beta becomes larger, the policy becomes more deterministic. Should lie in [0, +ifnty].</dd>
+<div class="block">Computes the gradient of a Boltzmann policy using the given differentiable valueFunction.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the input state of the policy gradient</dd><dd><code>a</code> - the action whose policy probability gradient being queried</dd><dd><code>valueFunction</code> - the differentiable <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>QGradientPlanner</code></a> valueFunction</dd><dd><code>beta</code> - the Boltzmann beta parameter. This parameter is the inverse of the Botlzmann temperature. As beta becomes larger, the policy becomes more deterministic. Should lie in [0, +ifnty].</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the gradient of the policy.</dd></dl>
 </li>
 </ul>
-<a name="computePolicyGradient(burlap.behavior.singleagent.learnbydemo.mlirl.support.DifferentiableRF, double, double[], double, double, double[][], int)">
+<a name="computePolicyGradient(burlap.behavior.singleagent.learnfromdemo.mlirl.support.DifferentiableRF, double, double[], double, double, double[][], int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>computePolicyGradient</h4>
-<pre>public static&nbsp;double[]&nbsp;computePolicyGradient(<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a>&nbsp;rf,
+<pre>public static&nbsp;double[]&nbsp;computePolicyGradient(<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a>&nbsp;rf,
                              double&nbsp;beta,
                              double[]&nbsp;qs,
                              double&nbsp;maxBetaScaled,
                              double&nbsp;logSum,
                              double[][]&nbsp;gqs,
                              int&nbsp;aInd)</pre>
-<div class="block">Computes the gradient of a Boltzmann policy using values derived from a Differentiable Botlzmann backup planner.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>rf</code> - the planner's <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>DifferentiableRF</code></a></dd><dd><code>beta</code> - the Boltzmann beta parameter. This parameter is the inverse of the Botlzmann temperature. As beta becomes larger, the policy becomes more deterministic. Should lie in [0, +ifnty].</dd><dd><code>qs</code> - an array holding the Q-value for each action.</dd><dd><code>maxBetaScaled</code> - the maximum Q-value after being scaled by the parameter beta</dd><dd><code>logSum</code> - the log sum of the exponentiated q values</dd><dd><code>gqs</code> - a matrix holding the Q-value gradient for each action. The matrix's major order is the action index, followed by the parameter gradient</dd><dd><code>aInd</code> - the index of the query action for which the policy's gradient is being computed</dd>
+<div class="block">Computes the gradient of a Boltzmann policy using values derived from a Differentiable Botlzmann backup valueFunction.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>rf</code> - the valueFunction'o <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>DifferentiableRF</code></a></dd><dd><code>beta</code> - the Boltzmann beta parameter. This parameter is the inverse of the Botlzmann temperature. As beta becomes larger, the policy becomes more deterministic. Should lie in [0, +ifnty].</dd><dd><code>qs</code> - an array holding the Q-value for each action.</dd><dd><code>maxBetaScaled</code> - the maximum Q-value after being scaled by the parameter beta</dd><dd><code>logSum</code> - the log sum of the exponentiated q values</dd><dd><code>gqs</code> - a matrix holding the Q-value gradient for each action. The matrix'o major order is the action index, followed by the parameter gradient</dd><dd><code>aInd</code> - the index of the query action for which the policy'o gradient is being computed</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the gradient of the policy.</dd></dl>
 </li>
 </ul>
@@ -299,7 +299,7 @@ extends java.lang.Object</pre>
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?burlap/behavior/singleagent/learnbydemo/mlirl/support/BoltzmannPolicyGradient.html" target="_top">Frames</a></li>

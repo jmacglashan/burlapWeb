@@ -91,11 +91,11 @@
 </dl>
 <dl>
 <dt>All Known Subinterfaces:</dt>
-<dd><a href="../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/diffvinit/DifferentiableVInit.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.differentiableplanners.diffvinit">DifferentiableVInit</a></dd>
+<dd><a href="../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/diffvinit/DifferentiableVInit.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.differentiableplanners.diffvinit">DifferentiableVInit</a></dd>
 </dl>
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/diffvinit/DifferentiableVInit.ParamedDiffVInit.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.differentiableplanners.diffvinit">DifferentiableVInit.ParamedDiffVInit</a>, <a href="../../../burlap/behavior/singleagent/planning/vfa/fittedvi/FittedVI.VFAVInit.html" title="class in burlap.behavior.singleagent.planning.vfa.fittedvi">FittedVI.VFAVInit</a>, <a href="../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/diffvinit/LinearDiffRFVInit.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.differentiableplanners.diffvinit">LinearDiffRFVInit</a>, <a href="../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/diffvinit/LinearStateDiffVF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.differentiableplanners.diffvinit">LinearStateDiffVF</a>, <a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.ConstantValueFunctionInitialization.html" title="class in burlap.behavior.singleagent">ValueFunctionInitialization.ConstantValueFunctionInitialization</a>, <a href="../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/diffvinit/VanillaDiffVinit.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.differentiableplanners.diffvinit">VanillaDiffVinit</a></dd>
+<dd><a href="../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/diffvinit/DifferentiableVInit.ParamedDiffVInit.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.differentiableplanners.diffvinit">DifferentiableVInit.ParamedDiffVInit</a>, <a href="../../../burlap/behavior/singleagent/planning/vfa/fittedvi/FittedVI.VFAVInit.html" title="class in burlap.behavior.singleagent.planning.vfa.fittedvi">FittedVI.VFAVInit</a>, <a href="../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/diffvinit/LinearDiffRFVInit.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.differentiableplanners.diffvinit">LinearDiffRFVInit</a>, <a href="../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/diffvinit/LinearStateDiffVF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.differentiableplanners.diffvinit">LinearStateDiffVF</a>, <a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.ConstantValueFunctionInitialization.html" title="class in burlap.behavior.singleagent">ValueFunctionInitialization.ConstantValueFunctionInitialization</a>, <a href="../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/diffvinit/VanillaDiffVinit.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.differentiableplanners.diffvinit">VanillaDiffVinit</a></dd>
 </dl>
 <hr>
 <br>
@@ -104,8 +104,9 @@ extends <a href="../../../burlap/behavior/singleagent/planning/ValueFunction.htm
 <div class="block">This interface may be used by planning and learning algorithms that require an initialization value for the Q-value function or the value function.
  A common implementation for initializing all values to the same constant is provided. This class extends the
  <a href="../../../burlap/behavior/singleagent/planning/ValueFunction.html" title="interface in burlap.behavior.singleagent.planning"><code>ValueFunction</code></a> class, so the initialization for the value function.
- may be retrieved with the standard <a href="../../../burlap/behavior/singleagent/planning/ValueFunction.html#value(burlap.oomdp.core.State)"><code>ValueFunction.value(burlap.oomdp.core.State)</code></a> method.
- It also adds a <a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.html#qValue(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction)"><code>qValue(burlap.oomdp.core.State, burlap.oomdp.core.AbstractGroundedAction)</code></a> method for initializing
+ may be retrieved with the standard <a href="../../../burlap/behavior/singleagent/planning/ValueFunction.html#value(burlap.oomdp.core.states.State)"><code>ValueFunction.value(burlap.oomdp.core.State)</code></a> method.
+ It also adds a <a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.html#qValue(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction)"><code>qValue(burlap.oomdp.core.states.State,
+        burlap.oomdp.core.AbstractGroundedAction)</code></a> method for initializing
  Q-values.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>James MacGlashan</dd></dl>
@@ -150,18 +151,18 @@ extends <a href="../../../burlap/behavior/singleagent/planning/ValueFunction.htm
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.html#qValue(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction)">qValue</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/ValueFunctionInitialization.html#qValue(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction)">qValue</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
       <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a>&nbsp;a)</code>
 <div class="block">Returns the initialization value of the Q-value function for a given state and action pair.</div>
 </td>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.singleagent.planning.ValueFunction">
+<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.valuefunction.ValueFunction">
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;burlap.behavior.singleagent.planning.<a href="../../../burlap/behavior/singleagent/planning/ValueFunction.html" title="interface in burlap.behavior.singleagent.planning">ValueFunction</a></h3>
-<code><a href="../../../burlap/behavior/singleagent/planning/ValueFunction.html#value(burlap.oomdp.core.State)">value</a></code></li>
+<code><a href="../../../burlap/behavior/singleagent/planning/ValueFunction.html#value(burlap.oomdp.core.states.State)">value</a></code></li>
 </ul>
 </li>
 </ul>
@@ -177,16 +178,16 @@ extends <a href="../../../burlap/behavior/singleagent/planning/ValueFunction.htm
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="qValue(burlap.oomdp.core.State, burlap.oomdp.core.AbstractGroundedAction)">
+<a name="qValue(burlap.oomdp.core.states.State, burlap.oomdp.core.AbstractGroundedAction)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>qValue</h4>
-<pre>double&nbsp;qValue(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>double&nbsp;qValue(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
             <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a>&nbsp;a)</pre>
 <div class="block">Returns the initialization value of the Q-value function for a given state and action pair.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state for which to get the initial value of the Q-value function.</dd><dd><code>a</code> - the action for which to get the initial value of the Q-value function.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state for which to get the initial value of the Q-value function.</dd><dd><code>a</code> - the action for which to get the initial value of the Q-value function.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the initialization value of the Q-value function for a given state and action pair.</dd></dl>
 </li>
 </ul>

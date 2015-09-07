@@ -60,7 +60,7 @@
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested_classes_inherited_from_class_burlap.behavior.singleagent.Policy">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested_classes_inherited_from_class_burlap.behavior.policy.Policy">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
@@ -86,10 +86,10 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">burlap.behavior.singleagent.Policy</a></li>
+<li><a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">burlap.behavior.policy.Policy</a></li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.planning.commonpolicies.CachedPolicy</li>
+<li>burlap.behavior.policy.CachedPolicy</li>
 </ul>
 </li>
 </ul>
@@ -120,7 +120,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 </a>
 <h3>Nested Class Summary</h3>
 <ul class="blockList">
-<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.singleagent.Policy">
+<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.policy.Policy">
 <!--   -->
 </a>
 <h3>Nested classes/interfaces inherited from class&nbsp;burlap.behavior.singleagent.<a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></h3>
@@ -141,13 +141,13 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected java.util.Map&lt;<a href="../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>,java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/Policy.ActionProb.html" title="class in burlap.behavior.singleagent">Policy.ActionProb</a>&gt;&gt;</code></td>
+<td class="colFirst"><code>protected java.util.Map&lt;<a href="../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>,java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/Policy.ActionProb.html" title="class in burlap.behavior.singleagent">Policy.ActionProb</a>&gt;&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/commonpolicies/CachedPolicy.html#actionSelection">actionSelection</a></strong></code>
 <div class="block">The cached action selection probabilities</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/commonpolicies/CachedPolicy.html#hashingFactory">hashingFactory</a></strong></code>
 <div class="block">The hashing factory to use for indexing states</div>
 </td>
@@ -160,7 +160,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_burlap.behavior.singleagent.Policy">
+<li class="blockList"><a name="fields_inherited_from_class_burlap.behavior.policy.Policy">
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;burlap.behavior.singleagent.<a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></h3>
@@ -180,13 +180,13 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/commonpolicies/CachedPolicy.html#CachedPolicy(burlap.behavior.statehashing.StateHashFactory,%20burlap.behavior.singleagent.Policy)">CachedPolicy</a></strong>(<a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+<td class="colOne"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/commonpolicies/CachedPolicy.html#CachedPolicy(burlap.oomdp.statehashing.StateHashFactory,%20burlap.behavior.singleagent.Policy)">CachedPolicy</a></strong>(<a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
             <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a>&nbsp;sourcePolicy)</code>
 <div class="block">Initializes</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/commonpolicies/CachedPolicy.html#CachedPolicy(burlap.behavior.statehashing.StateHashFactory,%20burlap.behavior.singleagent.Policy,%20int)">CachedPolicy</a></strong>(<a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+<td class="colOne"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/commonpolicies/CachedPolicy.html#CachedPolicy(burlap.oomdp.statehashing.StateHashFactory,%20burlap.behavior.singleagent.Policy,%20int)">CachedPolicy</a></strong>(<a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
             <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a>&nbsp;sourcePolicy,
             int&nbsp;cacheCapacity)</code>
 <div class="block">Initializes</div>
@@ -209,19 +209,19 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/commonpolicies/CachedPolicy.html#getAction(burlap.oomdp.core.State)">getAction</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/commonpolicies/CachedPolicy.html#getAction(burlap.oomdp.core.states.State)">getAction</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">This method will return an action sampled by the policy for the given state.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/Policy.ActionProb.html" title="class in burlap.behavior.singleagent">Policy.ActionProb</a>&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/commonpolicies/CachedPolicy.html#getActionDistributionForState(burlap.oomdp.core.State)">getActionDistributionForState</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/commonpolicies/CachedPolicy.html#getActionDistributionForState(burlap.oomdp.core.states.State)">getActionDistributionForState</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">This method will return action probability distribution defined by the policy.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/commonpolicies/CachedPolicy.html#isDefinedFor(burlap.oomdp.core.State)">isDefinedFor</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/commonpolicies/CachedPolicy.html#isDefinedFor(burlap.oomdp.core.states.State)">isDefinedFor</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">Specifies whether this policy is defined for the input state.</div>
 </td>
 </tr>
@@ -233,11 +233,11 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.singleagent.Policy">
+<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.policy.Policy">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;burlap.behavior.singleagent.<a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></h3>
-<code><a href="../../../../../burlap/behavior/singleagent/Policy.html#evaluateBehavior(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.RewardFunction,%20int)">evaluateBehavior</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#evaluateBehavior(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.RewardFunction,%20burlap.oomdp.core.TerminalFunction)">evaluateBehavior</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#evaluateBehavior(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.RewardFunction,%20burlap.oomdp.core.TerminalFunction,%20int)">evaluateBehavior</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#evaluateMethodsShouldAnnotateOptionDecomposition(boolean)">evaluateMethodsShouldAnnotateOptionDecomposition</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#evaluateMethodsShouldDecomposeOption(boolean)">evaluateMethodsShouldDecomposeOption</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#getDeterministicPolicy(burlap.oomdp.core.State)">getDeterministicPolicy</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#getProbOfAction(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction)">getProbOfAction</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#getProbOfActionGivenDistribution(burlap.oomdp.core.AbstractGroundedAction,%20java.util.List)">getProbOfActionGivenDistribution</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#getProbOfActionGivenDistribution(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction,%20java.util.List)">getProbOfActionGivenDistribution</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#sampleFromActionDistribution(burlap.oomdp.core.State)">sampleFromActionDistribution</a></code></li>
+<code><a href="../../../../../burlap/behavior/singleagent/Policy.html#evaluateBehavior(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.RewardFunction,%20int)">evaluateBehavior</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#evaluateBehavior(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.RewardFunction,%20burlap.oomdp.core.TerminalFunction)">evaluateBehavior</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#evaluateBehavior(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.RewardFunction,%20burlap.oomdp.core.TerminalFunction,%20int)">evaluateBehavior</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#evaluateMethodsShouldAnnotateOptionDecomposition(boolean)">evaluateMethodsShouldAnnotateOptionDecomposition</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#evaluateMethodsShouldDecomposeOption(boolean)">evaluateMethodsShouldDecomposeOption</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#getDeterministicPolicy(burlap.oomdp.core.states.State)">getDeterministicPolicy</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#getProbOfAction(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction)">getProbOfAction</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#getProbOfActionGivenDistribution(burlap.oomdp.core.AbstractGroundedAction,%20java.util.List)">getProbOfActionGivenDistribution</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#getProbOfActionGivenDistribution(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction,%20java.util.List)">getProbOfActionGivenDistribution</a>, <a href="../../../../../burlap/behavior/singleagent/Policy.html#sampleFromActionDistribution(burlap.oomdp.core.states.State)">sampleFromActionDistribution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -266,7 +266,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 <ul class="blockList">
 <li class="blockList">
 <h4>hashingFactory</h4>
-<pre>protected&nbsp;<a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a> hashingFactory</pre>
+<pre>protected&nbsp;<a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a> hashingFactory</pre>
 <div class="block">The hashing factory to use for indexing states</div>
 </li>
 </ul>
@@ -276,7 +276,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 <ul class="blockList">
 <li class="blockList">
 <h4>actionSelection</h4>
-<pre>protected&nbsp;java.util.Map&lt;<a href="../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>,java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/Policy.ActionProb.html" title="class in burlap.behavior.singleagent">Policy.ActionProb</a>&gt;&gt; actionSelection</pre>
+<pre>protected&nbsp;java.util.Map&lt;<a href="../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>,java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/Policy.ActionProb.html" title="class in burlap.behavior.singleagent">Policy.ActionProb</a>&gt;&gt; actionSelection</pre>
 <div class="block">The cached action selection probabilities</div>
 </li>
 </ul>
@@ -298,29 +298,29 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="CachedPolicy(burlap.behavior.statehashing.StateHashFactory, burlap.behavior.singleagent.Policy)">
+<a name="CachedPolicy(burlap.oomdp.statehashing.HashableStateFactory, burlap.behavior.singleagent.Policy)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>CachedPolicy</h4>
-<pre>public&nbsp;CachedPolicy(<a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+<pre>public&nbsp;CachedPolicy(<a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
             <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a>&nbsp;sourcePolicy)</pre>
 <div class="block">Initializes</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>hashingFactory</code> - the <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing"><code>StateHashFactory</code></a> to use for indexing states</dd><dd><code>sourcePolicy</code> - the source policy that will be lazily cached.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>hashingFactory</code> - the <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing"><code>StateHashFactory</code></a> to use for indexing states</dd><dd><code>sourcePolicy</code> - the source policy that will be lazily cached.</dd></dl>
 </li>
 </ul>
-<a name="CachedPolicy(burlap.behavior.statehashing.StateHashFactory, burlap.behavior.singleagent.Policy, int)">
+<a name="CachedPolicy(burlap.oomdp.statehashing.HashableStateFactory, burlap.behavior.policy.Policy, int)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>CachedPolicy</h4>
-<pre>public&nbsp;CachedPolicy(<a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
+<pre>public&nbsp;CachedPolicy(<a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory,
             <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a>&nbsp;sourcePolicy,
             int&nbsp;cacheCapacity)</pre>
 <div class="block">Initializes</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>hashingFactory</code> - the <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing"><code>StateHashFactory</code></a> to use for indexing states</dd><dd><code>sourcePolicy</code> - the source policy that will be lazily cached.</dd><dd><code>cacheCapacity</code> - the initial memory capacity to be set aside for the policy cache</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>hashingFactory</code> - the <a href="../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing"><code>StateHashFactory</code></a> to use for indexing states</dd><dd><code>sourcePolicy</code> - the source policy that will be lazily cached.</dd><dd><code>cacheCapacity</code> - the initial memory capacity to be set aside for the policy cache</dd></dl>
 </li>
 </ul>
 </li>
@@ -337,16 +337,16 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 <ul class="blockList">
 <li class="blockList">
 <h4>getAction</h4>
-<pre>public&nbsp;<a href="../../../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a>&nbsp;getAction(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/Policy.html#getAction(burlap.oomdp.core.State)">Policy</a></code></strong></div>
+<pre>public&nbsp;<a href="../../../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a>&nbsp;getAction(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/Policy.html#getAction(burlap.oomdp.core.states.State)">Policy</a></code></strong></div>
 <div class="block">This method will return an action sampled by the policy for the given state. If the defined policy is
  stochastic, then multiple calls to this method for the same state may return different actions. The sampling
  should be with respect to defined action distribution that is returned by getActionDistributionForState</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/singleagent/Policy.html#getAction(burlap.oomdp.core.State)">getAction</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state for which an action should be returned</dd>
-<dt><span class="strong">Returns:</span></dt><dd>a sample action from the action distribution; null if the policy is undefined for s</dd></dl>
+<dd><code><a href="../../../../../burlap/behavior/singleagent/Policy.html#getAction(burlap.oomdp.core.states.State)">getAction</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state for which an action should be returned</dd>
+<dt><span class="strong">Returns:</span></dt><dd>a sample action from the action distribution; null if the policy is undefined for o</dd></dl>
 </li>
 </ul>
 <a name="getActionDistributionForState(burlap.oomdp.core.State)">
@@ -355,15 +355,15 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 <ul class="blockList">
 <li class="blockList">
 <h4>getActionDistributionForState</h4>
-<pre>public&nbsp;java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/Policy.ActionProb.html" title="class in burlap.behavior.singleagent">Policy.ActionProb</a>&gt;&nbsp;getActionDistributionForState(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/Policy.html#getActionDistributionForState(burlap.oomdp.core.State)">Policy</a></code></strong></div>
+<pre>public&nbsp;java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/Policy.ActionProb.html" title="class in burlap.behavior.singleagent">Policy.ActionProb</a>&gt;&nbsp;getActionDistributionForState(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/Policy.html#getActionDistributionForState(burlap.oomdp.core.states.State)">Policy</a></code></strong></div>
 <div class="block">This method will return action probability distribution defined by the policy. The action distribution is represented
  by a list of ActionProb objects, each which specifies a grounded action and a probability of that grounded action being
  taken. The returned list does not have to include actions with probability 0.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/singleagent/Policy.html#getActionDistributionForState(burlap.oomdp.core.State)">getActionDistributionForState</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state for which an action distribution should be returned</dd>
+<dd><code><a href="../../../../../burlap/behavior/singleagent/Policy.html#getActionDistributionForState(burlap.oomdp.core.states.State)">getActionDistributionForState</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state for which an action distribution should be returned</dd>
 <dt><span class="strong">Returns:</span></dt><dd>a list of possible actions taken by the policy and their probability.</dd></dl>
 </li>
 </ul>
@@ -388,14 +388,14 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 <ul class="blockListLast">
 <li class="blockList">
 <h4>isDefinedFor</h4>
-<pre>public&nbsp;boolean&nbsp;isDefinedFor(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/Policy.html#isDefinedFor(burlap.oomdp.core.State)">Policy</a></code></strong></div>
+<pre>public&nbsp;boolean&nbsp;isDefinedFor(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/Policy.html#isDefinedFor(burlap.oomdp.core.states.State)">Policy</a></code></strong></div>
 <div class="block">Specifies whether this policy is defined for the input state.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/singleagent/Policy.html#isDefinedFor(burlap.oomdp.core.State)">isDefinedFor</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the input state to test for whether this policy is defined</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if this policy is defined for <a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> s, false otherwise.</dd></dl>
+<dd><code><a href="../../../../../burlap/behavior/singleagent/Policy.html#isDefinedFor(burlap.oomdp.core.states.State)">isDefinedFor</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the input state to test for whether this policy is defined</dd>
+<dt><span class="strong">Returns:</span></dt><dd>true if this policy is defined for <a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> o, false otherwise.</dd></dl>
 </li>
 </ul>
 </li>
@@ -448,7 +448,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/Policy.html" title="
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested_classes_inherited_from_class_burlap.behavior.singleagent.Policy">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested_classes_inherited_from_class_burlap.behavior.policy.Policy">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>

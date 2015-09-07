@@ -108,7 +108,7 @@
 <pre>public class <span class="strong">PrimitiveOption</span>
 extends <a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options">Option</a></pre>
 <div class="block">This class is just an option wrapper of a standard primitive action. Typically this should be unnecessary
- because options and actions can coexist in a planner, but if an algorithm wishes to homogenize its interface
+ because options and actions can coexist in a valueFunction, but if an algorithm wishes to homogenize its interface
  it may be useful for it to wrap all of the primitives as options.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>James MacGlashan</dd></dl>
@@ -186,21 +186,21 @@ extends <a href="../../../../burlap/behavior/singleagent/options/Option.html" ti
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/PrimitiveOption.html#applicableInState(burlap.oomdp.core.State,%20java.lang.String[])">applicableInState</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;st,
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/PrimitiveOption.html#applicableInState(burlap.oomdp.core.states.State,%20java.lang.String[])">applicableInState</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;st,
                  java.lang.String[]&nbsp;params)</code>
 <div class="block">Returns true if this action can be applied in this specified state with the specified parameters.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../../../../burlap/behavior/singleagent/Policy.ActionProb.html" title="class in burlap.behavior.singleagent">Policy.ActionProb</a>&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/PrimitiveOption.html#getActionDistributionForState(burlap.oomdp.core.State,%20java.lang.String[])">getActionDistributionForState</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/PrimitiveOption.html#getActionDistributionForState(burlap.oomdp.core.states.State,%20java.lang.String[])">getActionDistributionForState</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                              java.lang.String[]&nbsp;params)</code>
-<div class="block">Returns the option's policy distribution for a given state.</div>
+<div class="block">Returns the option'o policy distribution for a given state.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/PrimitiveOption.html#initiateInStateHelper(burlap.oomdp.core.State,%20java.lang.String[])">initiateInStateHelper</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/PrimitiveOption.html#initiateInStateHelper(burlap.oomdp.core.states.State,%20java.lang.String[])">initiateInStateHelper</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                      java.lang.String[]&nbsp;params)</code>
 <div class="block">This method is always called when an option is initated and begins execution.</div>
 </td>
@@ -219,14 +219,14 @@ extends <a href="../../../../burlap/behavior/singleagent/options/Option.html" ti
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/PrimitiveOption.html#oneStepActionSelection(burlap.oomdp.core.State,%20java.lang.String[])">oneStepActionSelection</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/PrimitiveOption.html#oneStepActionSelection(burlap.oomdp.core.states.State,%20java.lang.String[])">oneStepActionSelection</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                       java.lang.String[]&nbsp;params)</code>
 <div class="block">This method causes the option to take a single step in the given state, when the option was initiated with the provided parameters.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/PrimitiveOption.html#probabilityOfTermination(burlap.oomdp.core.State,%20java.lang.String[])">probabilityOfTermination</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/PrimitiveOption.html#probabilityOfTermination(burlap.oomdp.core.states.State,%20java.lang.String[])">probabilityOfTermination</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                         java.lang.String[]&nbsp;params)</code>
 <div class="block">Returns the probability that this option (executed with the given parameters) will terminate in the given state</div>
 </td>
@@ -234,13 +234,13 @@ extends <a href="../../../../burlap/behavior/singleagent/options/Option.html" ti
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/PrimitiveOption.html#usesDeterministicPolicy()">usesDeterministicPolicy</a></strong>()</code>
-<div class="block">Returns whether this option's policy is deterministic or stochastic</div>
+<div class="block">Returns whether this option'o policy is deterministic or stochastic</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/PrimitiveOption.html#usesDeterministicTermination()">usesDeterministicTermination</a></strong>()</code>
-<div class="block">Returns whether this option's termination conditions are deterministic or stochastic</div>
+<div class="block">Returns whether this option'o termination conditions are deterministic or stochastic</div>
 </td>
 </tr>
 </table>
@@ -249,14 +249,14 @@ extends <a href="../../../../burlap/behavior/singleagent/options/Option.html" ti
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;burlap.behavior.singleagent.options.<a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options">Option</a></h3>
-<code><a href="../../../../burlap/behavior/singleagent/options/Option.html#accumulateDiscountedProb(java.util.Map,%20burlap.oomdp.core.State,%20double)">accumulateDiscountedProb</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#continueFromState(burlap.oomdp.core.State,%20java.lang.String[])">continueFromState</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#getDeterministicPolicy(burlap.oomdp.core.State,%20java.lang.String[])">getDeterministicPolicy</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#getExpectedRewards(burlap.oomdp.core.State,%20java.lang.String[])">getExpectedRewards</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#getLastCumulativeReward()">getLastCumulativeReward</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#getLastExecutionResults()">getLastExecutionResults</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#getLastNumSteps()">getLastNumSteps</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#getTransitions(burlap.oomdp.core.State,%20java.lang.String[])">getTransitions</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#init(java.lang.String,%20burlap.oomdp.core.Domain,%20java.lang.String[],%20java.lang.String[])">init</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#initiateInState(burlap.oomdp.core.State,%20java.lang.String[])">initiateInState</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#isAnnotatingExecutionResults()">isAnnotatingExecutionResults</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#isRecordingExecutionResults()">isRecordingExecutionResults</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#iterateExpectationScan(burlap.behavior.singleagent.options.Option.ExpectationSearchNode,%20double,%20java.util.Map,%20double[])">iterateExpectationScan</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#keepTrackOfRewardWith(burlap.oomdp.singleagent.RewardFunction,%20double)">keepTrackOfRewardWith</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#map(burlap.oomdp.core.State)">map</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#oneStep(burlap.oomdp.core.State,%20java.lang.String[])">oneStep</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#performActionHelper(burlap.oomdp.core.State,%20java.lang.String[])">performActionHelper</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#setExernalTermination(burlap.oomdp.core.TerminalFunction)">setExernalTermination</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#setExpectationCalculationProbabilityCutoff(double)">setExpectationCalculationProbabilityCutoff</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#setExpectationHashingFactory(burlap.behavior.statehashing.StateHashFactory)">setExpectationHashingFactory</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#setStateMapping(burlap.behavior.singleagent.planning.StateMapping)">setStateMapping</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#setTerminateMapper(burlap.behavior.singleagent.options.DirectOptionTerminateMapper)">setTerminateMapper</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#toggleShouldAnnotateResults(boolean)">toggleShouldAnnotateResults</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#toggleShouldRecordResults(boolean)">toggleShouldRecordResults</a></code></li>
+<code><a href="../../../../burlap/behavior/singleagent/options/Option.html#accumulateDiscountedProb(java.util.Map,%20burlap.oomdp.core.State,%20double)">accumulateDiscountedProb</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#continueFromState(burlap.oomdp.core.states.State,%20java.lang.String[])">continueFromState</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#getDeterministicPolicy(burlap.oomdp.core.states.State,%20java.lang.String[])">getDeterministicPolicy</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#getExpectedRewards(burlap.oomdp.core.states.State,%20java.lang.String[])">getExpectedRewards</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#getLastCumulativeReward()">getLastCumulativeReward</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#getLastExecutionResults()">getLastExecutionResults</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#getLastNumSteps()">getLastNumSteps</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#getTransitions(burlap.oomdp.core.states.State,%20java.lang.String[])">getTransitions</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#init(java.lang.String,%20burlap.oomdp.core.Domain,%20java.lang.String[],%20java.lang.String[])">init</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#initiateInState(burlap.oomdp.core.states.State,%20java.lang.String[])">initiateInState</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#isAnnotatingExecutionResults()">isAnnotatingExecutionResults</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#isRecordingExecutionResults()">isRecordingExecutionResults</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#iterateExpectationScan(burlap.behavior.singleagent.options.Option.ExpectationSearchNode,%20double,%20java.util.Map,%20double[])">iterateExpectationScan</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#keepTrackOfRewardWith(burlap.oomdp.singleagent.RewardFunction,%20double)">keepTrackOfRewardWith</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#map(burlap.oomdp.core.states.State)">map</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#oneStep(burlap.oomdp.core.states.State,%20java.lang.String[])">oneStep</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#performActionHelper(burlap.oomdp.core.states.State,%20java.lang.String[])">performActionHelper</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#setExernalTermination(burlap.oomdp.core.TerminalFunction)">setExernalTermination</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#setExpectationCalculationProbabilityCutoff(double)">setExpectationCalculationProbabilityCutoff</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#setExpectationHashingFactory(burlap.oomdp.statehashing.StateHashFactory)">setExpectationHashingFactory</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#setStateMapping(burlap.oomdp.auxiliary.StateMapping)">setStateMapping</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#setTerminateMapper(burlap.behavior.singleagent.options.support.DirectOptionTerminateMapper)">setTerminateMapper</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#toggleShouldAnnotateResults(boolean)">toggleShouldAnnotateResults</a>, <a href="../../../../burlap/behavior/singleagent/options/Option.html#toggleShouldRecordResults(boolean)">toggleShouldRecordResults</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_burlap.oomdp.singleagent.Action">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;burlap.oomdp.singleagent.<a href="../../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a></h3>
-<code><a href="../../../../burlap/oomdp/singleagent/Action.html#addActionObserver(burlap.oomdp.singleagent.ActionObserver)">addActionObserver</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#applicableInState(burlap.oomdp.core.State,%20java.lang.String)">applicableInState</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#clearAllActionsObservers()">clearAllActionsObservers</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#deterministicTransition(burlap.oomdp.core.State,%20java.lang.String[])">deterministicTransition</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#equals(java.lang.Object)">equals</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActions(burlap.oomdp.core.State)">getAllApplicableGroundedActions</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActionsFromActionList(java.util.List,%20burlap.oomdp.core.State)">getAllApplicableGroundedActionsFromActionList</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getDomain()">getDomain</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getName()">getName</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getParameterClasses()">getParameterClasses</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getParameterOrderGroups()">getParameterOrderGroups</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getTransitions(burlap.oomdp.core.State,%20java.lang.String)">getTransitions</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#hashCode()">hashCode</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#parametersAreObjects()">parametersAreObjects</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#performAction(burlap.oomdp.core.State,%20java.lang.String)">performAction</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#performAction(burlap.oomdp.core.State,%20java.lang.String[])">performAction</a></code></li>
+<code><a href="../../../../burlap/oomdp/singleagent/Action.html#addActionObserver(burlap.oomdp.singleagent.ActionObserver)">addActionObserver</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#applicableInState(burlap.oomdp.core.states.State,%20java.lang.String)">applicableInState</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#clearAllActionsObservers()">clearAllActionsObservers</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#deterministicTransition(burlap.oomdp.core.states.State,%20java.lang.String[])">deterministicTransition</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#equals(java.lang.Object)">equals</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActions(burlap.oomdp.core.states.State)">getAllApplicableGroundedActions</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActionsFromActionList(java.util.List,%20burlap.oomdp.core.State)">getAllApplicableGroundedActionsFromActionList</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getDomain()">getDomain</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getName()">getName</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getParameterClasses()">getParameterClasses</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getParameterOrderGroups()">getParameterOrderGroups</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#getTransitions(burlap.oomdp.core.states.State,%20java.lang.String)">getTransitions</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#hashCode()">hashCode</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#parametersAreObjects()">parametersAreObjects</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#performAction(burlap.oomdp.core.states.State,%20java.lang.String)">performAction</a>, <a href="../../../../burlap/oomdp/singleagent/Action.html#performAction(burlap.oomdp.core.states.State,%20java.lang.String[])">performAction</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -355,11 +355,11 @@ extends <a href="../../../../burlap/behavior/singleagent/options/Option.html" ti
 <h4>usesDeterministicTermination</h4>
 <pre>public&nbsp;boolean&nbsp;usesDeterministicTermination()</pre>
 <div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html#usesDeterministicTermination()">Option</a></code></strong></div>
-<div class="block">Returns whether this option's termination conditions are deterministic or stochastic</div>
+<div class="block">Returns whether this option'o termination conditions are deterministic or stochastic</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../burlap/behavior/singleagent/options/Option.html#usesDeterministicTermination()">usesDeterministicTermination</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options">Option</a></code></dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if this option's termination conditions are deterministic; false if stochastic.</dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>true if this option'o termination conditions are deterministic; false if stochastic.</dd></dl>
 </li>
 </ul>
 <a name="usesDeterministicPolicy()">
@@ -370,49 +370,49 @@ extends <a href="../../../../burlap/behavior/singleagent/options/Option.html" ti
 <h4>usesDeterministicPolicy</h4>
 <pre>public&nbsp;boolean&nbsp;usesDeterministicPolicy()</pre>
 <div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html#usesDeterministicPolicy()">Option</a></code></strong></div>
-<div class="block">Returns whether this option's policy is deterministic or stochastic</div>
+<div class="block">Returns whether this option'o policy is deterministic or stochastic</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../burlap/behavior/singleagent/options/Option.html#usesDeterministicPolicy()">usesDeterministicPolicy</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options">Option</a></code></dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if this option's policy is deterministic; false if stochastic</dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>true if this option'o policy is deterministic; false if stochastic</dd></dl>
 </li>
 </ul>
-<a name="probabilityOfTermination(burlap.oomdp.core.State, java.lang.String[])">
+<a name="probabilityOfTermination(burlap.oomdp.core.states.State, java.lang.String[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>probabilityOfTermination</h4>
-<pre>public&nbsp;double&nbsp;probabilityOfTermination(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;double&nbsp;probabilityOfTermination(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                               java.lang.String[]&nbsp;params)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html#probabilityOfTermination(burlap.oomdp.core.State,%20java.lang.String[])">Option</a></code></strong></div>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html#probabilityOfTermination(burlap.oomdp.core.states.State,%20java.lang.String[])">Option</a></code></strong></div>
 <div class="block">Returns the probability that this option (executed with the given parameters) will terminate in the given state</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../burlap/behavior/singleagent/options/Option.html#probabilityOfTermination(burlap.oomdp.core.State,%20java.lang.String[])">probabilityOfTermination</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options">Option</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state to test for termination</dd><dd><code>params</code> - any parameters that were applied to this option when it was initiated</dd>
+<dd><code><a href="../../../../burlap/behavior/singleagent/options/Option.html#probabilityOfTermination(burlap.oomdp.core.states.State,%20java.lang.String[])">probabilityOfTermination</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options">Option</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state to test for termination</dd><dd><code>params</code> - any parameters that were applied to this option when it was initiated</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the probability that this option (executed with the given parameters) will terminate in the given state</dd></dl>
 </li>
 </ul>
-<a name="initiateInStateHelper(burlap.oomdp.core.State, java.lang.String[])">
+<a name="initiateInStateHelper(burlap.oomdp.core.states.State, java.lang.String[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>initiateInStateHelper</h4>
-<pre>public&nbsp;void&nbsp;initiateInStateHelper(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;void&nbsp;initiateInStateHelper(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                          java.lang.String[]&nbsp;params)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html#initiateInStateHelper(burlap.oomdp.core.State,%20java.lang.String[])">Option</a></code></strong></div>
-<div class="block">This method is always called when an option is initated and begins execution. Specifically, it is called from the <a href="../../../../burlap/behavior/singleagent/options/Option.html#performActionHelper(burlap.oomdp.core.State,%20java.lang.String[])"><code>Option.performActionHelper(State, String [])</code></a>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html#initiateInStateHelper(burlap.oomdp.core.states.State,%20java.lang.String[])">Option</a></code></strong></div>
+<div class="block">This method is always called when an option is initated and begins execution. Specifically, it is called from the <a href="../../../../burlap/behavior/singleagent/options/Option.html#performActionHelper(burlap.oomdp.core.states.State,%20java.lang.String[])"><code>Option.performActionHelper(State, String [])</code></a>
  For Markov options, this method probably does not need to do anything, but for non-Markov options, like Macro actions, it may need
  to initialize some structures for determining termination and action selection.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../burlap/behavior/singleagent/options/Option.html#initiateInStateHelper(burlap.oomdp.core.State,%20java.lang.String[])">initiateInStateHelper</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options">Option</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which the option was initiated</dd><dd><code>params</code> - the parameters that were passed to the option for execution</dd></dl>
+<dd><code><a href="../../../../burlap/behavior/singleagent/options/Option.html#initiateInStateHelper(burlap.oomdp.core.states.State,%20java.lang.String[])">initiateInStateHelper</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options">Option</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which the option was initiated</dd><dd><code>params</code> - the parameters that were passed to the option for execution</dd></dl>
 </li>
 </ul>
-<a name="applicableInState(burlap.oomdp.core.State, java.lang.String[])">
+<a name="applicableInState(burlap.oomdp.core.states.State, java.lang.String[])">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -420,51 +420,51 @@ extends <a href="../../../../burlap/behavior/singleagent/options/Option.html" ti
 <h4>applicableInState</h4>
 <pre>public&nbsp;boolean&nbsp;applicableInState(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;st,
                         java.lang.String[]&nbsp;params)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/oomdp/singleagent/Action.html#applicableInState(burlap.oomdp.core.State,%20java.lang.String[])">Action</a></code></strong></div>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/oomdp/singleagent/Action.html#applicableInState(burlap.oomdp.core.states.State,%20java.lang.String[])">Action</a></code></strong></div>
 <div class="block">Returns true if this action can be applied in this specified state with the specified parameters.
  Default behavior is that an action can be applied in any state,
  but this will need be overridden if that is not the case.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../burlap/oomdp/singleagent/Action.html#applicableInState(burlap.oomdp.core.State,%20java.lang.String[])">applicableInState</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a></code></dd>
+<dd><code><a href="../../../../burlap/oomdp/singleagent/Action.html#applicableInState(burlap.oomdp.core.states.State,%20java.lang.String[])">applicableInState</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a></code></dd>
 <dt><span class="strong">Parameters:</span></dt><dd><code>st</code> - the state to perform the action on</dd><dd><code>params</code> - a String array specifying the action object parameters</dd>
 <dt><span class="strong">Returns:</span></dt><dd>whether the action can be performed on the given state</dd></dl>
 </li>
 </ul>
-<a name="oneStepActionSelection(burlap.oomdp.core.State, java.lang.String[])">
+<a name="oneStepActionSelection(burlap.oomdp.core.states.State, java.lang.String[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>oneStepActionSelection</h4>
-<pre>public&nbsp;<a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;oneStepActionSelection(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;<a href="../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;oneStepActionSelection(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                                     java.lang.String[]&nbsp;params)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html#oneStepActionSelection(burlap.oomdp.core.State,%20java.lang.String[])">Option</a></code></strong></div>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html#oneStepActionSelection(burlap.oomdp.core.states.State,%20java.lang.String[])">Option</a></code></strong></div>
 <div class="block">This method causes the option to take a single step in the given state, when the option was initiated with the provided parameters.
- This method will be called by the <a href="../../../../burlap/behavior/singleagent/options/Option.html#performActionHelper(burlap.oomdp.core.State,%20java.lang.String[])"><code>Option.performActionHelper(State, String [])</code></a> method until it is determined that the option terminates.</div>
+ This method will be called by the <a href="../../../../burlap/behavior/singleagent/options/Option.html#performActionHelper(burlap.oomdp.core.states.State,%20java.lang.String[])"><code>Option.performActionHelper(State, String [])</code></a> method until it is determined that the option terminates.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../burlap/behavior/singleagent/options/Option.html#oneStepActionSelection(burlap.oomdp.core.State,%20java.lang.String[])">oneStepActionSelection</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options">Option</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which an action should be selected.</dd><dd><code>params</code> - the parameters that were passed to the option when it was initiated</dd>
-<dt><span class="strong">Returns:</span></dt><dd>the action the option has selected to take in State <code>s</code></dd></dl>
+<dd><code><a href="../../../../burlap/behavior/singleagent/options/Option.html#oneStepActionSelection(burlap.oomdp.core.states.State,%20java.lang.String[])">oneStepActionSelection</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options">Option</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which an action should be selected.</dd><dd><code>params</code> - the parameters that were passed to the option when it was initiated</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the action the option has selected to take in State <code>o</code></dd></dl>
 </li>
 </ul>
-<a name="getActionDistributionForState(burlap.oomdp.core.State, java.lang.String[])">
+<a name="getActionDistributionForState(burlap.oomdp.core.states.State, java.lang.String[])">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getActionDistributionForState</h4>
-<pre>public&nbsp;java.util.List&lt;<a href="../../../../burlap/behavior/singleagent/Policy.ActionProb.html" title="class in burlap.behavior.singleagent">Policy.ActionProb</a>&gt;&nbsp;getActionDistributionForState(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;java.util.List&lt;<a href="../../../../burlap/behavior/singleagent/Policy.ActionProb.html" title="class in burlap.behavior.singleagent">Policy.ActionProb</a>&gt;&nbsp;getActionDistributionForState(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                                                               java.lang.String[]&nbsp;params)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html#getActionDistributionForState(burlap.oomdp.core.State,%20java.lang.String[])">Option</a></code></strong></div>
-<div class="block">Returns the option's policy distribution for a given state. This method is primarily used by the methods for computing transition dynamics.
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html#getActionDistributionForState(burlap.oomdp.core.states.State,%20java.lang.String[])">Option</a></code></strong></div>
+<div class="block">Returns the option'o policy distribution for a given state. This method is primarily used by the methods for computing transition dynamics.
  Note that if this is a non-Markov option, the returned distribution should be with respect to the state in which the option was
  executed and any previous actions it took that influence behavior.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../burlap/behavior/singleagent/options/Option.html#getActionDistributionForState(burlap.oomdp.core.State,%20java.lang.String[])">getActionDistributionForState</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options">Option</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state for which this option's policy distribution should be returned</dd><dd><code>params</code> - the parameters that were passed to the option when it was initiated</dd>
+<dd><code><a href="../../../../burlap/behavior/singleagent/options/Option.html#getActionDistributionForState(burlap.oomdp.core.states.State,%20java.lang.String[])">getActionDistributionForState</a></code>&nbsp;in class&nbsp;<code><a href="../../../../burlap/behavior/singleagent/options/Option.html" title="class in burlap.behavior.singleagent.options">Option</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state for which this option'o policy distribution should be returned</dd><dd><code>params</code> - the parameters that were passed to the option when it was initiated</dd>
 <dt><span class="strong">Returns:</span></dt><dd>this options policy distribution for the given state.</dd></dl>
 </li>
 </ul>

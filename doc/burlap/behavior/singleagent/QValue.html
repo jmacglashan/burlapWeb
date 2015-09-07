@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.QValue</li>
+<li>burlap.behavior.valuefunction.QValue</li>
 </ul>
 </li>
 </ul>
@@ -132,7 +132,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a></code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/QValue.html#s">s</a></strong></code>
+<td class="colLast"><code><strong><a href="../../../burlap/behavior/singleagent/QValue.html#o">o</a></strong></code>
 <div class="block">The state with which this Q-value is associated.</div>
 </td>
 </tr>
@@ -151,12 +151,12 @@ extends java.lang.Object</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../burlap/behavior/singleagent/QValue.html#QValue(burlap.behavior.singleagent.QValue)">QValue</a></strong>(<a href="../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent">QValue</a>&nbsp;src)</code>
+<td class="colOne"><code><strong><a href="../../../burlap/behavior/singleagent/QValue.html#QValue(burlap.behavior.valuefunction.QValue)">QValue</a></strong>(<a href="../../../burlap/behavior/singleagent/QValue.html" title="class in burlap.behavior.singleagent">QValue</a>&nbsp;src)</code>
 <div class="block">Initialializes this Q-value by copying the information from another Q-value.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../burlap/behavior/singleagent/QValue.html#QValue(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction,%20double)">QValue</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colOne"><code><strong><a href="../../../burlap/behavior/singleagent/QValue.html#QValue(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction,%20double)">QValue</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
       <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a>&nbsp;a,
       double&nbsp;q)</code>
 <div class="block">Creates a Q-value for the given state an action pair with the specified q-value</div>
@@ -192,13 +192,13 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a name="s">
+<a name="o">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>s</h4>
-<pre>public&nbsp;<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a> s</pre>
+<h4>o</h4>
+<pre>public&nbsp;<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a> o</pre>
 <div class="block">The state with which this Q-value is associated.</div>
 </li>
 </ul>
@@ -230,17 +230,17 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="QValue(burlap.oomdp.core.State, burlap.oomdp.core.AbstractGroundedAction, double)">
+<a name="QValue(burlap.oomdp.core.states.State, burlap.oomdp.core.AbstractGroundedAction, double)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>QValue</h4>
-<pre>public&nbsp;QValue(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;QValue(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
       <a href="../../../burlap/oomdp/core/AbstractGroundedAction.html" title="class in burlap.oomdp.core">AbstractGroundedAction</a>&nbsp;a,
       double&nbsp;q)</pre>
 <div class="block">Creates a Q-value for the given state an action pair with the specified q-value</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state</dd><dd><code>a</code> - the action</dd><dd><code>q</code> - the initial Q-value</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state</dd><dd><code>a</code> - the action</dd><dd><code>q</code> - the initial Q-value</dd></dl>
 </li>
 </ul>
 <a name="QValue(burlap.behavior.singleagent.QValue)">

@@ -36,7 +36,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgame.solvers"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgames.solvers"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.stochasticgame.solvers</div>
+<div class="subTitle">burlap.behavior.stochasticgames.solvers</div>
 <h2 title="Class CorrelatedEquilibriumSolver" class="title">Class CorrelatedEquilibriumSolver</h2>
 </div>
 <div class="contentContainer">
@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.stochasticgame.solvers.CorrelatedEquilibriumSolver</li>
+<li>burlap.behavior.stochasticgames.solvers.CorrelatedEquilibriumSolver</li>
 </ul>
 </li>
 </ul>
@@ -106,11 +106,11 @@ extends java.lang.Object</pre>
  utilitarian, egalitarian, libertarian, and republican, as defined by Greenwald and Hall [1]. The utilitarian
  objective maximizes the sum payoff of the found joint strategy. Egalitarian maximizes the minimum player payoff.
  Republican maximizes the maximum player payoff. Liberatarian maximizes the payoff for a specific player.
- These different objectives can be specified with the <a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgame.solvers"><code>CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective</code></a> enumeration.
+ These different objectives can be specified with the <a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgames.solvers"><code>CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective</code></a> enumeration.
  
  <p/>
  The primary method
- to use to get the equilibrium is the <a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.html#getCorrelatedEQJointStrategy(burlap.behavior.stochasticgame.solvers.CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective,%20double[][],%20double[][])"><code>getCorrelatedEQJointStrategy(CorrelatedEquilibriumObjective, double[][], double[][])</code></a> method.
+ to use to get the equilibrium is the <a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.html#getCorrelatedEQJointStrategy(burlap.behavior.stochasticgames.solvers.CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective,%20double[][],%20double[][])"><code>getCorrelatedEQJointStrategy(CorrelatedEquilibriumObjective, double[][], double[][])</code></a> method.
  
  <p/>
  This class depends on the SCPSolver library.
@@ -140,7 +140,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgame.solvers">CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective</a></strong></code>
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgames.solvers">CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective</a></strong></code>
 <div class="block">The four different equilibrium objectives that can be used:
  UTILITARIAN, EGALITARIAN, REPUBLICAN, and LIBERTARIAN.</div>
 </td>
@@ -191,11 +191,11 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static double[][]</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.html#getCorrelatedEQJointStrategy(burlap.behavior.stochasticgame.solvers.CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective,%20double[][],%20double[][])">getCorrelatedEQJointStrategy</a></strong>(<a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgame.solvers">CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective</a>&nbsp;objectiveType,
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.html#getCorrelatedEQJointStrategy(burlap.behavior.stochasticgames.solvers.CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective,%20double[][],%20double[][])">getCorrelatedEQJointStrategy</a></strong>(<a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgames.solvers">CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective</a>&nbsp;objectiveType,
                             double[][]&nbsp;payoffRow,
                             double[][]&nbsp;payoffCol)</code>
 <div class="block">Returns the correlated equilibrium joint strategy in a 2D double matrix, which represents the probability of each joint actino (where rows
- are player 1s actions and columns are player 2's actions).</div>
+ are player 1s actions and columns are player 2'o actions).</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -250,7 +250,7 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static double[]</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.html#getRepublicanObjective(double[][])">getRepublicanObjective</a></strong>(double[][]&nbsp;payoffForQueryPlayer)</code>
-<div class="block">Returns the republican/libertarian objective for the given player's payoffs that are to be maximized.</div>
+<div class="block">Returns the republican/libertarian objective for the given player'o payoffs that are to be maximized.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -354,18 +354,18 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;void&nbsp;main(java.lang.String[]&nbsp;args)</pre>
 </li>
 </ul>
-<a name="getCorrelatedEQJointStrategy(burlap.behavior.stochasticgame.solvers.CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective, double[][], double[][])">
+<a name="getCorrelatedEQJointStrategy(burlap.behavior.stochasticgames.solvers.CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective, double[][], double[][])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getCorrelatedEQJointStrategy</h4>
-<pre>public static&nbsp;double[][]&nbsp;getCorrelatedEQJointStrategy(<a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgame.solvers">CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective</a>&nbsp;objectiveType,
+<pre>public static&nbsp;double[][]&nbsp;getCorrelatedEQJointStrategy(<a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgames.solvers">CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective</a>&nbsp;objectiveType,
                                       double[][]&nbsp;payoffRow,
                                       double[][]&nbsp;payoffCol)</pre>
 <div class="block">Returns the correlated equilibrium joint strategy in a 2D double matrix, which represents the probability of each joint actino (where rows
- are player 1s actions and columns are player 2's actions). If the @{linke <a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html#LIBERTARIAN"><code>CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.LIBERTARIAN</code></a> objective
- is selected, it will maximize with respect to the row player's payoffs and return the strategy from their perspecitve. Therefore
+ are player 1s actions and columns are player 2'o actions). If the @{linke <a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html#LIBERTARIAN"><code>CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.LIBERTARIAN</code></a> objective
+ is selected, it will maximize with respect to the row player'o payoffs and return the strategy from their perspecitve. Therefore
  for a combined joint strategy for each player in libertrain, this method should then be called for each player
  and then combined as necessary to get a final joint strategy that will be followed by the players.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>objectiveType</code> - the maximizing objective for the correlated equilibrium being solved.</dd><dd><code>payoffRow</code> - the payoff for the player whose actions correspond to the rows of the matrix</dd><dd><code>payoffCol</code> - the payoff for the player whose actions correspond to the columns of the matrix</dd>
@@ -501,7 +501,7 @@ protected static&nbsp;double[][]&nbsp;getCorrelatedEQJointStrategyUsingJOptimize
 <pre>public static&nbsp;double[]&nbsp;getUtilitarianObjective(double[][]&nbsp;payoffRow,
                                double[][]&nbsp;payoffCol)</pre>
 <div class="block">Returns the utilitarian objective for the given payoffs for the row and column player.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>payoffRow</code> - the row player's payoffs</dd><dd><code>payoffCol</code> - the column player's payoffs</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>payoffRow</code> - the row player'o payoffs</dd><dd><code>payoffCol</code> - the column player'o payoffs</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the objective function as a double array of the LP variable coeffecients.</dd></dl>
 </li>
 </ul>
@@ -514,7 +514,7 @@ protected static&nbsp;double[][]&nbsp;getCorrelatedEQJointStrategyUsingJOptimize
 <pre>public static&nbsp;double[]&nbsp;getEgalitarianObjective(double[][]&nbsp;payoffRow,
                                double[][]&nbsp;payoffCol)</pre>
 <div class="block">Returns the egalitarian objective for the given payoffs for the row and column player.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>payoffRow</code> - the row player's payoffs</dd><dd><code>payoffCol</code> - the column player's payoffs</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>payoffRow</code> - the row player'o payoffs</dd><dd><code>payoffCol</code> - the column player'o payoffs</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the objective function as a double array of the LP variable coeffecients.</dd></dl>
 </li>
 </ul>
@@ -525,9 +525,9 @@ protected static&nbsp;double[][]&nbsp;getCorrelatedEQJointStrategyUsingJOptimize
 <li class="blockList">
 <h4>getRepublicanObjective</h4>
 <pre>public static&nbsp;double[]&nbsp;getRepublicanObjective(double[][]&nbsp;payoffForQueryPlayer)</pre>
-<div class="block">Returns the republican/libertarian objective for the given player's payoffs that are to be maximized. The repubilican objective
+<div class="block">Returns the republican/libertarian objective for the given player'o payoffs that are to be maximized. The repubilican objective
  will use this method to solve an LP for each player. The libertarian will use this method to solve a single LP for the selected player.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>payoffForQueryPlayer</code> - the given player's player's payoffs that are to be maximized</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>payoffForQueryPlayer</code> - the given player'o player'o payoffs that are to be maximized</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the objective function as a double array of the LP variable coeffecients.</dd></dl>
 </li>
 </ul>
@@ -622,7 +622,7 @@ protected static&nbsp;double[][]&nbsp;getCorrelatedEQJointStrategyUsingJOptimize
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgame.solvers"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgames.solvers"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.html" target="_top">Frames</a></li>

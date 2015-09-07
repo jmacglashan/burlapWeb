@@ -35,8 +35,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgame.solvers"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../burlap/behavior/stochasticgame/solvers/MinMaxSolver.html" title="class in burlap.behavior.stochasticgame.solvers"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgames.solvers"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../burlap/behavior/stochasticgame/solvers/MinMaxSolver.html" title="class in burlap.behavior.stochasticgames.solvers"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?burlap/behavior/stochasticgame/solvers/GeneralBimatrixSolverTools.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.stochasticgame.solvers</div>
+<div class="subTitle">burlap.behavior.stochasticgames.solvers</div>
 <h2 title="Class GeneralBimatrixSolverTools" class="title">Class GeneralBimatrixSolverTools</h2>
 </div>
 <div class="contentContainer">
@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.stochasticgame.solvers.GeneralBimatrixSolverTools</li>
+<li>burlap.behavior.stochasticgames.solvers.GeneralBimatrixSolverTools</li>
 </ul>
 </li>
 </ul>
@@ -187,19 +187,19 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>static double[][]</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/stochasticgame/solvers/GeneralBimatrixSolverTools.html#jointActionProbabilities(double[],%20double[])">jointActionProbabilities</a></strong>(double[]&nbsp;rowPlayerStrategy,
                         double[]&nbsp;colPlayerStrategy)</code>
-<div class="block">Computes the joint action probabilities accroding to each player's strategy and returns it as a matrix.</div>
+<div class="block">Computes the joint action probabilities accroding to each player'o strategy and returns it as a matrix.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static double[]</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/stochasticgame/solvers/GeneralBimatrixSolverTools.html#marginalizeColPlayerStrategy(double[][])">marginalizeColPlayerStrategy</a></strong>(double[][]&nbsp;jointActionProbabilities)</code>
-<div class="block">Returns the column player's strategy by marginalizing it out from a joint action probability distribution represented as a matrix</div>
+<div class="block">Returns the column player'o strategy by marginalizing it out from a joint action probability distribution represented as a matrix</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static double[]</code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/stochasticgame/solvers/GeneralBimatrixSolverTools.html#marginalizeRowPlayerStrategy(double[][])">marginalizeRowPlayerStrategy</a></strong>(double[][]&nbsp;jointActionProbabilities)</code>
-<div class="block">Returns the row player's strategy by marginalizing it out from a joint action probability distribution represented as a matrix</div>
+<div class="block">Returns the row player'o strategy by marginalizing it out from a joint action probability distribution represented as a matrix</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -265,8 +265,8 @@ extends java.lang.Object</pre>
                        double[]&nbsp;rowPlayerStrategy,
                        double[]&nbsp;colPlayerStrategy)</pre>
 <div class="block">Computes the expected payoff for each player in a bimatrix game according to their strategies.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>payoffRowPlayer</code> - the payoff for player 1. Rows are player 1's actions; columns player 2's.</dd><dd><code>payoffColPlayer</code> - the payoff for player 2. Rows are player 1's actions; columns player 2's.</dd><dd><code>rowPlayerStrategy</code> - the strategy for player 1. Should be array with dimension equal to the number of player 1's actions.</dd><dd><code>colPlayerStrategy</code> - the stratgy for player 2. Should be array with dimension equal to the number of player 2's actions.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>a double array of dimension two. Index 0 holds the first player's expected payoff; index 1 holds the second player's expected payoff.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>payoffRowPlayer</code> - the payoff for player 1. Rows are player 1'o actions; columns player 2'o.</dd><dd><code>payoffColPlayer</code> - the payoff for player 2. Rows are player 1'o actions; columns player 2'o.</dd><dd><code>rowPlayerStrategy</code> - the strategy for player 1. Should be array with dimension equal to the number of player 1'o actions.</dd><dd><code>colPlayerStrategy</code> - the stratgy for player 2. Should be array with dimension equal to the number of player 2'o actions.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>a double array of dimension two. Index 0 holds the first player'o expected payoff; index 1 holds the second player'o expected payoff.</dd></dl>
 </li>
 </ul>
 <a name="expectedPayoffs(double[][], double[][], double[][])">
@@ -288,7 +288,7 @@ extends java.lang.Object</pre>
 <h4>jointActionProbabilities</h4>
 <pre>public static&nbsp;double[][]&nbsp;jointActionProbabilities(double[]&nbsp;rowPlayerStrategy,
                                   double[]&nbsp;colPlayerStrategy)</pre>
-<div class="block">Computes the joint action probabilities accroding to each player's strategy and returns it as a matrix.</div>
+<div class="block">Computes the joint action probabilities accroding to each player'o strategy and returns it as a matrix.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>rowPlayerStrategy</code> - the strategy of the player whose actions will be represented by the rows of the returned matrix.</dd><dd><code>colPlayerStrategy</code> - the strategy of the player whose actions will represented by the columns of the returned matrix.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the joint action probabilities in a matrix. m[i][j] represents the probability of the row player selecting action i and the column player selecting action j.</dd></dl>
 </li>
@@ -300,9 +300,9 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>marginalizeRowPlayerStrategy</h4>
 <pre>public static&nbsp;double[]&nbsp;marginalizeRowPlayerStrategy(double[][]&nbsp;jointActionProbabilities)</pre>
-<div class="block">Returns the row player's strategy by marginalizing it out from a joint action probability distribution represented as a matrix</div>
+<div class="block">Returns the row player'o strategy by marginalizing it out from a joint action probability distribution represented as a matrix</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>jointActionProbabilities</code> - a matrix of 2-player joint aciton probability distribution</dd>
-<dt><span class="strong">Returns:</span></dt><dd>the row player's strategy</dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>the row player'o strategy</dd></dl>
 </li>
 </ul>
 <a name="marginalizeColPlayerStrategy(double[][])">
@@ -312,9 +312,9 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>marginalizeColPlayerStrategy</h4>
 <pre>public static&nbsp;double[]&nbsp;marginalizeColPlayerStrategy(double[][]&nbsp;jointActionProbabilities)</pre>
-<div class="block">Returns the column player's strategy by marginalizing it out from a joint action probability distribution represented as a matrix</div>
+<div class="block">Returns the column player'o strategy by marginalizing it out from a joint action probability distribution represented as a matrix</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>jointActionProbabilities</code> - a matrix of 2-player joint aciton probability distribution</dd>
-<dt><span class="strong">Returns:</span></dt><dd>the column player's strategy</dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>the column player'o strategy</dd></dl>
 </li>
 </ul>
 <a name="constantDoubleArray(double, int)">
@@ -432,8 +432,8 @@ extends java.lang.Object</pre>
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgame.solvers"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../burlap/behavior/stochasticgame/solvers/MinMaxSolver.html" title="class in burlap.behavior.stochasticgame.solvers"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../burlap/behavior/stochasticgame/solvers/CorrelatedEquilibriumSolver.CorrelatedEquilibriumObjective.html" title="enum in burlap.behavior.stochasticgames.solvers"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../burlap/behavior/stochasticgame/solvers/MinMaxSolver.html" title="class in burlap.behavior.stochasticgames.solvers"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?burlap/behavior/stochasticgame/solvers/GeneralBimatrixSolverTools.html" target="_top">Frames</a></li>

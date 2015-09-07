@@ -36,7 +36,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlannerFactory.html" title="interface in burlap.behavior.stochasticgame.agents.mavf"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlannerFactory.html" title="interface in burlap.behavior.stochasticgames.agents.madp"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?burlap/behavior/stochasticgame/agents/mavf/MAVFPlanAgentFactory.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.stochasticgame.agents.mavf</div>
+<div class="subTitle">burlap.behavior.stochasticgames.agents.madp</div>
 <h2 title="Class MAVFPlanAgentFactory" class="title">Class MAVFPlanAgentFactory</h2>
 </div>
 <div class="contentContainer">
@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.stochasticgame.agents.mavf.MAVFPlanAgentFactory</li>
+<li>burlap.behavior.stochasticgames.agents.madp.MADPPlanAgentFactory</li>
 </ul>
 </li>
 </ul>
@@ -102,7 +102,7 @@
 <pre>public class <span class="strong">MAVFPlanAgentFactory</span>
 extends java.lang.Object
 implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.html" title="interface in burlap.oomdp.stochasticgames">AgentFactory</a></pre>
-<div class="block">An agent factory for the <a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MultiAgentVFPlanningAgent.html" title="class in burlap.behavior.stochasticgame.agents.mavf"><code>MultiAgentVFPlanningAgent</code></a> agent. Generated agents are always provided a copy of the provided
+<div class="block">An agent factory for the <a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MultiAgentVFPlanningAgent.html" title="class in burlap.behavior.stochasticgames.agents.madp"><code>MultiAgentVFPlanningAgent</code></a> agent. Generated agents are always provided a copy of the provided
  policy object to ensure that multiple agents from the same factory use a policy specific to them.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>James MacGlashan</dd></dl>
@@ -129,11 +129,11 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlanAgentFactory.html#domain">domain</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlannerFactory.html" title="interface in burlap.behavior.stochasticgame.agents.mavf">MAVFPlannerFactory</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlannerFactory.html" title="interface in burlap.behavior.stochasticgames.agents.madp">MAVFPlannerFactory</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlanAgentFactory.html#plannerFactory">plannerFactory</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgame">PolicyFromJointPolicy</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgames">PolicyFromJointPolicy</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlanAgentFactory.html#policy">policy</a></strong></code>&nbsp;</td>
 </tr>
 </table>
@@ -152,15 +152,15 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlanAgentFactory.html#MAVFPlanAgentFactory(burlap.oomdp.stochasticgames.SGDomain,%20burlap.behavior.stochasticgame.mavaluefunction.MAValueFunctionPlanner,%20burlap.behavior.stochasticgame.PolicyFromJointPolicy)">MAVFPlanAgentFactory</a></strong>(<a href="../../../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;domain,
-                    <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">MAValueFunctionPlanner</a>&nbsp;planner,
-                    <a href="../../../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgame">PolicyFromJointPolicy</a>&nbsp;policy)</code>
+                    <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">MAValueFunctionPlanner</a>&nbsp;valueFunction,
+                    <a href="../../../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgames">PolicyFromJointPolicy</a>&nbsp;policy)</code>
 <div class="block">Initializes.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><strong><a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlanAgentFactory.html#MAVFPlanAgentFactory(burlap.oomdp.stochasticgames.SGDomain,%20burlap.behavior.stochasticgame.agents.mavf.MAVFPlannerFactory,%20burlap.behavior.stochasticgame.PolicyFromJointPolicy)">MAVFPlanAgentFactory</a></strong>(<a href="../../../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;domain,
-                    <a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlannerFactory.html" title="interface in burlap.behavior.stochasticgame.agents.mavf">MAVFPlannerFactory</a>&nbsp;plannerFactory,
-                    <a href="../../../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgame">PolicyFromJointPolicy</a>&nbsp;policy)</code>
+                    <a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlannerFactory.html" title="interface in burlap.behavior.stochasticgames.agents.madp">MAVFPlannerFactory</a>&nbsp;plannerFactory,
+                    <a href="../../../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgames">PolicyFromJointPolicy</a>&nbsp;policy)</code>
 <div class="block">Initializes</div>
 </td>
 </tr>
@@ -222,7 +222,7 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
 <ul class="blockList">
 <li class="blockList">
 <h4>plannerFactory</h4>
-<pre>protected&nbsp;<a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlannerFactory.html" title="interface in burlap.behavior.stochasticgame.agents.mavf">MAVFPlannerFactory</a> plannerFactory</pre>
+<pre>protected&nbsp;<a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlannerFactory.html" title="interface in burlap.behavior.stochasticgames.agents.madp">MAVFPlannerFactory</a> plannerFactory</pre>
 </li>
 </ul>
 <a name="policy">
@@ -231,7 +231,7 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
 <ul class="blockListLast">
 <li class="blockList">
 <h4>policy</h4>
-<pre>protected&nbsp;<a href="../../../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgame">PolicyFromJointPolicy</a> policy</pre>
+<pre>protected&nbsp;<a href="../../../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgames">PolicyFromJointPolicy</a> policy</pre>
 </li>
 </ul>
 </li>
@@ -242,30 +242,30 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="MAVFPlanAgentFactory(burlap.oomdp.stochasticgames.SGDomain, burlap.behavior.stochasticgame.mavaluefunction.MAValueFunctionPlanner, burlap.behavior.stochasticgame.PolicyFromJointPolicy)">
+<a name="MAVFPlanAgentFactory(burlap.oomdp.stochasticgames.SGDomain, burlap.behavior.stochasticgames.madynamicprogramming.MADynamicProgramming, burlap.behavior.stochasticgames.PolicyFromJointPolicy)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>MAVFPlanAgentFactory</h4>
 <pre>public&nbsp;MAVFPlanAgentFactory(<a href="../../../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;domain,
-                    <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgame.mavaluefunction">MAValueFunctionPlanner</a>&nbsp;planner,
-                    <a href="../../../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgame">PolicyFromJointPolicy</a>&nbsp;policy)</pre>
+                    <a href="../../../../../burlap/behavior/stochasticgame/mavaluefunction/MAValueFunctionPlanner.html" title="class in burlap.behavior.stochasticgames.madynamicprogramming">MAValueFunctionPlanner</a>&nbsp;valueFunction,
+                    <a href="../../../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgames">PolicyFromJointPolicy</a>&nbsp;policy)</pre>
 <div class="block">Initializes.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain for the agents</dd><dd><code>planner</code> - the planner object that will be used by all generated agents</dd><dd><code>policy</code> - the policy that will be copied and supplied to all generated objects</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain for the agents</dd><dd><code>valueFunction</code> - the valueFunction object that will be used by all generated agents</dd><dd><code>policy</code> - the policy that will be copied and supplied to all generated objects</dd></dl>
 </li>
 </ul>
-<a name="MAVFPlanAgentFactory(burlap.oomdp.stochasticgames.SGDomain, burlap.behavior.stochasticgame.agents.mavf.MAVFPlannerFactory, burlap.behavior.stochasticgame.PolicyFromJointPolicy)">
+<a name="MAVFPlanAgentFactory(burlap.oomdp.stochasticgames.SGDomain, burlap.behavior.stochasticgames.agents.madp.MADPPlannerFactory, burlap.behavior.stochasticgames.PolicyFromJointPolicy)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MAVFPlanAgentFactory</h4>
 <pre>public&nbsp;MAVFPlanAgentFactory(<a href="../../../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;domain,
-                    <a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlannerFactory.html" title="interface in burlap.behavior.stochasticgame.agents.mavf">MAVFPlannerFactory</a>&nbsp;plannerFactory,
-                    <a href="../../../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgame">PolicyFromJointPolicy</a>&nbsp;policy)</pre>
+                    <a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlannerFactory.html" title="interface in burlap.behavior.stochasticgames.agents.madp">MAVFPlannerFactory</a>&nbsp;plannerFactory,
+                    <a href="../../../../../burlap/behavior/stochasticgame/PolicyFromJointPolicy.html" title="class in burlap.behavior.stochasticgames">PolicyFromJointPolicy</a>&nbsp;policy)</pre>
 <div class="block">Initializes</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain for the agents</dd><dd><code>plannerFactory</code> - the planner factory that will be used to generate a planner for the agents</dd><dd><code>policy</code> - the policy that will be copied and supplied to all generated objects</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain</code> - the domain for the agents</dd><dd><code>plannerFactory</code> - the valueFunction factory that will be used to generate a valueFunction for the agents</dd><dd><code>policy</code> - the policy that will be copied and supplied to all generated objects</dd></dl>
 </li>
 </ul>
 </li>
@@ -317,7 +317,7 @@ implements <a href="../../../../../burlap/oomdp/stochasticgames/AgentFactory.htm
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlannerFactory.html" title="interface in burlap.behavior.stochasticgame.agents.mavf"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/stochasticgame/agents/mavf/MAVFPlannerFactory.html" title="interface in burlap.behavior.stochasticgames.agents.madp"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?burlap/behavior/stochasticgame/agents/mavf/MAVFPlanAgentFactory.html" target="_top">Frames</a></li>

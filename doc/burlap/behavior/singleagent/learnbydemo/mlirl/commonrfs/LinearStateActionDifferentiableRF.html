@@ -36,7 +36,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateDifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.commonrfs"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateDifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.commonrfs"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateActionDifferentiableRF.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.singleagent.learnbydemo.mlirl.commonrfs</div>
+<div class="subTitle">burlap.behavior.singleagent.learnfromdemo.mlirl.commonrfs</div>
 <h2 title="Class LinearStateActionDifferentiableRF" class="title">Class LinearStateActionDifferentiableRF</h2>
 </div>
 <div class="contentContainer">
@@ -86,10 +86,10 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">burlap.behavior.singleagent.learnbydemo.mlirl.support.DifferentiableRF</a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">burlap.behavior.singleagent.learnfromdemo.mlirl.support.DifferentiableRF</a></li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.learnbydemo.mlirl.commonrfs.LinearStateActionDifferentiableRF</li>
+<li>burlap.behavior.singleagent.learnfromdemo.mlirl.commonrfs.LinearStateActionDifferentiableRF</li>
 </ul>
 </li>
 </ul>
@@ -105,17 +105,17 @@
 <hr>
 <br>
 <pre>public class <span class="strong">LinearStateActionDifferentiableRF</span>
-extends <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a></pre>
-<div class="block">A class for defining a state-action linear <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>DifferentiableRF</code></a>.
+extends <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a></pre>
+<div class="block">A class for defining a state-action linear <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>DifferentiableRF</code></a>.
  The class takes as input a <a href="../../../../../../burlap/behavior/singleagent/vfa/StateToFeatureVectorGenerator.html" title="interface in burlap.behavior.singleagent.vfa"><code>StateToFeatureVectorGenerator</code></a> and the set of possible
  grounded actions that can be applied in the world. The dimensionality of this reward function is equal to |A|*|f|,
  where A is the set of possible grounded actions, and |f| is the state feature vector dimensionality.
  <p/>
- The reward function is defined as R(s, a, s') = w(a) * f(s), where w(a) is the set of weights (the parameters) of this
- reward functions associated with action a, * is the dot product operator, and f(s) is the feature vector for state s.
+ The reward function is defined as R(o, a, o') = w(a) * f(o), where w(a) is the set of weights (the parameters) of this
+ reward functions associated with action a, * is the dot product operator, and f(o) is the feature vector for state o.
  <p/>
  Note that when the gradient is a vector of size |A||f|, since the feature vector is replicated for each action, and the gradient
- for all entries associated with an action other than the one taken in the (s, a, s') query will have a gradient value of zero.
+ for all entries associated with an action other than the one taken in the (o, a, o') query will have a gradient value of zero.
  <p/>
  The set of possible grounded actions must be defined either in the <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateActionDifferentiableRF.html#LinearStateActionDifferentiableRF(burlap.behavior.singleagent.vfa.StateToFeatureVectorGenerator,%20int,%20burlap.oomdp.singleagent.GroundedAction...)"><code>LinearStateActionDifferentiableRF(burlap.behavior.singleagent.vfa.StateToFeatureVectorGenerator, int, burlap.oomdp.singleagent.GroundedAction...)</code></a>
  constructor, or added iteratively with the <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateActionDifferentiableRF.html#addAction(burlap.oomdp.singleagent.GroundedAction)"><code>addAction(burlap.oomdp.singleagent.GroundedAction)</code></a> method.</div>
@@ -159,10 +159,10 @@ extends <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_burlap.behavior.singleagent.learnbydemo.mlirl.support.DifferentiableRF">
+<li class="blockList"><a name="fields_inherited_from_class_burlap.behavior.singleagent.learnfromdemo.mlirl.support.DifferentiableRF">
 <!--   -->
 </a>
-<h3>Fields inherited from class&nbsp;burlap.behavior.singleagent.learnbydemo.mlirl.support.<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a></h3>
+<h3>Fields inherited from class&nbsp;burlap.behavior.singleagent.learnfromdemo.mlirl.support.<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a></h3>
 <code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#dim">dim</a>, <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#parameters">parameters</a></code></li>
 </ul>
 </li>
@@ -207,7 +207,7 @@ extends <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateActionDifferentiableRF.html#copyHelper()">copyHelper</a></strong>()</code>
 <div class="block">A helper method for making a copy of this reward function.</div>
 </td>
@@ -222,26 +222,26 @@ extends <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>double[]</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateActionDifferentiableRF.html#getGradient(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">getGradient</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateActionDifferentiableRF.html#getGradient(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">getGradient</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
            <a href="../../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;ga,
-           <a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sp)</code>
+           <a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;op)</code>
 <div class="block">Returns the gradient of the reward function for the given state transition.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateActionDifferentiableRF.html#reward(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">reward</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateActionDifferentiableRF.html#reward(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">reward</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
       <a href="../../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;a,
       <a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sprime)</code>
-<div class="block">Returns the reward received when action a is executed in state s and the agent transitions to state sprime.</div>
+<div class="block">Returns the reward received when action a is executed in state o and the agent transitions to state sprime.</div>
 </td>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.singleagent.learnbydemo.mlirl.support.DifferentiableRF">
+<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.singleagent.learnfromdemo.mlirl.support.DifferentiableRF">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;burlap.behavior.singleagent.learnbydemo.mlirl.support.<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a></h3>
+<h3>Methods inherited from class&nbsp;burlap.behavior.singleagent.learnfromdemo.mlirl.support.<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a></h3>
 <code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#copy()">copy</a>, <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#getParameterDimension()">getParameterDimension</a>, <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#getParameters()">getParameters</a>, <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#randomizeParameters(double,%20double,%20java.util.Random)">randomizeParameters</a>, <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#setParameter(int,%20double)">setParameter</a>, <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#setParameters(double[])">setParameters</a>, <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#toString()">toString</a></code></li>
 </ul>
 <ul class="blockList">
@@ -334,7 +334,7 @@ extends <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl
 <pre>public&nbsp;void&nbsp;addAction(<a href="../../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;ga)</pre>
 <div class="block">Adds a possible grounded action. This addition increases the dimensionality of this reward function
  by |f| where |f| is the dimensionality of the state feature vector.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>ga</code> - the possible grounded action to add to this reward function's definition.</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>ga</code> - the possible grounded action to add to this reward function'o definition.</dd></dl>
 </li>
 </ul>
 <a name="copyHelper()">
@@ -343,46 +343,46 @@ extends <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl
 <ul class="blockList">
 <li class="blockList">
 <h4>copyHelper</h4>
-<pre>protected&nbsp;<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a>&nbsp;copyHelper()</pre>
+<pre>protected&nbsp;<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a>&nbsp;copyHelper()</pre>
 <div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#copyHelper()">DifferentiableRF</a></code></strong></div>
 <div class="block">A helper method for making a copy of this reward function. THe parameters and dimensionality
  do not have to be copied, because they will be copied in the public <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#copy()"><code>DifferentiableRF.copy()</code></a> method.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#copyHelper()">copyHelper</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a></code></dd>
+<dd><code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#copyHelper()">copyHelper</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a></code></dd>
 <dt><span class="strong">Returns:</span></dt><dd>a copy of this reward function.</dd></dl>
 </li>
 </ul>
-<a name="reward(burlap.oomdp.core.State, burlap.oomdp.singleagent.GroundedAction, burlap.oomdp.core.State)">
+<a name="reward(burlap.oomdp.core.states.State, burlap.oomdp.singleagent.GroundedAction, burlap.oomdp.core.State)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>reward</h4>
-<pre>public&nbsp;double&nbsp;reward(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;double&nbsp;reward(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
             <a href="../../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;a,
             <a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sprime)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../burlap/oomdp/singleagent/RewardFunction.html#reward(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">RewardFunction</a></code></strong></div>
-<div class="block">Returns the reward received when action a is executed in state s and the agent transitions to state sprime.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which the action was executed</dd><dd><code>a</code> - the action executed</dd><dd><code>sprime</code> - the state to which the agent transitioned</dd>
-<dt><span class="strong">Returns:</span></dt><dd>the reward received when action a is executed in state s and the agent transitions to state sprime.</dd></dl>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../burlap/oomdp/singleagent/RewardFunction.html#reward(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">RewardFunction</a></code></strong></div>
+<div class="block">Returns the reward received when action a is executed in state o and the agent transitions to state sprime.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which the action was executed</dd><dd><code>a</code> - the action executed</dd><dd><code>sprime</code> - the state to which the agent transitioned</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the reward received when action a is executed in state o and the agent transitions to state sprime.</dd></dl>
 </li>
 </ul>
-<a name="getGradient(burlap.oomdp.core.State, burlap.oomdp.singleagent.GroundedAction, burlap.oomdp.core.State)">
+<a name="getGradient(burlap.oomdp.core.states.State, burlap.oomdp.singleagent.GroundedAction, burlap.oomdp.core.State)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getGradient</h4>
-<pre>public&nbsp;double[]&nbsp;getGradient(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;double[]&nbsp;getGradient(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                    <a href="../../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;ga,
-                   <a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sp)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#getGradient(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">DifferentiableRF</a></code></strong></div>
+                   <a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;op)</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#getGradient(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">DifferentiableRF</a></code></strong></div>
 <div class="block">Returns the gradient of the reward function for the given state transition.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#getGradient(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">getGradient</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">DifferentiableRF</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the source state</dd><dd><code>ga</code> - the action taken in the source state</dd><dd><code>sp</code> - the resulting state from the action</dd>
+<dd><code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html#getGradient(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">getGradient</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">DifferentiableRF</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the source state</dd><dd><code>ga</code> - the action taken in the source state</dd><dd><code>op</code> - the resulting state from the action</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the gradient of the reward function for the given transition.</dd></dl>
 </li>
 </ul>
@@ -426,7 +426,7 @@ extends <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateDifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.commonrfs"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateDifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.commonrfs"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?burlap/behavior/singleagent/learnbydemo/mlirl/commonrfs/LinearStateActionDifferentiableRF.html" target="_top">Frames</a></li>

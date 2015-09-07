@@ -143,7 +143,7 @@ implements <a href="../../../../../burlap/oomdp/singleagent/RewardFunction.html"
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/deterministic/UniformPlusGoalRF.html#UniformPlusGoalRF(burlap.behavior.singleagent.planning.StateConditionTest)">UniformPlusGoalRF</a></strong>(<a href="../../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;gc)</code>
+<td class="colOne"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/deterministic/UniformPlusGoalRF.html#UniformPlusGoalRF(burlap.oomdp.auxiliary.stateconditiontest.StateConditionTest)">UniformPlusGoalRF</a></strong>(<a href="../../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;gc)</code>
 <div class="block">Sets the reward function to return 0 when transition to states that satisfy gc, and -1 otherwise</div>
 </td>
 </tr>
@@ -164,10 +164,10 @@ implements <a href="../../../../../burlap/oomdp/singleagent/RewardFunction.html"
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/deterministic/UniformPlusGoalRF.html#reward(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">reward</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/planning/deterministic/UniformPlusGoalRF.html#reward(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">reward</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
       <a href="../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;a,
       <a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sprime)</code>
-<div class="block">Returns the reward received when action a is executed in state s and the agent transitions to state sprime.</div>
+<div class="block">Returns the reward received when action a is executed in state o and the agent transitions to state sprime.</div>
 </td>
 </tr>
 </table>
@@ -228,22 +228,22 @@ implements <a href="../../../../../burlap/oomdp/singleagent/RewardFunction.html"
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="reward(burlap.oomdp.core.State, burlap.oomdp.singleagent.GroundedAction, burlap.oomdp.core.State)">
+<a name="reward(burlap.oomdp.core.states.State, burlap.oomdp.singleagent.GroundedAction, burlap.oomdp.core.State)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>reward</h4>
-<pre>public&nbsp;double&nbsp;reward(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;double&nbsp;reward(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
             <a href="../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;a,
             <a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sprime)</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../burlap/oomdp/singleagent/RewardFunction.html#reward(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">RewardFunction</a></code></strong></div>
-<div class="block">Returns the reward received when action a is executed in state s and the agent transitions to state sprime.</div>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../burlap/oomdp/singleagent/RewardFunction.html#reward(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">RewardFunction</a></code></strong></div>
+<div class="block">Returns the reward received when action a is executed in state o and the agent transitions to state sprime.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../burlap/oomdp/singleagent/RewardFunction.html#reward(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">reward</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which the action was executed</dd><dd><code>a</code> - the action executed</dd><dd><code>sprime</code> - the state to which the agent transitioned</dd>
-<dt><span class="strong">Returns:</span></dt><dd>the reward received when action a is executed in state s and the agent transitions to state sprime.</dd></dl>
+<dd><code><a href="../../../../../burlap/oomdp/singleagent/RewardFunction.html#reward(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction,%20burlap.oomdp.core.State)">reward</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../burlap/oomdp/singleagent/RewardFunction.html" title="interface in burlap.oomdp.singleagent">RewardFunction</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which the action was executed</dd><dd><code>a</code> - the action executed</dd><dd><code>sprime</code> - the state to which the agent transitioned</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the reward received when action a is executed in state o and the agent transitions to state sprime.</dd></dl>
 </li>
 </ul>
 </li>

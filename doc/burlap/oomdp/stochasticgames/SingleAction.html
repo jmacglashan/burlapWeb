@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.oomdp.stochasticgames.SingleAction</li>
+<li>burlap.oomdp.stochasticgames.SGAgentAction</li>
 </ul>
 </li>
 </ul>
@@ -104,11 +104,11 @@ extends java.lang.Object</pre>
 <div class="block">A single action is an action specification for individual agents in a stochastic game. The single action
  specifies preconditions and any parameters that are required for it to operate. Like The 
  <a href="../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent"><code>Action</code></a> class and <a href="../../../burlap/oomdp/core/PropositionalFunction.html" title="class in burlap.oomdp.core"><code>PropositionalFunction</code></a> class,
- SingleAction's can also specify parameter order groups for parameter effect symmetry. See the 
+ SingleAction'o can also specify parameter order groups for parameter effect symmetry. See the
  <a href="../../../burlap/oomdp/core/PropositionalFunction.html" title="class in burlap.oomdp.core"><code>PropositionalFunction</code></a> class documentation for a larger discussion on
  parameter order groups.
  
- Unlike The <a href="../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent"><code>Action</code></a> class, SingleAction's do not specify
+ Unlike The <a href="../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent"><code>Action</code></a> class, SingleAction'o do not specify
  the actual transition dynamics, because transition dynamics in a stochastic game depend on
  the full joint action of all agents (that is, the SingleAction selected by each agent in the world).</div>
 <dl><dt><span class="strong">Author:</span></dt>
@@ -205,14 +205,14 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../../../burlap/oomdp/stochasticgames/GroundedSingleAction.html" title="class in burlap.oomdp.stochasticgames">GroundedSingleAction</a>&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/SingleAction.html#getAllGroundedActionsFor(burlap.oomdp.core.State,%20java.lang.String)">getAllGroundedActionsFor</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/SingleAction.html#getAllGroundedActionsFor(burlap.oomdp.core.states.State,%20java.lang.String)">getAllGroundedActionsFor</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                         java.lang.String&nbsp;actingAgent)</code>
 <div class="block">Returns all possible grounded versions of this single action for a given state and acting agent.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.util.List&lt;<a href="../../../burlap/oomdp/stochasticgames/GroundedSingleAction.html" title="class in burlap.oomdp.stochasticgames">GroundedSingleAction</a>&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/SingleAction.html#getAllPossibleGroundedSingleActions(burlap.oomdp.core.State,%20java.lang.String,%20java.util.List)">getAllPossibleGroundedSingleActions</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/SingleAction.html#getAllPossibleGroundedSingleActions(burlap.oomdp.core.states.State,%20java.lang.String,%20java.util.List)">getAllPossibleGroundedSingleActions</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                                    java.lang.String&nbsp;actingAgent,
                                    java.util.List&lt;<a href="../../../burlap/oomdp/stochasticgames/SingleAction.html" title="class in burlap.oomdp.stochasticgames">SingleAction</a>&gt;&nbsp;actions)</code>
 <div class="block">Returns all possible grounded versions of the provided list of SingleAction objects that an agent can take in the given state.</div>
@@ -224,7 +224,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>abstract boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/SingleAction.html#isApplicableInState(burlap.oomdp.core.State,%20java.lang.String,%20java.lang.String[])">isApplicableInState</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../burlap/oomdp/stochasticgames/SingleAction.html#isApplicableInState(burlap.oomdp.core.states.State,%20java.lang.String,%20java.lang.String[])">isApplicableInState</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                    java.lang.String&nbsp;actingAgent,
                    java.lang.String[]&nbsp;params)</code>
 <div class="block">Returns true if this action can be applied in the given state by the given agent with the given parameters.</div>
@@ -360,17 +360,17 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="isApplicableInState(burlap.oomdp.core.State, java.lang.String, java.lang.String[])">
+<a name="isApplicableInState(burlap.oomdp.core.states.State, java.lang.String, java.lang.String[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isApplicableInState</h4>
-<pre>public abstract&nbsp;boolean&nbsp;isApplicableInState(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public abstract&nbsp;boolean&nbsp;isApplicableInState(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                           java.lang.String&nbsp;actingAgent,
                           java.lang.String[]&nbsp;params)</pre>
 <div class="block">Returns true if this action can be applied in the given state by the given agent with the given parameters.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which the action would be executed.</dd><dd><code>actingAgent</code> - the agent who would be executing the action</dd><dd><code>params</code> - the parameters applied</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which the action would be executed.</dd><dd><code>actingAgent</code> - the agent who would be executing the action</dd><dd><code>params</code> - the parameters applied</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if this action can be executed; false otherwise.</dd></dl>
 </li>
 </ul>
@@ -397,30 +397,30 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>true if all parameters (if any) for this action represent OO-MDP objects in a state; false otherwise.</dd></dl>
 </li>
 </ul>
-<a name="getAllPossibleGroundedSingleActions(burlap.oomdp.core.State, java.lang.String, java.util.List)">
+<a name="getAllPossibleGroundedSingleActions(burlap.oomdp.core.states.State, java.lang.String, java.util.List)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getAllPossibleGroundedSingleActions</h4>
-<pre>public static&nbsp;java.util.List&lt;<a href="../../../burlap/oomdp/stochasticgames/GroundedSingleAction.html" title="class in burlap.oomdp.stochasticgames">GroundedSingleAction</a>&gt;&nbsp;getAllPossibleGroundedSingleActions(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public static&nbsp;java.util.List&lt;<a href="../../../burlap/oomdp/stochasticgames/GroundedSingleAction.html" title="class in burlap.oomdp.stochasticgames">GroundedSingleAction</a>&gt;&nbsp;getAllPossibleGroundedSingleActions(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                                                                        java.lang.String&nbsp;actingAgent,
                                                                        java.util.List&lt;<a href="../../../burlap/oomdp/stochasticgames/SingleAction.html" title="class in burlap.oomdp.stochasticgames">SingleAction</a>&gt;&nbsp;actions)</pre>
 <div class="block">Returns all possible grounded versions of the provided list of SingleAction objects that an agent can take in the given state.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which to execute actions</dd><dd><code>actingAgent</code> - the agent who will be executing the actions</dd><dd><code>actions</code> - the list of actions that to get the grounded version for</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which to execute actions</dd><dd><code>actingAgent</code> - the agent who will be executing the actions</dd><dd><code>actions</code> - the list of actions that to get the grounded version for</dd>
 <dt><span class="strong">Returns:</span></dt><dd>all possible grounded versions of the provided list of SingleAction objects</dd></dl>
 </li>
 </ul>
-<a name="getAllGroundedActionsFor(burlap.oomdp.core.State, java.lang.String)">
+<a name="getAllGroundedActionsFor(burlap.oomdp.core.states.State, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getAllGroundedActionsFor</h4>
-<pre>public&nbsp;java.util.List&lt;<a href="../../../burlap/oomdp/stochasticgames/GroundedSingleAction.html" title="class in burlap.oomdp.stochasticgames">GroundedSingleAction</a>&gt;&nbsp;getAllGroundedActionsFor(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;java.util.List&lt;<a href="../../../burlap/oomdp/stochasticgames/GroundedSingleAction.html" title="class in burlap.oomdp.stochasticgames">GroundedSingleAction</a>&gt;&nbsp;getAllGroundedActionsFor(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                                                             java.lang.String&nbsp;actingAgent)</pre>
 <div class="block">Returns all possible grounded versions of this single action for a given state and acting agent.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which the agent would execute this action</dd><dd><code>actingAgent</code> - the agent who would execute the action</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which the agent would execute this action</dd><dd><code>actingAgent</code> - the agent who would execute the action</dd>
 <dt><span class="strong">Returns:</span></dt><dd>all possible grounded versions of this single action for a given state and acting agent.</dd></dl>
 </li>
 </ul>

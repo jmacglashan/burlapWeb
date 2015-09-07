@@ -35,8 +35,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ParameterNaiveActionIdMap.html" title="class in burlap.behavior.stochasticgame.agents.naiveq.history"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistoryFactory.html" title="class in burlap.behavior.stochasticgame.agents.naiveq.history"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ParameterNaiveActionIdMap.html" title="class in burlap.behavior.stochasticgames.agents.naiveq.history"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistoryFactory.html" title="class in burlap.behavior.stochasticgames.agents.naiveq.history"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.stochasticgame.agents.naiveq.history</div>
+<div class="subTitle">burlap.behavior.stochasticgames.agents.naiveq.history</div>
 <h2 title="Class SGQWActionHistory" class="title">Class SGQWActionHistory</h2>
 </div>
 <div class="contentContainer">
@@ -86,13 +86,13 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../../../burlap/oomdp/stochasticgames/Agent.html" title="class in burlap.oomdp.stochasticgames">burlap.oomdp.stochasticgames.Agent</a></li>
+<li><a href="../../../../../../burlap/oomdp/stochasticgames/Agent.html" title="class in burlap.oomdp.stochasticgames">burlap.oomdp.stochasticgames.SGAgent</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgame.agents.naiveq">burlap.behavior.stochasticgame.agents.naiveq.SGNaiveQLAgent</a></li>
+<li><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgames.agents.naiveq">burlap.behavior.stochasticgames.agents.naiveq.SGNaiveQLAgent</a></li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.stochasticgame.agents.naiveq.history.SGQWActionHistory</li>
+<li>burlap.behavior.stochasticgames.agents.naiveq.history.SGQWActionHistory</li>
 </ul>
 </li>
 </ul>
@@ -110,10 +110,10 @@
 <hr>
 <br>
 <pre>public class <span class="strong">SGQWActionHistory</span>
-extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgame.agents.naiveq">SGNaiveQLAgent</a></pre>
+extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgames.agents.naiveq">SGNaiveQLAgent</a></pre>
 <div class="block">A Tabular Q-learning [1] algorithm for stochastic games formalisms that augments states with the actions each agent took in n
- previous time steps. If the constructor is not passed the maximum number of players and an <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ActionIdMap.html" title="interface in burlap.behavior.stochasticgame.agents.naiveq.history"><code>ActionIdMap</code></a> to use,
- then when the first game starts, it will be initialized to an <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ParameterNaiveActionIdMap.html" title="class in burlap.behavior.stochasticgame.agents.naiveq.history"><code>ParameterNaiveActionIdMap</code></a> and the number of
+ previous time steps. If the constructor is not passed the maximum number of players and an <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ActionIdMap.html" title="interface in burlap.behavior.stochasticgames.agents.naiveq.history"><code>ActionIdMap</code></a> to use,
+ then when the first game starts, it will be initialized to an <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ParameterNaiveActionIdMap.html" title="class in burlap.behavior.stochasticgames.agents.naiveq.history"><code>ParameterNaiveActionIdMap</code></a> and the number of
  players will be set to the number of players in the world which this agent has joined. If the world contains
  parameterized actions, this may be a problem and you should use the <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html#SGQWActionHistory(burlap.oomdp.stochasticgames.SGDomain,%20double,%20double,%20burlap.behavior.statehashing.StateHashFactory,%20int,%20int,%20burlap.behavior.stochasticgame.agents.naiveq.history.ActionIdMap)"><code>SGQWActionHistory(SGDomain, double, double, StateHashFactory, int, int, ActionIdMap)</code></a>
  constructor to resolve action parameterization instead.
@@ -135,7 +135,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 </a>
 <h3>Nested Class Summary</h3>
 <ul class="blockList">
-<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.singleagent.planning.QComputablePlanner">
+<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.valuefunction.QFunction">
 <!--   -->
 </a>
 <h3>Nested classes/interfaces inherited from interface&nbsp;burlap.behavior.singleagent.planning.<a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a></h3>
@@ -156,7 +156,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ActionIdMap.html" title="interface in burlap.behavior.stochasticgame.agents.naiveq.history">ActionIdMap</a></code></td>
+<td class="colFirst"><code>protected <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ActionIdMap.html" title="interface in burlap.behavior.stochasticgames.agents.naiveq.history">ActionIdMap</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html#actionMap">actionMap</a></strong></code>
 <div class="block">a map from actions to int values which can be used to fill in an action history attribute value</div>
 </td>
@@ -205,14 +205,14 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_burlap.behavior.stochasticgame.agents.naiveq.SGNaiveQLAgent">
+<li class="blockList"><a name="fields_inherited_from_class_burlap.behavior.stochasticgames.agents.naiveq.SGNaiveQLAgent">
 <!--   -->
 </a>
-<h3>Fields inherited from class&nbsp;burlap.behavior.stochasticgame.agents.naiveq.<a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgame.agents.naiveq">SGNaiveQLAgent</a></h3>
+<h3>Fields inherited from class&nbsp;burlap.behavior.stochasticgames.agents.naiveq.<a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgames.agents.naiveq">SGNaiveQLAgent</a></h3>
 <code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#discount">discount</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#hashFactory">hashFactory</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#learningRate">learningRate</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#policy">policy</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#qInit">qInit</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#qMap">qMap</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#stateRepresentations">stateRepresentations</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#storedMapAbstraction">storedMapAbstraction</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#totalNumberOfSteps">totalNumberOfSteps</a></code></li>
 </ul>
 <ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_burlap.oomdp.stochasticgames.Agent">
+<li class="blockList"><a name="fields_inherited_from_class_burlap.oomdp.stochasticgames.SGAgent">
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;burlap.oomdp.stochasticgames.<a href="../../../../../../burlap/oomdp/stochasticgames/Agent.html" title="class in burlap.oomdp.stochasticgames">Agent</a></h3>
@@ -235,7 +235,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <td class="colOne"><code><strong><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html#SGQWActionHistory(burlap.oomdp.stochasticgames.SGDomain,%20double,%20double,%20burlap.behavior.statehashing.StateHashFactory,%20int)">SGQWActionHistory</a></strong>(<a href="../../../../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
                  double&nbsp;discount,
                  double&nbsp;learningRate,
-                 <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashFactory,
+                 <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashFactory,
                  int&nbsp;historySize)</code>
 <div class="block">Initializes the learning algorithm using 0.1 epsilon greedy learning strategy/policy</div>
 </td>
@@ -244,10 +244,10 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <td class="colOne"><code><strong><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html#SGQWActionHistory(burlap.oomdp.stochasticgames.SGDomain,%20double,%20double,%20burlap.behavior.statehashing.StateHashFactory,%20int,%20int,%20burlap.behavior.stochasticgame.agents.naiveq.history.ActionIdMap)">SGQWActionHistory</a></strong>(<a href="../../../../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
                  double&nbsp;discount,
                  double&nbsp;learningRate,
-                 <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashFactory,
+                 <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashFactory,
                  int&nbsp;historySize,
                  int&nbsp;maxPlayers,
-                 <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ActionIdMap.html" title="interface in burlap.behavior.stochasticgame.agents.naiveq.history">ActionIdMap</a>&nbsp;actionMap)</code>
+                 <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ActionIdMap.html" title="interface in burlap.behavior.stochasticgames.agents.naiveq.history">ActionIdMap</a>&nbsp;actionMap)</code>
 <div class="block">Initializes the learning algorithm using 0.1 epsilon greedy learning strategy/policy</div>
 </td>
 </tr>
@@ -274,7 +274,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html#getHistoryAugmentedState(burlap.oomdp.core.State)">getHistoryAugmentedState</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html#getHistoryAugmentedState(burlap.oomdp.core.states.State)">getHistoryAugmentedState</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">Takes an input state and returns an augmented state with the history of actions each agent previously took.</div>
 </td>
 </tr>
@@ -296,7 +296,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html#initializeActionMapAndAugmentedDomain()">initializeActionMapAndAugmentedDomain</a></strong>()</code>
-<div class="block">Initializes the action map to be an instance of <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ParameterNaiveActionIdMap.html" title="class in burlap.behavior.stochasticgame.agents.naiveq.history"><code>ParameterNaiveActionIdMap</code></a> and then initializes
+<div class="block">Initializes the action map to be an instance of <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ParameterNaiveActionIdMap.html" title="class in burlap.behavior.stochasticgames.agents.naiveq.history"><code>ParameterNaiveActionIdMap</code></a> and then initializes
  the history augmented domain using the max players as the number of players in the world which this agent
  has joined.</div>
 </td>
@@ -309,7 +309,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html#observeOutcome(burlap.oomdp.core.State,%20burlap.oomdp.stochasticgames.JointAction,%20java.util.Map,%20burlap.oomdp.core.State,%20boolean)">observeOutcome</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html#observeOutcome(burlap.oomdp.core.states.State,%20burlap.oomdp.stochasticgames.JointAction,%20java.util.Map,%20burlap.oomdp.core.State,%20boolean)">observeOutcome</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
               <a href="../../../../../../burlap/oomdp/stochasticgames/JointAction.html" title="class in burlap.oomdp.stochasticgames">JointAction</a>&nbsp;jointAction,
               java.util.Map&lt;java.lang.String,java.lang.Double&gt;&nbsp;jointReward,
               <a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sprime,
@@ -318,21 +318,21 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html#stateHash(burlap.oomdp.core.State)">stateHash</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
-<div class="block">First abstracts state s, and then returns the <a href="../../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing"><code>StateHashTuple</code></a> object for the abstracted state.</div>
+<td class="colFirst"><code>protected <a href="../../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html#stateHash(burlap.oomdp.core.states.State)">stateHash</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
+<div class="block">First abstracts state o, and then returns the <a href="../../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing"><code>StateHashTuple</code></a> object for the abstracted state.</div>
 </td>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.stochasticgame.agents.naiveq.SGNaiveQLAgent">
+<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.stochasticgames.agents.naiveq.SGNaiveQLAgent">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;burlap.behavior.stochasticgame.agents.naiveq.<a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgame.agents.naiveq">SGNaiveQLAgent</a></h3>
-<code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#gameTerminated()">gameTerminated</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#getAction(burlap.oomdp.core.State)">getAction</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#getMaxQValue(burlap.oomdp.core.State)">getMaxQValue</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#getQ(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction)">getQ</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#getQs(burlap.oomdp.core.State)">getQs</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#setLearningRate(burlap.behavior.learningrate.LearningRate)">setLearningRate</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#setQValueInitializer(burlap.behavior.singleagent.ValueFunctionInitialization)">setQValueInitializer</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#setStoredMapAbstraction(burlap.oomdp.auxiliary.StateAbstraction)">setStoredMapAbstraction</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#setStrategy(burlap.behavior.singleagent.Policy)">setStrategy</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#translateAction(burlap.oomdp.stochasticgames.GroundedSingleAction,%20java.util.Map)">translateAction</a></code></li>
+<h3>Methods inherited from class&nbsp;burlap.behavior.stochasticgames.agents.naiveq.<a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgames.agents.naiveq">SGNaiveQLAgent</a></h3>
+<code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#gameTerminated()">gameTerminated</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#getAction(burlap.oomdp.core.states.State)">getAction</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#getMaxQValue(burlap.oomdp.core.states.State)">getMaxQValue</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#getQ(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction)">getQ</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#getQs(burlap.oomdp.core.states.State)">getQs</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#setLearningRate(burlap.behavior.learningrate.LearningRate)">setLearningRate</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#setQValueInitializer(burlap.behavior.valuefunction.ValueFunctionInitialization)">setQValueInitializer</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#setStoredMapAbstraction(burlap.oomdp.auxiliary.StateAbstraction)">setStoredMapAbstraction</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#setStrategy(burlap.behavior.policy.Policy)">setStrategy</a>, <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#translateAction(burlap.oomdp.stochasticgames.GroundedSingleAction,%20java.util.Map)">translateAction</a></code></li>
 </ul>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_burlap.oomdp.stochasticgames.Agent">
+<li class="blockList"><a name="methods_inherited_from_class_burlap.oomdp.stochasticgames.SGAgent">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;burlap.oomdp.stochasticgames.<a href="../../../../../../burlap/oomdp/stochasticgames/Agent.html" title="class in burlap.oomdp.stochasticgames">Agent</a></h3>
@@ -385,7 +385,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <ul class="blockList">
 <li class="blockList">
 <h4>actionMap</h4>
-<pre>protected&nbsp;<a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ActionIdMap.html" title="interface in burlap.behavior.stochasticgame.agents.naiveq.history">ActionIdMap</a> actionMap</pre>
+<pre>protected&nbsp;<a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ActionIdMap.html" title="interface in burlap.behavior.stochasticgames.agents.naiveq.history">ActionIdMap</a> actionMap</pre>
 <div class="block">a map from actions to int values which can be used to fill in an action history attribute value</div>
 </li>
 </ul>
@@ -411,7 +411,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <pre>public static final&nbsp;java.lang.String ATTHNUM</pre>
 <div class="block">A constant for the name of the history time index attribute. For instance, a history object representing the
  action of an agent in the previous time step will have a value of 1 for this attribute</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../constant-values.html#burlap.behavior.stochasticgame.agents.naiveq.history.SGQWActionHistory.ATTHNUM">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../constant-values.html#burlap.behavior.stochasticgames.agents.naiveq.history.SGQWActionHistory.ATTHNUM">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="ATTHPN">
@@ -422,7 +422,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <h4>ATTHPN</h4>
 <pre>public static final&nbsp;java.lang.String ATTHPN</pre>
 <div class="block">A constant for the name of the attribute used to define which agent in the world this history object represents</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../constant-values.html#burlap.behavior.stochasticgame.agents.naiveq.history.SGQWActionHistory.ATTHPN">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../constant-values.html#burlap.behavior.stochasticgames.agents.naiveq.history.SGQWActionHistory.ATTHPN">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="ATTHAID">
@@ -433,7 +433,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <h4>ATTHAID</h4>
 <pre>public static final&nbsp;java.lang.String ATTHAID</pre>
 <div class="block">A constant for the name of the attribute used to define which action an agent took</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../constant-values.html#burlap.behavior.stochasticgame.agents.naiveq.history.SGQWActionHistory.ATTHAID">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../constant-values.html#burlap.behavior.stochasticgames.agents.naiveq.history.SGQWActionHistory.ATTHAID">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="CLASSHISTORY">
@@ -454,7 +454,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="SGQWActionHistory(burlap.oomdp.stochasticgames.SGDomain, double, double, burlap.behavior.statehashing.StateHashFactory, int, int, burlap.behavior.stochasticgame.agents.naiveq.history.ActionIdMap)">
+<a name="SGQWActionHistory(burlap.oomdp.stochasticgames.SGDomain, double, double, burlap.oomdp.statehashing.HashableStateFactory, int, int, burlap.behavior.stochasticgames.agents.naiveq.history.ActionIdMap)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -463,15 +463,15 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <pre>public&nbsp;SGQWActionHistory(<a href="../../../../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
                  double&nbsp;discount,
                  double&nbsp;learningRate,
-                 <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashFactory,
+                 <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashFactory,
                  int&nbsp;historySize,
                  int&nbsp;maxPlayers,
-                 <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ActionIdMap.html" title="interface in burlap.behavior.stochasticgame.agents.naiveq.history">ActionIdMap</a>&nbsp;actionMap)</pre>
+                 <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ActionIdMap.html" title="interface in burlap.behavior.stochasticgames.agents.naiveq.history">ActionIdMap</a>&nbsp;actionMap)</pre>
 <div class="block">Initializes the learning algorithm using 0.1 epsilon greedy learning strategy/policy</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>d</code> - the domain in which the agent will act</dd><dd><code>discount</code> - the discount factor</dd><dd><code>learningRate</code> - the learning rate</dd><dd><code>hashFactory</code> - the state hashing factory to use</dd><dd><code>historySize</code> - the number of previous steps to remember and with which to augment the state space</dd><dd><code>maxPlayers</code> - the maximum number of players that will be in the game</dd><dd><code>actionMap</code> - a mapping from actions to integer identifiers for them</dd></dl>
 </li>
 </ul>
-<a name="SGQWActionHistory(burlap.oomdp.stochasticgames.SGDomain, double, double, burlap.behavior.statehashing.StateHashFactory, int)">
+<a name="SGQWActionHistory(burlap.oomdp.stochasticgames.SGDomain, double, double, burlap.oomdp.statehashing.HashableStateFactory, int)">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -480,7 +480,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <pre>public&nbsp;SGQWActionHistory(<a href="../../../../../../burlap/oomdp/stochasticgames/SGDomain.html" title="class in burlap.oomdp.stochasticgames">SGDomain</a>&nbsp;d,
                  double&nbsp;discount,
                  double&nbsp;learningRate,
-                 <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashFactory,
+                 <a href="../../../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashFactory,
                  int&nbsp;historySize)</pre>
 <div class="block">Initializes the learning algorithm using 0.1 epsilon greedy learning strategy/policy</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>d</code> - the domain in which the agent will act</dd><dd><code>discount</code> - the discount factor</dd><dd><code>learningRate</code> - the learning rate</dd><dd><code>hashFactory</code> - the state hashing factory to use</dd><dd><code>historySize</code> - the number of previous steps to remember and with which to augment the state space</dd></dl>
@@ -516,7 +516,7 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <div class="block">This method is called by the world when a new game is starting.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#gameStarting()">gameStarting</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgame.agents.naiveq">SGNaiveQLAgent</a></code></dd>
+<dd><code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#gameStarting()">gameStarting</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgames.agents.naiveq">SGNaiveQLAgent</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -527,29 +527,29 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <li class="blockList">
 <h4>initializeActionMapAndAugmentedDomain</h4>
 <pre>protected&nbsp;void&nbsp;initializeActionMapAndAugmentedDomain()</pre>
-<div class="block">Initializes the action map to be an instance of <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ParameterNaiveActionIdMap.html" title="class in burlap.behavior.stochasticgame.agents.naiveq.history"><code>ParameterNaiveActionIdMap</code></a> and then initializes
+<div class="block">Initializes the action map to be an instance of <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ParameterNaiveActionIdMap.html" title="class in burlap.behavior.stochasticgames.agents.naiveq.history"><code>ParameterNaiveActionIdMap</code></a> and then initializes
  the history augmented domain using the max players as the number of players in the world which this agent
  has joined.</div>
 </li>
 </ul>
-<a name="observeOutcome(burlap.oomdp.core.State, burlap.oomdp.stochasticgames.JointAction, java.util.Map, burlap.oomdp.core.State, boolean)">
+<a name="observeOutcome(burlap.oomdp.core.states.State, burlap.oomdp.stochasticgames.JointAction, java.util.Map, burlap.oomdp.core.states.State, boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>observeOutcome</h4>
-<pre>public&nbsp;void&nbsp;observeOutcome(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;void&nbsp;observeOutcome(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                   <a href="../../../../../../burlap/oomdp/stochasticgames/JointAction.html" title="class in burlap.oomdp.stochasticgames">JointAction</a>&nbsp;jointAction,
                   java.util.Map&lt;java.lang.String,java.lang.Double&gt;&nbsp;jointReward,
                   <a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;sprime,
                   boolean&nbsp;isTerminal)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../../burlap/oomdp/stochasticgames/Agent.html#observeOutcome(burlap.oomdp.core.State,%20burlap.oomdp.stochasticgames.JointAction,%20java.util.Map,%20burlap.oomdp.core.State,%20boolean)">Agent</a></code></strong></div>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../../burlap/oomdp/stochasticgames/Agent.html#observeOutcome(burlap.oomdp.core.states.State,%20burlap.oomdp.stochasticgames.JointAction,%20java.util.Map,%20burlap.oomdp.core.State,%20boolean)">Agent</a></code></strong></div>
 <div class="block">This method is called by the world when every agent in the world has taken their action. It conveys the result of
  the joint action.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#observeOutcome(burlap.oomdp.core.State,%20burlap.oomdp.stochasticgames.JointAction,%20java.util.Map,%20burlap.oomdp.core.State,%20boolean)">observeOutcome</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgame.agents.naiveq">SGNaiveQLAgent</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which the last action of each agent was taken</dd><dd><code>jointAction</code> - the joint action of all agents in the world</dd><dd><code>jointReward</code> - the joint reward of all agents in the world</dd><dd><code>sprime</code> - the next state to which the agent transitioned</dd><dd><code>isTerminal</code> - whether the new state is a terminal state</dd></dl>
+<dd><code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#observeOutcome(burlap.oomdp.core.states.State,%20burlap.oomdp.stochasticgames.JointAction,%20java.util.Map,%20burlap.oomdp.core.State,%20boolean)">observeOutcome</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgames.agents.naiveq">SGNaiveQLAgent</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which the last action of each agent was taken</dd><dd><code>jointAction</code> - the joint action of all agents in the world</dd><dd><code>jointReward</code> - the joint reward of all agents in the world</dd><dd><code>sprime</code> - the next state to which the agent transitioned</dd><dd><code>isTerminal</code> - whether the new state is a terminal state</dd></dl>
 </li>
 </ul>
 <a name="getHistoryAugmentedState(burlap.oomdp.core.State)">
@@ -558,13 +558,13 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <ul class="blockList">
 <li class="blockList">
 <h4>getHistoryAugmentedState</h4>
-<pre>protected&nbsp;<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;getHistoryAugmentedState(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
+<pre>protected&nbsp;<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;getHistoryAugmentedState(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
 <div class="block">Takes an input state and returns an augmented state with the history of actions each agent previously took.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the input state to augment</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the input state to augment</dd>
 <dt><span class="strong">Returns:</span></dt><dd>an augmented state with the history of actions each agent previously took.</dd></dl>
 </li>
 </ul>
-<a name="getHistoryObjectInstanceForAgent(burlap.oomdp.stochasticgames.GroundedSingleAction, int)">
+<a name="getHistoryObjectInstanceForAgent(burlap.oomdp.stochasticgames.agentactions.GroundedSGAgentAction, int)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -597,13 +597,13 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 <ul class="blockListLast">
 <li class="blockList">
 <h4>stateHash</h4>
-<pre>protected&nbsp;<a href="../../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>&nbsp;stateHash(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#stateHash(burlap.oomdp.core.State)">SGNaiveQLAgent</a></code></strong></div>
-<div class="block">First abstracts state s, and then returns the <a href="../../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing"><code>StateHashTuple</code></a> object for the abstracted state.</div>
+<pre>protected&nbsp;<a href="../../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>&nbsp;stateHash(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#stateHash(burlap.oomdp.core.states.State)">SGNaiveQLAgent</a></code></strong></div>
+<div class="block">First abstracts state o, and then returns the <a href="../../../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing"><code>StateHashTuple</code></a> object for the abstracted state.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#stateHash(burlap.oomdp.core.State)">stateHash</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgame.agents.naiveq">SGNaiveQLAgent</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state for which the state hash should be returned.</dd>
+<dd><code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html#stateHash(burlap.oomdp.core.states.State)">stateHash</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/SGNaiveQLAgent.html" title="class in burlap.behavior.stochasticgames.agents.naiveq">SGNaiveQLAgent</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state for which the state hash should be returned.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the hashed state.</dd></dl>
 </li>
 </ul>
@@ -632,8 +632,8 @@ extends <a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ParameterNaiveActionIdMap.html" title="class in burlap.behavior.stochasticgame.agents.naiveq.history"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistoryFactory.html" title="class in burlap.behavior.stochasticgame.agents.naiveq.history"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/ParameterNaiveActionIdMap.html" title="class in burlap.behavior.stochasticgames.agents.naiveq.history"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistoryFactory.html" title="class in burlap.behavior.stochasticgames.agents.naiveq.history"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?burlap/behavior/stochasticgame/agents/naiveq/history/SGQWActionHistory.html" target="_top">Frames</a></li>

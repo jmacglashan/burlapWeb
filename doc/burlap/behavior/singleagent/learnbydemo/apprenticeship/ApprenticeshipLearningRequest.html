@@ -35,7 +35,7 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/apprenticeship/ApprenticeshipLearning.RandomPolicy.html" title="class in burlap.behavior.singleagent.learnbydemo.apprenticeship"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/apprenticeship/ApprenticeshipLearning.RandomPolicy.html" title="class in burlap.behavior.singleagent.learnfromdemo.apprenticeship"><span class="strong">Prev Class</span></a></li>
 <li>Next Class</li>
 </ul>
 <ul class="navList">
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.singleagent.learnbydemo.apprenticeship</div>
+<div class="subTitle">burlap.behavior.singleagent.learnfromdemo.apprenticeship</div>
 <h2 title="Class ApprenticeshipLearningRequest" class="title">Class ApprenticeshipLearningRequest</h2>
 </div>
 <div class="contentContainer">
@@ -86,10 +86,10 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo">burlap.behavior.singleagent.learnbydemo.IRLRequest</a></li>
+<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo">burlap.behavior.singleagent.learnfromdemo.IRLRequest</a></li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.learnbydemo.apprenticeship.ApprenticeshipLearningRequest</li>
+<li>burlap.behavior.singleagent.learnfromdemo.apprenticeship.ApprenticeshipLearningRequest</li>
 </ul>
 </li>
 </ul>
@@ -101,7 +101,7 @@
 <hr>
 <br>
 <pre>public class <span class="strong">ApprenticeshipLearningRequest</span>
-extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo">IRLRequest</a></pre>
+extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo">IRLRequest</a></pre>
 <div class="block">A datastructure for setting all the parameters of Max Margin Apprenticeship learning.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>Stephen Brawner and Mark Ho</dd></dl>
@@ -183,11 +183,11 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_burlap.behavior.singleagent.learnbydemo.IRLRequest">
+<li class="blockList"><a name="fields_inherited_from_class_burlap.behavior.singleagent.learnfromdemo.IRLRequest">
 <!--   -->
 </a>
-<h3>Fields inherited from class&nbsp;burlap.behavior.singleagent.learnbydemo.<a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo">IRLRequest</a></h3>
-<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#domain">domain</a>, <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#expertEpisodes">expertEpisodes</a>, <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#gamma">gamma</a>, <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#planner">planner</a></code></li>
+<h3>Fields inherited from class&nbsp;burlap.behavior.singleagent.learnfromdemo.<a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo">IRLRequest</a></h3>
+<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#domain">domain</a>, <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#expertEpisodes">expertEpisodes</a>, <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#gamma">gamma</a>, <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#valueFunction">valueFunction</a></code></li>
 </ul>
 </li>
 </ul>
@@ -207,7 +207,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><strong><a href="../../../../../burlap/behavior/singleagent/learnbydemo/apprenticeship/ApprenticeshipLearningRequest.html#ApprenticeshipLearningRequest(burlap.oomdp.core.Domain,%20burlap.behavior.singleagent.planning.OOMDPPlanner,%20burlap.behavior.singleagent.vfa.StateToFeatureVectorGenerator,%20java.util.List,%20burlap.oomdp.auxiliary.StateGenerator)">ApprenticeshipLearningRequest</a></strong>(<a href="../../../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;domain,
-                             <a href="../../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a>&nbsp;planner,
+                             <a href="../../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a>&nbsp;valueFunction,
                              <a href="../../../../../burlap/behavior/singleagent/vfa/StateToFeatureVectorGenerator.html" title="interface in burlap.behavior.singleagent.vfa">StateToFeatureVectorGenerator</a>&nbsp;featureGenerator,
                              java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/EpisodeAnalysis.html" title="class in burlap.behavior.singleagent">EpisodeAnalysis</a>&gt;&nbsp;expertEpisodes,
                              <a href="../../../../../burlap/oomdp/auxiliary/StateGenerator.html" title="interface in burlap.oomdp.auxiliary">StateGenerator</a>&nbsp;startStateGenerator)</code>&nbsp;</td>
@@ -424,7 +424,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <li class="blockList">
 <h4>DEFAULT_EPSILON</h4>
 <pre>public static final&nbsp;double DEFAULT_EPSILON</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#burlap.behavior.singleagent.learnbydemo.apprenticeship.ApprenticeshipLearningRequest.DEFAULT_EPSILON">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#burlap.behavior.singleagent.learnfromdemo.apprenticeship.ApprenticeshipLearningRequest.DEFAULT_EPSILON">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="DEFAULT_MAXITERATIONS">
@@ -434,7 +434,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <li class="blockList">
 <h4>DEFAULT_MAXITERATIONS</h4>
 <pre>public static final&nbsp;int DEFAULT_MAXITERATIONS</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#burlap.behavior.singleagent.learnbydemo.apprenticeship.ApprenticeshipLearningRequest.DEFAULT_MAXITERATIONS">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#burlap.behavior.singleagent.learnfromdemo.apprenticeship.ApprenticeshipLearningRequest.DEFAULT_MAXITERATIONS">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="DEFAULT_POLICYCOUNT">
@@ -444,7 +444,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <li class="blockList">
 <h4>DEFAULT_POLICYCOUNT</h4>
 <pre>public static final&nbsp;int DEFAULT_POLICYCOUNT</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#burlap.behavior.singleagent.learnbydemo.apprenticeship.ApprenticeshipLearningRequest.DEFAULT_POLICYCOUNT">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#burlap.behavior.singleagent.learnfromdemo.apprenticeship.ApprenticeshipLearningRequest.DEFAULT_POLICYCOUNT">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="DEFAULT_USEMAXMARGIN">
@@ -454,7 +454,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <li class="blockList">
 <h4>DEFAULT_USEMAXMARGIN</h4>
 <pre>public static final&nbsp;boolean DEFAULT_USEMAXMARGIN</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#burlap.behavior.singleagent.learnbydemo.apprenticeship.ApprenticeshipLearningRequest.DEFAULT_USEMAXMARGIN">Constant Field Values</a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#burlap.behavior.singleagent.learnfromdemo.apprenticeship.ApprenticeshipLearningRequest.DEFAULT_USEMAXMARGIN">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 </li>
@@ -474,14 +474,14 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <pre>public&nbsp;ApprenticeshipLearningRequest()</pre>
 </li>
 </ul>
-<a name="ApprenticeshipLearningRequest(burlap.oomdp.core.Domain, burlap.behavior.singleagent.planning.OOMDPPlanner, burlap.behavior.singleagent.vfa.StateToFeatureVectorGenerator, java.util.List, burlap.oomdp.auxiliary.StateGenerator)">
+<a name="ApprenticeshipLearningRequest(burlap.oomdp.core.Domain, burlap.behavior.singleagent.MDPSolver, burlap.behavior.singleagent.vfa.StateToFeatureVectorGenerator, java.util.List, burlap.oomdp.auxiliary.StateGenerator)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>ApprenticeshipLearningRequest</h4>
 <pre>public&nbsp;ApprenticeshipLearningRequest(<a href="../../../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;domain,
-                             <a href="../../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a>&nbsp;planner,
+                             <a href="../../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a>&nbsp;valueFunction,
                              <a href="../../../../../burlap/behavior/singleagent/vfa/StateToFeatureVectorGenerator.html" title="interface in burlap.behavior.singleagent.vfa">StateToFeatureVectorGenerator</a>&nbsp;featureGenerator,
                              java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/EpisodeAnalysis.html" title="class in burlap.behavior.singleagent">EpisodeAnalysis</a>&gt;&nbsp;expertEpisodes,
                              <a href="../../../../../burlap/oomdp/auxiliary/StateGenerator.html" title="interface in burlap.oomdp.auxiliary">StateGenerator</a>&nbsp;startStateGenerator)</pre>
@@ -515,7 +515,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <div class="block">Returns true if this request object has valid data members set; false otherwise.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#isValid()">isValid</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo">IRLRequest</a></code></dd>
+<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#isValid()">isValid</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo">IRLRequest</a></code></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if this request object has valid data members set; false otherwise.</dd></dl>
 </li>
 </ul>
@@ -528,7 +528,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <pre>public&nbsp;void&nbsp;setDomain(<a href="../../../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;d)</pre>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#setDomain(burlap.oomdp.core.Domain)">setDomain</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo">IRLRequest</a></code></dd>
+<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#setDomain(burlap.oomdp.core.Domain)">setDomain</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo">IRLRequest</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -541,7 +541,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <pre>public&nbsp;void&nbsp;setPlanner(<a href="../../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a>&nbsp;p)</pre>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#setPlanner(burlap.behavior.singleagent.planning.OOMDPPlanner)">setPlanner</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo">IRLRequest</a></code></dd>
+<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#setPlanner(burlap.behavior.singleagent.planning.OOMDPPlanner)">setPlanner</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo">IRLRequest</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -563,7 +563,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <pre>public&nbsp;void&nbsp;setExpertEpisodes(java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/EpisodeAnalysis.html" title="class in burlap.behavior.singleagent">EpisodeAnalysis</a>&gt;&nbsp;episodeList)</pre>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#setExpertEpisodes(java.util.List)">setExpertEpisodes</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo">IRLRequest</a></code></dd>
+<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#setExpertEpisodes(java.util.List)">setExpertEpisodes</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo">IRLRequest</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -585,7 +585,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <pre>public&nbsp;void&nbsp;setGamma(double&nbsp;gamma)</pre>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#setGamma(double)">setGamma</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo">IRLRequest</a></code></dd>
+<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#setGamma(double)">setGamma</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo">IRLRequest</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -643,7 +643,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <pre>public&nbsp;<a href="../../../../../burlap/oomdp/core/Domain.html" title="class in burlap.oomdp.core">Domain</a>&nbsp;getDomain()</pre>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#getDomain()">getDomain</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo">IRLRequest</a></code></dd>
+<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#getDomain()">getDomain</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo">IRLRequest</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -656,7 +656,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <pre>public&nbsp;<a href="../../../../../burlap/behavior/singleagent/planning/OOMDPPlanner.html" title="class in burlap.behavior.singleagent.planning">OOMDPPlanner</a>&nbsp;getPlanner()</pre>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#getPlanner()">getPlanner</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo">IRLRequest</a></code></dd>
+<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#getPlanner()">getPlanner</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo">IRLRequest</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -678,7 +678,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <pre>public&nbsp;java.util.List&lt;<a href="../../../../../burlap/behavior/singleagent/EpisodeAnalysis.html" title="class in burlap.behavior.singleagent">EpisodeAnalysis</a>&gt;&nbsp;getExpertEpisodes()</pre>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#getExpertEpisodes()">getExpertEpisodes</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo">IRLRequest</a></code></dd>
+<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#getExpertEpisodes()">getExpertEpisodes</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo">IRLRequest</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -700,7 +700,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 <pre>public&nbsp;double&nbsp;getGamma()</pre>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#getGamma()">getGamma</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnbydemo">IRLRequest</a></code></dd>
+<dd><code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html#getGamma()">getGamma</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLRequest.html" title="class in burlap.behavior.singleagent.learnfromdemo">IRLRequest</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -774,7 +774,7 @@ extends <a href="../../../../../burlap/behavior/singleagent/learnbydemo/IRLReque
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/apprenticeship/ApprenticeshipLearning.RandomPolicy.html" title="class in burlap.behavior.singleagent.learnbydemo.apprenticeship"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../burlap/behavior/singleagent/learnbydemo/apprenticeship/ApprenticeshipLearning.RandomPolicy.html" title="class in burlap.behavior.singleagent.learnfromdemo.apprenticeship"><span class="strong">Prev Class</span></a></li>
 <li>Next Class</li>
 </ul>
 <ul class="navList">

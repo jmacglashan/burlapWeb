@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.planning.HashedTransitionProbability</li>
+<li>burlap.behavior.singleagent.planning.stochastic.HashedTransitionProbability</li>
 </ul>
 </li>
 </ul>
@@ -97,7 +97,7 @@
 <br>
 <pre>public class <span class="strong">HashedTransitionProbability</span>
 extends java.lang.Object</pre>
-<div class="block">An analog to the <a href="../../../../burlap/oomdp/core/TransitionProbability.html" title="class in burlap.oomdp.core"><code>TransitionProbability</code></a>, except it stores <a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing"><code>StateHashTuple</code></a> objects
+<div class="block">An analog to the <a href="../../../../burlap/oomdp/core/TransitionProbability.html" title="class in burlap.oomdp.core"><code>TransitionProbability</code></a>, except it stores <a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing"><code>StateHashTuple</code></a> objects
  instead of <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> objects.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>James MacGlashan</dd></dl>
@@ -124,7 +124,7 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/HashedTransitionProbability.html#p">p</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a></code></td>
+<td class="colFirst"><code><a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/HashedTransitionProbability.html#sh">sh</a></strong></code>&nbsp;</td>
 </tr>
 </table>
@@ -142,21 +142,21 @@ extends java.lang.Object</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/HashedTransitionProbability.html#HashedTransitionProbability(burlap.oomdp.core.State,%20double,%20burlap.behavior.statehashing.StateHashFactory)">HashedTransitionProbability</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/HashedTransitionProbability.html#HashedTransitionProbability(burlap.oomdp.core.states.State,%20double,%20burlap.behavior.statehashing.StateHashFactory)">HashedTransitionProbability</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                            double&nbsp;p,
-                           <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</code>
+                           <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</code>
 <div class="block">Takes a <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> object, hashes it, and sets the transition probability to the hashed state to p</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/HashedTransitionProbability.html#HashedTransitionProbability(burlap.behavior.statehashing.StateHashTuple,%20double)">HashedTransitionProbability</a></strong>(<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>&nbsp;sh,
+<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/HashedTransitionProbability.html#HashedTransitionProbability(burlap.oomdp.statehashing.StateHashTuple,%20double)">HashedTransitionProbability</a></strong>(<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>&nbsp;sh,
                            double&nbsp;p)</code>
-<div class="block">Initializes with a <a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing"><code>StateHashTuple</code></a> and probability for the transition</div>
+<div class="block">Initializes with a <a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing"><code>StateHashTuple</code></a> and probability for the transition</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/HashedTransitionProbability.html#HashedTransitionProbability(burlap.oomdp.core.TransitionProbability,%20burlap.behavior.statehashing.StateHashFactory)">HashedTransitionProbability</a></strong>(<a href="../../../../burlap/oomdp/core/TransitionProbability.html" title="class in burlap.oomdp.core">TransitionProbability</a>&nbsp;tp,
-                           <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</code>
+                           <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</code>
 <div class="block">Takes a <a href="../../../../burlap/oomdp/core/TransitionProbability.html" title="class in burlap.oomdp.core"><code>TransitionProbability</code></a> and hashes its state using the hashingFactory object</div>
 </td>
 </tr>
@@ -196,7 +196,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>sh</h4>
-<pre>public&nbsp;<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a> sh</pre>
+<pre>public&nbsp;<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a> sh</pre>
 </li>
 </ul>
 <a name="p">
@@ -216,39 +216,39 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="HashedTransitionProbability(burlap.behavior.statehashing.StateHashTuple, double)">
+<a name="HashedTransitionProbability(burlap.oomdp.statehashing.HashableState, double)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>HashedTransitionProbability</h4>
-<pre>public&nbsp;HashedTransitionProbability(<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing">StateHashTuple</a>&nbsp;sh,
+<pre>public&nbsp;HashedTransitionProbability(<a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing">StateHashTuple</a>&nbsp;sh,
                            double&nbsp;p)</pre>
-<div class="block">Initializes with a <a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.behavior.statehashing"><code>StateHashTuple</code></a> and probability for the transition</div>
+<div class="block">Initializes with a <a href="../../../../burlap/behavior/statehashing/StateHashTuple.html" title="class in burlap.oomdp.statehashing"><code>StateHashTuple</code></a> and probability for the transition</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>sh</code> - the hashed state that the agent transitions to</dd><dd><code>p</code> - the probability of the transition</dd></dl>
 </li>
 </ul>
-<a name="HashedTransitionProbability(burlap.oomdp.core.State, double, burlap.behavior.statehashing.StateHashFactory)">
+<a name="HashedTransitionProbability(burlap.oomdp.core.states.State, double, burlap.oomdp.statehashing.StateHashFactory)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>HashedTransitionProbability</h4>
-<pre>public&nbsp;HashedTransitionProbability(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;HashedTransitionProbability(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                            double&nbsp;p,
-                           <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</pre>
+                           <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</pre>
 <div class="block">Takes a <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> object, hashes it, and sets the transition probability to the hashed state to p</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state that the agent transitions to</dd><dd><code>p</code> - the probability of the transition</dd><dd><code>hashingFactory</code> - the hashing factory to use to hash the input state</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state that the agent transitions to</dd><dd><code>p</code> - the probability of the transition</dd><dd><code>hashingFactory</code> - the hashing factory to use to hash the input state</dd></dl>
 </li>
 </ul>
-<a name="HashedTransitionProbability(burlap.oomdp.core.TransitionProbability, burlap.behavior.statehashing.StateHashFactory)">
+<a name="HashedTransitionProbability(burlap.oomdp.core.TransitionProbability, burlap.oomdp.statehashing.StateHashFactory)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>HashedTransitionProbability</h4>
 <pre>public&nbsp;HashedTransitionProbability(<a href="../../../../burlap/oomdp/core/TransitionProbability.html" title="class in burlap.oomdp.core">TransitionProbability</a>&nbsp;tp,
-                           <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.behavior.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</pre>
+                           <a href="../../../../burlap/behavior/statehashing/StateHashFactory.html" title="interface in burlap.oomdp.statehashing">StateHashFactory</a>&nbsp;hashingFactory)</pre>
 <div class="block">Takes a <a href="../../../../burlap/oomdp/core/TransitionProbability.html" title="class in burlap.oomdp.core"><code>TransitionProbability</code></a> and hashes its state using the hashingFactory object</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>tp</code> - the <a href="../../../../burlap/oomdp/core/TransitionProbability.html" title="class in burlap.oomdp.core"><code>TransitionProbability</code></a> to hash</dd><dd><code>hashingFactory</code> - the hashing factory to use.</dd></dl>
 </li>

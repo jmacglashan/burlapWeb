@@ -35,8 +35,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" target="_top">Frames</a></li>
@@ -78,7 +78,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">burlap.behavior.singleagent.learnbydemo.mlirl.support</div>
+<div class="subTitle">burlap.behavior.singleagent.learnfromdemo.mlirl.support</div>
 <h2 title="Interface QGradientPlanner" class="title">Interface QGradientPlanner</h2>
 </div>
 <div class="contentContainer">
@@ -91,13 +91,13 @@
 </dl>
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/DifferentiableSparseSampling.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.differentiableplanners">DifferentiableSparseSampling</a>, <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/DifferentiableVFPlanner.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.differentiableplanners">DifferentiableVFPlanner</a>, <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/DifferentiableVI.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.differentiableplanners">DifferentiableVI</a></dd>
+<dd><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/DifferentiableSparseSampling.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.differentiableplanners">DifferentiableSparseSampling</a>, <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/DifferentiableVFPlanner.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.differentiableplanners">DifferentiableVFPlanner</a>, <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/differentiableplanners/DifferentiableVI.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.differentiableplanners">DifferentiableVI</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="strong">QGradientPlanner</span>
 extends <a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a></pre>
-<div class="block">An interface for a planner that can produce Q-value gradients.</div>
+<div class="block">An interface for a valueFunction that can produce Q-value gradients.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>James MacGlashan.</dd></dl>
 </li>
@@ -113,7 +113,7 @@ extends <a href="../../../../../../burlap/behavior/singleagent/planning/QComputa
 </a>
 <h3>Nested Class Summary</h3>
 <ul class="blockList">
-<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.singleagent.planning.QComputablePlanner">
+<li class="blockList"><a name="nested_classes_inherited_from_class_burlap.behavior.valuefunction.QFunction">
 <!--   -->
 </a>
 <h3>Nested classes/interfaces inherited from interface&nbsp;burlap.behavior.singleagent.planning.<a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a></h3>
@@ -134,31 +134,31 @@ extends <a href="../../../../../../burlap/behavior/singleagent/planning/QComputa
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">QGradientTuple</a>&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html#getAllQGradients(burlap.oomdp.core.State)">getAllQGradients</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
-<div class="block">Returns the list of Q-value gradients (returned as <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>objects</code></a>) for each action permissible in the given state.</div>
+<td class="colFirst"><code>java.util.List&lt;<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">QGradientTuple</a>&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html#getAllQGradients(burlap.oomdp.core.states.State)">getAllQGradients</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
+<div class="block">Returns the list of Q-value gradients (returned as <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>objects</code></a>) for each action permissible in the given state.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">QGradientTuple</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html#getQGradient(burlap.oomdp.core.State,%20burlap.oomdp.singleagent.GroundedAction)">getQGradient</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colFirst"><code><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">QGradientTuple</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html#getQGradient(burlap.oomdp.core.states.State,%20burlap.oomdp.singleagent.GroundedAction)">getQGradient</a></strong>(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
             <a href="../../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;a)</code>
-<div class="block">Returns the Q-value gradient (<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>QGradientTuple</code></a>) for the given state and action.</div>
+<div class="block">Returns the Q-value gradient (<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>QGradientTuple</code></a>) for the given state and action.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html#setBoltzmannBetaParameter(double)">setBoltzmannBetaParameter</a></strong>(double&nbsp;beta)</code>
-<div class="block">Sets this planner's Boltzmann beta parameter used to compute gradients.</div>
+<div class="block">Sets this valueFunction'o Boltzmann beta parameter used to compute gradients.</div>
 </td>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.singleagent.planning.QComputablePlanner">
+<li class="blockList"><a name="methods_inherited_from_class_burlap.behavior.valuefunction.QFunction">
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;burlap.behavior.singleagent.planning.<a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a></h3>
-<code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html#getQ(burlap.oomdp.core.State,%20burlap.oomdp.core.AbstractGroundedAction)">getQ</a>, <a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html#getQs(burlap.oomdp.core.State)">getQs</a></code></li>
+<code><a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html#getQ(burlap.oomdp.core.states.State,%20burlap.oomdp.core.AbstractGroundedAction)">getQ</a>, <a href="../../../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html#getQs(burlap.oomdp.core.states.State)">getQs</a></code></li>
 </ul>
 </li>
 </ul>
@@ -180,22 +180,22 @@ extends <a href="../../../../../../burlap/behavior/singleagent/planning/QComputa
 <ul class="blockList">
 <li class="blockList">
 <h4>getAllQGradients</h4>
-<pre>java.util.List&lt;<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">QGradientTuple</a>&gt;&nbsp;getAllQGradients(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
-<div class="block">Returns the list of Q-value gradients (returned as <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>objects</code></a>) for each action permissible in the given state.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state for which Q-value gradients are to be returned.</dd>
+<pre>java.util.List&lt;<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">QGradientTuple</a>&gt;&nbsp;getAllQGradients(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
+<div class="block">Returns the list of Q-value gradients (returned as <a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>objects</code></a>) for each action permissible in the given state.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state for which Q-value gradients are to be returned.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the list of Q-value gradients for each action permissible in the given state.</dd></dl>
 </li>
 </ul>
-<a name="getQGradient(burlap.oomdp.core.State, burlap.oomdp.singleagent.GroundedAction)">
+<a name="getQGradient(burlap.oomdp.core.states.State, burlap.oomdp.singleagent.GroundedAction)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getQGradient</h4>
-<pre><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support">QGradientTuple</a>&nbsp;getQGradient(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support">QGradientTuple</a>&nbsp;getQGradient(<a href="../../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                           <a href="../../../../../../burlap/oomdp/singleagent/GroundedAction.html" title="class in burlap.oomdp.singleagent">GroundedAction</a>&nbsp;a)</pre>
-<div class="block">Returns the Q-value gradient (<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><code>QGradientTuple</code></a>) for the given state and action.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state for which the Q-value gradient is to be returned</dd><dd><code>a</code> - the action for which the Q-value gradient is to be returned.</dd>
+<div class="block">Returns the Q-value gradient (<a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientTuple.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><code>QGradientTuple</code></a>) for the given state and action.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state for which the Q-value gradient is to be returned</dd><dd><code>a</code> - the action for which the Q-value gradient is to be returned.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the Q-value gradient for the given state and action.</dd></dl>
 </li>
 </ul>
@@ -206,8 +206,8 @@ extends <a href="../../../../../../burlap/behavior/singleagent/planning/QComputa
 <li class="blockList">
 <h4>setBoltzmannBetaParameter</h4>
 <pre>void&nbsp;setBoltzmannBetaParameter(double&nbsp;beta)</pre>
-<div class="block">Sets this planner's Boltzmann beta parameter used to compute gradients. As beta gets larger, the policy becomes more deterministic.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>beta</code> - the value to which this planner's Boltzmann beta parameter will be set</dd></dl>
+<div class="block">Sets this valueFunction'o Boltzmann beta parameter used to compute gradients. As beta gets larger, the policy becomes more deterministic.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>beta</code> - the value to which this valueFunction'o Boltzmann beta parameter will be set</dd></dl>
 </li>
 </ul>
 </li>
@@ -235,8 +235,8 @@ extends <a href="../../../../../../burlap/behavior/singleagent/planning/QComputa
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnbydemo.mlirl.support"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html" title="interface in burlap.behavior.singleagent.learnbydemo.mlirl.support"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/DifferentiableRF.html" title="class in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../../burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlannerFactory.html" title="interface in burlap.behavior.singleagent.learnfromdemo.mlirl.support"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?burlap/behavior/singleagent/learnbydemo/mlirl/support/QGradientPlanner.html" target="_top">Frames</a></li>

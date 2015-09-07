@@ -165,14 +165,14 @@ extends <a href="../../../burlap/oomdp/singleagent/Action.html" title="class in 
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a></code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/testing/Domain/BlockDude.PickupAction.html#performAction(burlap.oomdp.core.State,%20java.lang.String[])">performAction</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../burlap/testing/Domain/BlockDude.PickupAction.html#performAction(burlap.oomdp.core.states.State,%20java.lang.String[])">performAction</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
              java.lang.String[]&nbsp;params)</code>
 <div class="block">Performs this action in the specified state using the specified parameters and returns the resulting state.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a></code></td>
-<td class="colLast"><code><strong><a href="../../../burlap/testing/Domain/BlockDude.PickupAction.html#performActionHelper(burlap.oomdp.core.State,%20java.lang.String[])">performActionHelper</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;st,
+<td class="colLast"><code><strong><a href="../../../burlap/testing/Domain/BlockDude.PickupAction.html#performActionHelper(burlap.oomdp.core.states.State,%20java.lang.String[])">performActionHelper</a></strong>(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;st,
                    java.lang.String[]&nbsp;params)</code>
 <div class="block">This method determines what happens when an action is applied in the given state with the given parameters.</div>
 </td>
@@ -183,7 +183,7 @@ extends <a href="../../../burlap/oomdp/singleagent/Action.html" title="class in 
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;burlap.oomdp.singleagent.<a href="../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a></h3>
-<code><a href="../../../burlap/oomdp/singleagent/Action.html#addActionObserver(burlap.oomdp.singleagent.ActionObserver)">addActionObserver</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#applicableInState(burlap.oomdp.core.State,%20java.lang.String)">applicableInState</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#applicableInState(burlap.oomdp.core.State,%20java.lang.String[])">applicableInState</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#clearAllActionsObservers()">clearAllActionsObservers</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#deterministicTransition(burlap.oomdp.core.State,%20java.lang.String[])">deterministicTransition</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#equals(java.lang.Object)">equals</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActions(burlap.oomdp.core.State)">getAllApplicableGroundedActions</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActionsFromActionList(java.util.List,%20burlap.oomdp.core.State)">getAllApplicableGroundedActionsFromActionList</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getDomain()">getDomain</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getName()">getName</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getParameterClasses()">getParameterClasses</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getParameterOrderGroups()">getParameterOrderGroups</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getTransitions(burlap.oomdp.core.State,%20java.lang.String)">getTransitions</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getTransitions(burlap.oomdp.core.State,%20java.lang.String[])">getTransitions</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#hashCode()">hashCode</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#init(java.lang.String,%20burlap.oomdp.core.Domain,%20java.lang.String[],%20java.lang.String[])">init</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#isPrimitive()">isPrimitive</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#parametersAreObjects()">parametersAreObjects</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#performAction(burlap.oomdp.core.State,%20java.lang.String)">performAction</a></code></li>
+<code><a href="../../../burlap/oomdp/singleagent/Action.html#addActionObserver(burlap.oomdp.singleagent.ActionObserver)">addActionObserver</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#applicableInState(burlap.oomdp.core.states.State,%20java.lang.String)">applicableInState</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#applicableInState(burlap.oomdp.core.states.State,%20java.lang.String[])">applicableInState</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#clearAllActionsObservers()">clearAllActionsObservers</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#deterministicTransition(burlap.oomdp.core.states.State,%20java.lang.String[])">deterministicTransition</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#equals(java.lang.Object)">equals</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActions(burlap.oomdp.core.states.State)">getAllApplicableGroundedActions</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActionsFromActionList(java.util.List,%20burlap.oomdp.core.State)">getAllApplicableGroundedActionsFromActionList</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getDomain()">getDomain</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getName()">getName</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getParameterClasses()">getParameterClasses</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getParameterOrderGroups()">getParameterOrderGroups</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getTransitions(burlap.oomdp.core.states.State,%20java.lang.String)">getTransitions</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#getTransitions(burlap.oomdp.core.states.State,%20java.lang.String[])">getTransitions</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#hashCode()">hashCode</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#init(java.lang.String,%20burlap.oomdp.core.Domain,%20java.lang.String[],%20java.lang.String[])">init</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#isPrimitive()">isPrimitive</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#parametersAreObjects()">parametersAreObjects</a>, <a href="../../../burlap/oomdp/singleagent/Action.html#performAction(burlap.oomdp.core.states.State,%20java.lang.String)">performAction</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -236,28 +236,28 @@ extends <a href="../../../burlap/oomdp/singleagent/Action.html" title="class in 
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="performAction(burlap.oomdp.core.State, java.lang.String[])">
+<a name="performAction(burlap.oomdp.core.states.State, java.lang.String[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>performAction</h4>
-<pre>public&nbsp;<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;performAction(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public&nbsp;<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;performAction(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                   java.lang.String[]&nbsp;params)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../burlap/oomdp/singleagent/Action.html#performAction(burlap.oomdp.core.State,%20java.lang.String[])">Action</a></code></strong></div>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../burlap/oomdp/singleagent/Action.html#performAction(burlap.oomdp.core.states.State,%20java.lang.String[])">Action</a></code></strong></div>
 <div class="block">Performs this action in the specified state using the specified parameters and returns the resulting state. The input state
  will not be modified with a deep copied state returned instead (unless this method is overriden, which may result in a semi-deep copy).
- If the action is not applicable in state s with parameters params, then a copy of the input state is returned.
- In general Action subclasses should *NOT* override this method and should instead override the abstract <a href="../../../burlap/oomdp/singleagent/Action.html#performActionHelper(burlap.oomdp.core.State,%20java.lang.String[])"><code>Action.performActionHelper(State, String[])</code></a> method.
+ If the action is not applicable in state o with parameters params, then a copy of the input state is returned.
+ In general Action subclasses should *NOT* override this method and should instead override the abstract <a href="../../../burlap/oomdp/singleagent/Action.html#performActionHelper(burlap.oomdp.core.states.State,%20java.lang.String[])"><code>Action.performActionHelper(State, String[])</code></a> method.
  Only override this method if you are seeking to perform memory optimization with semi-shallow copies of states and know what you're doing.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../burlap/oomdp/singleagent/Action.html#performAction(burlap.oomdp.core.State,%20java.lang.String[])">performAction</a></code>&nbsp;in class&nbsp;<code><a href="../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the state in which the action is to be performed.</dd><dd><code>params</code> - a String array specifying the action object parameters</dd>
+<dd><code><a href="../../../burlap/oomdp/singleagent/Action.html#performAction(burlap.oomdp.core.states.State,%20java.lang.String[])">performAction</a></code>&nbsp;in class&nbsp;<code><a href="../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the state in which the action is to be performed.</dd><dd><code>params</code> - a String array specifying the action object parameters</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the state that resulted from applying this action</dd></dl>
 </li>
 </ul>
-<a name="performActionHelper(burlap.oomdp.core.State, java.lang.String[])">
+<a name="performActionHelper(burlap.oomdp.core.states.State, java.lang.String[])">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -265,13 +265,13 @@ extends <a href="../../../burlap/oomdp/singleagent/Action.html" title="class in 
 <h4>performActionHelper</h4>
 <pre>protected&nbsp;<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;performActionHelper(<a href="../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;st,
                         java.lang.String[]&nbsp;params)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../burlap/oomdp/singleagent/Action.html#performActionHelper(burlap.oomdp.core.State,%20java.lang.String[])">Action</a></code></strong></div>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../burlap/oomdp/singleagent/Action.html#performActionHelper(burlap.oomdp.core.states.State,%20java.lang.String[])">Action</a></code></strong></div>
 <div class="block">This method determines what happens when an action is applied in the given state with the given parameters. The State
- object s may be directly modified in this method since the parent method first copies the input state to pass
- to this helper method. The resulting state (which may be s) should then be returned.</div>
+ object o may be directly modified in this method since the parent method first copies the input state to pass
+ to this helper method. The resulting state (which may be o) should then be returned.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../burlap/oomdp/singleagent/Action.html#performActionHelper(burlap.oomdp.core.State,%20java.lang.String[])">performActionHelper</a></code>&nbsp;in class&nbsp;<code><a href="../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a></code></dd>
+<dd><code><a href="../../../burlap/oomdp/singleagent/Action.html#performActionHelper(burlap.oomdp.core.states.State,%20java.lang.String[])">performActionHelper</a></code>&nbsp;in class&nbsp;<code><a href="../../../burlap/oomdp/singleagent/Action.html" title="class in burlap.oomdp.singleagent">Action</a></code></dd>
 <dt><span class="strong">Parameters:</span></dt><dd><code>st</code> - the state to perform the action on</dd><dd><code>params</code> - a String array specifying the action object parameters</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the resulting State from performing this action</dd></dl>
 </li>

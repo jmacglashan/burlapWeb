@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.planning.QComputablePlanner.QComputablePlannerHelper</li>
+<li>burlap.behavior.valuefunction.QFunction.QComputablePlannerHelper</li>
 </ul>
 </li>
 </ul>
@@ -101,7 +101,7 @@
 <br>
 <pre>public static class <span class="strong">QComputablePlanner.QComputablePlannerHelper</span>
 extends java.lang.Object</pre>
-<div class="block">A class of helper static methods that may be commonly used code that uses a QComputable planner. In particular,
+<div class="block">A class of helper static methods that may be commonly used code that uses a QComputable valueFunction. In particular,
  methods for computing the value function of a state, given the Q-values</div>
 </li>
 </ul>
@@ -140,31 +140,31 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static double</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.QComputablePlannerHelper.html#getOptimalValue(burlap.behavior.singleagent.planning.QComputablePlanner,%20burlap.oomdp.core.State)">getOptimalValue</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;planner,
-               <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.QComputablePlannerHelper.html#getOptimalValue(burlap.behavior.singleagent.planning.QComputablePlanner,%20burlap.oomdp.core.State)">getOptimalValue</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;valueFunction,
+               <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">Returns the optimal state value function for a state given a <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static double</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.QComputablePlannerHelper.html#getOptimalValue(burlap.behavior.singleagent.planning.QComputablePlanner,%20burlap.oomdp.core.State,%20burlap.oomdp.core.TerminalFunction)">getOptimalValue</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;planner,
-               <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.QComputablePlannerHelper.html#getOptimalValue(burlap.behavior.singleagent.planning.QComputablePlanner,%20burlap.oomdp.core.State,%20burlap.oomdp.core.TerminalFunction)">getOptimalValue</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;valueFunction,
+               <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;tf)</code>
 <div class="block">Returns the optimal state value for a state given a <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static double</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.QComputablePlannerHelper.html#getPolicyValue(burlap.behavior.singleagent.planning.QComputablePlanner,%20burlap.oomdp.core.State,%20burlap.behavior.singleagent.Policy)">getPolicyValue</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;planner,
-              <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.QComputablePlannerHelper.html#getPolicyValue(burlap.behavior.singleagent.planning.QComputablePlanner,%20burlap.oomdp.core.State,%20burlap.behavior.singleagent.Policy)">getPolicyValue</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;valueFunction,
+              <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
               <a href="../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a>&nbsp;p)</code>
 <div class="block">Returns the state value under a given policy for a state and <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static double</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.QComputablePlannerHelper.html#getPolicyValue(burlap.behavior.singleagent.planning.QComputablePlanner,%20burlap.oomdp.core.State,%20burlap.behavior.singleagent.Policy,%20burlap.oomdp.core.TerminalFunction)">getPolicyValue</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;planner,
-              <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.QComputablePlannerHelper.html#getPolicyValue(burlap.behavior.singleagent.planning.QComputablePlanner,%20burlap.oomdp.core.State,%20burlap.behavior.singleagent.Policy,%20burlap.oomdp.core.TerminalFunction)">getPolicyValue</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;valueFunction,
+              <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
               <a href="../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a>&nbsp;p,
               <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;tf)</code>
 <div class="block">Returns the state value under a given policy for a state and <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a>.</div>
@@ -209,63 +209,63 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getOptimalValue(burlap.behavior.singleagent.planning.QComputablePlanner, burlap.oomdp.core.State)">
+<a name="getOptimalValue(burlap.behavior.valuefunction.QFunction, burlap.oomdp.core.State)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getOptimalValue</h4>
-<pre>public static&nbsp;double&nbsp;getOptimalValue(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;planner,
-                     <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
+<pre>public static&nbsp;double&nbsp;getOptimalValue(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;valueFunction,
+                     <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
 <div class="block">Returns the optimal state value function for a state given a <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a>.
  The optimal value is the max Q-value. If no actions are permissible in the input state, then zero is returned.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>planner</code> - the <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a> capable of producing Q-values.</dd><dd><code>s</code> - the query <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> for which the value should be returned.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>valueFunction</code> - the <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a> capable of producing Q-values.</dd><dd><code>o</code> - the query <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> for which the value should be returned.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the max Q-value for all possible Q-values in the state.</dd></dl>
 </li>
 </ul>
-<a name="getOptimalValue(burlap.behavior.singleagent.planning.QComputablePlanner, burlap.oomdp.core.State, burlap.oomdp.core.TerminalFunction)">
+<a name="getOptimalValue(burlap.behavior.valuefunction.QFunction, burlap.oomdp.core.states.State, burlap.oomdp.core.TerminalFunction)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getOptimalValue</h4>
-<pre>public static&nbsp;double&nbsp;getOptimalValue(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;planner,
-                     <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public static&nbsp;double&nbsp;getOptimalValue(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;valueFunction,
+                     <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                      <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;tf)</pre>
 <div class="block">Returns the optimal state value for a state given a <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a>.
  The optimal value is the max Q-value. If no actions are permissible in the input state or the input state is a terminal state, then zero is returned.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>planner</code> - the <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a> capable of producing Q-values.</dd><dd><code>s</code> - the query <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> for which the value should be returned.</dd><dd><code>tf</code> - a terminal function.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>valueFunction</code> - the <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a> capable of producing Q-values.</dd><dd><code>o</code> - the query <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> for which the value should be returned.</dd><dd><code>tf</code> - a terminal function.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the max Q-value for all possible Q-values in the state or zero if there are not permissible actions or if the state is a terminal state.</dd></dl>
 </li>
 </ul>
-<a name="getPolicyValue(burlap.behavior.singleagent.planning.QComputablePlanner, burlap.oomdp.core.State, burlap.behavior.singleagent.Policy)">
+<a name="getPolicyValue(burlap.behavior.valuefunction.QFunction, burlap.oomdp.core.states.State, burlap.behavior.singleagent.Policy)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getPolicyValue</h4>
-<pre>public static&nbsp;double&nbsp;getPolicyValue(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;planner,
-                    <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public static&nbsp;double&nbsp;getPolicyValue(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;valueFunction,
+                    <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                     <a href="../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a>&nbsp;p)</pre>
 <div class="block">Returns the state value under a given policy for a state and <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a>.
  The value is the expected Q-value under the input policy action distribution. If no actions are permissible in the input state, then zero is returned.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>planner</code> - the <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a> capable of producing Q-values.</dd><dd><code>s</code> - the query <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> for which the value should be returned.</dd><dd><code>p</code> - the policy defining the action distribution.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>valueFunction</code> - the <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a> capable of producing Q-values.</dd><dd><code>o</code> - the query <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> for which the value should be returned.</dd><dd><code>p</code> - the policy defining the action distribution.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the expected Q-value under the input policy action distribution</dd></dl>
 </li>
 </ul>
-<a name="getPolicyValue(burlap.behavior.singleagent.planning.QComputablePlanner, burlap.oomdp.core.State, burlap.behavior.singleagent.Policy, burlap.oomdp.core.TerminalFunction)">
+<a name="getPolicyValue(burlap.behavior.valuefunction.QFunction, burlap.oomdp.core.states.State, burlap.behavior.policy.Policy, burlap.oomdp.core.TerminalFunction)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getPolicyValue</h4>
-<pre>public static&nbsp;double&nbsp;getPolicyValue(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;planner,
-                    <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s,
+<pre>public static&nbsp;double&nbsp;getPolicyValue(<a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning">QComputablePlanner</a>&nbsp;valueFunction,
+                    <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o,
                     <a href="../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a>&nbsp;p,
                     <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a>&nbsp;tf)</pre>
 <div class="block">Returns the state value under a given policy for a state and <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a>.
  The value is the expected Q-value under the input policy action distribution. If no actions are permissible in the input state, then zero is returned.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>planner</code> - the <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a> capable of producing Q-values.</dd><dd><code>s</code> - the query <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> for which the value should be returned.</dd><dd><code>p</code> - the policy defining the action distribution.</dd><dd><code>tf</code> - a terminal function.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>valueFunction</code> - the <a href="../../../../burlap/behavior/singleagent/planning/QComputablePlanner.html" title="interface in burlap.behavior.singleagent.planning"><code>QComputablePlanner</code></a> capable of producing Q-values.</dd><dd><code>o</code> - the query <a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core"><code>State</code></a> for which the value should be returned.</dd><dd><code>p</code> - the policy defining the action distribution.</dd><dd><code>tf</code> - a terminal function.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>the expected Q-value under the input policy action distribution or zero if there are not permissible actions or if the state is a terminal state.</dd></dl>
 </li>
 </ul>

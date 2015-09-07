@@ -135,26 +135,26 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#initializePlannerIn(burlap.oomdp.core.State)">initializePlannerIn</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>
+<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#initializePlannerIn(burlap.oomdp.core.states.State)">initializePlannerIn</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>
 <div class="block">This is method is expected to be called at the beginning of any new learning episode.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#modelChanged(burlap.oomdp.core.State)">modelChanged</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;changedState)</code>
-<div class="block">Tells the planner that the model has changed and that it will need to replan accordingly</div>
+<td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#modelChanged(burlap.oomdp.core.states.State)">modelChanged</a></strong>(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;changedState)</code>
+<div class="block">Tells the valueFunction that the model has changed and that it will need to replan accordingly</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#modelPlannedPolicy()">modelPlannedPolicy</a></strong>()</code>
-<div class="block">Returns a policy encoding the planner's results.</div>
+<div class="block">Returns a policy encoding the valueFunction'o results.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../burlap/behavior/singleagent/learning/modellearning/ModelPlanner.html#resetPlanner()">resetPlanner</a></strong>()</code>
-<div class="block">Resets planner as if no planning had never been called.</div>
+<div class="block">Resets valueFunction as if no planning had never been called.</div>
 </td>
 </tr>
 </table>
@@ -178,11 +178,11 @@
 <ul class="blockList">
 <li class="blockList">
 <h4>initializePlannerIn</h4>
-<pre>void&nbsp;initializePlannerIn(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
+<pre>void&nbsp;initializePlannerIn(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
 <div class="block">This is method is expected to be called at the beginning of any new learning episode. This may be useful for planning algorithms
  that do not solve the policy for every state since new episodes may starts in epsidoes the planning algorithm had not previously considered.
  before a learning episode begins.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>s</code> - the input state</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>o</code> - the input state</dd></dl>
 </li>
 </ul>
 <a name="modelChanged(burlap.oomdp.core.State)">
@@ -192,7 +192,7 @@
 <li class="blockList">
 <h4>modelChanged</h4>
 <pre>void&nbsp;modelChanged(<a href="../../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;changedState)</pre>
-<div class="block">Tells the planner that the model has changed and that it will need to replan accordingly</div>
+<div class="block">Tells the valueFunction that the model has changed and that it will need to replan accordingly</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>changedState</code> - the source state that caused a change in the model.</dd></dl>
 </li>
 </ul>
@@ -203,7 +203,7 @@
 <li class="blockList">
 <h4>modelPlannedPolicy</h4>
 <pre><a href="../../../../../burlap/behavior/singleagent/Policy.html" title="class in burlap.behavior.singleagent">Policy</a>&nbsp;modelPlannedPolicy()</pre>
-<div class="block">Returns a policy encoding the planner's results.</div>
+<div class="block">Returns a policy encoding the valueFunction'o results.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>a policy object</dd></dl>
 </li>
 </ul>
@@ -214,7 +214,7 @@
 <li class="blockList">
 <h4>resetPlanner</h4>
 <pre>void&nbsp;resetPlanner()</pre>
-<div class="block">Resets planner as if no planning had never been called.</div>
+<div class="block">Resets valueFunction as if no planning had never been called.</div>
 </li>
 </ul>
 </li>

@@ -86,7 +86,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>burlap.behavior.singleagent.options.LocalSubgoalTF</li>
+<li>burlap.behavior.singleagent.options.support.LocalSubgoalTF</li>
 </ul>
 </li>
 </ul>
@@ -155,12 +155,12 @@ implements <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/options/LocalSubgoalTF.html#LocalSubgoalTF(burlap.behavior.singleagent.planning.StateConditionTest)">LocalSubgoalTF</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;subgoalStateTest)</code>
+<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/options/LocalSubgoalTF.html#LocalSubgoalTF(burlap.oomdp.auxiliary.stateconditiontest.StateConditionTest)">LocalSubgoalTF</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;subgoalStateTest)</code>
 <div class="block">Initializes with a set of subgoal states.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/options/LocalSubgoalTF.html#LocalSubgoalTF(burlap.behavior.singleagent.planning.StateConditionTest,%20burlap.behavior.singleagent.planning.StateConditionTest)">LocalSubgoalTF</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;applicableStateTest,
+<td class="colOne"><code><strong><a href="../../../../burlap/behavior/singleagent/options/LocalSubgoalTF.html#LocalSubgoalTF(burlap.oomdp.auxiliary.stateconditiontest.StateConditionTest,%20burlap.behavior.singleagent.planning.StateConditionTest)">LocalSubgoalTF</a></strong>(<a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;applicableStateTest,
               <a href="../../../../burlap/behavior/singleagent/planning/StateConditionTest.html" title="interface in burlap.behavior.singleagent.planning">StateConditionTest</a>&nbsp;subgoalStateTest)</code>
 <div class="block">Initializes with a set of states in which the option is applicable and the options subgoal states.</div>
 </td>
@@ -182,7 +182,7 @@ implements <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/LocalSubgoalTF.html#isTerminal(burlap.oomdp.core.State)">isTerminal</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../burlap/behavior/singleagent/options/LocalSubgoalTF.html#isTerminal(burlap.oomdp.core.states.State)">isTerminal</a></strong>(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -245,7 +245,7 @@ implements <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>subgoalStateTest</code> - the subgoal states.</dd></dl>
 </li>
 </ul>
-<a name="LocalSubgoalTF(burlap.behavior.singleagent.planning.StateConditionTest, burlap.behavior.singleagent.planning.StateConditionTest)">
+<a name="LocalSubgoalTF(burlap.oomdp.auxiliary.stateconditiontest.StateConditionTest, burlap.behavior.singleagent.planning.StateConditionTest)">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -271,10 +271,10 @@ implements <a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="
 <ul class="blockListLast">
 <li class="blockList">
 <h4>isTerminal</h4>
-<pre>public&nbsp;boolean&nbsp;isTerminal(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;s)</pre>
+<pre>public&nbsp;boolean&nbsp;isTerminal(<a href="../../../../burlap/oomdp/core/State.html" title="class in burlap.oomdp.core">State</a>&nbsp;o)</pre>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../burlap/oomdp/core/TerminalFunction.html#isTerminal(burlap.oomdp.core.State)">isTerminal</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a></code></dd>
+<dd><code><a href="../../../../burlap/oomdp/core/TerminalFunction.html#isTerminal(burlap.oomdp.core.states.State)">isTerminal</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../burlap/oomdp/core/TerminalFunction.html" title="interface in burlap.oomdp.core">TerminalFunction</a></code></dd>
 </dl>
 </li>
 </ul>
