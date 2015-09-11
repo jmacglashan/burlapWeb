@@ -1,8 +1,14 @@
-<html>
+`<html>
 	<head>
 		<title>Building a Domain</title>
 		<script src="../../google-code-prettify/run_prettify.js?skin=desert"></script>
 		<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+		</script>
+		<script type="text/javascript"
+			src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
 	</head>
 	<body>
 	
@@ -44,11 +50,11 @@
 				that OO-MDPs. Finally, we will cover how to create a domain, so that the planning and learning algorithms in BURLAP can be used on it, as well as how to visualize it, which is useful for testing and reviewing results. 
 				</p>
 				<div class="note">
-				<h2>Note</h2>
+				<h2>Other Problem Types</h2>
 				<p>
 				Beyond MDPs, BURLAP also supports
-				stochastic games, but a discussion of stochastic games will be left for a different tutorial and many of the core
-				elements of the OO-MDP code that BURLAP uses is reused in the stochastic games package of BURLAP as well. That is, BURLAP implements a form of Object-oriented Stochastic games.
+				stochastic games and partially observable MDPs, but a discussion of those problem types will be left for a different tutorial and many of the core
+				elements of the OO-MDP code that BURLAP uses is reused with the other problem types.
 				</p>
 				</div>
 				</p>
@@ -65,7 +71,7 @@
 				<p>
 				<!--Use GridWorld as Running example from the start-->
 				To define worlds in which an agent can plan or learn, BURLAP uses the object-oriented Markov Decision Process (OO-MDP) formalism, which is an extension of the classic Markov Decision Process (MDP) formalism.
-				A MDP provides a formal definition of a world, how it works, and how the agent who will be making decisions interacts with the world in a series of discrete
+				An MDP provides a formal definition of a world, how it works, and how the agent who will be making decisions interacts with the world in a series of discrete
 				time steps. In this tutorial we will formalize a grid world as an MDP. A grid world is a 2D world in which an agent can move north, south, east or west by one unit, provided there are no walls in the way. The below image shows a simple grid world with the agent's position represented by a gray circle and walls of the world painted black. Typically, the goal in a grid world is for the agent to navigate to some location, but there are a number of variants.
 				</p>
 				<center>
@@ -74,14 +80,14 @@
 				<font size="2">An example grid world.</font></p>
 				</center>
 				<p>
-				 To define any world and task as an MDP, we will need to break down the problem into four components: a set of possible states of the world (<i>S</i>); a set of actions that the agent can apply (<i>A</i>); a definition of how actions change the state of the world, known as the transition dynamics (<i>T</i>); and the rewards the agent receives for each of its actions (<i>R</i>), known as the reward function, which will determine what the best behavior is (that is, the agent will want to act in a way that maximizes the reward it receives).
+				 To define any world and task as an MDP, we will need to break down the problem into four components: a set of possible states of the world ($S$); a set of actions that the agent can apply ($A$); a definition of how actions change the state of the world, known as the transition dynamics ($T$); and the rewards the agent receives for each of its actions ($R$), known as the reward function, which will determine what the best behavior is (that is, the agent will want to act in a way that maximizes the reward it receives).
 				</p>
 				<p>
-				The transition dynamics are formulated as a probabilistic function <i>T</i>(<i>s'</i> | <i>s, a</i>), which defines the probability of the world changing to state <i>s'</i> in the next discrete time
-				step when the agent takes action <i>a</i> in the current state <i>s</i>. The fact that the world can change stochastically is one of the unique properties of an MDP compared to more classic planning/decision making problems.
+				The transition dynamics are formulated as a probabilistic function $T(s' | s, a)$, which defines the probability of the world changing to state $s'$ in the next discrete time
+				step when the agent takes action $a$ in the current state $s$. The fact that the world can change stochastically is one of the unique properties of an MDP compared to more classic planning/decision making problems.
 				</p>
 				<p>
-				The reward function is defined as <i>R</i>(<i>s, a, s'</i>), which returns the reward received for the agent taking action <i>a</i> in state <i>s</i> and then transitioning to state <i>s'</i>.
+				The reward function is defined as $R(s, a, s')$, which returns the reward received for the agent taking action $a$ in state $s$ and then transitioning to state $s'$.
 				</p>
 				<p>
 				Notice how both the transition dynamics and reward function are temporally independent from everything predating the most recent
@@ -94,7 +100,7 @@
 				For various kinds of problems, the concept of terminal states is often useful. A terminal state is a state that once reached causes all further action of the agent to cease. This is a useful concept for defining goal-directed tasks (i.e., action stops once the agent achieves a goal), failure conditions, or any number of other reasons. In our grid world, we'll want to specify the top right corner the agent is trying to get to as a terminal state. An MDP definition does not include a specific element for specifying terminal states because they can be implicitly defined in the transition dynamics and reward function. That is, a terminal state can be encoded in an MDP by being a state in which every action causes a deterministic transition back to itself with zero reward. However, for convenience and other practical reasons, terminal states in BURLAP are specified directly with a function (more on that later). 
 				</p>
 				<p>
-				The goal of planning or learning in an MDP is to find the behavior that maximizes the reward the agent receives over time. More formally, we'd say that the goal is to find a <i>policy</i>, which is a mapping from states in the MDP to actions that the agent takes. To find the policy that maximizes the reward over time, we must first define what it means to maximize reward <i>over time</i> and there are a number of different temporal objectives we
+				The goal of planning or learning in an MDP is to find the behavior that maximizes the reward the agent receives over time. More formally, we'd say that the goal is to find a <i>policy</i> ($\pi$), that is a mapping from states in the MDP to actions that the agent takes ($\pi : S \rightarrow A$). Sometimes, the policy can also be defined as a probability distribution over action selection in each state (and BURLAP supports this represenation), but for the moment we will consider the case when it is a direct mapping from states to actions. To find the policy that maximizes the reward over time, we must first define what it means to maximize reward <i>over time</i> and there are a number of different temporal objectives we
 				can imagine that change what the optimal policy is.</p>
 				<p>
 				Perhaps the most intuitive way to define the temporal reward maximization is to maximize the
@@ -102,17 +108,13 @@
 				</p>
 				<p>
 				A common
-				alternative temporal objective that is more robust is to define the objective to be
+				alternative that is more robust is to define the objective to be
 				to maximize the expected <i>discounted</i> future reward. That is, the
 				agent is trying to maximize expected sum
-				</p>
-				<center>
-				<img src="images/discountedReturn.gif" height="60"/>
-				</center>
-				<p/>
-				where r_t is the reward received at time t and &gamma; is the discount factor that dictates how much preference an agent has for more immediate rewards, or in other words, the agent's patience. With &gamma; = 1, the agent values distant
-				rewards that will happen much further in the future as much as the reward the agent will receive in the next time step; therefore, &gamma; = 1 results in the same objective of summing all future rewards together and will have the same problems previously mentioned. With &gamma; = 0 all the agent values only the next reward and does not care about anything that happens afterwards, thereby resulting in all policies having a finite value. This setting has the inverse effect of the agent never caring about our grid world goal location unless it's one step away. However, a &gamma; value somewhere in between 0 and 1 often results in what we want. That is, for all values of 0 <= &gamma; < 1, the expected reward in an MDP when following any given policy is finite and the agent will value future rewards at least somewhat. If we set &gamma; to 0.99 in our grid world, the result is that the agent would want to get to the goal as fast as possible, because waiting longer would result in the eventual +1 goal reward being more heavily discounted. Although there are still other ways to define the temporal objective of an MDP, current learning and planning algorithms in BURLAP are based on using
-				the discounted reward with &gamma; left as a parameter that the user can specify.
+				$$\large \sum_{t=0}^\infty \gamma^t r_t,$$
+				where $r_t$ is the reward received at time $t$ and $\gamma$ is the discount factor that dictates how much preference an agent has for more immediate rewards; in other words, the agent's patience. With $\gamma = 1$, the agent values distant
+				rewards that will happen much further in the future as much as the reward the agent will receive in the next time step; therefore, $\gamma = 1$ results in the same objective of summing all future rewards together and will have the same problems previously mentioned. With $\gamma = 0$ all the agent values only the next reward and does not care about anything that happens afterwards, thereby resulting in all policies having a finite value. This setting has the inverse effect of the agent never caring about our grid world goal location unless it's one step away. However, a $\gamma$ value somewhere in between 0 and 1 often results in what we want. That is, for all values of $0 \le \gamma \lt 1$, the expected future discounted reward in an MDP when following any given policy is finite. If we set $\gamma$ to 0.99 in our grid world, the result is that the agent would want to get to the goal as fast as possible, because waiting longer would result in the eventual +1 goal reward being more heavily discounted. Although there are still other ways to define the temporal objective of an MDP, current learning and planning algorithms in BURLAP are based on using
+				the discounted reward, with the geometric discout factor $\gamma$ left as a parameter that the user can specify.
 				</p>
 
 				
