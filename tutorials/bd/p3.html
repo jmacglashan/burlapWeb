@@ -51,6 +51,7 @@ import burlap.oomdp.core.objects.ObjectInstance;
 import burlap.oomdp.core.states.MutableState;
 import burlap.oomdp.core.states.State;
 import burlap.oomdp.singleagent.*;
+import burlap.oomdp.singleagent.common.SimpleAction;
 import burlap.oomdp.singleagent.environment.SimulatedEnvironment;
 import burlap.oomdp.singleagent.explorer.TerminalExplorer;
 import burlap.oomdp.singleagent.explorer.VisualExplorer;
@@ -150,16 +151,16 @@ protected int [][] map = new int[][]{
 				Next we will create our actions. We will define north, south, east, and west actions that have a probability of 0.8 of going in the intended direction and a probability of 0.2 of going in any other direction.
 				</p>
 				<p>
-				To define single agent actions in BURLAP, we subclass the <a href="../../doc/burlap/oomdp/singleagent/Action.html">Action</a> class. In this case, we will create a single subclass, called Movement, and instantiate it multiple times for each movement direction. Subclassing Action requires us to implement the method performActionHelper, which is called whenever an action is applied in simulation to a State and must return the resulting state from applying the action. If we were defining parameterized actions or specifying preconditions in which hte actions could be applied, we would also have to override methods for them (see the <a href="../../doc/burlap/oomdp/singleagent/Action.html">Action class Java documentation</a> for more information on those methods). Since we're not though we do not need to override those other methods.
+				To define single agent actions in BURLAP, we subclass the <a href="../../doc/burlap/oomdp/singleagent/Action.html">Action</a> class. In this case, we will create a single subclass, called Movement, and instantiate it multiple times for each movement direction. Subclassing Action requires us to implement a number of abstract methods that describe and operationalize the action, such preconditions, parameters, and transition dynamics. Since movement acitons will not have any preconditions or parameters, we can subclass <a href="../../doc/burlap/oomdp/singleagent/common/SimpleAction.html">SimpleAction</a>, which will handle the methods for no preconditions or parameters requiring us only to implement the performActionHelper method of Action. The method performActionHelper method is called whenever an action is applied in simulation to a State and must return the resulting state from applying the action. If our action is stochastic, then this method should randomly sample and return an outcome state according to the probability distribution.
 				</p>
 				<p>
-				Additionally, we would like to specify the full probability distribution of action effects from our action, which means we will want to have our Action implement the <a href="../../doc/burlap/oomdp/singleagent/FullActionModel.html">FullActionModel</a> interface. This interface requires implementing a getTransitions method, which returns a list of all possible outcomestates when an action is applied and their probabiltiy of occurring. Implementing this interface will allow our domain to be solved by dynamic programming methods and used by other algorithms, so it's useful to implement. However, not all domains will be able to enumerate the full probabiltiy distribution (for example, when it's infinite) so this remains an optional interface. In our case, the number of outcomes is finte and easy to specify, so we will implement it.
+				In addition to being able sample action transitions from our Action, we would like to specify the full probability distribution of action effects from our action, which means we will want to have our Action implement the <a href="../../doc/burlap/oomdp/singleagent/FullActionModel.html">FullActionModel</a> interface. This interface requires implementing a getTransitions method, which returns a list of all possible outcome states when an action is applied and their probabiltiy of occurring. Implementing this interface will allow our domain to be solved by dynamic programming methods and other algorithms that require enumerating the full probability distribution, so it's useful to implement. However, not all domains will be able to enumerate the full probabiltiy distribution (for example, when it's infinite) so this remains an optional interface. In our case, the number of outcomes is finte and easy to specify, so we will implement it.
 				</p>
 				<hr/>
 				<p>
 				Let us now write the skeleton of our Movement class as an inner class of our GridWorldExample:
 				<pre class="prettyprint lang-java">
-protected class Movement extends Action implements FullActionModel {
+protected class Movement extends SimpleAction implements FullActionModel {
 
 
 	@Override
@@ -178,7 +179,7 @@ protected class Movement extends Action implements FullActionModel {
 				So that we can reuse this Action class for each movement direction, lets define a data member that specifies the probability of going in each direction and let the intended direction (which will succeed with probability 0.8) be specified in the constructor, along with a name for the action and the domain to which it belongs.
 				</p>
 				<pre class="prettyprint lang-java">
-protected class Movement extends Action implements FullActionModel {
+protected class Movement extends SimpleAction implements FullActionModel {
 
 	//0: north; 1: south; 2:east; 3: west
 	protected double [] directionProbs = new double[4];
@@ -293,7 +294,7 @@ protected State performActionHelper(State s, GroundedAction groundedAction) {
 				You might have two questions about the performActionHelper method that we didn't explain; first you might wonder what the <a href="../../doc/burlap/oomdp/singleagent/GroundedAction.html">GroundedAction</a> method argument is for; second you might wonder if it's safe to directly modify the input State and return it, rather than making a new state and returning it.
 				</p>
 				<p>
-				The GroundedAction argument is provided because BURLAP supports parameterized actions; that is, actions that require the agent to select parameter values to execute the action. For example, in a blocks world, we can imagine a parameterized "stack" action that requires two block parameters to be specified: which block to pick up and on which block to stack it. Since our Action definition is not parameterized, we do not have to worry about which parameter values were specified, but if it was, the GroundedAction class (or rather subclasses of it that depend on the kind of parameterization used) would contain all the parameter information needed to apply the action and in the code to implement the action, we would look inside the provided GroundedAction. Note that this paradigm is used for many other Action methods (though not all are implemented here).
+				The GroundedAction argument is provided because BURLAP supports parameterized actions; that is, actions that require the agent to select parameter values to execute the action. For example, in a blocks world, we can imagine a parameterized "stack" action that requires two block parameters to be specified: which block to pick up and on which block to stack it. Since our Action definition is not parameterized, we do not have to worry about which parameter values were specified, but if it was, the GroundedAction class (or rather subclasses of it that depend on the kind of parameterization used) would contain all the parameter information needed to apply the action and in the performActionHelper method, we would look inside the provided GroundedAction to determine the outcome. Note that this paradigm is used for many other Action methods as well (though they are not implemented here since we extended SimpleAction).
 				</p>
 				<p>
 				Regarding modifying the input state directly, this is safe to do because performActionHelper is always called indirectly through the method perfomAction. The performAction method first makes a copy of its input state and then passes that to performActionHelper, thereby ensuring that performActionHelper cannot modify an important state used by the calling code.
@@ -505,7 +506,7 @@ public static void main(String [] args){
 				<div class="note">
 				<h2>TerminalExplorer and Environment instances</h2>
 				<p>
-				It's worth noting that the terminal explorer works by taking command line commands from a user, interpreting them into actions, and feeding them into an <a href="../../doc/burlap/oomdp/singleagent/environment/Environment.html">Environment</a> (it also has some other special commands you can give which you'll see when you start it). When we use a constructor with just a domain and initial state, it creates a <a href="../../doc/burlap/oomdp/singleagent/environment/SimulatedEnvironment.html">SimulatedEnvironment</a> instance using that domain, but we could have provided any other Environment instead.
+				It's worth noting that the terminal explorer works by taking command line commands from a user, interpreting them into actions, and feeding them into an <a href="../../doc/burlap/oomdp/singleagent/environment/Environment.html">Environment</a> (it also has some other special commands you can give which you'll see when you start it). When we use a constructor with just a domain and initial state, it creates a <a href="../../doc/burlap/oomdp/singleagent/environment/SimulatedEnvironment.html">SimulatedEnvironment</a> instance using that domain, but we could have provided any other Environment instead using a different constructor.
 				</p>
 				</div>
 				<p>

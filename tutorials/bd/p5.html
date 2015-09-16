@@ -175,6 +175,7 @@ import burlap.oomdp.core.objects.ObjectInstance;
 import burlap.oomdp.core.states.MutableState;
 import burlap.oomdp.core.states.State;
 import burlap.oomdp.singleagent.*;
+import burlap.oomdp.singleagent.common.SimpleAction;
 import burlap.oomdp.singleagent.environment.SimulatedEnvironment;
 import burlap.oomdp.singleagent.explorer.TerminalExplorer;
 import burlap.oomdp.singleagent.explorer.VisualExplorer;
@@ -283,7 +284,7 @@ public class ExampleGridWorld implements DomainGenerator{
 	}
 
 
-	protected class Movement extends Action implements FullActionModel {
+	protected class Movement extends SimpleAction implements FullActionModel {
 
 		//0: north; 1: south; 2:east; 3: west
 		protected double [] directionProbs = new double[4];
