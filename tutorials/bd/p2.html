@@ -76,7 +76,7 @@
 				<li><a href="../../doc/burlap/oomdp/core/objects/ObjectInstance.html">ObjectInstance</a> - this interface is used to represent an OO-MDP object, which is defined by an ObjectClass and a set of Value assignments to each of the class' Attribute objects.</li>
 				<li><a href="../../doc/burlap/oomdp/core/states/State.html">State</a> - this interface provides methods to retrieve infromation about an OO-MDP state, such as getting the vairous ObjectInstance elements that define it.</li>
 				<li><a href="../../doc/burlap/oomdp/core/PropositionalFunction.html">PropositionalFunction</a> - this abstract class is subclassed to define propositional functions of an OO-MDP that operate on objects in State objects.</li>
-				<li><a href="../../doc/burlap/oomdp/singleagent/Action.html">Action</a> - this abstract class is subclassed to provide the actions an agent can take in the world. The action subclass defines the transition dynamics for the action, preconditions (if any), and parameters the action takes (if any).</li>
+				<li><a href="../../doc/burlap/oomdp/singleagent/Action.html">Action</a> - this abstract class is subclassed to provide the definitions of actions that an agent can take in the world. The action subclass defines the transition dynamics for the action, preconditions (if any), and parameters the action takes (if any).</li>
 				<li><a href="../../doc/burlap/oomdp/core/TransitionProbability.html">TransitionProbability</a> - this class is a pair that defines the probability of transitioning to another state and is returned by the Action class when querying for its transition dynamics.</li>
 				<li><a href="../../doc/burlap/oomdp/singleagent/GroundedAction.html">GroundedAction</a> - this class provides a reference to an action and the specific parameters (if any) with which it should be applied.</li>
 				<li><a href="../../doc/burlap/oomdp/core/GroundedProp.html">GroundedProp</a> - this class provides a reference to a PropositionalFunction and the parameters with which it will be evaluated.</li>
@@ -84,7 +84,12 @@
 				<li><a href="../../doc/burlap/oomdp/core/TerminalFunction.html">TerminalFunction</a> - this interface is implemented to specify the terminal states of a task in a specific OO-MDP domain.</li>
 				<li><a href="../../doc/burlap/oomdp/singleagent/RewardFunction.html">RewardFunction</a> - this interface is implemented to specify the rewards received for any state, action, next state transition.</li>
 				</ul>
-
+				<div class="note">
+					<h2>State implementations</h2>
+					<p>
+					Because State and ObjectInstance are interfaces, you must choose a specific implementaiton that handles how they manage memory and datastructures for storing the information. All the included Domain's in BURLAP make use of the <a href="../../doc/burlap/oomdp/core/states/MutableState.html">MutableState</a> and <a href="../../doc/burlap/oomdp/core/objects/MutableObjectInstance.html">MuableObjectInstance</a> implemenations, which is a good place to start. However, if your domain is computationally demanding, you may want to consider writing your own implementation that handles memory and allows access to information in the most efficient way possible.
+					</p>
+				</div>
 				
 				<div id="footerControls">
 					<a href="p3.html">Next Part</a>

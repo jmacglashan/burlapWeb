@@ -40,37 +40,30 @@
 				
 				<h3><a name="oclasses">Defining GridWorld Object Classes</a></h3>
 				<p>
-				To begin implementing our grid world domain in BURLAP, we will create a class that in this tutorial we will call ExampleGridWorld. Furthermore, we will make it implement the <a href="../../doc/burlap/oomdp/auxiliary/DomainGenerator.html">DomainGenerator</a> interface, which is a common convention in BURLAP when developing domains and requires implementing the generateDomain() method. In that method, we will also create an SADomain object that will keep track of all of our attributes, object classes, etc. that we define. (Note that the Domain class that is returned by the method is the abstract superclass of SADomain. It is abstract because for stochastic games we will have a different domain subclass that contains different and shared information.) 
+				To begin implementing our grid world domain in BURLAP, we will create a class that in this tutorial we will call ExampleGridWorld. Furthermore, we will make it implement the <a href="../../doc/burlap/oomdp/auxiliary/DomainGenerator.html">DomainGenerator</a> interface, which is a common convention in BURLAP when developing domains and requires implementing the generateDomain() method. In that method, we will create an <a href="../../doc/burlap/oomdp/singleagent/SADomain.html">SADomain</a> object that will keep track of all of our attributes, object classes, etc. that we define. (Note that the <a href="../../doc/burlap/oomdp/core/Domain.html">Domain</a> class that is returned by the method is the abstract superclass of SADomain.) 
 				You should have code that looks like the below; to make things easier for the future, the below code has all of the library imports that you'll need for the rest of the tutorial.
 				</p>
 				<pre class="prettyprint lang-java">
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.List;
-
 import burlap.oomdp.auxiliary.DomainGenerator;
-import burlap.oomdp.core.Attribute;
-import burlap.oomdp.core.Attribute.AttributeType;
-import burlap.oomdp.core.Domain;
-import burlap.oomdp.core.ObjectClass;
-import burlap.oomdp.core.ObjectInstance;
-import burlap.oomdp.core.PropositionalFunction;
-import burlap.oomdp.core.State;
-import burlap.oomdp.core.TerminalFunction;
-import burlap.oomdp.core.TransitionProbability;
-import burlap.oomdp.singleagent.Action;
-import burlap.oomdp.singleagent.GroundedAction;
-import burlap.oomdp.singleagent.RewardFunction;
-import burlap.oomdp.singleagent.SADomain;
+import burlap.oomdp.core.*;
+import burlap.oomdp.core.objects.MutableObjectInstance;
+import burlap.oomdp.core.objects.ObjectInstance;
+import burlap.oomdp.core.states.MutableState;
+import burlap.oomdp.core.states.State;
+import burlap.oomdp.singleagent.*;
+import burlap.oomdp.singleagent.environment.SimulatedEnvironment;
 import burlap.oomdp.singleagent.explorer.TerminalExplorer;
 import burlap.oomdp.singleagent.explorer.VisualExplorer;
 import burlap.oomdp.visualizer.ObjectPainter;
 import burlap.oomdp.visualizer.StateRenderLayer;
 import burlap.oomdp.visualizer.StaticPainter;
 import burlap.oomdp.visualizer.Visualizer;
+
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.util.*;
+import java.util.List;
 
 public class ExampleGridWorld implements DomainGenerator {
 
@@ -154,42 +147,45 @@ protected int [][] map = new int[][]{
 
 				</pre>
 				<p>
-				Next we will create our actions. We will define north, south, east, and west actions that have a probability of 0.8 of going in the intended direction and a probability of 0.2 of going in any other direction. To create these actions, we will define a single subclass of the Action class that we will call Movement and instantiate it multiple times for each action. Subclassing Action requires us to implement the method performActionHelper, which is called whenever an action is applied and must return the resulting state from applying the action.
+				Next we will create our actions. We will define north, south, east, and west actions that have a probability of 0.8 of going in the intended direction and a probability of 0.2 of going in any other direction.
 				</p>
 				<p>
-				 We will also want to override the method getTransitions, which specifies the probability of transitioning to each possible next state when applying the action in the provided state (and with the provided parameters). Overriding this method is not required if the domain is not going to be used with planning or learning algorithms that require exact and fully enumerated transition dynamics, and for some domains, it may not even be possible to enumerate all possible outcomes. However, if you do not override the method and a planning or learning algorithm tries to use it, an UnsupportedOperation exception will be thrown. Since the number of possible outcomes is trivial to enumerate for our grid world and since we'd like to be able to use algorithms like Value Iteration that require the fully enumerated transition dynamics, we will implement the method.</p>
-				 <p>
-				 If our actions had preconditions and were only applicable in certain states, we would also have to override the applicableInState method. Since our actions can be taken anywhere, however, we will not override it, which has the default behavior of making the actions applicable everywhere.
-				 </p>
+				To define single agent actions in BURLAP, we subclass the <a href="../../doc/burlap/oomdp/singleagent/Action.html">Action</a> class. In this case, we will create a single subclass, called Movement, and instantiate it multiple times for each movement direction. Subclassing Action requires us to implement the method performActionHelper, which is called whenever an action is applied in simulation to a State and must return the resulting state from applying the action. If we were defining parameterized actions or specifying preconditions in which hte actions could be applied, we would also have to override methods for them (see the <a href="../../doc/burlap/oomdp/singleagent/Action.html">Action class Java documentation</a> for more information on those methods). Since we're not though we do not need to override those other methods.
+				</p>
+				<p>
+				Additionally, we would like to specify the full probability distribution of action effects from our action, which means we will want to have our Action implement the <a href="../../doc/burlap/oomdp/singleagent/FullActionModel.html">FullActionModel</a> interface. This interface requires implementing a getTransitions method, which returns a list of all possible outcomestates when an action is applied and their probabiltiy of occurring. Implementing this interface will allow our domain to be solved by dynamic programming methods and used by other algorithms, so it's useful to implement. However, not all domains will be able to enumerate the full probabiltiy distribution (for example, when it's infinite) so this remains an optional interface. In our case, the number of outcomes is finte and easy to specify, so we will implement it.
+				</p>
+				<hr/>
+				<p>
+				Let us now write the skeleton of our Movement class as an inner class of our GridWorldExample:
 				<pre class="prettyprint lang-java">
-protected class Movement extends Action{
+protected class Movement extends Action implements FullActionModel {
+
 
 	@Override
-	protected State performActionHelper(State s, String[] params) {
-		
+	protected State performActionHelper(State s, GroundedAction groundedAction) {
 		return null;
 	}
-	
-	
+
 	@Override
-	public List<TransitionProbability> getTransitions(State s, String [] params){
+	public List&lt;TransitionProbability> getTransitions(State s, GroundedAction groundedAction) {
 		return null;
 	}
-	
-	
+
 }
 				</pre>
 				<p>
 				So that we can reuse this Action class for each movement direction, lets define a data member that specifies the probability of going in each direction and let the intended direction (which will succeed with probability 0.8) be specified in the constructor, along with a name for the action and the domain to which it belongs.
 				</p>
 				<pre class="prettyprint lang-java">
-protected class Movement extends Action{
+protected class Movement extends Action implements FullActionModel {
 
 	//0: north; 1: south; 2:east; 3: west
 	protected double [] directionProbs = new double[4];
-	
+
+
 	public Movement(String actionName, Domain domain, int direction){
-		super(actionName, domain, "");
+		super(actionName, domain);
 		for(int i = 0; i < 4; i++){
 			if(i == direction){
 				directionProbs[i] = 0.8;
@@ -199,24 +195,21 @@ protected class Movement extends Action{
 			}
 		}
 	}
-	
+
 	@Override
-	protected State performActionHelper(State s, String[] params) {
-		
+	protected State performActionHelper(State s, GroundedAction groundedAction) {
 		return null;
 	}
-	
-	
+
 	@Override
-	public List&lt;TransitionProbability> getTransitions(State s, String [] params){
+	public List&lt;TransitionProbability> getTransitions(State s, GroundedAction groundedAction) {
 		return null;
 	}
-	
-	
+
 }
 				</pre>
 				<p>
-				Notice how we called a super constructor with the action name, domain, and empty quotes? Calling the super constructor will automatically connect the action with the domain object and set its name. The empty quotes are used to specify that this action takes no parameters.
+				Notice how we called a super constructor with the action name and domain? Calling the super constructor will automatically connect the action with the domain object and set its name.
 				</p>
 				<p>
 				Now we'll want to start defining our performActionHelper and getTransitions methods. To do so, lets add a helper method for getting the result of moving in a given direction. As long as the cell is free (that is, there is no wall), the agent will move to that position; if there is a wall there, the agent will stay in the same place. This method will then return the resulting x and y position of the agent.
@@ -265,13 +258,12 @@ protected int [] moveResult(int curX, int curY, int direction){
 				
 				<pre class="prettyprint lang-java">
 @Override
-protected State performActionHelper(State s, String[] params) {
-	
+protected State performActionHelper(State s, GroundedAction groundedAction) {
 	//get agent and current position
 	ObjectInstance agent = s.getFirstObjectOfClass(CLASSAGENT);
-	int curX = agent.getDiscValForAttribute(ATTX);
-	int curY = agent.getDiscValForAttribute(ATTY);
-	
+	int curX = agent.getIntValForAttribute(ATTX);
+	int curY = agent.getIntValForAttribute(ATTY);
+
 	//sample directon with random roll
 	double r = Math.random();
 	double sumProb = 0.;
@@ -283,37 +275,44 @@ protected State performActionHelper(State s, String[] params) {
 			break; //found direction
 		}
 	}
-	
+
 	//get resulting position
 	int [] newPos = this.moveResult(curX, curY, dir);
-	
+
 	//set the new position
 	agent.setValue(ATTX, newPos[0]);
 	agent.setValue(ATTY, newPos[1]);
-	
+
 	//return the state we just modified
 	return s;
 }
 				</pre>
 				<div class="note">
-				<h2>Note</h2>
+				<h2>The anatomy of performActionHelper</h2>
 				<p>
-				You might be wondering why we can modify the state directly and then return it, since it seems like that might cause problems if the passed in State object was used elsewhere in a planning or learning algorithm. Notice how the method we are overriding has a "Helper" qualifier at the end and is marked as protected? That's because there is a public method called "performAction" that will first copy any input state and then pass the copied state to the performActionHelper method that we are overriding. This copying ensures that you're never modifying a State object that is used for something else.
+				You might have two questions about the performActionHelper method that we didn't explain; first you might wonder what the <a href="../../doc/burlap/oomdp/singleagent/GroundedAction.html">GroundedAction</a> method argument is for; second you might wonder if it's safe to directly modify the input State and return it, rather than making a new state and returning it.
+				</p>
+				<p>
+				The GroundedAction argument is provided because BURLAP supports parameterized actions; that is, actions that require the agent to select parameter values to execute the action. For example, in a blocks world, we can imagine a parameterized "stack" action that requires two block parameters to be specified: which block to pick up and on which block to stack it. Since our Action definition is not parameterized, we do not have to worry about which parameter values were specified, but if it was, the GroundedAction class (or rather subclasses of it that depend on the kind of parameterization used) would contain all the parameter information needed to apply the action and in the code to implement the action, we would look inside the provided GroundedAction. Note that this paradigm is used for many other Action methods (though not all are implemented here).
+				</p>
+				<p>
+				Regarding modifying the input state directly, this is safe to do because performActionHelper is always called indirectly through the method perfomAction. The performAction method first makes a copy of its input state and then passes that to performActionHelper, thereby ensuring that performActionHelper cannot modify an important state used by the calling code.
 				</p>
 				</div>
 				<p>
-				For the getTransition method, we'll do something similar, except in this case, we create a copy of the input state for each possible outcome, modify the copied state to the possible results, and return a List that couples the probability with each of those possible outcomes. In general, each possible outcome from a movement action is the result of the agent moving in each direction with the probability of the action making the agent move in that direction. However, moving in multiple directions may result in the agent not changing position at all if there are walls in those directions. Therefore, we should merge the result and probability of directions that result in the same outcome before returning our set of outcome states.
+				For the getTransition method, we'll do something similar, except in this case, we'll enumerate all possible outcomes, not just sample one, and create a new state object for each possible outcome. Each outcome will be also be associated with its probability of occurring, and we use the <a href="../../doc/burlap/oomdp/core/TransitionProbability.html">TransitionProbability</a> class to store this paired outcome-probability association.
+				</p>
+				<p>
+				As we assign the probabilities, we need to make sure they sum to one. We need to be careful here, because it's possible for two directions to result in the same outcome state. For example, if the agent is adjacent to a wall to the west and south, then movements in the west and south direction would result in the same outcome: no movement. Therefore, we sum together the probabilities of all movement directions that go into a wall and therefore result in no movement.
 				</p>
 				<pre class="prettyprint lang-java">
-
 @Override
-public List&lt;TransitionProbability> getTransitions(State s, String [] params){
-	
+public List&lt;TransitionProbability> getTransitions(State s, GroundedAction groundedAction) {
 	//get agent and current position
 	ObjectInstance agent = s.getFirstObjectOfClass(CLASSAGENT);
-	int curX = agent.getDiscValForAttribute(ATTX);
-	int curY = agent.getDiscValForAttribute(ATTY);
-	
+	int curX = agent.getIntValForAttribute(ATTX);
+	int curY = agent.getIntValForAttribute(ATTY);
+
 	List&lt;TransitionProbability> tps = new ArrayList&lt;TransitionProbability>(4);
 	TransitionProbability noChangeTransition = null;
 	for(int i = 0; i < this.directionProbs.length; i++){
@@ -324,29 +323,31 @@ public List&lt;TransitionProbability> getTransitions(State s, String [] params){
 			ObjectInstance nagent = ns.getFirstObjectOfClass(CLASSAGENT);
 			nagent.setValue(ATTX, newPos[0]);
 			nagent.setValue(ATTY, newPos[1]);
-			
+
 			//create transition probability object and add to our list of outcomes
 			tps.add(new TransitionProbability(ns, this.directionProbs[i]));
 		}
 		else{
 			//this direction didn't lead anywhere new
-			//if there are existing possible directions that wouldn't lead anywhere, 
-			//aggregate with them
+			//if there are existing possible directions
+			//that wouldn't lead anywhere, aggregate with them
 			if(noChangeTransition != null){
 				noChangeTransition.p += this.directionProbs[i];
 			}
 			else{
-				//otherwise create this new state outcome
-				noChangeTransition = new TransitionProbability(s.copy(), this.directionProbs[i]);
+				//otherwise create this new state and transition
+				noChangeTransition = new TransitionProbability(s.copy(),
+						this.directionProbs[i]);
 				tps.add(noChangeTransition);
 			}
 		}
 	}
-	
-	
+
+
 	return tps;
 }
 				</pre>
+				<hr/>
 				<p>
 				With the Action class defined, we'll want to hook it up to our domain. First, lets add some string constants for the names of the actions.
 				<pre class="prettyprint lang-java">
@@ -404,11 +405,11 @@ public boolean isTrue(State s, String[] params) {
 	ObjectInstance agent = s.getObject(params[0]);
 	ObjectInstance location = s.getObject(params[1]);
 	
-	int ax = agent.getDiscValForAttribute(ATTX);
-	int ay = agent.getDiscValForAttribute(ATTY);
-	
-	int lx = location.getDiscValForAttribute(ATTX);
-	int ly = location.getDiscValForAttribute(ATTY);
+	int ax = agent.getIntValForAttribute(ATTX);
+	int ay = agent.getIntValForAttribute(ATTY);
+
+	int lx = location.getIntValForAttribute(ATTX);
+	int ly = location.getIntValForAttribute(ATTY);
 	
 	return ax == lx && ay == ly;
 }
@@ -447,7 +448,7 @@ public Domain generateDomain() {
 }
 				</pre>
 				<div class="note">
-				<h2>Note</h2>
+				<h2>Getting all propositional function bindings</h2>
 				<p>
 				Although we have defined a propositional function, you might be wondering how you can find all possible parameters in a state with which it can be evaluated. The PropositionalFunction super class provides a method for doing just this called <a href="../../doc/burlap/oomdp/core/PropositionalFunction.html#getAllGroundedPropsForState(burlap.oomdp.core.State)">getAllGroundedPropsForState(State)</a>, which will return a list of <a href="../../doc/burlap/oomdp/core/GroundedProp.html">GroundedProp</a> objects that can be evaluated. A GroundedProp is simply a PropositionalFunction object reference and parameters with which to evaluate it. Similarly, if you want all possible GroundedProp objects for a list of different PropositionalFunction objects, you can use the PropositionalFunction static method <a href="../../doc/burlap/oomdp/core/PropositionalFunction.html#getAllGroundedPropsFromPFList(java.util.List, burlap.oomdp.core.State)">getAllGroundedPropsForState(State)</a>.
 				</p>
@@ -459,18 +460,19 @@ public Domain generateDomain() {
 				</p>
 				<pre class="prettyprint lang-java">
 public static State getExampleState(Domain domain){
-	State s = new State();
-	ObjectInstance agent = new ObjectInstance(domain.getObjectClass(CLASSAGENT), "agent0");
+	State s = new MutableState();
+	ObjectInstance agent = new MutableObjectInstance(domain.getObjectClass(CLASSAGENT), "agent0");
 	agent.setValue(ATTX, 0);
 	agent.setValue(ATTY, 0);
-	
-	ObjectInstance location = new ObjectInstance(domain.getObjectClass(CLASSLOCATION), "location0");
+
+	ObjectInstance location = new MutableObjectInstance(domain.getObjectClass(CLASSLOCATION), 
+														"location0");
 	location.setValue(ATTX, 10);
 	location.setValue(ATTY, 10);
-	
+
 	s.addObject(agent);
 	s.addObject(location);
-	
+
 	return s;
 }
 				</pre>
@@ -478,7 +480,10 @@ public static State getExampleState(Domain domain){
 				Note that we made this method static and had it take as a parameter the domain object. We made the method static because the domain object is only ever created once the generateDomain method is called and that method can produce different Domain objects each time it is called. (Although not especially important for our example, this is useful if you have parameterizable domains.) Since ObjectInstance objects have to belong to a specific ObjectClass, we have to have the have the corresponding domain object from which to retrieve the ObjectClass.
 				</p>
 				<p>
-				In addition to taking an ObjectClass, the ObjectInstance constructor also takes as a parameter the name or identifier of the object instance. This name will be used to identify the object from other objects in the state and to further disambiguate it from multiple objects of the same class. This name is also what will be passed to the PropositionalFunction isTrue method parameters and for actions that are parameterized to objects (though in our Grid World, our Actions are not parameterized).
+				Since State and ObjectInstance are interface that can have any number of implementation, we need to choose one. Since we're no doing anything fancy, we can use the simple <a href="../../doc/burlap/oomdp/core/states/MutableState.html">MutableState</a> and <a href="../../doc/burlap/oomdp/core/objects/MutableObjectInstance.html">MutableObjectInstance implementations</a>.
+				</p>
+				<p>
+				In addition to taking an ObjectClass, the MutableObjectInstance constructor also takes as a parameter the name or identifier of the object instance. This name will be used to identify the object from other objects in the state and to further disambiguate it from multiple objects of the same class. This name is also what will be passed to the PropositionalFunction isTrue method parameters.
 				</p>
 				<p>
 				Lets now add a main method that we will launch into to test our domain. To do the testing, we will make use the <a href="../../doc/burlap/oomdp/singleagent/explorer/TerminalExplorer.html">TerminalExplorer</a> which lets us act as the agent through the command line. Create the main method as shown below.
@@ -488,15 +493,21 @@ public static void main(String [] args){
 		
 	ExampleGridWorld gen = new ExampleGridWorld();
 	Domain domain = gen.generateDomain();
-	
+
 	State initialState = ExampleGridWorld.getExampleState(domain);
-	
-	TerminalExplorer exp = new TerminalExplorer(domain);
-	exp.exploreFromState(initialState);
+
+	TerminalExplorer exp = new TerminalExplorer(domain, initialState);
+	exp.explore();
 	
 	
 }
 				</pre>
+				<div class="note">
+				<h2>TerminalExplorer and Environment instances</h2>
+				<p>
+				It's worth noting that the terminal explorer works by taking command line commands from a user, interpreting them into actions, and feeding them into an <a href="../../doc/burlap/oomdp/singleagent/environment/Environment.html">Environment</a> (it also has some other special commands you can give which you'll see when you start it). When we use a constructor with just a domain and initial state, it creates a <a href="../../doc/burlap/oomdp/singleagent/environment/SimulatedEnvironment.html">SimulatedEnvironment</a> instance using that domain, but we could have provided any other Environment instead.
+				</p>
+				</div>
 				<p>
 				When you run main in the command line/terminal you should see a print out describing the example state. If you now type the name of an action (such as "north") and hit enter, it will change state and print out the new state. Remember that our actions are stochastic, so 20% of the time you'll find yourself going in a different direction!
 				</p>

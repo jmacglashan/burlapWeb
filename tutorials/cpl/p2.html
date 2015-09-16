@@ -37,16 +37,45 @@
 				
 				<h3><a name="vi">VI Code</a></h3>
 				<p>
-				Lets start by creating our class for VI, which we'll call VITutorial, and all the methods it will need to implement to satisfy the OOMDPPlanner and QComputablePlanner class/interface.
+				Lets start by creating our class for VI, which we'll call VITutorial. Our class will extend <a href="../../doc/burlap/behavior/singleagent/MDPSolver.html">MDPSolver</a>, to gain many of the useful datastructures used in solving an MDP, and it will implement the <a href="../../doc/burlap/behavior/singleagent/planning/Planner.html">Planner</a> and <a href="../../doc/burlap/behavior/valuefunction/QFunction.html">QFunction</a> interfaces. The former because we will implement the planFromState method and the latter because ValueIteration computes and ValueFunction and QFunction (the QFunction interface extends the <a href="../../doc/burlap/behavior/valuefunction/ValueFunction.html">ValueFunction</a> interface). We will also add all the imports we will need in developing this class.
 				</p>
 				<pre class="prettyprint lang-java">
-import burlap.behavior.singleagent.QValue;
-import burlap.behavior.singleagent.planning.OOMDPPlanner;
-import burlap.behavior.singleagent.planning.QComputablePlanner;
+import burlap.behavior.policy.GreedyQPolicy;
+import burlap.behavior.policy.Policy;
+import burlap.behavior.singleagent.EpisodeAnalysis;
+import burlap.behavior.singleagent.MDPSolver;
+import burlap.behavior.singleagent.auxiliary.EpisodeSequenceVisualizer;
+import burlap.behavior.singleagent.auxiliary.StateReachability;
+import burlap.behavior.singleagent.planning.Planner;
+import burlap.behavior.valuefunction.QFunction;
+import burlap.behavior.valuefunction.QValue;
+import burlap.behavior.valuefunction.ValueFunctionInitialization;
+import burlap.domain.singleagent.gridworld.GridWorldDomain;
+import burlap.domain.singleagent.gridworld.GridWorldTerminalFunction;
+import burlap.domain.singleagent.gridworld.GridWorldVisualizer;
 import burlap.oomdp.core.AbstractGroundedAction;
-import burlap.oomdp.core.State;
+import burlap.oomdp.core.Domain;
+import burlap.oomdp.core.TerminalFunction;
+import burlap.oomdp.core.TransitionProbability;
+import burlap.oomdp.core.states.State;
+import burlap.oomdp.singleagent.GroundedAction;
+import burlap.oomdp.singleagent.RewardFunction;
+import burlap.oomdp.singleagent.SADomain;
+import burlap.oomdp.singleagent.common.UniformCostRF;
+import burlap.oomdp.statehashing.HashableState;
+import burlap.oomdp.statehashing.HashableStateFactory;
+import burlap.oomdp.statehashing.SimpleHashableStateFactory;
+import burlap.oomdp.visualizer.Visualizer;
 
-public class VITutorial extends OOMDPPlanner implements QComputablePlanner {
+import java.util.*;
+
+public class VITutorial extends MDPSolver implements Planner, QFunction{
+
+
+	@Override
+	public double value(State s) {
+		return 0.;
+	}
 
 	@Override
 	public List&lt;QValue> getQs(State s) {
@@ -61,13 +90,13 @@ public class VITutorial extends OOMDPPlanner implements QComputablePlanner {
 	}
 
 	@Override
-	public void planFromState(State initialState) {
+	public Policy planFromState(State initialState) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void resetPlannerResults() {
+	public void resetSolverResults() {
 		// TODO Auto-generated method stub
 
 	}
@@ -75,113 +104,55 @@ public class VITutorial extends OOMDPPlanner implements QComputablePlanner {
 }
 				</pre>
 				<p>
-				Because we are sub classing OOMDPPlanner, this object will auto create data members that define our domain and task (the domain, reward function, terminal function, discount factor, and
-				state hashing factory that is used to hash and check the equality of states). However, the other critical data that VI needs to store are its estimates of the value function! We can store the value function as a mapping from states to double values and we can use a provided <a href="../../doc/burlap/behavior/statehashing/StateHashFactory.html">StateHashFactory</a> to create fast hashable states (<a href="../../doc/burlap/behavior/statehashing/StateHashTuple.html">StateHashTuple</a>s). Furthermore, it might be useful to have the value of each state be initialized to something sensible that the client can specify. We can accept a procedure for initializing the value function by using a <a href="../..doc/burlap/behavior/singleagent/ValueFunctionInitialization.html">ValueFunctionInitialization</a> object. Lets add those data members to our class, and make sure you also add the requisite imports. Finally, as a parameter to the algorithm, we'll let the client specify for many iterations VI will run, so we'll also need a data member for that. (We could also specify what the maximum allowable change in the value function was, but for simplicity for this tutorial we'll just use a fixed number of iterations.)
+				Because we are sub classing MDPSolver, this object will auto create data members that define our domain and task (the Domain, RewardFunction, TerminalFunction, discount factor, and
+				HashableStateFactory that is used to hash and check the equality of states). However, the other critical data that VI needs to store are its estimates of the value function! A value function is ultimately a mapping from states to a real value. Therefore, for fast access we can use a HashMap and use a <a href="../../doc/burlap/oomdp/statehashing/HashableStateFactory.html">HashableStateFactory</a> to provide <a href="f../../doc/burlap/oomdp/statehashing/HashableState.html">HashableState</a> instances from states. One way to make VI run faster is to inititialize its value funciton to something close to the optimal value function. BURLAP has a <a href="../../doc/burlap/behavior/valuefunction/ValueFunctionInitialization.html">ValueFuncitonInitialization</a> interface that can be provided to our code for choosing initialization values. We'll also have a parameter that specifies how long value iteration should run before it terminates (there are others to test for convergence that we will not cover here). Lets create datamembers for these elements and create a constructor.
 				</p>
 				<pre class="prettyprint lang-java">
-import java.util.Map;
-import java.util.HashMap;
-import burlap.behavior.singleagent.ValueFunctionInitialization;
-				</pre>
-				<pre class="prettyprint lang-java">
-protected Map&lt;StateHashTuple, Double> valueFunction;
+protected Map<HashableState, Double> valueFunction;
 protected ValueFunctionInitialization vinit;
 protected int numIterations;
+
+
+public VITutorial(Domain domain, RewardFunction rf, TerminalFunction tf, double gamma,
+				  HashableStateFactory hashingFactory, ValueFunctionInitialization vinit, int numIterations){
+	this.solverInit(domain, rf, tf, gamma, hashingFactory);
+	this.vinit = vinit;
+	this.numIterations = numIterations;
+	this.valueFunction = new HashMap<HashableState, Double>();
+}
 				</pre>
+			
 				<p>
-				Now lets add a constructor to accept and initialize all our data. Again, we'll need to add some imports too.
-				</p>
-				<pre class="prettyprint lang-java">
-import burlap.behavior.statehashing.StateHashFactory;
-import burlap.oomdp.core.Domain;
-import burlap.oomdp.core.TerminalFunction;
-import burlap.oomdp.singleagent.RewardFunction;
-				</pre>
-				<pre class="prettyprint lang-java">
-public VITutorial(Domain domain, RewardFunction rf, TerminalFunction tf, double gamma, 
-			StateHashFactory hashingFactory, ValueFunctionInitialization vinit, int numIterations){
-		this.plannerInit(domain, rf, tf, gamma, hashingFactory);
-		this.vinit = vinit;
-		this.numIterations = numIterations;
-		this.valueFunction = new HashMap&lt;StateHashTuple, Double>();
-	}
-				</pre>
-				<p>
-				Note that since our OOMDPPlanner superclass will hold our data members for the domain, reward function, terminal function, discount factor, and state hashing factory, we can initialize them with its plannerInit method.
+				Note that since our MDPSolver superclass will hold our data members for the domain, reward function, terminal function, discount factor, and HashableStateFactory, we can initialize them with its solverInit method.
 				</p>
 				<p>
-				There is one other critical component VI needs that isn't part of the data we've given it in the constructor: the full state space! One reason we might not want to demand this upfront is because in an OO-MDP, it might be possible for the state space to be infinite even though for any given input state there may only be a finite set of states that are reachable. We could require the user to provide to our algorithm up front what the state space is, but it's much easier on the client if we determine the set of possible reachable states for any given seed state ourself and only perform this procedure when planning is requested for a previously unseen state. In fact, there are planning algorithm independent tools in BURLAP that can find all reachable states from a seed state for us (see the <a href="../../doc/burlap/behavior/singleagent/auxiliary/StateReachability.html">StateReachabilityClass</a> for this purpose); however, for the purposes of illustration, we will not make use of those tools and instead implement the reachability code ourselves.
-				</p>
-				<p>
-				To find all possibly reachable states from a source seed state, we need to do a kind of breadth-first search where we start with a queue containing only our seed state. We then dequeue a state from the queue and expand it by checking what all the possible outcomes states are from all possible actions and add those states to our queue if we've never seen them before. The search is complete when the queue is empty and every expanded state represents a state in our reachable state space. VI will then be able to iterate over this space. Lets implement that method now. In our code, we will use our valueFunction data member to effectively be our test for whether a state has been seen before and add each expanded node with its value function initialization as we see it. We will also need to add a few new imports for this method.
-				</p>
-				<pre class="prettyprint lang-java">
-import java.util.LinkedList;
-import java.util.List;
-import burlap.oomdp.core.TransitionProbability;
-import burlap.oomdp.singleagent.GroundedAction;
-				</pre>
+				There is one other critical component VI needs that isn't part of the data we've given it in the constructor: the full state space! One reason we might not want to demand this upfront is because in an OO-MDP, it is possible for the state space to be infinite even though for any given input state there may only be a finite set of states that are reachable. We could require the user to provide to our algorithm up front what the state space is, but it's much easier on the client if we determine the set of possible reachable states for any given seed state ourself and only perform this procedure when planning is requested for a previously unseen state. Lets define a method to get all reachable states from an input state and initialize the value for them with our ValueFunctionInitialization object. Add the below method.
 				<pre class="prettyprint lang-java">
 public void performReachabilityFrom(State seedState){
-		
-	StateHashTuple hashedSeed = this.hashingFactory.hashState(seedState);
-	
-	//mark our seed state as seen and set its initial value function value
-	this.valueFunction.put(hashedSeed, this.vinit.value(hashedSeed.s));
-	
-	LinkedList&lt;StateHashTuple> open = new LinkedList&lt;StateHashTuple>();
-	open.offer(hashedSeed);
-	
-	while(open.size() > 0){
-		
-		//pop off a state and expand it
-		StateHashTuple sh = open.poll();
-		
-		//which actions can be applied on this state?
-		List&lt;GroundedAction> appliactionActions = this.getAllGroundedActions(sh.s);
-		
-		//for each action...
-		for(GroundedAction ga : appliactionActions){
-			
-			//what are the possible outcomes?
-			List&lt;TransitionProbability> tps = ga.action.getTransitions(sh.s, ga.params);
-			
-			//for each possible outcome...
-			for(TransitionProbability tp : tps){
-				
-				//add previously unseed states to our open queue and 
-				//set their initial value function
-				StateHashTuple shp = this.hashingFactory.hashState(tp.s);
-				if(!this.valueFunction.containsKey(shp)){
-					this.valueFunction.put(shp, this.vinit.value(shp.s));
-					open.offer(shp);
-				}
-				
-			}
-			
+
+	Set&lt;HashableState> hashedStates = StateReachability.getReachableHashedStates(seedState, 
+											(SADomain) this.domain, this.hashingFactory);
+	//initialize the value function for all states
+	for(HashableState hs : hashedStates){
+		if(!this.valueFunction.containsKey(hs)){
+			this.valueFunction.put(hs, this.vinit.value(hs.s));
 		}
-		
-		
 	}
-	
+
 }
 				</pre>
 				<p>
-				With the inline comments, most of this code should be self explanatory. However, there are a couple of things to which you should pay closer attention. In each state we want to know what all the possible actions are. For this, we're using the OOMDPPlanner super class method getAllGroundedActions. We could have used the Action static method <a href="../../doc/burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActionsFromActionList(java.util.List, burlap.oomdp.core.State)">getAllApplicableActionsFromActionList</a> in conjunction with the action list provided from our domain to get all grounded actions; however, it possible to add high-level (or otherwise) actions to a planner that are not strictly part of the domain (like options) and using our OOMDPPlanner method will always return the possible actions it was given instead of the primitives defined with the domain, using its method is preferable.
+				In the first line, we make use of BURLAP's <a href="../../doc/burlap/behavior/singleagent/auxiliary/StateReachability.html">StateReachability</a> tool to do the heavy lifting of finding all reachable states. Then we simply iterate through the list, and for every HashableState for which we do not already have an entry, we initialize it with the value returned from the ValueFunctionInitialization. You may notice that the value function is passed hs.s. Since our set of states are actually a set of HashableState instances, we retrieve the underlying State object stored in the HashableState by its .s member.
 				</p>
+				<hr/>
 				<p>
-				The other thing to pay attention to is how we get all possible state outcomes from applying an action in the state. For this request, we can get from our GroundedAction object the Action object reference and ask it to return a list of transition probabilities given the source state in question (and any possible action parameters specified if there are any) using the getTransitions method. The returned list from getTransitions is made up of <a href="../../doc/burlap/oomdp/core/TransitionProbability.html">TransitionProbability</a> objects, which specify an outcome state and the probability of transitioning to it. As you may recall from our <a href="../bd/p1.html">Building a Domain tutorial</a> the getTransitons method will only return transitions to states that have non-zero probability so you don't have to worry about iterating over an unnecessarily large list of impossible transitions. However, it is worth pointing out that some domains may not implement the getTransitions method, particularly if there are an infinite number of states. Planners such as VI are not equipped to handle such domains (especially since we will use the full set of possible transitions to compute Q-values), so we must assume that that method is implemented.
-				<p>
-				The other method we'll need to implement is the Bellman Equation. As noted on the previous page, the Bellman Equation is just a max over the Q-values and since we already have methods defined for getting the Q-value of states (a requirement of implementing the QComputablePlannerInterface), we will implement those methods and a Bellman Equation method next. We will also need to add an import for ArrayList for these methods.
+				The other method we'll need to implement is the Bellman Equation. As noted on the previous page, the Bellman Equation is just a max over the Q-values and since we already have methods defined for getting the Q-value of states (a requirement of implementing the QFunction interface), we will implement those methods and a Bellman Equation method next. 
 				</p>
-				<pre class="prettyprint lang-java">
-import java.util.ArrayList;
-				</pre>
 				<pre class="prettyprint lang-java">
 @Override
-public List&lt;Value> getQs(State s) {
+public List&lt;QValue> getQs(State s) {
 	List&lt;GroundedAction> applicableActions = this.getAllGroundedActions(s);
-	List&lt;QValue> qs = new ArrayList&lt;Value>(applicableActions.size());
+	List&lt;QValue> qs = new ArrayList&lt;QValue>(applicableActions.size());
 	for(GroundedAction ga : applicableActions){
 		qs.add(this.getQ(s, ga));
 	}
@@ -190,35 +161,35 @@ public List&lt;Value> getQs(State s) {
 
 @Override
 public QValue getQ(State s, AbstractGroundedAction a) {
-	
-	//type cast to the type of grounded action we're using
+
+	//type cast to the type we're using
 	GroundedAction ga = (GroundedAction)a;
-	
+
 	//what are the possible outcomes?
-	List&lt;TransitionProbability> tps = ga.action.getTransitions(s, ga.params);
-	
+	List&lt;TransitionProbability> tps = ga.getTransitions(s);
+
 	//aggregate over each possible outcome
 	double q = 0.;
 	for(TransitionProbability tp : tps){
 		//what is reward for this transition?
 		double r = this.rf.reward(s, ga, tp.s);
-		
+
 		//what is the value for the next state?
 		double vp = this.valueFunction.get(this.hashingFactory.hashState(tp.s));
-		
-		//add contribution weighted by transition probabiltiy and 
+
+		//add contribution weighted by transition probabiltiy and
 		//discounting the next state
 		q += tp.p * (r + this.gamma * vp);
 	}
-	
+
 	//create Q-value wrapper
 	QValue qValue = new QValue(s, ga, q);
-	
+
 	return qValue;
 }
 
 protected double bellmanEquation(State s){
-	
+
 	if(this.tf.isTerminal(s)){
 		return 0.;
 	}
@@ -232,7 +203,14 @@ protected double bellmanEquation(State s){
 }
 				</pre>
 				<p>
-				You'll note that the Q-value methods return <a href="../../doc/burlap/behavior/singleagent/QValue.html">QValue</a> objects, which are just triples consisting of a <a href="../../doc/burlap/oomdp/core/State.html">State</a> object, an <a href="../../doc/burlap/oomdp/core/AbstractGroundedAction.html">AbstractGroundedAction</a> object, and a double for the Q-value associated with them.
+				You'll note that the Q-value methods return <a href="../../doc/burlap/behavior/valuefunction/QValue.html">QValue</a> objects, which are just triples consisting of a <a href="../../doc/burlap/oomdp/core/states/State.html">State</a> object, an <a href="../../doc/burlap/oomdp/core/AbstractGroundedAction.html">AbstractGroundedAction</a> object, and a double for the Q-value associated with them.
+				</p>
+				<div class="note">
+				<h2>AbstractGroundedAction versus Action</h2>
+				<p>
+				You might wonder why we're using AbstractGroundedAction references for actions, rather than a <a href="../../doc/burlap/oomdp/singleagent/Action.html">Action</a> instance that we subclassed to define actions in the <a href="../bd/p1.html">Building a Domain Tutorial</a>. However, recall that the Action class is used for <i>defining</i> actions, whereas the <a href="../../doc/burlap/oomdp/singleagent/GroundedAction.html">GroundedAction</a> class is a reference to an Action definition that also contains any action parameter selections necessary to execute the action. Since actions could be parameterized, we use implementations of the general AbstractGroundedAction interface, of which GroundedAction is an implementation, to reason about decisions, or in this case, estimate the Q-value for the action selection. 
+				</p>
+				</div>
 				<p>
 				In the getQs method, we simply find all possible grounded actions, ask our getQ method what the Q-value is, and then return the list of all those Q-values. 
 				</p>
