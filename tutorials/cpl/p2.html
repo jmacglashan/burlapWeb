@@ -108,17 +108,18 @@ public class VITutorial extends MDPSolver implements Planner, QFunction{
 				HashableStateFactory that is used to hash and check the equality of states). However, the other critical data that VI needs to store are its estimates of the value function! A value function is ultimately a mapping from states to a real value. Therefore, for fast access we can use a HashMap and use a <a href="../../doc/burlap/oomdp/statehashing/HashableStateFactory.html">HashableStateFactory</a> to provide <a href="f../../doc/burlap/oomdp/statehashing/HashableState.html">HashableState</a> instances from states. One way to make VI run faster is to inititialize its value funciton to something close to the optimal value function. BURLAP has a <a href="../../doc/burlap/behavior/valuefunction/ValueFunctionInitialization.html">ValueFuncitonInitialization</a> interface that can be provided to our code for choosing initialization values. We'll also have a parameter that specifies how long value iteration should run before it terminates (there are others to test for convergence that we will not cover here). Lets create datamembers for these elements and create a constructor.
 				</p>
 				<pre class="prettyprint lang-java">
-protected Map<HashableState, Double> valueFunction;
+protected Map&lt;HashableState, Double> valueFunction;
 protected ValueFunctionInitialization vinit;
 protected int numIterations;
 
 
 public VITutorial(Domain domain, RewardFunction rf, TerminalFunction tf, double gamma,
-				  HashableStateFactory hashingFactory, ValueFunctionInitialization vinit, int numIterations){
+				  HashableStateFactory hashingFactory, ValueFunctionInitialization vinit, 
+				  int numIterations){
 	this.solverInit(domain, rf, tf, gamma, hashingFactory);
 	this.vinit = vinit;
 	this.numIterations = numIterations;
-	this.valueFunction = new HashMap<HashableState, Double>();
+	this.valueFunction = new HashMap&lt;HashableState, Double>();
 }
 				</pre>
 			
@@ -212,60 +213,56 @@ protected double bellmanEquation(State s){
 				</p>
 				</div>
 				<p>
-				In the getQs method, we simply find all possible grounded actions, ask our getQ method what the Q-value is, and then return the list of all those Q-values. 
+				In the getQs method, we simply find all possible grounded actions (using a method ineheretied from MDPSolver which we extended; alternatively, we could use an <a href="../../doc/burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActionsFromActionList(java.util.List,%20burlap.oomdp.core.states.State)">Action static method</a> that takes is list of Aciton objects and State and returns all applicable groundings), ask our getQ method what the Q-value is, and then return the list of all those Q-values. 
 				</p>
 				<p>In the getQ method, we find all possible transitions from the input state and weigh the value of those outcomes by the probability of the transition occurring. The value of each outcome is the reward received, and the discounted value we have estimated for the outcome state.
 				</p>
 				<p>
 				In the bellmanEquation method, we in general just return the maximum Q-value for the state; however, there is a catch. That is, if the input state is a terminal state, then by definition of it being a terminal state the value is zero, because the idea of a terminal state is that no action can follow from it. Therefore, if the state is a terminal state, we return a value of 0 and ignore whatever the domain object would say the possible transitions would be. Note that this check is <b>not</b> just a performance saver; all terminal states are specified by the TerminalFunction interface, so we must always refer to it to handle terminal states and cannot expect that a domain's transition dynamics have it baked in.
 				</p>
+				<hr/>
 				<p>
-				We now have all the tools we need to do planning, so it's time to implement the planFromStateMethod. This method is called whenever a client wants to run planning from a given initial (or seed) state. What we'll do then is first check if we've already performed planning that includes that state. If so, we'll do nothing, having assumed to already have computed the value for it. However, if we haven't seen it before, then we'll first find all reachable states from it, and then run value iteration for a given number of iterations. As a reminder, running value iteration means making iterative sweeps over the entire state space in which the value of each state is re-estimated to what the Bellman equation says it is given the previously estimated value of the states.
+				We now have all the tools we need to do planning, so it's time to implement the planFromStateMethod. This method is called whenever a client wants to run planning from a given initial (or seed) state. What we'll do then is first check if we've already performed planning that includes that state. If so, we'll do nothing, having assumed to already have computed the value for it. However, if we haven't seen it before, then we'll first find all reachable states from it, and then run value iteration for a given number of iterations. As a reminder, running value iteration means making iterative sweeps over the entire state space in which the value of each state is re-estimated to what the Bellman equation says it is given the previously estimated value of the states. Finally, all planFromState methods
+				require return a suitable <a href="../../doc/burlap/behavior/policy/Policy.html">Policy</a> object to use the planning results. For value iteration, assuming it converged, the optimal policy is to select the action with the highest Q-value; therefore we'll return a <a href="../../doc/burlap/behavior/policy/GreedyQPolicy.html">GreedyQPolicy</a> object. GreedyQPolicy objects need to be told what their QFunction source is, which in this case, is the instance of our class.
 				</p>
 				<pre class="prettyprint lang-java">
 @Override
-public void planFromState(State initialState) {
+public GreedyQPolicy planFromState(State initialState) {
 	
-	StateHashTuple hashedInitialState = this.hashingFactory.hashState(initialState);
+	HashableState hashedInitialState = this.hashingFactory.hashState(initialState);
 	if(this.valueFunction.containsKey(hashedInitialState)){
-		return; //already performed planning here!
+		return new GreedyQPolicy(this); //already performed planning here!
 	}
-	
+
 	//if the state is new, then find all reachable states from it first
 	this.performReachabilityFrom(initialState);
-	
+
 	//now perform multiple iterations over the whole state space
-	for(int i = 0; i &lt; this.numIterations; i++){
+	for(int i = 0; i < this.numIterations; i++){
 		//iterate over each state
-		for(StateHashTuple sh : this.valueFunction.keySet()){
+		for(HashableState sh : this.valueFunction.keySet()){
 			//update its value using the bellman equation
 			this.valueFunction.put(sh, this.bellmanEquation(sh.s));
 		}
 	}
 
+	return new GreedyQPolicy(this);
+
 }
 				</pre>
+				<hr/>
 				<p>
-				We're now just about finished! The only thing left is that each OOMDPPlanner instance is asked to implement the method resetPlannerResults, which when called should have the effect of resetting all data so that it's as if no planning calls had ever been made. For our VI implementation, all this requires is clearing our value function.
+				We're now just about finished! The only thing left is that each MDPSolver instance is asked to implement the method resetSolverResults, which when called should have the effect of resetting all data so that it's as if no planning calls had ever been made. For our VI implementation, all this requires is clearing our value function.
 				<pre class="prettyprint lang-java">
 @Override
-public void resetPlannerResults() {
+public void resetSolverResults() {
 	this.valueFunction.clear();
 }
 				</pre>
 				<h3><a name="testvi">Testing VI</a></h3>
 				<p>
-				To test our code, you can try using this planning algorithm with the grid world task created in the previous <a href="../bpl.p1.html">Basic Planning and Learning</a> tutorial. You'll note that since we implement the QComputablePlanner interface, we can use any existing Q-value derived policy, such as GreedyQ, EpsilonGreedy, etc. Alternatively, below is a main method that you can add to test your VI implementation that creates a stochastic grid world, plans for it, and evaluates a single rollout of the resulting policy. You should find that the agent takes north and east actions exclusively.
+				To test our code, you can try using this planning algorithm with the grid world task created in the previous <a href="../bpl.p1.html">Basic Planning and Learning</a> tutorial.Alternatively, below is a main method that you can add to test your VI implementation that creates a <i>stochastic</i> grid world, plans for it, and evaluates a single rollout of the resulting policy and visualizes the results.
 				</p>
-				<pre class="prettyprint lang-java">
-import burlap.behavior.singleagent.EpisodeAnalysis;
-import burlap.behavior.singleagent.Policy;
-import burlap.behavior.singleagent.planning.commonpolicies.GreedyQPolicy;
-import burlap.behavior.statehashing.DiscreteStateHashFactory;
-import burlap.domain.singleagent.gridworld.GridWorldDomain;
-import burlap.domain.singleagent.gridworld.GridWorldTerminalFunction;
-import burlap.oomdp.singleagent.common.UniformCostRF;
-				</pre>
 				<pre class="prettyprint lang-java">
 public static void main(String [] args){
 		
@@ -276,33 +273,31 @@ public static void main(String [] args){
 	gwd.setProbSucceedTransitionDynamics(0.8);
 
 	Domain domain = gwd.generateDomain();
-	
+
 	//get initial state with agent in 0,0
 	State s = GridWorldDomain.getOneAgentNoLocationState(domain);
 	GridWorldDomain.setAgent(s, 0, 0);
-	
+
 	//all transitions return -1
 	RewardFunction rf = new UniformCostRF();
-	
+
 	//terminate in top right corner
 	TerminalFunction tf = new GridWorldTerminalFunction(10, 10);
-	
-	//setup vi with 0.99 discount factor, discrete state hashing factory, a value
+
+	//setup vi with 0.99 discount factor, a value
 	//function initialization that initializes all states to value 0, and which will
 	//run for 30 iterations over the state space
-	VITutorial vi = new VITutorial(domain, rf, tf, 0.99, new DiscreteStateHashFactory(), 
+	VITutorial vi = new VITutorial(domain, rf, tf, 0.99, new SimpleHashableStateFactory(),
 			new ValueFunctionInitialization.ConstantValueFunctionInitialization(0.0), 30);
-	
+
 	//run planning from our initial state
-	vi.planFromState(s);
+	Policy p = vi.planFromState(s);
 	
-	
-	//get the greedy policy from it
-	Policy p = new GreedyQPolicy(vi);
-	
-	//evaluate the policy with one roll out and print out the action sequence
+	//evaluate the policy with one roll out visualize the trajectory
 	EpisodeAnalysis ea = p.evaluateBehavior(s, rf, tf);
-	System.out.println(ea.getActionSequenceString("\n"));
+
+	Visualizer v = GridWorldVisualizer.getVisualizer(gwd.getMap());
+	new EpisodeSequenceVisualizer(v, domain, Arrays.asList(ea));
 		
 }
 				</pre>
