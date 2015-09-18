@@ -36,7 +36,9 @@
 				<p>
 				For more background information on the project and the people involved, see the <a href="information.html">Information</a> page. 
 				</p>
-
+				<p>
+				<b>Note: BURLAP 2 is now live! See the <a href="updates.html">update</a> for more information about it.</b>
+				</p>
 				
 				
 				
@@ -47,15 +49,28 @@
 				</p>
 				<p>
 				Alternatively, you can download 
+				</p>
 				<ul>
 				<li><a href="burlap.jar">a pre-compiled jar</a> with dependencies included, or</li>
 				<li><a href="burlap_no_dep.jar">a pre-compiled jar</a> with<b>out</b> dependencies.</li>
 				</ul>
+				<p>
 				Use the jar without the dependencies if you are having library conflicts
 				and need to manage them yourself. Note that while these jar files
 				will be uploaded periodically, the most up-to-date changes will be
 				in the github repository.
 				<p/>
+				<p>
+				If you are looking for the older version 1 of BURLAP, you can get the pre-compiled jars for it below, or use the v1 branch on git.
+				</p>
+				<ul>
+				<li><a href="burlap_v1.jar">version 1 pre-compiled jar</a> with dependencies included, or</li>
+				<li><a href="burlap_v1_no_dep.jar">version 1 pre-compiled jar</a> with<b>out</b> dependencies.</li>
+				</ul>
+				<p>
+				The Java doc for version 1 can also be found <a href="doc_v1/index.html">here</a>.
+				</p>
+
 				<p>
 				BURLAP has the following dependencies.
 				</p>
@@ -80,7 +95,7 @@
 				In addition to below, tutorials can be found on the <a href="tutorials/index.html">
 				tutorials</a> page.
 				</p>
-				<iframe width="560" height="315" src="http://www.youtube.com/embed/UXJnQq0zgw0" frameborder="0" allowfullscreen></iframe>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/PcP3DkMQ5_M" frameborder="0" allowfullscreen></iframe>
 				<h3>Text Tutorials</h3>
 				<ul>
 				<li><a href="tutorials/hgw/p1.html">Hello <i>Grid</i>World!</a> - a tutorial on acquiring and linking with BURLAP</li>
@@ -124,7 +139,14 @@
 							<li>Actions that dynamically create new objects</li>
 						</ul>
 					</li>
-					<li>Support for working in and defining both single agent domains and (multi-agent) stochastic games.</li>
+					<li>
+						Supported problem formalisms
+						<ul>
+							<li>Markov Decision Processes (single agent)</li>
+							<li>Stochastic Games (multi-agent)</li>
+							<li>Partially Observable Markov Decision Processes (single agent)</li>
+						</ul>
+					</li>
 					<li>Tools for visualizing and defining visualizations of states, episodes, value functions, and policies.</li>
 					<li>Tools for setting up experiments with multiple learning algorithms and plotting the performance using multiple performance metrics.</li>
 					<li>Tools for creating multi-agent tournaments.</li>
@@ -191,6 +213,13 @@
 						<li>Coco-Q [15]</li>
 						</ul>
 					</li>
+					<li>Single-agent partially observable planning algorithms
+						<ul>
+							<li>Finite horizon optimal tree search</li>
+							<li>QMDP [25]</li>
+							<li>Belief MDP conversion for use with standard MDP algorithms</li>
+						</ul>
+					</li>
 					<li>
 						Pre-made domains and domain generators.
 						<ul>
@@ -213,8 +242,8 @@
 				</p>
 				<h2>Features in development</h2>
 				<ul>
-					<li>POMDP Planning algorithms</li>
 					<li>Learning from human feedback algorithms</li>
+					<li>POMDP algorithms like POMCP and PBVI</li>
 					<li>General growth of all other algorithm classes already included</li>
 				</ul>
 				
@@ -245,6 +274,7 @@
 					<li>Babes, Monica, et al. "Apprenticeship learning about multiple intentions." Proceedings of the 28th International Conference on Machine Learning (ICML-11). 2011.</li>
 					<li>MacGlashan, James and Littman, Micahel, "Between imitation and intention learning," in Proceedings of the International Joint Conference on Artificial Intelligence, 2015.</li>
 					<li>Gordon, Geoffrey J. "Stable function approximation in dynamic programming." Proceedings of the twelfth international conference on machine learning. 1995.</li>
+					<li>Littman, M.L., Cassandra, A.R., Kaelbling, L.P., "Learning Policies for Partially Observable Environments: Scaling Up," in Proceedings of the 12th Internaltion Conference on Machine Learning. 1995.</li> 
 				</ol>
 				</p>
 			</div>
