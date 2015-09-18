@@ -17,7 +17,7 @@
 				<h1>September 19, 2015</h1>
 				<h2>BURLAP version 2 is live!</h2>
 				<p>
-				In the last update, we mentioned that BURLAP would be getting some more significant changes that turned the State class into an interface so that it opened the door for custom implementations for domains that needed more specific memory management. Since then we also began implement a number of other changes that taken together are sufficient enough to be a new version since they may require some code changes by users. These changes make BURLAP in many cases easier to use, more flexible, and in some cases faster.</p>
+				In the last update, we mentioned that BURLAP would be getting some more significant changes that turned the State class into an interface so that it opened the door for custom implementations for domains that needed more specific memory management. Since then we also began to implement a number of other changes that taken together are sufficient enough to be a new version since they may require some code changes by users. These changes make BURLAP in many cases easier to use, more flexible, and in some cases faster.</p>
 				<p>
 				BURLAP version 1 is still available for download, both the pre-compiled JAR and the source code in the github (which is on branch v1), but from now on, master will point to version 2. All tutorials have also been updated to reflect the changes in BURLAP 2 (and also received some other tuning), but the version 1 tutorials are also still available.
 				</p>
@@ -48,7 +48,7 @@
 					<li><p><b>Action organization</b><br/>
 					The Action, GroundedAction, and the stochastic games equivalents have been a refactored. In the previous version of BURLAP, many of the critical methods of the Action class took as a method argument a String array that was used for specifying parameters. By default, these parameters were considered to be STRIPs-like OO-MDP object references, and although other kinds of parameters could be used, it was a hacky implementation.</p>
 					<p>
-					In the new version of BURLAP, Action methods now take a GroundedAction as an argument, instead of a String array. The motivation is that if you have a special of kind of action parameterization you would like to use, you can subclass GroundedAction to contain whatever kind of data structures you want to specify any kind of parameters that you want. (For example, it would now be trivial to implement continuous valued parameterized actions.) Along with that, two of the methods that you must implement for the Action class are used to generate your instances of GroundedAction. This way planning and learning algorithms never need to know about your parameterization types; they simply ask your Action definition to generate the permissible parameterizations and hand them back to your appropriate methods when they want to execute them or query the transition dynamics. 
+					In the new version of BURLAP, Action methods now take a GroundedAction as an argument, instead of a String array. The motivation is that if you have a special of kind of action parameterization you would like to use, you can subclass GroundedAction to contain whatever kind of data structures you want to specify any kind of parameters that you want. (For example, it would now be trivial to implement continuous valued parameterized actions.) Along with that, two of the methods that you must implement for the Action class are used to generate your instances of GroundedAction. This way, planning and learning algorithms never need to know about your parameterization types; they simply ask your Action definition to generate the permissible parameterizations and hand them back to your appropriate methods when they want to execute them or query the transition dynamics. 
 					</p>
 					<p>
 					Along with these changes, all Action methods that are used to define an Action are all now abstract so it's entirely clear what would be expected of you to define an Action. However, if you simply want to define parameter-less actions without any preconditions, you can always just subclass the SimpleAction class which will implement those details for you.
@@ -58,7 +58,7 @@
 					</li>
 
 					<li><p><b>POMDP support added</b><br/>
-					BURLAP now has support for POMDP problem definitions. Currently the space of implemented solvers is limited; there is a Belief MDP conversion tool so that you use standard MDP algorithms to solve the POMDP; an exact finite horizon solver, by using the Belief MDP conversion with Sparse Sampling, and QMDP. However, other algorithms are currently be implemented including POMCP and PBVI, which will hopefully be available soon.
+					BURLAP now has support for POMDP problem definitions. Currently the space of implemented solvers is limited; there is a Belief MDP conversion tool so that you use standard MDP algorithms to solve the POMDP; an exact finite horizon solver, by using the Belief MDP conversion with Sparse Sampling; and QMDP. However, other algorithms are currently being implemented, including POMCP and PBVI, which will hopefully be available soon.
 					</li>
 				</ul>
 				<h2>Less Significant Changes</h2>
@@ -68,10 +68,10 @@
 					</p>
 					</li>
 					<li><p><b>StateParser deprecated for Java bean serialization</b><br/>
-					The StateParser in version 1 was used for serializing State objects by allowing them to be turned to and from String representations. Although the code is still there, it is now in a legacy package and should not be used going forward. Instead, it is recommended that you use the SerializableState and SerializableStateFactory classes (if at all). A SerializableState is a Java Bean class representation of a state that can be trivially serialized using any number of standard Java serialization methods (as well as providing a method for turning it back into a more standard State), such as JSON or YAML.
+					The StateParser in version 1 was used for serializing State objects by allowing them to be turned to and from String representations. Although the code is still there, it is now in a legacy package and should not be used going forward. Instead, it is recommended that you use the SerializableState and SerializableStateFactory classes (if at all). A SerializableState is a Java Bean class representation of a state that can be trivially serialized using any number of standard Java serialization methods (as well as providing a method for turning it back into a standard State), such as JSON or YAML.
 					</p>
 					<p>
-					There is a standard serialization class called SimpleSerializableState that in general you can always use. In fact, now when you write an EpisodeAnalysis file to disk, it saves it in a YAML format and by default uses the SimpleSerializableState so that you never have to think about it. However, you can also always pass it a more compact SerializableState instances through the SerializableStateFactory if you're looking to keep your files compressed. Domains that previously had their own StateParser implementations now have corresponding SerializableStateFactory classes that you can use instead, though in general, you don't really need to think about this anymore. 
+					There is a standard serialization class called SimpleSerializableState that in general you can always use. In fact, now when you write an EpisodeAnalysis file to disk, it saves it in a YAML format and by default uses the SimpleSerializableState so that you never have to think about it. However, you can also always pass it a more compact SerializableState representations through the SerializableStateFactory if you're looking to keep your files compressed. Domains that previously had their own StateParser implementations now have corresponding SerializableStateFactory classes that you can use instead; though in general, you don't really need to think about state serialization anymore. 
 					</p>
 					</li>
 					<li><p><b>Package and class name refactoring, as well as class hierarchy refactoring</b><br/>
@@ -82,7 +82,7 @@
 					</li>
 				</ul>
 
-				<p>If you are migrating your code, many of the changes may simply require using different imports and changing the name of some elements. However, it may be worthwhile to rescan the updated tutorials to see how things have changed. Additionally, all tutorial code on the website has been included in the main distribution under burlap.tutorials.</p>
+				<p>If you are migrating your code, many of the changes may simply require using different imports and changing the name of some elements. However, it may be worthwhile to rescan the updated tutorials to see how things have changed. Additionally, all tutorial code on the website has been included in the main distribution under the package burlap.tutorials.</p>
 
 
 				<h1>May 29, 2015</h1>
