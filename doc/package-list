@@ -112,3 +112,9 @@ burlap.oomdp.stochasticgames.tournament
 burlap.oomdp.stochasticgames.tournament.common
 burlap.oomdp.visualizer
 burlap.testing
+burlap.tutorials.bd
+burlap.tutorials.bpl
+burlap.tutorials.cpl
+burlap.tutorials.hgw
+burlap.tutorials.scd
+burlap.tutorials.video.mc
