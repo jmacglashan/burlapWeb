@@ -52,13 +52,13 @@
 				The factored representation that BURAP uses is the object-oriented MDP (OO-MDP), which rather than representing states by a set of attributes, states are represented by a set of <i>objects</i>. Each object  belongs to an object class, and each object class has an associated set of attributes. Each attribute can be of a different type with its own value domain. An object in a state is simply a value assignment to its class' attributes. In our grid world, we can define an "agent" class that has two integer attributes associated with it with a value domain spanning the width and height of the grid world. In this definition, a state would contain an object instance belonging to the agent class with a value assignment specifying the agent's x and y position.
 				</p>
 				<p>
-				Although grid worlds are simple enough to describe without using an OO-MDP representation, there are a number of reasons why the OO-MDP representation is useful. For example, it's trivial to define transition dynamics that create new objects in the world or remove them, merely by having the objects added or removed from the list of objects present in a state. If there are multiple objects belonging to the same class, states can also be defined invariantly to the reference or order of the objects in the state. For instance, consider a state (s0) with block objects defined by 2D spatial positions. Now imagine a new state (s1) that is the result of swapping the positions of the block objects as show in the below image.
+				Although grid worlds are simple enough to describe without using an OO-MDP representation, there are a number of reasons why the OO-MDP representation is useful. For example, it's trivial to define transition dynamics that create new objects in the world or remove them, merely by having the objects added or removed from the list of objects present in a state. If there are multiple objects belonging to the same class, states can also be defined invariantly to the identifier or order of the objects in the state. We call this kind of invariance <i>object identifier independence</i>. For example, consider a state (s0) made up of two block objects (block0 and block1) that are each defined by spatial position information (an x and y attribute). Now imagine a new state (s1) that is the result of swapping the positions of block0 and block1. Even though the object identifiers associated with the block positions (block0 and block1) are different between s0 and s1, these really are the same state and when equality is object identifier independent they will be considered equal. The below illustration helps clarify this property.
 				</p>
 				<center>
 				<img src="images/identifierInvariance.png" height="200" />
 				</center>
 				<p>
-				Even though the object identifiers associated with the blocks is different between s0 and s1, the states are isomorphic (that is, if block0 was renamed to block1 and block1 to block0, the states would be the same); therefore, from a decision making algorithm perspective it may be useful to treat the states as equal, rather than distinct states that each require independent computation and reasoning. In an OO-MDP paradigm it is possible to treat these states as equal and BURLAP will do that automatically (unless otherwise specified)!
+				BURLAP supports both object idenitifer independence and dependence, depending on your needs. See the <a href="../bpl/p1.html#intro">Basic Planning and Learning Tutorial</a> for more information on using object identifier independence.
 				</p>
 				<p>
 				Another advantage to the OO-MDP paradigm is that it leverages the object-oriented nature to provide additional high-level state features in the form of propositional functions that operate on objects in the world. In our grid world, we can introduce an additional object class for location objects (similarly defined by x,y position attributes) and then define a propositional function called "at" that operates on the agent object and a location object and evaluates to true when they are in the same location. Including propositional functions is useful for bridging the gap between MDPs and more classic AI approaches that are based on logical representations. In this tutorial we will implement the "at" propositional function 
@@ -72,11 +72,11 @@
 				<ul>
 				<li><a href="../../doc/burlap/oomdp/core/Attribute.html">Attribute</a> - this class defines an attribute name, data type, and value range. Attribute data types can be discrete (categorical or integers), real-valued, relational, strings, or int and double arrays for very large data.</li>
 				<li><a href="../../doc/burlap/oomdp/core/ObjectClass.html">ObjectClass</a> - this class defines an object class name and is defined with an associated set of Attribute objects.</li>
-				<li><a href="../../doc/burlap/oomdp/core/Value.html">Value</a> - this class provides a value assignment for a specific attribute. There is a different Value subclass for each attribute data type, but management of it is handled behind the scenes. </li>
-				<li><a href="../../doc/burlap/oomdp/core/ObjectInstance.html">ObjectInstance</a> - this class is used to represent an OO-MDP object, which is defined by an ObjectClass and a set of Value assignments to each of the class' Attribute objects.</li>
-				<li><a href="../../doc/burlap/oomdp/core/State.html">State</a> - this class provides an OO-MDP state definition, which is specified as a list of ObjectInstance objects.</li>
+				<li><a href="../../doc/burlap/oomdp/core/values/Value.html">Value</a> - this class provides a value assignment for a specific attribute. There is a different Value subclass for each attribute data type, but management of it is handled behind the scenes. </li>
+				<li><a href="../../doc/burlap/oomdp/core/objects/ObjectInstance.html">ObjectInstance</a> - this interface is used to represent an OO-MDP object, which is defined by an ObjectClass and a set of Value assignments to each of the class' Attribute objects.</li>
+				<li><a href="../../doc/burlap/oomdp/core/states/State.html">State</a> - this interface provides methods to retrieve infromation about an OO-MDP state, such as getting the vairous ObjectInstance elements that define it.</li>
 				<li><a href="../../doc/burlap/oomdp/core/PropositionalFunction.html">PropositionalFunction</a> - this abstract class is subclassed to define propositional functions of an OO-MDP that operate on objects in State objects.</li>
-				<li><a href="../../doc/burlap/oomdp/singleagent/Action.html">Action</a> - this abstract class is subclassed to provide the actions an agent can take in the world. The action subclass defines the transition dynamics for the action, preconditions (if any), and parameters the action takes (if any).</li>
+				<li><a href="../../doc/burlap/oomdp/singleagent/Action.html">Action</a> - this abstract class is subclassed to provide the definitions of actions that an agent can take in the world. The action subclass defines the transition dynamics for the action, preconditions (if any), and parameters the action takes (if any).</li>
 				<li><a href="../../doc/burlap/oomdp/core/TransitionProbability.html">TransitionProbability</a> - this class is a pair that defines the probability of transitioning to another state and is returned by the Action class when querying for its transition dynamics.</li>
 				<li><a href="../../doc/burlap/oomdp/singleagent/GroundedAction.html">GroundedAction</a> - this class provides a reference to an action and the specific parameters (if any) with which it should be applied.</li>
 				<li><a href="../../doc/burlap/oomdp/core/GroundedProp.html">GroundedProp</a> - this class provides a reference to a PropositionalFunction and the parameters with which it will be evaluated.</li>
@@ -84,7 +84,12 @@
 				<li><a href="../../doc/burlap/oomdp/core/TerminalFunction.html">TerminalFunction</a> - this interface is implemented to specify the terminal states of a task in a specific OO-MDP domain.</li>
 				<li><a href="../../doc/burlap/oomdp/singleagent/RewardFunction.html">RewardFunction</a> - this interface is implemented to specify the rewards received for any state, action, next state transition.</li>
 				</ul>
-
+				<div class="note">
+					<h2>State implementations</h2>
+					<p>
+					Because State and ObjectInstance are interfaces, you must choose a specific implementaiton that handles how they manage memory and datastructures for storing the information. All the included Domain's in BURLAP make use of the <a href="../../doc/burlap/oomdp/core/states/MutableState.html">MutableState</a> and <a href="../../doc/burlap/oomdp/core/objects/MutableObjectInstance.html">MuableObjectInstance</a> implemenations, which is a good place to start. However, if your domain is computationally demanding, you may want to consider writing your own implementation that handles memory and allows access to information in the most efficient way possible.
+					</p>
+				</div>
 				
 				<div id="footerControls">
 					<a href="p3.html">Next Part</a>

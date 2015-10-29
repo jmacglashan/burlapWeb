@@ -42,32 +42,22 @@
 				
 				<h3><a name="vi">Planning with Value Iteration</a></h3>
 				<p>
-				A common stochastic planner is Value Iteration (VI). An advantage of VI is that it will compute the
+				A common stochastic domain planner is Value Iteration (VI). An advantage of VI is that it will compute the
 				policy for the entire state space that is reachable from the initial state that
 				is passed to the planFromState method. To set up a VI planner, define the following method.
 				</p>
 				<pre class="prettyprint lang-java">
-public void ValueIterationExample(String outputPath){
+public void valueIterationExample(String outputPath){
 		
-	if(!outputPath.endsWith("/")){
-		outputPath = outputPath + "/";
-	}
-	
-	
-	OOMDPPlanner planner = new ValueIteration(domain, rf, tf, 0.99, hashingFactory, 0.001, 100);
-	planner.planFromState(initialState);
-	
-	//create a Q-greedy policy from the planner
-	Policy p = new GreedyQPolicy((QComputablePlanner)planner);
-	
-	//record the plan results to a file
-	p.evaluateBehavior(initialState, rf, tf).writeToFile(outputPath + "planResult", sp);
+	Planner planner = new ValueIteration(domain, rf, tf, 0.99, hashingFactory, 0.001, 100);
+	Policy p = planner.planFromState(initialState);
+	p.evaluateBehavior(initialState, rf, tf).writeToFile(outputPath + "vi");
 	
 }
 				</pre>
 				<p>
 				VI is a planning method defined for the classic MDP formalism, so unlike the previous
-				deterministic planners, its constructor takes as input the reward function and termination function,
+				deterministic planners, its constructor takes as input the reward function and terminal function,
 				rather than a goal condition. VI also takes as a parameter a discount 
 				factor which specifies how much future rewards are favored over immediate rewards. In this case,
 				a fairly large value of 0.99 is set (which means the agent will prefer later future rewards almost as much as
@@ -80,12 +70,10 @@ public void ValueIterationExample(String outputPath){
 				number of updates for each state that can happen before planning is stopped (100 in this case), regardless
 				of whether the maximum value function change threshold was crossed.
 				</p><p>
-				Since VI is a stochastic planning algorithm, rather than a deterministic one like the previous algorithms we
-				used, we cannot capture its planning results in a SDPlannerPolicy Policy class. Instead, a policy can be derived
-				from the value function the planner estimates for each state using the <b>GreedyQPolicy</b> class that can
-				be defined for any planner that adheres to the <b>QComputablePlanner</b> interface, which the VI algorithm does.
+				Since VI is a stochastic domain planning algorithm, rather than a deterministic one like the previous algorithms we
+				used, it's planFromState method returns a <a href="../../doc/burlap/behavior/policy/GreedyQPolicy.html">GreedyQPolicy</a>. This policy looks at the Q-values the planner computes and returns the action with the maximium Q-value (and breaks ties randomly). A Q-value represents the expected future discounted reward for taking each action in each state and then following the optimal policy thereafter and this policy can be used with any planning or learning algorithm that returns Q-values by implementing the <a href="../../doc/burlap/behavior/valuefunction/QFunction.html">QFunction</a> interface.
 				</p><p>
-				Once the solution is captured in a Policy class object, the results can be captured and visualized in the same way. Try
+				Try
 				setting the main method to call our newly defined VI example method now.
 				</p>
 				
@@ -95,74 +83,45 @@ public void ValueIterationExample(String outputPath){
 				All of the previous examples were examples of using planning algorithms to solve our task. In this section,
 				we will diverge from that and use a learning algorithm, Q-learning, to solve the task. Ultimately, learning
 				algorithms are utilized in much the same way as planning algorithms, except you run will run multiple
-				episodes of learning to solve it (or one very long episode if it is a continuing task rather than an episodic
+				episodes of learning in which the agent interacts with an Environment instance to solve it (or one very long episode if it is a continuing task rather than an episodic
 				task). The method you should define to utilize Q-learning is shown below.
 				</p>
 				<pre class="prettyprint lang-java">
 public void QLearningExample(String outputPath){
 		
-	if(!outputPath.endsWith("/")){
-		outputPath = outputPath + "/";
-	}
-	
-	//creating the learning algorithm object; discount= 0.99; initialQ=0.0; learning rate=0.9
-	LearningAgent agent = new QLearning(domain, rf, tf, 0.99, hashingFactory, 0., 0.9);
-	
-	//run learning for 100 episodes
-	for(int i = 0; i < 100; i++){
-		EpisodeAnalysis ea = agent.runLearningEpisodeFrom(initialState);
-		ea.writeToFile(String.format("%se%03d", outputPath, i), sp); 
-		System.out.println(i + ": " + ea.numTimeSteps());
+	LearningAgent agent = new QLearning(domain, 0.99, hashingFactory, 0., 1.);
+
+	//run learning for 50 episodes
+	for(int i = 0; i < 50; i++){
+		EpisodeAnalysis ea = agent.runLearningEpisode(env);
+
+		ea.writeToFile(outputPath + "ql_" + i);
+		System.out.println(i + ": " + ea.maxTimeStep());
+
+		//reset environment for next learning episode
+		env.resetEnvironment();
 	}
 	
 }				
 				</pre>
 				<p>
-				Lets first look at the constructor. Rather than a planning instance, we're creating a <b>LearningAgent</b>
-				instance which provides some methods for learning. <b>QLearning</b> is an instance of the LearningAgent class
-				and like the Value Iteration planner, takes a parameters the reward function, termination function, and
-				discount factor rather than a goal condition. The last two parameters of the constructor represent the
-				initial Q-value to use for previously untaken state-action pairs (which we set to 0.0) and the last parameter
-				is the learning rate, which we set fairly high since this is a simple deterministic task. Note that this
+				Lets first look at the constructor. Rather than a planning instance, we're creating a <a href="../../doc/burlap/behavior/singleagent/learning/LearningAgent.html">LearningAgent</a>
+				instance which provides some methods for learning with an environment. <a href="../../doc/burlap/behavior/singleagent/learning/tdmethods/QLearning.html">QLearning</a> is an instance of the LearningAgent interfance
+				and takes parameters for the domain, a discount factor, as HashableStateFactory an initial value for the Q-values, and a learning rate (which for a deterministic domain, 1.0 is a good choice). Note that unlike the planning algorithms we did not have to specify the reward function or terminal function. These elements can be omitted because the agent will learn by interacting with an Environment that is responsible for telling the agent about the reward it received for an interaction and whether that next state is a terminal state. Also note that this
 				constructor will by default set Q-learning to use a 0.1 epsilon greedy policy. There are other constructors
-				that allow you to set which learning policy to use and there is also a mutator that allows you to set it
-				if you'd like to use a different policy. Alternatively, you could also pass Q-learning an object that
-				specifies how the Q-value for each state-action pair should be initialized, rather than initializing them all to the same
-				value as we did here. For this tutorial, we will not bother with that, however.
+				that allow you to set which learning policy to use and there is also a setter that allows you to set it
+				if you'd like to use a different policy. Other parameters for Q-learning could also be set, but we will not detail them here.
+				</p>
+				<p>
+				With the QLearning instance created, next we will run 50 learning episodes, so we set up a for loop.
+				To run a learning episode, we call the method <b>runLearningEpisode</b> method on the LearningAgent instance
+				and pass it the Environment in which learning will be performed. The method also returns an EpisodeAnalysis object (similar to policies) so that a record of the interactions can be examined. As before, we can then write the returned episode to disk for viewing later.
+				</p><p>
+				Finally, at the end of the loop, we call the <b>resetEnvironment</b> method on the Environment. This method is the typical way to signal that an Environment needs to reset to an initial state from its current state, which may be a terminal state. When the method returns, it is exected that the environment in a non-terminal state from which an agent can act again.
+				</p><p>
+				After that, you can call this method from your main method and run the agents behavior for each of the 50 episodes of learning! Should find that as learning progessed, the agent got better. By the end, the agent's behavior will still be slightly random since it's follow an epislon greedy policy that always takes some random actions. However, since QLearning implements the QFunction interface, you could always wrap a GreedyQPolicy around it, like with VI, and gets its performance from that.
+				</p>
 				
-				</p><p>
-				With the QLearning instance created, next we will run learning episodes rather than tell it to plan a solution.
-				To make sure a decent solution is learned, we will let learning run for 100 episodes, so we set up a loop to do
-				so. To run a learning episode, we call the method <b>runLearningEpisodeFrom</b> on the LearningAgent instance
-				and pass it the initial state from which it should begin the learning episode. Since this method will perform
-				learning for an entire episode, the method will return an EpisodeAnalysis object that stores the results
-				of the episode. Once we have this episode, we simple save it to a file like we did the planning results in previous
-				examples (with care to give each episode a different name so that we can view them all). We also added a line
-				to print the number of steps taken in each learning episode to the terminal so that we can follow its overall
-				progress as it learns.
-				</p><p>
-				After that, you can call this method from your main method and run the results! This time, in the
-				EpisodeSequenceVisualizer launcher you will find there are 100 episode files in the list, one for each
-				episode of learning that occurred. You should find that in the earlier episodes behavior was quite bad, but
-				as the agent experiences the world, its performance became better. You may find that even after a large amount
-				of learning that the behavior is slightly random; this randomness is a result of learning using the epsilon greedy
-				policy which always takes a random action with some probability. Alternatively, you could also capture the final
-				learning results in a <b>GreedyQPolicy</b> like we did with VI and record those results, instead of the results
-				with the learning policy.
-				</p>
-				<div class = "note">
-				<h2>Note</h2>
-				<p>	
-				While QLearning adheres to the LearningAgent interface, it is also an
-				instance of the OOMDPPlanner, which means we could have called the planFromState method on it. For the QLearning
-				algorithm, the planFromState method will run some number of learning episodes automatically for you. By default 
-				it will only run one (which is unlikely to yield very good results!), but you can adjust the number of episodes
-				it would run, similar to how the VI planner decides to stop planning. Specifically, you can set a maximum number of learning
-				episodes to run with the <b>setMaxEpisodesForPlanning</b> method, or you can specify a Q-value change
-				threshold with the <b>setMaxQChangeForPlanningTerminaiton</b> method that will terminate planning when the maximum 
-				Q-value change within an episode less than the threshold.
-				</p>
-				</div>
 				
 				
 				<h3><a name="sarsa">Learning with Sarsa(&lambda;)</a></h3>
@@ -179,34 +138,30 @@ public void QLearningExample(String outputPath){
 				<pre class="prettyprint lang-java">
 public void SarsaLearningExample(String outputPath){
 		
-	if(!outputPath.endsWith("/")){
-		outputPath = outputPath + "/";
-	}
-	
-	//discount= 0.99; initialQ=0.0; learning rate=0.5; lambda=1.0
-	LearningAgent agent = new SarsaLam(domain, rf, tf, 0.99, hashingFactory, 0., 0.5, 1.0);
-	
-	//run learning for 100 episodes
-	for(int i = 0; i < 100; i++){
-		EpisodeAnalysis ea = agent.runLearningEpisodeFrom(initialState);
-		ea.writeToFile(String.format("%se%03d", outputPath, i), sp);
-		System.out.println(i + ": " + ea.numTimeSteps());
+	LearningAgent agent = new SarsaLam(domain, 0.99, hashingFactory, 0., 0.5, 0.3);
+
+	//run learning for 50 episodes
+	for(int i = 0; i < 50; i++){
+		EpisodeAnalysis ea = agent.runLearningEpisode(env);
+
+		ea.writeToFile(outputPath + "sarsa_" + i);
+		System.out.println(i + ": " + ea.maxTimeStep());
+
+		//reset environment for next learning episode
+		env.resetEnvironment();
 	}
 	
 }				
 				</pre>
 				<p>
 				You will notice that this method looks pretty identical to the Q-learning example, except this time
-				a <b>SarsaLam</b> instance is constructed. Additionally, we lowered the learning rate to 0.5 (typically
+				a <a href="../../doc/burlap/behavior/singleagent/learning/tdmethods/SarsaLam.html">SarsaLam</a> instance is constructed. Additionally, we lowered the learning rate to 0.5 (typically
 				you should use lower learning rates when you have a higher value of &lambda;). The last parameter of
 				the constructor is the &lambda; value which we set to 1.0. A value of &lambda;=1.0 effectively makes algorithm run an
 				online Monte Carlo in which the effects of all future interactions are fully considered in updating each Q-value
 				of an episode.
 				</p><p>
-				Otherwise, the rest is the same; you can call this method from the main method and give it shot! You should find
-				that learning is much faster than Q-learning when the higher value of &lambda; is used. Like QLearning, the
-				SarsaLam instance also supports the planning method and the conditions for planning termination can be set in the same
-				way (SarsaLam is actually a subclass of QLearning).
+				Otherwise, the rest is the same; you can call this method from the main method and give it shot!
 				</p>
 				
 				

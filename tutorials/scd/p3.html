@@ -40,20 +40,12 @@
 				As with the previous examples, let us begin by making a method for this example (LLSARSA) and instantiating a <a href="../../doc/burlap/domain/singleagent/lunarlander/LunarLanderDomain.html">Lunar Lander domain</a>, task, and initial state.
 				</p>
 				<pre class="prettyprint lang-java">
-import burlap.domain.singleagent.lunarlander.LLStateParser;
-import burlap.domain.singleagent.lunarlander.LunarLanderDomain;
-import burlap.domain.singleagent.lunarlander.LunarLanderRF;
-import burlap.domain.singleagent.lunarlander.LunarLanderTF;
-				</pre>
-				<pre class="prettyprint lang-java">
 public static void LLSARSA(){
 
 	LunarLanderDomain lld = new LunarLanderDomain();
 	Domain domain = lld.generateDomain();
 	RewardFunction rf = new LunarLanderRF(domain);
 	TerminalFunction tf = new LunarLanderTF(domain);
-
-	StateParser sp = new LLStateParser(domain);
 
 	State s = LunarLanderDomain.getCleanState(domain, 0);
 	LunarLanderDomain.setAgent(s, 0., 5.0, 0.0);
@@ -71,10 +63,14 @@ public static void LLSARSA(){
 				</p>
 				</center>
 
-				
+				<hr/>
 				<p>
-				We're going to solve this problem with <a href="../../doc/burlap/behavior/singleagent/learning/tdmethods/vfa/GradientDescentSarsaLam.html">gradient descent SARSA(&lambda;)</a>, which is a learning algorithm that behaves much like conventional tabular SARSA(&lambda;) (discussed in previous tutorials), except it learns an approximation of the value function, much like LSPI. Unlike LSPI, gradient descent SARSA(&lambda;) does not need to use a linear approximator; however, in practice it is usually a good idea to use a linear approximator because there are much stronger learning convergence guarantees with linear approximators. When using a linear approximator, it is as with LSPI, a good idea then to use some kind of basis functions. Like in the LSPI example, we could use the same Fourier basis or radial basis functions for gradient descent SARSA(&lambda;). However, this time we'll use a different basis function: CMACs, also know in reinforcement learning literature as Tile Coding.
+				We're going to solve this problem with <a href="../../doc/burlap/behavior/singleagent/learning/tdmethods/vfa/GradientDescentSarsaLam.html">gradient descent SARSA(&lambda;)</a>, which is a learning algorithm that behaves much like conventional tabular SARSA(&lambda;) (discussed in previous tutorials), except it learns an approximation of the value function, much like LSPI. Unlike LSPI, gradient descent SARSA(&lambda;) does not need to use a linear approximator; however, in practice it is usually a good idea to use a linear approximator because there are much stronger learning convergence guarantees with linear approximators. When using a linear approximator, it is a good idea then to use some kind of basis functions. Like in the LSPI example, we could use the same Fourier basis or radial basis functions for gradient descent SARSA(&lambda;). However, this time we'll use a different basis function: CMACs, also know in reinforcement learning literature as Tile Coding.
 				</p>
+				<p>
+				CMACs create a set of features by generating multiple tilings over the state space. Each tile represents a features and that feature is "on" if the state falls within that tile.
+				<div class = "note">
+				<h2>CMACs in detail</h2>
 				<p>
 				CMACs address learning in continuous domains in a only slightly more complex way than merely discretizing  the state space, yet also diminish the aliasing effects that discretization can incur. To describe how they work, lets start by thinking about how a state discretization can be used to create a set of binary basis functions. First imagine a discretization of the state space as a process that creates large bins, or <i>tiles</i>, across the entire state space. We'll let each tile represent a different binary basis function. For a given input continuous state, all basis functions return a value of 0, except the function for the tile in which the continuous state is contained, which will return a value of 1. By then estimating a linear function over these features, we generalize the observed rewards and transitions for one state to all states that are contained in the same tile; the larger the tiles we use, the larger the generalization. A disadvantage of using such a simple discretization is that it produces aliasing effects. That is, two states may be very similar but reside on opposite sides of the edge of a tile, which results in none of their experience being shared, despite the fact that they are similar and do share experiences with other states that are more distant but happen to be in the same tile.
 				</p>
@@ -84,12 +80,10 @@ public static void LLSARSA(){
 				<p>
 				An advantage of using CMACs is that you only need to store weight values in the fitted linear function for tiles that are associated with states that the agent has experienced thus far (the basis function for all other tiles would return a value of zero and therefore contribute nothing to the value function approximation). Another advantage specific to OO-MDPs is that because each tile represents a discretized state, we can maintain object identifier independence, which is otherwise not always possible to do with a number of value function approximation methods. If you don't need object identifier independence, there is another implementation of CMACs in BURLAP called <a href="../../doc/burlap/behavior/singleagent/vfa/cmac/FVCMACFeatureDatabase.html">FVCMACFeatureDatabase</a> that is slightly more CPU efficient and operates on state feature vectors (which as before are produced with StateToFeatureVectorGenerator objects). For this tutorial, however, we will use the version that provides object identifier independence, which is called <a href="../../doc/burlap/behavior/singleagent/vfa/cmac/CMACFeatureDatabase.html">CMACFeatureDatabase</a>.
 				</p>
+				</div>
 				<p>
 				Lets continue our code implementation by instantiating a CMACFeatureDatabase object and defining the tiling of our state space. To implement CMAC basis functions, we will need to decide on the number of tilings that we use and the width of each tile along each attribute. In this case, we will use 5 tilings with a width for each attribute that produces 10 tiles along each attribute range. We will limit this tiling to the Lunar Lander ship attribute values and ignore attributes for the landing pad. Since the agent's ship is defined by 5 attributes (x position, y position, x velocity, y velocity, and rotation angle from the vertical axis), this will produce 5 tilings that each define at most 10^5 tiles (again though, we don't necessarily have to store weights for all tiles if the agent never visits them!) To do so, add the below code.
 				</p>
-				<pre class="prettyprint lang-java">
-import burlap.behavior.singleagent.vfa.cmac.CMACFeatureDatabase;
-				</pre>
 				<pre class="prettyprint lang-java">
 int nTilings = 5;
 CMACFeatureDatabase cmac = new CMACFeatureDatabase(nTilings, 
@@ -124,36 +118,31 @@ cmac.addSpecificationForAllTilings(LunarLanderDomain.AGENTCLASS,
 				Now that we have the CMACFeatureDatabase set up, we can create a linear value function approximator for it and pass it along to gradient descent SARSA(&lambda;).
 				</p>
 				<pre class="prettyprint lang-java">
-import burlap.behavior.singleagent.learning.tdmethods.vfa.GradientDescentSarsaLam;
-				</pre>
-				<pre class="prettyprint lang-java">
 double defaultQ = 0.5;
-ValueFunctionApproximation vfa = cmac.generateVFA(defaultQ/nTilings);
-GradientDescentSarsaLam agent = new GradientDescentSarsaLam(domain, rf, tf, 
-                                                            0.99, vfa, 0.02, 10000, 0.5);
+		ValueFunctionApproximation vfa = cmac.generateVFA(defaultQ/nTilings);
+		GradientDescentSarsaLam agent = new GradientDescentSarsaLam(domain, 0.99, vfa, 0.02, 0.5);
 				</pre>
 				<p>
-				Note that to set the initial default Q-values to be predicted to 0.5, we set the value of each feature weight to 0.5 divided by the number of tilings. We divide the desired initial Q-value (0.5) by the number of tilings (5), because for any given state there will only be n features with a value of 1 and the rest 0, where n is the number of tilings. Therefore, if the initial weight value for all those features is 0.5/5, the linear estimate will predict our desired initial Q-value: 0.5. We also set the learning rate for gradient descent SARSA(&lambda;) to 0.02 (in general, you should decrease the learning rate as the number of features increases), set a maximum learning episode size of 10000, and set &lambda; to 0.5.
+				Note that to set the initial default Q-values to be predicted to 0.5, we set the value of each feature weight to 0.5 divided by the number of tilings. We divide the desired initial Q-value (0.5) by the number of tilings (5), because for any given state there will only be n features with a value of 1 and the rest 0, where n is the number of tilings. Therefore, if the initial weight value for all those features is 0.5/5, the linear estimate will predict our desired initial Q-value: 0.5. We also set the learning rate for gradient descent SARSA(&lambda;) to 0.02 (in general, you should decrease the learning rate as the number of features increases), and set &lambda; to 0.5.
 				</p>
 				<p>
-				With gradient descent SARSA(&lambda;) instantiated, we can run learning episodes just like we do for typical SARSA(&lambda;). Lets run learning for 5000 episodes, record the episodes to files, and then visualize the results with an EpisodeSequenceVisualizer.
+				With gradient descent SARSA(&lambda;) instantiated, we can run learning episodes wtih an Environment just like we do for typical SARSA(&lambda;). Lets create a SimulatedEnvironment, run learning for 5000 episodes, and then visualize the results with an EpisodeSequenceVisualizer.
 				</p>
 				<pre class="prettyprint lang-java">
-import burlap.oomdp.visualizer.Visualizer;
-				</pre>
-				<pre class="prettyprint lang-java">
-for(int i = 0; i &lt; 5000; i++){
-	EpisodeAnalysis ea = agent.runLearningEpisodeFrom(s); //run learning episode
-	ea.writeToFile(String.format("lunarLander/e%04d", i), sp); //record episode to a file
-	System.out.println(i + ": " + ea.numTimeSteps()); //print the performance of this episode
+SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf, s);
+List<EpisodeAnalysis> episodes = new ArrayList<EpisodeAnalysis>();
+for(int i = 0; i < 5000; i++){
+	EpisodeAnalysis ea = agent.runLearningEpisode(env);
+	episodes.add(ea);
+	System.out.println(i + ": " + ea.maxTimeStep());
+	env.resetEnvironment();
 }
 
-
-Visualizer v = LLVisualizer.getVisualizer(lld);
-new EpisodeSequenceVisualizer(v, domain, sp, "lunarLander");
+Visualizer v = LLVisualizer.getVisualizer(lld.getPhysParams());
+new EpisodeSequenceVisualizer(v, domain, episodes);
 				</pre>
 				<p>
-				If you now point your main method to LLSARSA() and run it, you should initially see a punch of text after each episode stating how long the learning episode lasted followed by the EpisodeSequenceVisualizer GUI, which should look something like the below.
+				If you now point your main method to LLSARSA() and run it, you should initially see a bunch of text after each episode stating how long the learning episode lasted followed by the EpisodeSequenceVisualizerGUI, which should look something like the below.
 				</p>
 				<center>
 				<img src="images/llgui.png", width="300"/>

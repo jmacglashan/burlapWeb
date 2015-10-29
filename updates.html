@@ -14,6 +14,77 @@
 		</div>
 		<div id="page">
 			<div id="page-content">
+				<h1>September 19, 2015</h1>
+				<h2>BURLAP version 2 is live!</h2>
+				<p>
+				In the last update, we mentioned that BURLAP would be getting some more significant changes that turned the State class into an interface so that it opened the door for custom implementations for domains that needed more specific memory management. Since then we also began to implement a number of other changes that taken together are sufficient enough to be a new version since they may require some code changes by users. These changes make BURLAP in many cases easier to use, more flexible, and in some cases faster.</p>
+				<p>
+				BURLAP version 1 is still available for download, both the pre-compiled JAR and the source code in the github (which is on branch v1), but from now on, master will point to version 2. All tutorials have also been updated to reflect the changes in BURLAP 2 (and also received some other tuning), but the version 1 tutorials are also still available.
+				</p>
+				<p>
+				In the remainder of this update we will review some of the main highlights of the changes in BURLAP 2.
+				</p>
+				<h2>Most Significant Changes</h2>
+				<ul>
+					<li><p><b>State interface</b><br/>
+					
+					As discussed in the previous update, the State class has now become an interface. Most of the domains in BURLAP will make use of the MutableState implementation, which is the same kind of implementation BURLAP version 1 used. However, by making State an interface, it opens the door for domain-specific memory optimization in which you can implement your own State class specific for your domain and even provide methods that are useful for quickly retrieving information.
+					</p>
+					</li>
+
+					<li><p><b>Environment interface</b><br/>
+					Although an Environment class was included in the previous version of BURLAP, it was auxiliary for very specific purposes and did not strongly integrate with the rest of the BURLAP tools. Environment is now a central interface in BURLAP and used by many classes. The Environment interface provides methods for getting observations and rewards from some environment and receiving actions from an agent. There is also a standard SimulatedEnvironment class for using BURLAP domains to simulate the environment.
+					</p>
+					<p>
+					The Environment interface is now integrated into other BURLAP tools in a variety of ways. First, learning algorithms that implement the LearningAgent interface now all learn by interacting with the Environment. This change removes the burden of current state book keep from the learning algorithm; moreover, it provides state safety in that the learning algorithms cannot accidentally change what the state or outcome of the Environment is and are forced to take it as it comes. This is particularly useful for model-based RL algorithms in which a separate modeled domain is learned in which planning is performed. When the agent executes an action selected from the learned model policy in an environment, there is no confusion over whether it's executed the model of the action or actually executing the action in the world, because it will be executing the action through the Environment interface when it need to apply it in the world.
+					</p>
+					<p>
+					Second, Policy objects can now be trivially rolled out in an Environment. This paradigm is useful for using BURLAP with robotics or other external systems, since you can build a model in BURLAP, produce a policy with that model, and then roll that policy out in the external world/system by rolling it out in an Environment that interfaces with the external world/system. For example, the <a href="https://github.com/h2r/burlap_rosbridge">burlap_rosbrige</a> extension provides an Environment implementation that interfaces with ROS so that you can have a BURLAP policy control a ROS robot by rolling out the policy in the Environment.
+					</p>
+					<p>Third, the VisualExplorer and TerminalExplorer now operate on Environment implementations, which means you can use them to manually control external systems that are interfaced with an Environment.
+					</p>
+					</li>
+
+					<li><p><b>Action organization</b><br/>
+					The Action, GroundedAction, and the stochastic games equivalents have been a refactored. In the previous version of BURLAP, many of the critical methods of the Action class took as a method argument a String array that was used for specifying parameters. By default, these parameters were considered to be STRIPs-like OO-MDP object references, and although other kinds of parameters could be used, it was a hacky implementation.</p>
+					<p>
+					In the new version of BURLAP, Action methods now take a GroundedAction as an argument, instead of a String array. The motivation is that if you have a special of kind of action parameterization you would like to use, you can subclass GroundedAction to contain whatever kind of data structures you want to specify any kind of parameters that you want. (For example, it would now be trivial to implement continuous valued parameterized actions.) Along with that, two of the methods that you must implement for the Action class are used to generate your instances of GroundedAction. This way, planning and learning algorithms never need to know about your parameterization types; they simply ask your Action definition to generate the permissible parameterizations and hand them back to your appropriate methods when they want to execute them or query the transition dynamics. 
+					</p>
+					<p>
+					Along with these changes, all Action methods that are used to define an Action are all now abstract so it's entirely clear what would be expected of you to define an Action. However, if you simply want to define parameter-less actions without any preconditions, you can always just subclass the SimpleAction class which will implement those details for you.
+					</p>
+					<p>
+					Similar changes were made for the stochastic games classes.</p>
+					</li>
+
+					<li><p><b>POMDP support added</b><br/>
+					BURLAP now has support for POMDP problem definitions. Currently the space of implemented solvers is limited; there is a Belief MDP conversion tool so that you use standard MDP algorithms to solve the POMDP; an exact finite horizon solver, by using the Belief MDP conversion with Sparse Sampling; and QMDP. However, other algorithms are currently being implemented, including POMCP and PBVI, which will hopefully be available soon.
+					</li>
+				</ul>
+				<h2>Less Significant Changes</h2>
+				<ul>
+					<li><p><b>StateHashFactory/StateHashTuple -> HashableStateFactory/HashableState and revised</b><br/>
+					For the most part there has merely been a renaming of the StateHashFactory/StateHashTuple to HashableStateFactory/HashableState; however, the code for these classes have been significantly streamlined with better support. When in doubt, you can simply use the SimpleHashableStateFactory implementation, which has much better support and which other implementations for state abstraction or value discretization extend.
+					</p>
+					</li>
+					<li><p><b>StateParser deprecated for Java bean serialization</b><br/>
+					The StateParser in version 1 was used for serializing State objects by allowing them to be turned to and from String representations. Although the code is still there, it is now in a legacy package and should not be used going forward. Instead, it is recommended that you use the SerializableState and SerializableStateFactory classes (if at all). A SerializableState is a Java Bean class representation of a state that can be trivially serialized using any number of standard Java serialization methods (as well as providing a method for turning it back into a standard State), such as JSON or YAML.
+					</p>
+					<p>
+					There is a standard serialization class called SimpleSerializableState that in general you can always use. In fact, now when you write an EpisodeAnalysis file to disk, it saves it in a YAML format and by default uses the SimpleSerializableState so that you never have to think about it. However, you can also always pass it a more compact SerializableState representations through the SerializableStateFactory if you're looking to keep your files compressed. Domains that previously had their own StateParser implementations now have corresponding SerializableStateFactory classes that you can use instead; though in general, you don't really need to think about state serialization anymore. 
+					</p>
+					</li>
+					<li><p><b>Package and class name refactoring, as well as class hierarchy refactoring</b><br/>
+					The class names and organization for a number of classes has changed. For example, OOMDPPlanner is now simply MDPSolver, which inherits from an MDPSolverInterface interface. The new Planner interface extends MDPSolverInterface, giving it the planFromState method, which now also returns a policy so that you don't have to think about what Policy to wrap around your planning algorithm. Similarly, the QComputablePlanner interface is now simply QFunction and it extends a ValueFunction interface.
+					</p>
+					<p>Other minor reorganization changes also exist.
+					</p>
+					</li>
+				</ul>
+
+				<p>If you are migrating your code, many of the changes may simply require using different imports and changing the name of some elements. However, it may be worthwhile to rescan the updated tutorials to see how things have changed. Additionally, all tutorial code on the website has been included in the main distribution under the package burlap.tutorials.</p>
+
+
 				<h1>May 29, 2015</h1>
 				<p>
 				The latest version of BURLAP has had various changes. Most changes will be transparent or are feature additions. For example, domains for BlockDude and 

@@ -59,7 +59,7 @@
 
 				<h3><a name="painters">Implementing the Painters</a></h3>
 				<p>
-				To implement a StaticPainter for painting the walls of our grid world as black rectangles, add the below class inside the ExampleGridWord class code we've been writing.
+				To implement a StaticPainter for painting the walls of our grid world as black rectangles, add the below inner class to the ExampleGridWord class code we've been writing.
 				</p>
 				<pre class="prettyprint lang-java">
 public class WallPainter implements StaticPainter{
@@ -139,8 +139,8 @@ public class AgentPainter implements ObjectPainter{
 		float width = cWidth / fWidth;
 		float height = cHeight / fHeight;
 		
-		int ax = ob.getDiscValForAttribute(ATTX);
-		int ay = ob.getDiscValForAttribute(ATTY);
+		int ax = ob.getIntValForAttribute(ATTX);
+		int ay = ob.getIntValForAttribute(ATTY);
 		
 		//left coordinate of cell on our canvas
 		float rx = ax*width;
@@ -160,6 +160,7 @@ public class AgentPainter implements ObjectPainter{
 	
 }
 				</pre>
+				<hr/>
 				<p>
 				We'll also do the same for a location object, but we'll use a blue rectangle instead.
 				</p>
@@ -241,12 +242,12 @@ public static void main(String [] args){
 	
 	Visualizer v = gen.getVisualizer();
 	VisualExplorer exp = new VisualExplorer(domain, v, initialState);
-	
+
 	exp.addKeyAction("w", ACTIONNORTH);
 	exp.addKeyAction("s", ACTIONSOUTH);
 	exp.addKeyAction("d", ACTIONEAST);
 	exp.addKeyAction("a", ACTIONWEST);
-	
+
 	exp.initGUI();
 	
 	
