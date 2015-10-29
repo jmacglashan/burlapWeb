@@ -48,7 +48,7 @@
 				Before you make your own RewardFunction and TerminalFunction,
 				it is sometimes worth checking to see if BURLAP already has an implementation that you can use. For example, many different problems use a reward function that returns -1 everywhere.
 				For problems like these, you can use the <a href="../../doc/burlap/oomdp/singleagent/common/UniformCostRF.html">UniformCostRF</a> object. If your domain is continuing (i.e., non-terminating), then
-				you can use the <a href="../../doc/burlap/oomdp/auxiliary/common/NullTermination.html">NullTermination</a> object. It also not uncommon to have a goal condition that is satisfied whenever any object grounding of a propositional function returns true. In our grid world, for example, if we let location objects indicate goal locations, we might want a terminal function that returns true for any state in which the agent is at a location. In such a case you can use the <a href="../../doc/burlap/oomdp/singleagent/common/SinglePFTF.html">SinglePFTF</a> TerminalFunction and point it to the atLocation propositional function.
+				you can use the <a href="../../doc/burlap/oomdp/auxiliary/common/NullTermination.html">NullTermination</a> object. It also not uncommon to have a goal condition that is satisfied whenever any object grounding of a propositional function returns true. In our grid world, for example, if we let location objects indicate goal locations, we might want a terminal function that returns true for any state in which the agent is at a location. In such a case you can use the <a href="../../doc/burlap/oomdp/auxiliary/common/SinglePFTF.html">SinglePFTF</a> TerminalFunction and point it to the atLocation propositional function.
 				</p>
 				<p>
 				If none of the existing RewardFunction or TerminalFunction objects in BURLAP suit your needs, you can always create your own. For example, suppose we wanted a reward function that returned -1 everywhere, except when the agent reached a designated (x, y) position at which point it returned a reward of +100. We can implement such a reward function as shown below.
@@ -107,8 +107,8 @@ public static class ExampleTF implements TerminalFunction{
 		
 		//get location of agent in next state
 		ObjectInstance agent = s.getFirstObjectOfClass(CLASSAGENT);
-		int ax = agent.getDiscValForAttribute(ATTX);
-		int ay = agent.getDiscValForAttribute(ATTY);
+		int ax = agent.getIntValForAttribute(ATTX);
+		int ay = agent.getIntValForAttribute(ATTY);
 		
 		//are they at goal location?
 		if(ax == this.goalX && ay == this.goalY){
@@ -123,7 +123,7 @@ public static class ExampleTF implements TerminalFunction{
 }
 				</pre>
 				<p>
-				And that is all there is to defining reward functions and terminal states! If you'd like to test them, you can use the TerminalExplorer and VisualExploer to do so since they ultimately interact with Environment instances. To do that, we'll first create an instance of SimulatedEnvironment using our reward function and terminal function, and then we'll provide the TerminalExplorer and VisualExplorer the Environment instance. For the TerminalExporler it will print out the last reward receieved and whether the current state is terminal. For the VisualExplorer, you can open up the console (but pressing the button at the bottom) and you'll find at the bottom of the print the last reward received and whether the current state is terminal. Adjust your main method to the below to test that.
+				And that is all there is to defining reward functions and terminal states! If you'd like to test them, you can use the TerminalExplorer and VisualExploer to do so since they ultimately interact with Environment instances. To do that, we'll first create an instance of SimulatedEnvironment using our reward function and terminal function, and then we'll provide the TerminalExplorer and VisualExplorer the Environment instance. For the TerminalExporler it will print out the last reward receieved and whether the current state is terminal. For the VisualExplorer, you can open up the console (by pressing the button at the bottom) and you'll find at the bottom of the print the last reward received and whether the current state is terminal. Adjust your main method to the below to test that.
 				</p>
 				<pre class="prettyprint lang-java">
 public static void main(String [] args){

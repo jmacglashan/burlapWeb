@@ -70,7 +70,7 @@ env = new EnvironmentServer(env, observer);
 				(we use the same kind of state visualizer that we used for our EpisodeSequenceVisualizer). The second line initializes the Java GUI for its visualization. You can then choose whether to use the third line or the commented out fourth line. The third line is how we set up the VisualActionObserver to receive events from an Environment and requires changing our Environment to an <a href="../../doc/burlap/oomdp/singleagent/environment/EnvironmentServer.html">EnvironmentServer</a>. An EnvironmentServer takes as input a source environment, and a list of EnvironmentObservers. Normal operations for the environment are delegated to the source environment, but the outcomes of the interaction are intercepted and sent to all observers before returning control to the client. The commented out fourth line would tell all the Action objects in the domain to add the action observer that is notified whenever the action is run in simulation.
 				</p>
 				<p>
-				If you want to test the action observer out with a learning algorithm use the EnvironmentObserver paradigm (third line). If you want to test it with one of the deterministic planners, comment out the third line and uncomment the fourth. Which ever you choose, you should find that when you run the algorithm you observer the agent moving through the environment!
+				If you want to test the action observer out with a learning algorithm use the EnvironmentObserver paradigm (third line). If you want to test it with one of the deterministic planners, comment out the third line and uncomment the fourth. Which ever you choose, you should find that when you run the algorithm you observe the agent moving through the environment!
 				</p>
 				
 				<div class = "note">

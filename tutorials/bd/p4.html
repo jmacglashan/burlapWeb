@@ -183,8 +183,8 @@ public class LocationPainter implements ObjectPainter{
 		float width = cWidth / fWidth;
 		float height = cHeight / fHeight;
 		
-		int ax = ob.getDiscValForAttribute(ATTX);
-		int ay = ob.getDiscValForAttribute(ATTY);
+		int ax = ob.getIntValForAttribute(ATTX);
+		int ay = ob.getIntValForAttribute(ATTY);
 		
 		//left coordinate of cell on our canvas
 		float rx = ax*width;
