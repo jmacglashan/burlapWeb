@@ -124,7 +124,7 @@ public class BasicBehavior {
 	TerminalFunction tf;
 	StateConditionTest goalCondition;
 	State initialState;
-	HashableStateFactory hashingFactory
+	HashableStateFactory hashingFactory;
 	Environment env;
 	
 	
@@ -182,7 +182,7 @@ public class BasicBehavior {
 				<div class = "note">
 				<h2>More on HashableStateFactory</h2>
 				<p>
-					While BURLAP provides a number of different HashableStateFactory classes for handling common ways of performing hashing and state equality checking (see the <a href="../../doc/burlap/oomdp/statehashing/package-tree.html">statehashing package Java doc</a> for a list), when it doubt you can typically use the <a href="../../doc/burlap/oomdp/statehashing/SimpleHashableStateFactory.html">SimpleHashableStateFactory</a>, which we will use in this tutorial. One of the advantages of SimpleHashableStateFactory is that when it checks state equality between two states (or computes the has code for a state), it will by default be <i>object identifier independent</i>. Object identifier independence means that when a state is made up of multiple objects of the same class, the order of the objects and the names that identify them does not affect whether two states are equal. That is, as long as the states have a set of equivalent objects, they will be considered the same state. For example, consider a state (s0) made up of two block objects (block0 and block1) that are defined by spatial position
+					While BURLAP provides a number of different HashableStateFactory classes for handling common ways of performing hashing and state equality checking (see the <a href="../../doc/burlap/oomdp/statehashing/package-tree.html">statehashing package Java doc</a> for a list), when it doubt you can typically use the <a href="../../doc/burlap/oomdp/statehashing/SimpleHashableStateFactory.html">SimpleHashableStateFactory</a>, which we will use in this tutorial. One of the advantages of SimpleHashableStateFactory is that when it checks state equality between two states (or computes the hash code for a state), it will by default be <i>object identifier independent</i>. Object identifier independence means that when a state is made up of multiple objects of the same class, the order of the objects and the names that identify them does not affect whether two states are equal. That is, as long as the states have a set of equivalent objects, they will be considered the same state. For example, consider a state (s0) made up of two block objects (block0 and block1) that are defined by spatial position
 					information. Now imagine a new state (s1) that is the result of swapping the positions of block0 and block1.
 					Even though the object identifiers associated with the block positions (block0 and block1) are different between s0 and s1, 
 					these really are the same state and when equality is object identifier independent they will be considered equal. The below illustration helps clarify this property. </p><br/>

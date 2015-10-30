@@ -214,7 +214,7 @@ public void AStarExample(String outputPath){
 				
 				<p>
 				The bigger difference between the previous planning code and A* is in defining the
-				heuristic, which we do by implementing the <a href="../../doc/burlap/behavior/singleagent/planning/deterministic/informed/Heuristic.html">Heuristic</a> interface. The <b>h</b> method of the the Heuristic interface
+				heuristic, which we do by implementing the <a href="../../doc/burlap/behavior/singleagent/planning/deterministic/informed/Heuristic.html">Heuristic</a> interface. The <b>h</b> method of the Heuristic interface
 				is passed a state object and the method should return the estimated reward to the goal from
 				that state (which should be a non-positive value). Since we have opted to use the Manhattan distance as our heuristic, this will involve
 				computing the distance between the agent position and the location position (for which we will assume
