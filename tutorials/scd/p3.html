@@ -119,7 +119,7 @@ cmac.addSpecificationForAllTilings(LunarLanderDomain.AGENTCLASS,
 				</p>
 				<pre class="prettyprint lang-java">
 double defaultQ = 0.5;
-		ValueFunctionApproximation vfa = cmac.generateVFA(defaultQ/nTilings);
+		DifferentiableStateActionValue vfa = cmac.generateVFA(defaultQ/nTilings);
 		GradientDescentSarsaLam agent = new GradientDescentSarsaLam(domain, 0.99, vfa, 0.02, 0.5);
 				</pre>
 				<p>

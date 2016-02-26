@@ -111,6 +111,11 @@ burlap.oomdp.stochasticgames.explorers
 burlap.oomdp.stochasticgames.tournament
 burlap.oomdp.stochasticgames.tournament.common
 burlap.oomdp.visualizer
+burlap.shell
+burlap.shell.command
+burlap.shell.command.env
+burlap.shell.command.reserved
+burlap.shell.command.world
 burlap.testing
 burlap.tutorials.bd
 burlap.tutorials.bpl

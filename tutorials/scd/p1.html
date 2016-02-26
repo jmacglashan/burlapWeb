@@ -53,7 +53,7 @@
 				momentum to get up the intended slope.
 				</p>
 				<center>
-				<img src="http://upload.wikimedia.org/wikipedia/en/thumb/1/18/Mcar.png/300px-Mcar.png"/>
+				<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Mcar.png"/>
 				<p>An illustration of the Mountain Car problem, courtesy of <a href="http://en.wikipedia.org/wiki/Mountain_Car">Wikipedia</a>.</p>
 				</center>
 				<p>
@@ -80,7 +80,7 @@ import burlap.behavior.singleagent.learning.lspi.SARSCollector;
 import burlap.behavior.singleagent.learning.lspi.SARSData;
 import burlap.behavior.singleagent.learning.tdmethods.vfa.GradientDescentSarsaLam;
 import burlap.behavior.singleagent.planning.stochastic.sparsesampling.SparseSampling;
-import burlap.behavior.singleagent.vfa.ValueFunctionApproximation;
+import burlap.behavior.singleagent.vfa.DifferentiableStateActionValue;
 import burlap.behavior.singleagent.vfa.cmac.CMACFeatureDatabase;
 import burlap.behavior.singleagent.vfa.common.ConcatenatedObjectFeatureVectorGenerator;
 import burlap.behavior.singleagent.vfa.fourier.FourierBasis;
@@ -202,19 +202,20 @@ Policy p = lspi.runPolicyIteration(30, 1e-6);
 				After LSPI has run until convergence, we will want to analyze the policy is produced. To analyze the resulting policy, we could roll it out and load an EpisodeSequenceVisualizer, as we have in prior tutorials. But for fun, lets watch it in real time.
 				</p>
 				<p>
-				To visualize the animated results, we can simply grab the existing visualizer from the domain (<a href="../../doc/burlap/domain/singleagent/mountaincar/MountainCarVisualizer.html">MountainCarVisualizer</a>), create a <a href="../../doc/burlap/oomdp/singleagent/environment/SimulatedEnvironment.html">SimulatedEnvironment</a> in which to evaluate the policy, and add a <a href="../../doc/burlap/oomdp/singleagent/common/VisualActionObserver.html">VisualActionObserver</a> to the to an <a href="../../doc/burlap/oomdp/singleagent/environment/EnvironmentServer.html">EnvironmentServer</a> to watch it happen. Specifically, we'll let it run for five policy rollouts.
+				To visualize the animated results, we can simply grab the existing visualizer from the domain (<a href="../../doc/burlap/domain/singleagent/mountaincar/MountainCarVisualizer.html">MountainCarVisualizer</a>), create a <a href="../../doc/burlap/oomdp/singleagent/environment/SimulatedEnvironment.html">SimulatedEnvironment</a> in which to evaluate the policy, and add a <a href="../../doc/burlap/oomdp/singleagent/common/VisualActionObserver.html">VisualActionObserver</a> to the to the environment. Note that we can add an EnvironmentObserver to a SimulatedEnvironment, because it implements the EnvironmentServerInterface (otherwise we could use an EnvironmentServer wrapper for Environment instances that do not implement the observer interface). Specifically, we'll let it run for five policy rollouts.
 				</p>
 				<pre class="prettyprint lang-java">
 Visualizer v = MountainCarVisualizer.getVisualizer(mcGen);
 VisualActionObserver vob = new VisualActionObserver(domain, v);
 vob.initGUI();
 
-SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf, MountainCar.getCleanState(domain, mcGen.physParams));
-EnvironmentServer envServ = new EnvironmentServer(env, vob);
+SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf,
+	MountainCar.getCleanState(domain, mcGen.physParams));
+env.addObservers(vob);
 
-for(int i = 0; i &lt; 5; i++){
-	p.evaluateBehavior(envServ);
-	envServ.resetEnvironment();
+for(int i = 0; i < 5; i++){
+	p.evaluateBehavior(env);
+	env.resetEnvironment();
 }
 
 System.out.println("Finished");
@@ -273,13 +274,12 @@ public static void MCLSPIRBF(){
 	VisualActionObserver vob = new VisualActionObserver(domain, v);
 	vob.initGUI();
 
-
 	SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf, s);
-	EnvironmentServer envServ = new EnvironmentServer(env, vob);
+	env.addObservers(vob);
 
 	for(int i = 0; i < 5; i++){
-		p.evaluateBehavior(envServ);
-		envServ.resetEnvironment();
+		p.evaluateBehavior(env);
+		env.resetEnvironment();
 	}
 
 	System.out.println("Finished");
@@ -354,11 +354,11 @@ public static void MCLSPIRBF(){
 
 
 	SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf, s);
-	EnvironmentServer envServ = new EnvironmentServer(env, vob);
+	env.addObservers(vob);
 
 	for(int i = 0; i < 5; i++){
-		p.evaluateBehavior(envServ);
-		envServ.resetEnvironment();
+		p.evaluateBehavior(env);
+		env.resetEnvironment();
 	}
 
 	System.out.println("Finished");
