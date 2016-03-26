@@ -37,29 +37,27 @@
 				For more background information on the project and the people involved, see the <a href="information.html">Information</a> page. 
 				</p>
 				<p>
-				<b>Note: BURLAP 2 is now live! See the <a href="updates.html">update</a> for more information about it.</b>
-				</p>
 				
 				
 				
 				<h1>Where to <i>git</i> it</h1>
 				<p>
-				The full BURLAP source can be found on Github at:<br/>
+				BURALP now fully supports Maven and is available on Maven Central! That means that if you'd like to create a project that uses BURLAP, all you need to do is add the following dependency to the &lt;dependencies&gt; section of your projects pom.xml
+				<xmp style="background-color: #333333; color: white; padding-left: 1em">
+<dependency>
+  <groupId>edu.brown.cs.burlap</groupId>
+  <artifactId>burlap</artifactId>
+  <version>2.1.0</version>
+</dependency>
+				</xmp>
+				and the library will automatically be downloaded and linked to your project! If you do not have Maven installed, you can get it from <a href="https://maven.apache.org/download.cgi">here</a>.
+				<p>
+				You can also get thefull BURLAP source to manually compile/modify from Github at:<br/>
 				<a href="https://github.com/jmacglashan/burlap" target="external">https://github.com/jmacglashan/burlap</a>
 				</p>
 				<p>
-				Alternatively, you can download 
+				Alternatively, you can directly download precompiled jars from Maven Central from <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22edu.brown.cs.burlap%22%20AND%20a%3A%22burlap%22">here</a>. Use the jar-with-dependencies if you want all dependencies included.
 				</p>
-				<ul>
-				<li><a href="burlap.jar">a pre-compiled jar</a> with dependencies included, or</li>
-				<li><a href="burlap_no_dep.jar">a pre-compiled jar</a> with<b>out</b> dependencies.</li>
-				</ul>
-				<p>
-				Use the jar without the dependencies if you are having library conflicts
-				and need to manage them yourself. Note that while these jar files
-				will be uploaded periodically, the most up-to-date changes will be
-				in the github repository.
-				<p/>
 				<p>
 				If you are looking for the older version 1 of BURLAP, you can get the pre-compiled jars for it below, or use the v1 branch on git.
 				</p>
@@ -69,25 +67,6 @@
 				</ul>
 				<p>
 				The Java doc for version 1 can also be found <a href="doc_v1/index.html">here</a>.
-				</p>
-
-				<p>
-				BURLAP has the following dependencies.
-				</p>
-				<ul>
-				<li><a href="http://glue.rl-community.org/wiki/Java_Codec">RLGlue Java Codec</a> - You will need this if you plan on interfacing BURLAP with <a href="http://glue.rl-community.org/wiki/Main_Page">RLGLue</a>.</li>
-				<li><a href="http://commons.apache.org/proper/commons-math/">Apache Math Commons</a> - For performance plotting tools.</li>
-				<li><a href="http://www.jfree.org/jfreechart/">JFree Chart</a> - For Performance Plotting tools.</li>
-				<li><a href="https://code.google.com/p/snakeyaml/">Snake YAML</a> - For reading and writing states into the YAML format.</li>
-				<li><a href="http://jackson.codehaus.org/">Jackson</a> - For reading and writing states into the JSON format.</li>
-				<li><a href="http://www.joptimizer.com/">JOptimizer</a> - For Max Margin Apprenticeship Learning</li>
-				<li><a href="http://scpsolver.org/">SCPSolver</a> - For Minmax, Coco-Q, and Correlated-Q algorithms. (Our choice of underlying LP solver that it uses is lpsolve.)</li>
-				<li><a href="http://www.cs.waikato.ac.nz/ml/weka/">Weka</a> - For providing a range of regression algorithms for Fitted Value Iteration.</li>
-				<li><a href="https://pholser.github.io/jopt-simple/">JOptSimple</a> - For handling command line arguments in the BURLAP shell.</li>
-				</ul>
-				<p>
-				If you download BURLAP from Github, all of these dependencies are included in the lib directory. If you do not plan on using the features that use a given dependency, then
-				you should be able to use the BURLAP jar without that dependency.
 				</p>
 				
 				<h1>Tutorials</h1>

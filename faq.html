@@ -169,8 +169,21 @@
 					(<a href="https://github.com/h2r/burlap_rosbridge" target="external">burlap_rosbridge</a>) that has a standard Environment implementation for communicating with robots controlled with <a href="http://www.ros.org" target="external">ROS</a> over <a href="http://wiki.ros.org/rosbridge_suite" target="external">Rosbridge</a>. 
 					</p>
 					<p>
-					When using <a href="https://github.com/h2r/burlap_rosbridge" target="external">burlap_rosbridge</a> it is expected that you create a ROS topic that is publishing BURLAP state messages (formatted according our defined <a href="https://github.com/h2r/burlap_msgs" target="external">burlap_msgs</a> type) and that there is a topic BURLAP can push to that accepts action commands as a string type. See burlap_rosbridge's <a href="https://github.com/h2r/burlap_rosbridge" target="external">github
-					page</a> for more information on how to use it.
+					When using <a href="https://github.com/h2r/burlap_rosbridge" target="external">burlap_rosbridge</a> it is expected that you create a ROS topic that is publishing BURLAP state messages. By default,
+					these messaged are assumed to adhere our ROS <a href="https://github.com/h2r/burlap_msgs" target="external">burlap_msgs</a> type. However, you can also subclass the RosEnvironment to implement custom parsing of differently formatted topics. Burlap_rosbridge allows you to handle the execution of action in a variety of ways, including sending direct messages to the ROS controller (e.g., Twist messages) or by sending string messages to a ROS action controller. See burlap_rosbridge's <a href="https://github.com/h2r/burlap_rosbridge" target="external">github
+					page</a> for more information and examples of how to use it.
+					</p>
+					<p>
+					Burlap_rosbridge is also on Maven Central, so to link to it, simply add the following dependency alongside the BURLAP dependency in your project's pom.xml file:
+					<xmp style="background-color: #333333; color: white; padding-left: 1em">
+<dependency>
+  <groupId>edu.brown.cs.burlap</groupId>
+  <artifactId>burlap_rosbridge</artifactId>
+  <version>2.1.0</version>
+</dependency>
+					</xmp>
+					You can also manually compile from the source on the <a href="https://github.com/h2r/burlap_rosbridge" target="external">github page</a>.
+					</p>
 					</li>
 					<li><b><a name="minecraft"/>I heard that you can use BURLAP for AI in Minecraft, how can I do that?</b>
 					<p>
