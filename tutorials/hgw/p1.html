@@ -20,207 +20,146 @@
 					<b>Tutorial Contents</b>
 					<ul>
 						<li><a href="p1.html#intro"><b>Introduction</b></a></li>
-						<li><a href="p1.html#acquire">Acquiring BURLAP</a></li>
-						<li><a href="p1.html#depend">Dependencies</a></li>
-						<li><a href="p1.html#jartest">Running the JAR</a></li>
-						<li><a href="p1.html#code">Hello <i>Grid</i>World Code</a></li>
-						<li><a href="p1.html#depCheck">Testing Plotting Tools</a></li>
-						<li><a href="p1.html#heapsize">Notes on the Java Heap Size</a></li>
-						<li><a href="p1.html#conclusions">Conclusions</a></li>
+						<li><a href="p1.html#compile">Compiling from Source</a></li>
+						<li><a href="p1.html#code">Hello <i>Grid</i>World Project</a></li>
+						<li><a href="p1.html#conclusion">Conclusion</a></li>
 						
 					</ul>
 				</div>
 
-				<br/><br/>
-				<b>You are viewing the tutorial for BURLAP 2; if you'd like the BURLAP version 1 tutorial, go <a href="../../tutorials_v1/hgw/p1.html">here</a>.</b>
+				<br/>
+				<p>
+				<b>You are viewing the tutorial for BURLAP 2 with Maven. If you'd like the BURLAP 2 ant compiling and manual execution instruction, go <a href="p1_ant.html">here</a>. If you'd like the BURLAP version 1 tutorial, go <a href="../../tutorials_v1/hgw/p1.html">here</a>.</b>
+				</p>
 				
 				<h3><a name="intro">Introduction</a></h3>
 				
 				<p>
-				In this tutorial we will walk you through downloading BURLAP and making sure you can run it. We will
-				walk through the instructions to both download the JAR from the precompiled source as well
-				as how to get the source code and compile it yourself. If you only want to do it one way, feel free to only look at that section. Either way, it should be very straightforward! After the
-				code has been downloaded, we'll show you a simple way to make sure it's working and then show
-				you how to easily create code that links to it. For more instructions on how write meaningful
-				code with BURLAP and what it does, you should see the other tutorials.
+				In this tutorial we will walk you through getting started with BURLAP. We will assume that you have Maven installed for this process, since it will make management of dependencies very straightforward. If you do not already have Maven installed, you can probably get it from your favorite package manager. For example, on Debian systems,
+				<pre class="prettyprint">
+sudo apt-get install maven
+				</pre>
+				Or on Mac OS with homebrew:
+				<pre class="prettyprint">
+brew install maven
+				</pre>
+				Alternatively, you can manually install it from <a href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a>. Be sure to follow their installtion instructions.
 				</p>
+				<p>
+				To verify that you have maven installed try the following from the command line
+				<pre class="prettyprint">
+mvn -v
+				</pre>
+				</p>
+				<p>
+				We also highly recommend that you use an IDE for your work, which will make working with the library substantially easier. If you do not have an IDE we recommend either <a href="https://www.jetbrains.com/idea/">IntelliJ</a> or <a href="http://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/keplersr1">Eclipse</a>. Both will have tools for working with Maven projects. That said, for this tutorial we will give instructions using just the command line and your favorite text editor. You can probably follow along in an IDE if you prefer.
+				</p>
+
+				<p>
+				In this tutorial you will have two options. You can either build and install BURLAP from its source, or you can simply use the released version of BURLAP from Maven Central. The latter will require the least work, but if you'd like to be able to modify BURLAP at all, it may be worth checkout out the code and manually compiling it. If you prefer to simply use the Maven Central copy, skip the next section.
+				</p>
+
+				
 				<p>
 				We will make use of the command line to test things out and compile everything. On the Mac and Linux you can just use the terminal. If you are windows, you can use either the command prompt something like <a href="http://www.cygwin.com/">Cygwin</a>.
 
-				<h3><a name="acquire">Acquiring BURLAP</a></h3>
+				<h3><a name="compile">Compiling from Source</a></h3>
 				<p>
-				There are two ways to acquire BURLAP. You can either download the pre-compiled JAR file (either with or without dependencies included)
-				or compile it from the source code. In general, the source code will have the latest version
-				and the pre-compiled JAR may be a bit older, but should be stable.
+				To compile the code from source, you will probably want to have <a href="https://git-scm.com/">git</a> installed, or you can manually download the source from github. If you have git installed, navigate from your command line to a directory where you would like to place the code. Then type the following:
 				</p>
-
-				<h4>Downloading the Pre-compiled JAR</h4>
-				<p>
-				For the prec-compiled jar, you can either get one with the dependencies include
-				in the jar, or without them included. You can get either from these locations:
-				</p>
-				<ul>
-				<li><a href="../../burlap.jar">the pre-compiled jar</a> with dependencies included;</li>
-				<li><a href="../../burlap_no_dep.jar">the pre-compiled jar</a> with<b>out</b> dependencies.</li>
-				</ul>
-				<p>
-				Use the jar without the dependencies if you are having library conflicts
-				and need to manage them yourself. If you use the jar without dependencies,
-				we will walk through how to include them manually in the below
-				<a href="#depend">dependencies section</a>.
-				</p>
-				<p>
-				After downloading the BURLAP jar file, you can either install it into a system level path that java will always search or your can place it in a local directory. In this tutorial we will just use it locally and point java to it.
-				</p>
-				<p>
-				Create a directory in which you will run your tests. In this tutorial,
-				we will name it "testcode," but you can name it anything you want. Within that directory, create a new subdirectory called "lib" and place the burlap.jar file that you downloaded inside it. The directory structure should look like the following:
-				</p>
-				<pre class="prettyprint">
-testcode
-	lib
-		burlap.jar
-				</pre>
-Or "burlap_no_dep.jar" instead of "burlap.jar" if you downloaded the version without dependencies.
-				<h4>Compiling From the source</h4>
-				<p>
-				The easiest way to get the source is with <i>git</i>. If you do not have git installed, install it now. You can download git from <a href="http://git-scm.com/">here</a>. To compile the code,
-				you will also need <i>ant</i> installed, which you can get from <a href="http://ant.apache.org/">here</a> if you do not already have it.
-				</p>
-				Create a directory where you will place the git distribution. You might have a git directory in your home directory already created for this, which you can use. From the command line, change directories there now. Now enter the following command:
 				<pre class="prettyprint">
 git clone https://github.com/jmacglashan/burlap.git
 				</pre>
-				You should have found that this created the directory named "burlap". Change into that directory now and you should find the following files and subdirectories:
+				<p>
+				If you do not have git installed on your computer, then you can manually download the files by navigating to the website <a href="https://github.com/jmacglashan/burlap">https://github.com/jmacglashan/burlap</a> and clicking on "download zip" to save it and unarchive it at a desired location.
+				</p>
+				<p>
+				Whether you used git to clone the source, or manually downloaded it, navigate into the directory with your command line. The directory should look something like the following:
 				<pre class="prettyprint">
-lib
-src
 LICENSE
 README.md
 build.xml
+burlap-repo
+lib
+pom.xml
+src
+testing
 				</pre>
-				Now type
+				</p>
+				<p>
+				Now we can compile using Maven, which you should have installed on the previous step. You can use the standard Maven methods for compilation. That is, to simply compile the code, use
 				<pre class="prettyprint">
-ant dist
+mvn compile
 				</pre>
-				<p>
-				And you should find new subdirectories appear; in particular, the "dist" directory which
-				will contain the BURLAP JAR file. If there were compilation <i>errors</i> (warnings should not be a concern) it's possible that you will need to re-download the dependencies. For convenience,
-				BURLAP's git repository includes the dependencies that it needs, but it's possible you may have
-				to install them yourself (see the <a href="#depend">Dependencies</a> section and place all the JARs on which BURLAP depends in the lib directory and try ant again.)
-				</p>
-				<p>
-				With the burlap.jar file created we'll now try working with it. You can either install it into a system level path that java will always search or your can place it in a local directory. In this tutorial we will just use it locally and point java to it.
-				</p>
-				<p>
-				Create a directory in which you will run your tests. In this tutorial,
-				we will name it "testcode," but you can name it anything you want. Within that directory, create a new subdirectory called "lib" and place the burlap.jar file that you downloaded inside it. The directory structure should look like the following:
-				</p>
-				<pre class="prettyprint">
-testcode
-	lib
-		burlap.jar
+				To create a jar file and Java doc in the target directory (as well as jar file that includes all dependencies) use
+								<pre class="prettyprint">
+mvn package
 				</pre>
+				And to install BURLAP to your local Maven repository, use
+								<pre class="prettyprint">
+mvn install
+				</pre>
+				That's it!
+				</p>
+				<h3><a name="code">Hello <i>Grid</i>World Project</a></h3>
+				<p>
+				Whether you compiled and installed BURLAP from source in the prior step or not, this next section is the same regardless, because BURLAP is available on Maven Central, which means Maven will automatically download it and install it you did not compile it from source.
+				</p>
+				<p>
+				To begin our example project, create a directory somewhere on your file system where you will store the project code and navigate into it on your command line. If you've used Maven before, you may want to create your project by generating an archetype. Feel free to do so if you, like. However, we will manually set up the project from the command line and text editors here.
+				</p>
+				<p>
+				First create a file named pom.xml. With your favorite text editor, insert the following
+				</p>
+				<xmp style="background-color: #333333; color: white; padding-left: 1em">
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mycompany.app</groupId>
+  <artifactId>myProj</artifactId>
+  <version>1</version>
 
-				<h3><a name="depend">Dependencies</a></h3>
-				<p>
-				Most of BURLAP can be run without any of its dependencies,
-				but some of the algorithms and advanced tools will require
-				other libraries to be present. For example, the RLGlue
-				dependency allows BURLAP to communicate with other RL
-				software.</p>
-				<p>
-				<b>If you are using the pre-compiled BURLAP jar that has dependencies included,
-				you can skip this step. </b>
-				</p>
-				<p>
-				If you are using a compiled version of BURLAP or the jar without dependences
-				and you want to use all of BURLAP's features you should get the relevant JAR files and put them in the lib directory of the "testcode" directory that
-				we created. If you compiled BURLAP from source, you can just copy the files in the BURLAP source lib directory into our testcode lib directory. Otherwise, you can download the dependencies (and their dependencies) from the below locations
-				</p>
-				<ul>
-				<li><a href="http://glue.rl-community.org/wiki/Java_Codec">RLGlue Java Codec</a> - You will need this if you plan on interfacing BURLAP with <a href="http://glue.rl-community.org/wiki/Main_Page">RLGLue</a>.</li>
-				<li><a href="http://commons.apache.org/proper/commons-math/">Apache Math Commons</a> - For performance plotting tools.</li>
-				<li><a href="http://www.jfree.org/jfreechart/">JFree Chart</a> - For Performance Plotting tools.</li>
-				<li><a href="https://code.google.com/p/snakeyaml/">Snake YAML</a> - For reading and writing states into the YAML format.</li>
-				<li><a href="http://jackson.codehaus.org/">Jackson</a> - For reading and writing states into the JSON format.</li>
-				<li><a href="http://www.joptimizer.com/">JOptimizer</a> - For Max Margin Apprenticeship Learning</li>
-				<li><a href="http://scpsolver.org/">SCPSolver</a> - For Minmax, Coco-Q, and Correlated-Q algorithms. (Our choice of underlying LP solver that it uses is lpsolve.)</li>
-				<li><a href="http://www.cs.waikato.ac.nz/ml/weka/">Weka</a> - For providing a range of regression algorithms for Fitted Value Iteration.</li>
-				<li><a href="https://pholser.github.io/jopt-simple/">JOptSimple</a> - For handling command line arguments in the BURLAP shell.</li>
-				</ul>
+  <dependencies>
+  	<dependency>
+		<groupId>edu.brown.cs.burlap</groupId>
+		<artifactId>burlap</artifactId>
+		<version>2.1.0</version>
+	</dependency>
+  </dependencies>
 
-				<p>
-				After putting all the relevant dependencies in the lib folder,
-				your directory structure should look something like the following.
-				<pre class="prettyprint">
-testcode
-	lib
-		burlap.jar
-		JavaRLGlueCodec.jar
-		LPSOLVESolverPack.jar
-		SCPSolver.jar
-		colt-1.2.0.jar
-		commons-beanutils-1.6.jar
-		commons-collections-2.1.jar
-		commons-lang3-3.1.jar
-		commons-logging-1.1.1.jar
-		commons-math3-3.2.jar
-		csparsej-1.1.1.jar
-		ejml-0.25.jar
-		guava-18.0.jar
-		hamcrest-core-1.3.jar
-		jackson-annotations-2.2.3.jar
-		jackson-core-2.2.3.jar
-		jackson-databind-2.2.3.jar
-		jcommon-1.0.21.jar
-		jfreechart-1.0.17.jar
-		jopt-simple-4.9.jar
-		joptimizer-3.2.0.jar
-		joptimizer-3.3.0.jar
-		junit-4.11.jar
-		log4j-1.2.14.jar
-		servlet.jar
-		snakeyaml-1.13.jar
-		trove.jar
-		weka-src.jar
-		weka.jar
-		xml-apis-1.0.b2.jar
-				</pre>
-				
 
-				<h3><a name="jartest">Running the JAR</a></h3>
+  <build>
+  	<plugins>
+  		<plugin>
+		  <groupId>org.codehaus.mojo</groupId>
+		  <artifactId>exec-maven-plugin</artifactId>
+		  <version>1.2.1</version>
+		  <executions>
+		    <execution>
+		      <goals>
+		        <goal>java</goal>
+		      </goals>
+		    </execution>
+		  </executions>
+		</plugin>
+  	</plugins>
+  </build>
+</project>
+				</xmp>
 				<p>
-				The simplest way to test BURLAP is to run the default main method in the GridWorld domain generator, which will launch a simple interactive visualization of the GridWorld. 
-				From the command line, change directory into your "testcode" directory if you're not already there. Then enter:
-				</p>
-				<pre class="prettyprint">
-java -cp lib/*:. burlap.domain.singleagent.gridworld.GridWorldDomain
-				</pre>
-				<p>
-				Note the the ":." after "lib/*" which adds the current directory the class path. Some users have reported errors unless that is included, even though we haven't actually written any of our own code yet! If you're in the Windows command prompt (and not cygwin), you may need to change the colon character to a semicolon.
-				</p>
-				<p>If a GUI of a simple GridWorld appears, as shown below, then everything is working!
-				</p>
-				<center>
-				<img src="images/gwGUI.png", width="500"/>
-				</center>
-				<p>
-				There are two ways to control the agent in the GUI. One way is to use keystrokes, which
-				you can perform by clicking on the visualization and then pressing either the w, a, s, or d keys (you only need to click on the visualization once to get it to start accepting
-				key strokes). Alternatively, you can use the "execute" text field and button. In the execute
-				text field you can enter the name of the action you want the agent to perform and then press
-				the "execute" button to have it performed. In GridWorld, the actions you can have the agent
-				perform are named "north," "south," "east," and "west." 
-				</p>
-				<h3><a name="code">Hello <i>Grid</i>World Code</a></h3>
-				<p>
-				We're now going to write a simple BURLAP hello world program for you to test. We're not going to spend any time really explaining what the code does, it's just a way to make sure that you can link to BURLAP with your own code. For a much more thorough explanation of the code, see the BURLAP java doc and other tutorials available.
+				You should set the group id at the top to anything that seems relevant for you, and you can also rename the artifact id to something else if you prefer. Note the &lt;dependencies&gt; section with the BURLAP dependency, which tells Maven that your project depends on BURALP. As of writing this tutorial, the latest version of BURLAP is 2.1.0. However, you may want to change this value to whatever the latest is, or to a version you prefer (especially if you've installed your own custom version with its own version number). You can see the list of all release versions of BURLAP from <a href="http://mvnrepository.com/artifact/edu.brown.cs.burlap/burlap">here</a>.
 				</p>
 				<p>
-				In your testcode directory, create a new file named "HelloGridWorld.java". Inside the file, place the following code.
+				The plugin we added will also allow us to use Maven to easily run code that we write.
+				</p>
+				<p>
+				Now create the following directory tree: src/main/java/myProj. Inside the nested myProj folder, we will create two text files, HelloGridWorld.java and PlotTest.java.
+				</p>
+				<p>
+				HelloGridWorld.java should have the following contents.
 				</p>
 				<pre class="prettyprint lang-java">	
+package myProj;
+
 import burlap.domain.singleagent.gridworld.GridWorldDomain;
 import burlap.domain.singleagent.gridworld.GridWorldVisualizer;
 import burlap.oomdp.core.Domain;
@@ -258,40 +197,14 @@ public class HelloGridWorld{
 	}
 
 }
+
 				</pre>
 				<p>
-				This code will effectively recreate the same GridWorld GUI that we launched straight from the BURLAP jar, with the exception that we made the GridWorld have stochastic transitions. This means that as you control the agent with the w-s-a-d keys, you may find that it sometimes goes in the wrong direction!
+				And PlotTest.java should have the contents
 				</p>
-				<p>
-				After saving the file, we will compile it with the command
-				</p>
-				<pre class="prettyprint">
-javac -cp lib/*:. HelloGridWorld.java
-				</pre>
-				<p>
-				Now lets run it!
-				</p>
-				<pre class="prettyprint">
-java -cp lib/*:. HelloGridWorld
-				</pre>
-				<p>
-				If you're in the Windows command prompt (and not cygwin), you may need to change the colon character to a semicolon and if you're using cygwin, then you need to specify it as a cygwin path:
-				</p>
-				<pre class="prettyprint">
-java -cp  `cygpath -wp lib/*:.` HelloGridWorld
-				</pre>
-				<p>
-				If everything worked, then you should have seen the same GUI as the one you saw when we ran code
-				directly from the BURLAP jar.
-				</p>
-				<h3><a name="depCheck">Testing Plotting Tools</a></h3>
-				<p>
-				In these section we'll provide some code to make sure that your dependencies for the BURLAP plotting tools are working correctly. If you don't care about this, naturally you can skip this section.
-				</p>
-				<p>
-				Create a new file named "PlotTest.java" and put the following code in it.
-				</p>				
 				<pre class="prettyprint lang-java">	
+package myProj;
+
 import burlap.behavior.singleagent.auxiliary.performance.LearningAlgorithmExperimenter;
 import burlap.behavior.singleagent.auxiliary.performance.PerformanceMetric;
 import burlap.behavior.singleagent.auxiliary.performance.TrialMode;
@@ -375,36 +288,54 @@ public class PlotTest {
 
 }
 				</pre>
-
 				<p>
-				Then compile and run as before, except this time we'll specify the PlotTest class that we created:
+				Your directory structure should now look like the following.
 				</p>
 				<pre class="prettyprint">
-javac -cp lib/*:. PlotTest.java
-java -cp lib/*:. PlotTest
+pom.xml
+src/
+	main/
+		java/
+			myProj/
+				HelloGridWorld.java
+				PlotTest.java
 				</pre>
 				<p>
-				If everything worked, then you should have seen a bunch of plots showing the performance of a Q-learning algorithm that were updated in (semi) real time, similar to what is shown below. 
+				We're now ready to compile and run! In the command line, make sure you're in the same directory as your pom.xml file. Then, to compile, run
+				<pre class="prettyprint">
+mvn compile
+				</pre>
+				<p>
+				Maven should download BURLAP (if you did not manually compile it) and other information, and then compile your two sources.
+				</p>
+				<p>
+				To run the HelloGridWorld code, use the following command
+				</p>
+				<pre class="prettyprint">
+mvn exec:java -Dexec.mainClass="myProj.HelloGridWorld"
+				</pre>
+				<p>Running this code should launch a GUI with a grid world, similar to the image below. If you click on the image and then use the w-a-s-d keys, you'll be able to control the agent's movements. Note, however, that we made this a stochastic grid world in the code, which means some of the time you may find the agent going in a different direction than the one you intended!
+				</p>
+				<center>
+				<img src="images/gwGUI.png", width="500" />
+				</center>
+				<p>
+				We can similarly run our PlotTest code with
+				<pre class="prettyprint">
+mvn exec:java -Dexec.mainClass="myProj.PlotTest"
+				</pre>
+				<p>
+				Which will run Q-learning on the same grid world 10 times, plotting the most recent trial and average performance. It should look something like the below image.
 				</p>
 				<center>
 				<img src="images/plotGUI.png", width="500" />
 				</center>
-				<p>
-				If you did not see something like the above, you may need to make sure that you have all the dependencies you need in the lib folder (see the <a href="#depend">Dependencies</a> section for more details).
-				</p>
 
-				<h3><a name="heapsize">Notes on the Java Heap Size</a></h3>
-				<p>
-				Planning and learning algorithms often require a lot of memory for large problems, more than what java will typically use by default. Therefore, you may want to make sure that you increase java's heap size whenever you run BURLAP. You can do this with the -Xmx argument. For instance, to give java 2GB of memory to use, change the previous run commands to the following:
-				</p>
-				<pre class="prettyprint">
-java -cp lib/*:. -Xmx2048M HelloGridWorld
-				</pre>
 
-				<h3><a name="conclusions">Conclusions</a></h3>
+
+				<h3><a name="conclusion">Conclusion</a></h3>
 				<p>
-				In this tutorial we walked you through acquiring BURLAP and provided some simple code to make sure you can compile your own code with it. We strongly encourage you to use a full IDE, however, such as <a href="https://www.jetbrains.com/idea/">IntelliJ</a> or <a href="http://eclipse.org/">Eclipse</a>. Just make sure that you add the jar files that we put in the lib folder to your Eclipse project's build path. Since all of the BURLAP java doc comes with the jar,
-				Eclipse will autocomplete methods and explain the parameters, which should be very helpful.
+				In this tutorial we walked you through compiling BURLAP and setting up your own Maven project that uses BURLAP. We used the command line to set everything up, but we strongly encourage you to use a full IDE for most projects, such as <a href="https://www.jetbrains.com/idea/">IntelliJ</a> or <a href="http://eclipse.org/">Eclipse</a>. You can initialize your projects the way we did here and then import the code into the IDE, or you can have these IDE's create a new Maven project themselves.
 				</p>
 				<p>
 				Now that you've completed this tutorial, you are encouraged to check out the other BURLAP <a href="../index.html">tutorials</a> that are available. Happy coding!
