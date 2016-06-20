@@ -49,7 +49,10 @@
 				<pre class="prettyprint lang-java">
 public BasicBehavior(){
 	gwdg = new GridWorldDomain(11, 11);
-	gwdg.setMapToFourRooms(); 
+	gwdg.setMapToFourRooms();
+	tf = new GridWorldTerminalFunction(10, 10);
+	gwdg.setTf(tf);
+	goalCondition = new TFGoalCondition(tf);
 	domain = gwdg.generateDomain();
 	
 	//more to come...
@@ -65,106 +68,38 @@ public BasicBehavior(){
 				1 dimensional walls between cells that you can set, if you'd prefer that kind of domain. For simplicity, we'll stick with the
 				four rooms layout.
 				</p><p>
-				The third line will produce the Domain object for the grid world. Recall from the previous
-				part of the tutorial that Domain objects hold references to all the attributes, object classes, propositional functions, and actions
-				(along with the actions' transition dynamics). </p>
-
-				<div class = "note">
-				<h2>How a GridWorldDomain Domain is defined</h2>
+				By default, our grid world will set the reward function a reward function that always returns -1; but we will need to set where the terminal state is, that when paired with the -1 rewards will motivate the agent to get to it as soon as possible and complete the task. For that, we've told the grid world to use a GridWorldTerminalFunction that marks state 10, 10 as a terminal state.</p>
 				<p>
-				A GridWorldDomain has two primary attributes, an X attribute and
-				a Y attribute. There are also two classes: an AGENT class and a LOCATION class, each of which is defined by the
-				X and Y attributes. While there could potentially be any number of AGENT object instantiations in a state, in
-				this domain we expect only one to ever be defined. The location objects will be used for points of interest.
-				Specifically, we will use a single location object to represent a goal location. 
-				</p><p>
-				The GridWorld domain also defines
-				five propositional functions: atLocation(AGENT, LOCATION); wallToNorth(AGENT); wallToSouth(AGENT);
-				wallToEast(AGENT); wallToWest(AGENT). The first of those returns true when the specified AGENT object is at the
-				same location as the specified LOCATION object. The latter four propositional functions return true when there 
-				is a wall in the immediate cell of the defined direction of the specified AGENT object.
-				</p><p>
-				Finally, the GridWorld domain defines four actions to move north, south, east, or west of the agent's current position.
-				Although we could have told the GridWorldDomain generator to make these movements stochastic 
-				(that is, specify a probability in which the agent moves in an unintended direction), in our specific example
-				we have left them as the default deterministic actions. If an agent moves into a wall, then its position does not
-				change.
-				</p><p>
-				Although this domain instantiation has specific settings for grid worlds, different
-				domains in BURLAP follow similar conventions. That is, you create an instance
-				of a domain generator; specify the parameters of the domain through mutators,
-				and then finally extract the domain with a call to a generateDomain method.
-				For example, the <a href="../../doc/burlap/domain/singleagent/lunarlander/LunarLanderDomain.html">LunarLander</a> domain generator lets you set properties like the
-				maximum velocity and the force of gravity.
+				Rewards and terminal states are fine for MDP-based algorithms, but some of the algorithms in BURLAP are search-based planning algorithms: algorithms that search for a path in a detemrinistic domain that reaches some goal condition. For that, we create a StateConditionTest that will be passed to these algorithms and set it to be one that marks all terminal states as goal states. StateConditionTest objects are not actually part of a domain definition, but since we will use it conjunction with the terminal states, we'll create it here anyway.
 				</p>
-				</div>
+				<p>
+				At this point we've fully specified the domain and generate it.
+				</p>
+
+
 				<hr/>
 				<p>
-				Next we will want to define the actual task to be solved for this domain. We will do this by specifying
-				a reward function, a termination function, and a goal condition; the latter of which we will use exclusively for 
-				search-based deterministic planners that this tutorial will cover. In general,
-				you can always define your own reward functions, terminal functions, and goal conditions by implementing the <a href="../../doc/burlap/oomdp/singleagent/RewardFunction.html">RewardFunction</a>, <a href="../../doc/burlap/oomdp/core/TerminalFunction.html">TerminalFunction</a>, and <a href="../../doc/burlap/behavior/singleagent/planning/StateConditionTest.html">StateConditionTest</a> interfaces, respectively, yourself. However, BURLAP
-				also comes packaged with a bunch of standard instances (as well as various domain-specific implementations) that we will use here. If you want to know more
-				about defining your own, consult the <a href="../bd/p5.html#rftf">Building a Domain</a> tutorial.
-				</p>
+				The next step will be to define the initial state of this task. For GridWorlds, we use the GridWorldState instance. Add the following code
 				<pre class="prettyprint lang-java">
-rf = new UniformCostRF(); 
-tf = new SinglePFTF(domain.getPropFunction(GridWorldDomain.PFATLOCATION)); 
-goalCondition = new TFGoalCondition(tf);
+initialState = new GridWorldState(new GridAgent(0, 0), new GridLocation(10, 10, "loc0"));
 				</pre>
 				<p>
-				The first line will create a reward function that always returns -1 for every state-action-state transition. The next line defines a terminal function that identifies terminal states as states in which the agent is at the same position as locaion object. When the reward function (-1 everywhere) is taken together with this terminal function (everything ends when the agent reaches a location), it motivates the agent to reach a location object as soon as possible.
+				The GridWorldState uses an OO-MDP representation, which means the state itself consists of multiple objects (see the <a href="../oomdp/p1.html">Building an OO-MDP Domain</a> tutorial for more information). Here we've made it consist of an agent, located at position 0,0, and a location object located at 10,10. We're not actually going to do anything meaningful with the location object and could have ommitted it, but it will give us a nice visual representation of the goal we placed at 10,10 when we visualizer our results.
 				</p>
 
-				<div class = "note">
-					<h2>How SinglePFTF works</h2>
-					<p>
-					The TerminalFunction is created as an instance of <a href="../../doc/burlap/oomdp/auxiliary/common/SinglePFTF.html">SinglePFTF</a>. SinglePFTF is a terminal function that takes as input a <a href="../../doc/burlap/oomdp/core/PropositionalFunction.html">PropositionalFunction</a> and sets any state in which the propositional function is true for any valid objects as terminal states. In this case, we provided it the GridWorldDomain's atLocation propositional function. This propositional function operates on two objects: the agent and a location object. For example, we might see the function evaluated on agent0 and location2: atLocation(agent0, location2). The propositional function returns true whenever the input agent is at the same position as the input location object. Therefore, for any input state, SinglePFTF finds all possible agent and location pairs and checks whether atLocation is true for any of them. If it is, then SinglePFTF returns evaluates that state as a terminal state.
-					</p>
-				</div>
-				<p>Note that we are using UniformCostRF and SinglePFTF to illustrate some of the more general approaches in BURLAP to defining reward functions and terminal functions. However, GridWorldDomain also has specific reward function (<a href="../../doc/burlap/domain/singleagent/gridworld/GridWorldRewardFunction.html">GridWorldRewardFunction</a>) and terminal function (<a href="../../doc/burlap/domain/singleagent/gridworld/GridWorldTerminalFunction.html">GridWorldTerminalFunction</a>) designed for grid world problems that in practice you may want to use instead for grid worlds.
-				</p>
-
-				
-
-				<p>
-				The final line sets up the goal condition to be synonymous with the termination function. Note that goal states
-				will not always be the same as terminal states (there may be
-				terminal states that are not goal states, such as failure states), but in this example they are.
-				</p>
 				<hr/>
 				<p>
-				The next step will be to define the initial state of this task. We could either do this
-				by creating an empty State object and then manually adding object instantiations for each object class,
-				or we could use some methods of the GridWorldDomain class to facilitate the process. We will do the latter
-				for brevity, but if you want a more complete description of creating a
-				state object by hand, consider looking in the <a href="../bd/p3.html#testing">Building a Domain</a> tutorial.
-				</p>
-				<pre class="prettyprint lang-java">
-initialState = GridWorldDomain.getOneAgentOneLocationState(domain);
-GridWorldDomain.setAgent(initialState, 0, 0);
-GridWorldDomain.setLocation(initialState, 0, 10, 10);	
-				</pre>
-				<p>
-				The first line will return a state object with a single instance of the AGENT class and a single instance
-				of the LOCATION class. The second line of code then sets the agent to be at position 0,0. The third line of
-				code sets the location to be at position 10,10. The first zero you see in the parameters indicates which
-				LOCATION object index position to set. Since there is only one LOCATION object, we are setting the position
-				of the 0th indexed LOCATION object.
-				</p>
-				<hr/>
-				<p>
-				Next we will instantiate the HashableStateFactory that we wish to use. Since we are not doing anything fancy like state abstraction, we will use SimpleHashableStateFactory, which when we provide no constructor arguments will also use object identifier independence as discussed previously.
+				Next we will instantiate the HashableStateFactory that we wish to use. Since we are not doing anything fancy like state abstraction, we will use SimpleHashableStateFactory.
 				</p>
 				<pre class="prettyprint lang-java">
 hashingFactory = new SimpleHashableStateFactory();
 				</pre>
 				<hr/>
 				<p>
-				Finally, we will instantiate an Environment with which the agent will interact in our learning algorithm demonstrations. Since we will be using BURLAP's simulation of the environment, we will use a SimulatedEnvironment, which along with the domain, needs to be told about the reward function, terminal function and initial state for the environment.
+				Finally, we will instantiate an Environment with which the agent will interact in our learning algorithm demonstrations. Since we will be using BURLAP's simulation of the environment, we will use a SimulatedEnvironment, which along with the domain, needs to be told which initial state to use for the environment.
 				</p>
 				<pre class="prettyprint lang-java">
-env = new SimulatedEnvironment(domain, rf, tf, initialState);
+env = new SimulatedEnvironment(domain, initialState);
 				</pre>
 				<hr/>
 				<p>
@@ -174,28 +109,17 @@ env = new SimulatedEnvironment(domain, rf, tf, initialState);
 				<pre class="prettyprint lang-java">
 public BasicBehavior(){
 	
-	//create the domain
 	gwdg = new GridWorldDomain(11, 11);
 	gwdg.setMapToFourRooms();
+	tf = new GridWorldTerminalFunction(10, 10);
+	gwdg.setTf(tf);
+	goalCondition = new TFGoalCondition(tf);
 	domain = gwdg.generateDomain();
 
-	//define the task
-	rf = new UniformCostRF();
-	tf = new SinglePFTF(domain.getPropFunction(GridWorldDomain.PFATLOCATION));
-	goalCondition = new TFGoalCondition(tf);
-
-	//set up the initial state of the task
-	initialState = GridWorldDomain.getOneAgentNLocationState(domain, 1);
-	GridWorldDomain.setAgent(initialState, 0, 0);
-	GridWorldDomain.setLocation(initialState, 0, 10, 10);
-
-	//set up the state hashing system for tabular algorithms
+	initialState = new GridWorldState(new GridAgent(0, 0), new GridLocation(10, 10, "loc0"));
 	hashingFactory = new SimpleHashableStateFactory();
 
-	//set up the environment for learning algorithms
-	env = new SimulatedEnvironment(domain, rf, tf, initialState);
-
-	
+	env = new SimulatedEnvironment(domain, initialState);
 		
 }
 				</pre>
@@ -209,7 +133,7 @@ public BasicBehavior(){
 				planning/learning algorithms 
 				with time allocated for visualization. To create our offline visualizer, we will need to define a state 
 				<a href="../../doc/burlap/oomdp/visualizer/Visualizer.html">Visualizer</a> and pass it to an
-				<a href="../../doc/burlap/behavior/singleagent/auxiliary/EpisodeSequenceVisualizer.html">EpisodeSequenceVisualizer</a>. A Visualizer is a Java canvas that can render State objects. An EpisodeSequenceVisualizer lets you view and explore episode (state-action-reward sequences) that an agent took and can either load the episodes from files or be provided them programmatically. In this example, we will save results to file and load them back up. To handle this kind of result visualization, create the below method.
+				<a href="../../doc/burlap/behavior/singleagent/auxiliary/EpisodeSequenceVisualizer.html">EpisodeSequenceVisualizer</a>. A Visualizer is a Java JPanel that can render State objects. An EpisodeSequenceVisualizer lets you view and explore episodes (state-action-reward sequences) and can either load the episodes from files or be provided them programmatically. In this example, we will save results to file and load them back up. To handle this kind of result visualization, create the below method.
 				</p>
 				<pre class="prettyprint lang-java">
 public void visualize(String outputPath){

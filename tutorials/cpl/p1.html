@@ -42,15 +42,15 @@
 				</div>
 				
 				<br/><br/>
-				<b>You are viewing the tutorial for BURLAP 2; if you'd like the BURLAP version 1 tutorial, go <a href="../../tutorials_v1/cpl/p1.html">here</a>.</b>
+				<b>You are viewing the tutorial for BURLAP 3; if you'd like the BURLAP 2 tutorial, go <a href="../../tutorials_v2/cpl/p1.html">here</a>.</b>
 
 				<h3><a name="intro">Introduction</a></h3>
 				<p>
-				In the previous tutorials, we walked through how you can use existing planning and learning algorithms in BURLAP on domains  in BURLAP and how to create your own domains on which you can use those algorithms. However, you may also want to extend or create your own planning or learning algorithm in BURLAP that can either be used on existing domains or novel BURLAP domains and be easily compared against existing algorithms. In this tutorial, we will show you how to create both a planning algorithm and a learning algorithm. In particular, we will be reimplementing versions of Value Iteration and Q-learning since they are conceptually simple algorithms to implement, but will expose the various properties of BURLAP you would want to use. In general, however, you should defer to using the existing implementations of these algorithms in BURLAP since they will support more features than we will cover here.
+				In the previous tutorials, we walked through how you can use existing planning and learning algorithms in BURLAP and how to create your own domains on which you can use those algorithms. However, you may also want to extend or create your own planning or learning algorithm in BURLAP that can either be used on existing domains or novel BURLAP domains and be easily compared against existing algorithms. In this tutorial, we will show you how to create both a planning algorithm and a learning algorithm. In particular, we will be reimplementing versions of Value Iteration and Q-learning since they are conceptually simple algorithms to implement, but will expose the various properties of BURLAP you would want to use. In general, however, you should defer to using the existing implementations of these algorithms in BURLAP since they will support more features than we will cover here.
 				</p>
 				<h3><a name="vio">Value Iteration Overview</a></h3>
 				<p>
-				Value Iteration (VI) is an algorithm that finds the optimal value function (the expected discounted future reward of being in a state an behaving optimally from it), and consequentially the optimal policy, for an MDP's entire state space. Central to the idea of VI is the Bellman Equation, which states that the optimal value of a state
+				Value Iteration (VI) is an algorithm that finds the optimal value function (the expected discounted future reward of being in a state and behaving optimally from it), and consequently, the optimal policy, for an MDP's entire state space. Central to the idea of VI is the Bellman Equation, which states that the optimal value of a state
 				is the value of the action with the maximum expected discounted future return (the action with the maximum Q-value) where the Q-value for a state-action pair is defined as the expected value over all
 				possible state transitions of the immediate reward summed with the discounted value of the resulting state. In math:
 				$$
@@ -64,7 +64,7 @@
 				where $T(s' | s, a)$ is the probability of transitioning to state $s'$ when taking action $a$ in state $s$, $R(s, a, s')$ is the reward received for transitioning to state $s'$ after taking action $a$ in state $s$, and $\gamma$ is a discount factor affecting how much immediate rewards are preferred to later ones.
 				</p>
 				<p>
-				This equation presents some issues in that if an MDP has cycles, it's unclear what the values should be. However, the Value Iteration algorithm will converge to the optimal Value function if you simply initialize the value for each state to some arbitrary value, and then iteratively use the Bellman equation
+				This equation presents some issues in that if an MDP has cycles, it's unclear what the values should be. However, the Value Iteration algorithm will converge to the optimal value function if you simply initialize the value for each state to some arbitrary value, and then iteratively use the Bellman equation
 				to update the the value for each state.
 				</p>
 				<p>
@@ -81,7 +81,7 @@
 				</p>
 				<p>
 				Since there are a number of different DP algorithms that can be implemented, BURLAP includes a  class called <a href="../../doc/burlap/behavior/singleagent/planning/stochastic/DynamicProgramming.html">DynamicProgramming</a> that includes a number of helpful methods for automatically performing Bellman Updates on states and which is extended by many of the DP algorithms included in BURLAP. However, to give a better sense of how
-				to use the more fundamental parts of a planning algorithm in BURLAP, we will instead write our VI algorithm from scratch without using the DynamicProgramming class. However, we will extend the <a href="../../doc/burlap/behavior/singleagent/MDPSolver.html">MDPSolver</a> class since it provides a number of useful datamemb ers and setter and getting methods that you will commonly want to have for algorithms that solve MDPs.
+				to use the more fundamental parts of a planning algorithm in BURLAP, we will instead write our VI algorithm from scratch without using the DynamicProgramming class. However, we will extend the <a href="../../doc/burlap/behavior/singleagent/MDPSolver.html">MDPSolver</a> class since it provides a number of useful data members and setter and getter methods that you will commonly want to have for algorithms that solve MDPs.
 				
 				
 				

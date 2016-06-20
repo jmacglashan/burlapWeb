@@ -53,7 +53,7 @@ public void BFSExample(String outputPath){
 		
 	DeterministicPlanner planner = new BFS(domain, goalCondition, hashingFactory);
 	Policy p = planner.planFromState(initialState);
-	p.evaluateBehavior(initialState, rf, tf).writeToFile(outputPath + "bfs");
+	PolicyUtils.rollout(p, initialState, domain.getModel()).write(outputPath + "bfs");
 		
 }				
 				</pre>
@@ -61,33 +61,13 @@ public void BFSExample(String outputPath){
 				The first part of the method creates an instance of the <a href="../../doc/burlap/behavior/singleagent/planning/deterministic/uninformed/bfs/BFS.html">BFS</a> planning algorithm, which
 				itself is a subclass of the <a href="../../doc/burlap/behavior/singleagent/planning/deterministic/DeterministicPlanner.html">DeterministicPlanner</a> class. To instantiate BFS, it only requires a reference to the domain,
 				the goal condition for which it should search, and the HashableStateFactory. Because BFS implements the <a href="../../doc/burlap/behavior/singleagent/planning/Planner.html">Planner</a> interface, planning can be initiated by calling
-				the <b>planFromState</b> method and passing it the initial state form which it should plan. The planFromState method automatically returns a <a href="../../doc/burlap/behavior/policy/Policy.html">Policy</a> object, which can be used to query and execute the results of the planning in simulation or in an environment. 
+				the <b>planFromState</b> method and passing it the initial state form which it should plan. The planFromState method automatically returns a <a href="../../doc/burlap/behavior/policy/Policy.html">Policy</a> object. Using the PolicyUtils class, we rollout the policy from an initial state. This method requires the model of the envionrment (or alternatively, you can have it rolled out within an actual environment). The result of the rollout method is an Episode object, which is a record of the state, action, and reward sequence from rolling out the policy. Episode objects can be written to disk, using the write method, which we call here.
 				</p>
 
 				<div class = "note">
 					<h2>Using non-default policies</h2>
 					<p>
-					Each Planner implementation will return a different kind of Policy from planFromState that is relevant for the results the Planner stores. However, often times, after calling the planFromState method, you can wrap a different policy than the one that is returned around your planner instance to get slightly different behavior. For example, BFS's planFromState will return an <a href="../../doc/burlap/behavior/singleagent/planning/deterministic/SDPlannerPolicy.html">SDPlannerPolicy</a> instance, which will return the action the planner selected for any states on its solution path; if the policy is queried for a state not on the solution path, it will throw a runtime exception. However, you might choose to wrap a <a href="../../doc/burlap/behavior/singleagent/planning/deterministic/DDPlannerPolicy.html">DDPlannerPolicy</a> around BFS instead of using the returned SDPlannerPolicy, it will act the same except rather than throw a runtime exception if an action selection is queried for a state not on the current solution path, it will transparently recall planFromState on the new state to get an action to return; that is, it will perform replanning.</p>
-				</div>
-
-				<p>
-				Once you have a Policy object, you can roll out the behavior and extract the resulting episode (sequence of state-action-reward tuples) from it in simulation by calling the <b>evaluateBehavior</b>
-				method. There are a few different versions of the evaluateBehavior method which take different parameters to determine the
-				analysis and stopping criteria. In this case, however, we are passing it the initial state from which the policy should
-				start being followed, the reward function used to assess the performance and the the termination function which
-				specifies when the policy should stop. The method will return an <a href="../../doc/burlap/behavior/singleagent/EpisodeAnalysis.html">EpisodeAnalysis</a> object which will contain
-				all of the states visited, actions taken, and rewards received when following that policy. 
-				You can investigate these individual elements of the episode if you like,
-				but for this tutorial we're just going to save the results of this episode to a file and then use the offline
-				visualizer we previously defined to view it. An EpisodeAnalysis object
-				can be written to a file by calling the <b>writeToFile</b> method on it and passing it a path to the file.
-				Note that the method will automatically append a '.episode' extension to the file path if you did not specify it yourself and will create any directories in the path that do not already exist.
-				</p>
-				<div class = "note">
-					<h2>Executing policies in environments</h2>
-					<p>
-					The evaluateBehavior method can also take as input an Environment rather than a State. When given an environment, the policy is followed in the environment rather than simulation (unless of course the environment is a simulation itself!). This is very useful if you need to run planning in a model of the world, and then execute the results of that plan on something "real" or external from your model.
-					</p>
+					Each Planner implementation will return a different kind of Policy from planFromState that is relevant for the results the Planner stores. However, often times, after calling the planFromState method, you can wrap a different policy than the one that is returned around your planner instance to get slightly different behavior. For example, BFS's planFromState will return an <a href="../../doc/burlap/behavior/singleagent/planning/deterministic/SDPlannerPolicy.html">SDPlannerPolicy</a> instance, which will return the action the planner selected for any states on its solution path; if the policy is queried for a state not on the solution path, it will throw a runtime exception. However, you might choose to wrap a <a href="../../doc/burlap/behavior/singleagent/planning/deterministic/DDPlannerPolicy.html">DDPlannerPolicy</a> around BFS instead of using the returned SDPlannerPolicy. DDPlannerPolicy will act the same as SDPlannerPolicy except rather than throw a runtime exception if an action selection is queried for a state not on the current solution path, it will transparently recall planFromState on the new state to get an action to return; that is, it will perform replanning.</p>
 				</div>
 				<p>
 				And that's all you need to code to plan with BFS on a defined domain and task!
@@ -122,7 +102,7 @@ public static void main(String[] args) {
 				</center>
 				</p><p>
 				The main panel in the center of the window is used to render the current state selected. The text box at the
-				bottom of the window will list all of the propositional functions that are true in that state. The leftmost
+				bottom of the window will list all of the propositional functions that are true in that state, if the State is an OOState and the domain includes PropositionalFunction definitions. The leftmost
 				list on the right side of the window lists all of the episode files that were recorded in the directory passed to the
 				EpisodeSequenceVisualizer constructor. After selecting one of those instances, the list of actions taken in the
 				episode are listed on the right-most list. Note that the action
@@ -143,7 +123,7 @@ public void DFSExample(String outputPath){
 		
 	DeterministicPlanner planner = new DFS(domain, goalCondition, hashingFactory);
 	Policy p = planner.planFromState(initialState);
-	p.evaluateBehavior(initialState, rf, tf).writeToFile(outputPath + "dfs");
+	PolicyUtils.rollout(p, initialState, domain.getModel()).write(outputPath + "dfs");
 	
 }
 				</pre>
@@ -162,71 +142,38 @@ public void DFSExample(String outputPath){
 				<p>
 				One of the most well known optimal search-based planning algorithms is A*. A* is an informed planner because it takes
 				as input an <a href="http://en.wikipedia.org/wiki/Admissible_heuristic">admissible heuristic</a> 
-				which estimates the cost to the goal from any given state. We can also use A* to plan a solution for our task
+				that estimates the cost to the goal from any given state. We can also use A* to plan a solution for our task
 				as long as we also take the additional step of defining a heuristic to use (or you can use a <a href="../../doc/burlap/behavior/singleagent/planning/deterministic/informed/NullHeuristic.html">NullHeuristic</a> which will make A* uninformed). The below code defines a method
 				for using A* with a Manhattan distance to goal heuristic.
 				</p>
 				
-				<pre class="prettyprint lang-java linenums">
+				<pre class="prettyprint lang-java">
 public void AStarExample(String outputPath){
 		
 	Heuristic mdistHeuristic = new Heuristic() {
-		@Override
+
 		public double h(State s) {
+			GridAgent a = ((GridWorldState)s).agent;
+			double mdist = Math.abs(a.x-10) + Math.abs(a.y-10);
 
-			ObjectInstance agent = s.getFirstObjectOfClass(GridWorldDomain.CLASSAGENT);
-			ObjectInstance location = s.getFirstObjectOfClass(GridWorldDomain.CLASSLOCATION);
-
-			int ax = agent.getIntValForAttribute(GridWorldDomain.ATTX);
-			int ay = agent.getIntValForAttribute(GridWorldDomain.ATTY);
-
-			int lx = location.getIntValForAttribute(GridWorldDomain.ATTX);
-			int ly = location.getIntValForAttribute(GridWorldDomain.ATTY);
-
-			double mdist = Math.abs(ax-lx) + Math.abs(ay-ly);
 			return -mdist;
 		}
 	};
 
-	DeterministicPlanner planner = new AStar(domain, rf, goalCondition, 
-											hashingFactory, mdistHeuristic);
+	DeterministicPlanner planner = new AStar(domain, goalCondition, hashingFactory,
+											 mdistHeuristic);
+
 	Policy p = planner.planFromState(initialState);
-	p.evaluateBehavior(initialState, rf, tf).writeToFile(outputPath + "astar");
+	PolicyUtils.rollout(p, initialState, domain.getModel()).write(outputPath + "astar");
 	
 }				
 				</pre>
 				<p>
-				There are two main differences between this method and the methods that we wrote for BFS and DFS
-				planning. The smaller difference is that the A* constructor includes a reward function in its parameters. The reward function is needed because it is what A* uses to keep track
-				of the actual cost of any path it is exploring. </p>
-				<div class = "note">
-				<h2>Rewards and Costs</h2>
-				<p>
-				A* is an algorithm that operates on <i>costs</i> and is not an algorithm that can work
-				with negative costs. BURLAP in general represents state-action evaluations as <i>rewards</i>,
-				rather than costs. However, a cost can be represented as a negative reward; therefore,
-				the reward function provided to A* should return negative values. If the reward
-				function returns any positive values, A* will not function properly. Since our example's reward function
-				returns only negative values (it returns -1 for every state-action pair), our reward function will work
-				fine with A*.
+				To implement our heursitic, we made an annonmous class that implements Heuristic, which requires implementing the h method. We typecast the state to a GridWorldState, pull out the agent, and compute the Manhatten distance to 10, 10, our goal location. The h method then returns the negative value of the distance. We return the negative value, because BURLAP is based on <i>rewards</i> rather than <i>costs</i>. However, negative rewards are equivalent to costs, so the heursitic we give must be a non-positive value (<= 0). Note that A* also only operates on costs (negative rewards), so whenever using A*, you should make sure that the reward function for your domain returns negative values. By default, GridWorldDomain uses a UniformCostRF, which causes all rewards to be -1.
 				</p>
-				</div>
 				
 				<p>
-				The bigger difference between the previous planning code and A* is in defining the
-				heuristic, which we do by implementing the <a href="../../doc/burlap/behavior/singleagent/planning/deterministic/informed/Heuristic.html">Heuristic</a> interface. The <b>h</b> method of the Heuristic interface
-				is passed a state object and the method should return the estimated reward to the goal from
-				that state (which should be a non-positive value). Since we have opted to use the Manhattan distance as our heuristic, this will involve
-				computing the distance between the agent position and the location position (for which we will assume
-				there is only one). To compute this difference, the method will first need to extract the agent
-				object instance and the location object instance out of the state, which is done in lines 7 and 8.
-				Specifically, the <b>getFirstObjectOfClass</b> method of a state will return the first object in the state that belongs to the OO-MDP class with the given name. Lines 10-14 then extract the integer values for the
-				X and Y attributes of both the agent and location objects. Once those attribute values are retrieved, the Manhattan distance
-				is computed and returned in lines 16 and 17. Note that the negative distance is returned, because our reward function
-				returns -1 for each step.
-				</p><p>
-				With the rest of the code being the same, you can have the main method call the A* method for planning
-				and view the results in the usual way!
+				Beyond defining a heuristic for A*, instantiating it and using it works mostly the same!
 				</p>
 				
 				

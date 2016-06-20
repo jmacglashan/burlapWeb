@@ -1,0 +1,446 @@
+`<html>
+	<head>
+		<title>Building a Domain</title>
+		<script src="../../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+		</script>
+		<script type="text/javascript"
+			src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="../../index.html">BURLAP</a>
+			<span id="nav-items"><a href="../../index.html">Home</a> | <a href="../../updates.html">Updates</a> | <a href="../../information.html">Information</a> | <a href="../../faq.html">F.A.Q.</a> | <a href="../index.html">Tutorials</a> | <a href="../../doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>Tutorial: Building an OO-MDP Domain</h1>
+				<h2><a href="../index.html">Tutorials</a> > <a href="p1.html">Building an OO-MDP Domain</a> > Part 3</h2>
+				<div id="index">
+					<b>Tutorial Contents</b>
+					<ul>
+						<li><a href="p1.html#intro">Introduction</a></li>
+						<li><a href="p1.html#mdp">Markov Decision Process</a></li>
+						<li><a href="p2.html#burlapoverview">Java Interfaces for MDP Definitions</a></li>
+						<li><a href="p3.html#state">Defining a Grid World State</a></li>
+						<li><a href="p4.html#model"><b>Grid World OO-MDP Model</b></a></li>
+						<li><a href="p5.html#visualizer">Creating a State Visualizer</a></li>
+						<li><a href="p5.html#testing">Testing it Out</a></li>
+						<li><a href="p5.html#conclusion">Conclusion</a></li>
+						<li><a href="p5.html#code">Final Code</a></li>
+					</ul>
+				</div>
+				<div id="sectionControls">
+					<a href="p2.html">Previous Part</a> | <a href="p4.html">Next Part</a>
+				</div>
+				
+				<br/><br/>
+
+
+				<h3><a name="model">Grid World OO-MDP Model</a></h3>
+				<p>
+				Lets now implement our OO-MDP grid world model. Once again, we will basically have the same FactoredModel implementation for state transitions that we implemented in the Building a Domain tutorial, except with slight modifications to work with state that is a <a href="../../doc/burlap/mdp/core/oo/state/generic/GenericOOState.html">GenericOOState</a>. Add the following code to your ExampleOOGridWorld class.
+				</p>
+				<pre class="prettyprint lang-java">
+protected class OOGridWorldStateModel implements FullStateModel {
+
+
+	protected double [][] transitionProbs;
+
+	public OOGridWorldStateModel() {
+		this.transitionProbs = new double[4][4];
+		for(int i = 0; i < 4; i++){
+			for(int j = 0; j < 4; j++){
+				double p = i != j ? 0.2/3 : 0.8;
+				transitionProbs[i][j] = p;
+			}
+		}
+	}
+
+	public List&lt;StateTransitionProb> stateTransitions(State s, Action a) {
+
+		//get agent current position
+		GenericOOState gs = (GenericOOState)s;
+		ExGridAgent agent = (ExGridAgent)gs.object(CLASS_AGENT);
+
+		int curX = agent.x;
+		int curY = agent.y;
+
+		int adir = actionDir(a);
+
+		List&lt;StateTransitionProb> tps = new ArrayList&lt;StateTransitionProb>(4);
+		StateTransitionProb noChange = null;
+		for(int i = 0; i < 4; i++){
+
+			int [] newPos = this.moveResult(curX, curY, i);
+			if(newPos[0] != curX || newPos[1] != curY){
+				//new possible outcome
+				GenericOOState ns = gs.copy();
+				ExGridAgent nagent = (ExGridAgent)ns.touch(CLASS_AGENT);
+				nagent.x = newPos[0];
+				nagent.y = newPos[1];
+
+				//create transition probability object and add to our list of outcomes
+				tps.add(new StateTransitionProb(ns, this.transitionProbs[adir][i]));
+			}
+			else{
+				//this direction didn't lead anywhere new
+				//if there are existing possible directions
+				//that wouldn't lead anywhere, aggregate with them
+				if(noChange != null){
+					noChange.p += this.transitionProbs[adir][i];
+				}
+				else{
+					//otherwise create this new state and transition
+					noChange = new StateTransitionProb(s.copy(), this.transitionProbs[adir][i]);
+					tps.add(noChange);
+				}
+			}
+
+		}
+
+
+		return tps;
+	}
+
+	public State sample(State s, Action a) {
+
+		s = s.copy();
+		GenericOOState gs = (GenericOOState)s;
+		ExGridAgent agent = (ExGridAgent)gs.touch(CLASS_AGENT);
+		int curX = agent.x;
+		int curY = agent.y;
+
+		int adir = actionDir(a);
+
+		//sample direction with random roll
+		double r = Math.random();
+		double sumProb = 0.;
+		int dir = 0;
+		for(int i = 0; i < 4; i++){
+			sumProb += this.transitionProbs[adir][i];
+			if(r < sumProb){
+				dir = i;
+				break; //found direction
+			}
+		}
+
+		//get resulting position
+		int [] newPos = this.moveResult(curX, curY, dir);
+
+		//set the new position
+		agent.x = newPos[0];
+		agent.y = newPos[1];
+
+		//return the state we just modified
+		return gs;
+	}
+
+	protected int actionDir(Action a){
+		int adir = -1;
+		if(a.actionName().equals(ACTION_NORTH)){
+			adir = 0;
+		}
+		else if(a.actionName().equals(ACTION_SOUTH)){
+			adir = 1;
+		}
+		else if(a.actionName().equals(ACTION_EAST)){
+			adir = 2;
+		}
+		else if(a.actionName().equals(ACTION_WEST)){
+			adir = 3;
+		}
+		return adir;
+	}
+
+
+	protected int [] moveResult(int curX, int curY, int direction){
+
+		//first get change in x and y from direction using 0: north; 1: south; 2:east; 3: west
+		int xdelta = 0;
+		int ydelta = 0;
+		if(direction == 0){
+			ydelta = 1;
+		}
+		else if(direction == 1){
+			ydelta = -1;
+		}
+		else if(direction == 2){
+			xdelta = 1;
+		}
+		else{
+			xdelta = -1;
+		}
+
+		int nx = curX + xdelta;
+		int ny = curY + ydelta;
+
+		int width = ExampleOOGridWorld.this.map.length;
+		int height = ExampleOOGridWorld.this.map[0].length;
+
+		//make sure new position is valid (not a wall or off bounds)
+		if(nx < 0 || nx >= width || ny < 0 || ny >= height ||
+				ExampleOOGridWorld.this.map[nx][ny] == 1){
+			nx = curX;
+			ny = curY;
+		}
+
+
+		return new int[]{nx,ny};
+
+	}
+}
+				</pre>
+				<p>
+				The first main difference form our Building a Domain tutorial implementation to note is that we cast our state to a <a href="../../doc/burlap/mdp/core/oo/state/generic/GenericOOState.html">GenericOOState</a>. Then, to get the agent x and y, we pull out the ExGridAgent object. We assume that our agent objects always have the same name as the agent class defined by the CLASS_AGENT constant. When we make a copy of states and modify the x and y value of the agent, note that we get the agent object through the <i>touch</i> method, which is a special method defined for GenericOOState. Recall that GenericOOState uses shallow copying; whenever a copy is made, the new state contains the same references to the ObjectInstances Java objects as the ancestor state; that is, the ObjectInstances are not copied themselves (thereby saving on memory overhead). The touch method returns the object with the given name, but first causes the state to changes its reference to a copy of that ObjectInstance. As a result, any changes to an ObjectInsance returned by the touch method will not contaminate the values of the object in the previous state from which the new state was copied.
+				</p>
+				<p>
+				Lets now implement our generateDomain method.
+				</p>
+				<pre class="prettyprint lang-java">
+@Override
+public OOSADomain generateDomain() {
+
+	OOSADomain domain = new OOSADomain();
+
+	domain.addStateClass(CLASS_AGENT, ExGridAgent.class)
+			.addStateClass(CLASS_LOCATION, EXGridLocation.class);
+
+	domain.addActionTypes(
+			new UniversalActionType(ACTION_NORTH),
+			new UniversalActionType(ACTION_SOUTH),
+			new UniversalActionType(ACTION_EAST),
+			new UniversalActionType(ACTION_WEST));
+
+
+	OODomain.Helper.addPfsToDomain(domain, this.generatePfs());
+
+	OOGridWorldStateModel smodel = new OOGridWorldStateModel();
+	RewardFunction rf = this.rf;
+	TerminalFunction tf = this.tf;
+	if(rf == null){
+		rf = new SingleGoalPFRF(domain.propFunction(PF_AT), 100, -1);;
+	}
+	if(tf == null){
+		tf = new SinglePFTF(domain.propFunction(PF_AT));
+	}
+
+	domain.setModel(new FactoredModel(smodel, rf, tf));
+
+
+	return domain;
+}
+				</pre>
+				<p>
+				First note that unlike the Building a Domain tutorial, we have our domain be an instance of OOSADomain. One of the pieces of information an OOSADomain tracks is a mapping from the name of an OO-MDP class to the Java class that defines it, so in this case we set the map from the CLASS_AGENT string constant to our ExGridAgent class, and the CLASS_LOCATION constant to the EXGridLocation class.
+				</p>
+				<p>
+				We also add to our OOSADomain the propositional function that we created. We also construct the reward function and terminal function, differently than we did in the Building a Domain tutorial. Rather than have a custom reward function and terminal function, we make use of our propositional function. The <a href="../../doc/burlap/mdp/singleagent/common/SingleGoalPFRF.html">SingleGoalPFRF</a> reward function provided with BURLAP takes as input a propositional function, a goal reward, and default reward. It returns the goal reward whenever any parameter assignment satisfies the propositional function in the state to which the agent transitions and otherwise returns the default reward. The <a href="../../doc/burlap/mdp/auxiliary/common/SinglePFTF.html">SinglePFTF</a> function takes a propositional function and similarly classifies terminal states as any state for which there exists a parameter assignment that causes the propositional function to be true. Since we've provided these objects our "at" propositional function, it means a goal terminal state is any state in which an agent is at a location.
+				</p>
+				<h3><a name="visualizer">OO-MDP Visualization</a></h3>
+				<p>
+				To visualize states of an OO-MDP, we could implement state StatePainter instances, just like we did for a regular MDP. However, BURLAP also provides some additional tools for rendering OO-MDP states. Specifically, BURLAP provides an <a href="../../doc/burlap/visualizer/OOStatePainter.html">OOStatePainter</a> that takes as input a set of <a href="../../doc/burlap/visualizer/ObjectPainter.html">ObjectPainters</a> that are tasked with painting objects from the OO-MDP state, allowing you to define a different painter for different object classes. To demonstrate, lets implement visualization of our domain by creating a wall painter, just like the one in the previous domain, and then an ObjectPainter for the agent class and an ObjectPainter for the location class.
+				</p>
+				<pre class="prettyprint lang-java">
+public class WallPainter implements StatePainter {
+
+	public void paint(Graphics2D g2, State s, float cWidth, float cHeight) {
+
+		//walls will be filled in black
+		g2.setColor(Color.BLACK);
+
+		//set up floats for the width and height of our domain
+		float fWidth = ExampleOOGridWorld.this.map.length;
+		float fHeight = ExampleOOGridWorld.this.map[0].length;
+
+		//determine the width of a single cell
+		//on our canvas such that the whole map can be painted
+		float width = cWidth / fWidth;
+		float height = cHeight / fHeight;
+
+		//pass through each cell of our map and if it's a wall, paint a black rectangle on our
+		//cavas of dimension widthxheight
+		for(int i = 0; i < ExampleOOGridWorld.this.map.length; i++){
+			for(int j = 0; j < ExampleOOGridWorld.this.map[0].length; j++){
+
+				//is there a wall here?
+				if(ExampleOOGridWorld.this.map[i][j] == 1){
+
+					//left coordinate of cell on our canvas
+					float rx = i*width;
+
+					//top coordinate of cell on our canvas
+					//coordinate system adjustment because the java canvas
+					//origin is in the top left instead of the bottom right
+					float ry = cHeight - height - j*height;
+
+					//paint the rectangle
+					g2.fill(new Rectangle2D.Float(rx, ry, width, height));
+
+				}
+
+
+			}
+		}
+
+	}
+
+
+}
+
+
+public class AgentPainter implements ObjectPainter {
+
+	@Override
+	public void paintObject(Graphics2D g2, OOState s, ObjectInstance ob,
+							float cWidth, float cHeight) {
+
+		//agent will be filled in gray
+		g2.setColor(Color.GRAY);
+
+		//set up floats for the width and height of our domain
+		float fWidth = ExampleOOGridWorld.this.map.length;
+		float fHeight = ExampleOOGridWorld.this.map[0].length;
+
+		//determine the width of a single cell on our canvas
+		//such that the whole map can be painted
+		float width = cWidth / fWidth;
+		float height = cHeight / fHeight;
+
+		int ax = (Integer)ob.get(VAR_X);
+		int ay = (Integer)ob.get(VAR_Y);
+
+		//left coordinate of cell on our canvas
+		float rx = ax*width;
+
+		//top coordinate of cell on our canvas
+		//coordinate system adjustment because the java canvas
+		//origin is in the top left instead of the bottom right
+		float ry = cHeight - height - ay*height;
+
+		//paint the rectangle
+		g2.fill(new Ellipse2D.Float(rx, ry, width, height));
+
+
+	}
+
+
+
+}
+
+public class LocationPainter implements ObjectPainter {
+
+	@Override
+	public void paintObject(Graphics2D g2, OOState s, ObjectInstance ob,
+							float cWidth, float cHeight) {
+
+		//agent will be filled in blue
+		g2.setColor(Color.BLUE);
+
+		//set up floats for the width and height of our domain
+		float fWidth = ExampleOOGridWorld.this.map.length;
+		float fHeight = ExampleOOGridWorld.this.map[0].length;
+
+		//determine the width of a single cell on our canvas
+		//such that the whole map can be painted
+		float width = cWidth / fWidth;
+		float height = cHeight / fHeight;
+
+		int ax = (Integer)ob.get(VAR_X);
+		int ay = (Integer)ob.get(VAR_Y);
+
+		//left coordinate of cell on our canvas
+		float rx = ax*width;
+
+		//top coordinate of cell on our canvas
+		//coordinate system adjustment because the java canvas
+		//origin is in the top left instead of the bottom right
+		float ry = cHeight - height - ay*height;
+
+		//paint the rectangle
+		g2.fill(new Rectangle2D.Float(rx, ry, width, height));
+
+
+	}
+
+
+
+}
+				</pre>
+				<p>
+				Note that the ObjectPainter paintObject method not only receives the OOState for which painting should be performed, but the specific ObjectInstance from that state it is being asked to paint. For the AgentPainter, we will draw a gray circle, just like we did in the Building a Domain tutorial for the ExGridState. For the location painter, we'll do something similar, but instead paint a blue rectangle wherever the input location object is positioned.
+				</p>
+				<p>
+				Lets now add methods to package up a Visualizer for our domain.
+				</p>
+				<pre class="prettyprint lang-java">
+public Visualizer getVisualizer(){
+	return new Visualizer(this.getStateRenderLayer());
+}
+
+public StateRenderLayer getStateRenderLayer(){
+	StateRenderLayer rl = new StateRenderLayer();
+	rl.addStatePainter(new ExampleOOGridWorld.WallPainter());
+	OOStatePainter ooStatePainter = new OOStatePainter();
+	ooStatePainter.addObjectClassPainter(CLASS_LOCATION, new LocationPainter());
+	ooStatePainter.addObjectClassPainter(CLASS_AGENT, new AgentPainter());
+	rl.addStatePainter(ooStatePainter);
+
+	return rl;
+}
+				</pre>
+				<p>
+				Note that this time we created a OOStatePainter and assigned it a LocationPainter instance for painting objects of class CLASS_LOCATION, and an AgentPainter for objects of class CLASS_AGENT. We provided it the location painter first, because the OOStatePainter will paint objects in the order that the ObjectPainters are provided to it. By having locations painted before the agent, it will cause the agent to be painted on top of the blue rectangle when the agent enters the same cell as the location.
+				</p>
+				<h3><a name="testing">Testing it Out</a></h3>
+				<p>
+				Lets now write some code to test our OO-MDP grid world out by adding a main method.
+				</p>
+				<pre class="prettyprint lang-java">
+public static void main(String [] args){
+
+	ExampleOOGridWorld gen = new ExampleOOGridWorld();
+	OOSADomain domain = gen.generateDomain();
+	State initialState = new GenericOOState(new ExGridAgent(0, 0), 
+											new EXGridLocation(10, 10, "loc0"));
+	SimulatedEnvironment env = new SimulatedEnvironment(domain, initialState);
+
+	Visualizer v = gen.getVisualizer();
+	VisualExplorer exp = new VisualExplorer(domain, env, v);
+
+	exp.addKeyAction("w", ACTION_NORTH, "");
+	exp.addKeyAction("s", ACTION_SOUTH, "");
+	exp.addKeyAction("d", ACTION_EAST, "");
+	exp.addKeyAction("a", ACTION_WEST, "");
+
+	exp.initGUI();
+
+}
+				</pre>
+				<p>
+				This main method looks pretty similar to the one in the Building a Domain tutorial, but this time our state is a GenericOOState and we construct it with an ExGridAgent object, (started in position 0,0), and a single ExGridLocation object (named "loc0" and positioned at 10,10).
+				</p>
+				<p>
+				If you now run the main method, you should get a visual explorer that shows the agent and the location of our location object, just like in the image below.
+				</p>
+				<center>
+				<img src="images/visualizer.png" height="550"/>
+				<p>
+				<font size="2"><b>Figure:</b> A VisualExplorer for our OO-MDP Grid World.</font></p>
+				</center>
+				
+				<div id="footerControls">
+					<a href="p4.html">Next Part</a>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

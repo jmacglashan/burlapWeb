@@ -1,0 +1,178 @@
+<html>
+	<head>
+		<title>Basic Planning and Learning</title>
+		<script src="../../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="../../index.html">BURLAP</a>
+			<span id="nav-items"><a href="../../index.html">Home</a> | <a href="../../updates.html">Updates</a> | <a href="../../information.html">Information</a> | <a href="../../faq.html">F.A.Q.</a> | <a href="../index.html">Tutorials</a> | <a href="../../doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>Tutorial: Basic Planning and Learning</h1>
+				<h2><a href="../index.html">Tutorials</a> > <a href="p1.html">Basic Planning and Learning</a> > Part 4</h2>
+				<div id="index">
+					<b>Tutorial Contents</b>
+					<ul>
+						<li><a href="p1.html#intro">Introduction</a></li>
+						<li><a href="p1.html#shell">Creating the class shell</a></li>
+						<li><a href="p2.html#init">Initializing the data members</a></li>
+						<li><a href="p2.html#vis">Setting up a result visualizer</a></li>
+						<li><a href="p3.html#bfs">Planning with BFS</a></li>
+						<li><a href="p3.html#dfs">Planning with DFS</a></li>
+						<li><a href="p3.html#astar">Planning with A*</a></li>
+						<li><a href="p4.html#vi"><b>Planning with Value Iteration</b></a></li>
+						<li><a href="p4.html#qlearn">Learning with Q-Learning</a></li>
+						<li><a href="p4.html#sarsa">Learning with Sarsa(&lambda;)</a></li>
+						<li><a href="p5.html#liveVis">Live Visualization</a></li>
+						<li><a href="p5.html#vfvis">Value Function and Policy Visualization</a></li>
+						<li><a href="p6.html#expPlot">Experimenter Tools and Performance Plotting</a></li>
+						<li><a href="p6.html#conclusion">Conclusion</a></li>
+						
+					</ul>
+				</div>
+				<div id="sectionControls">
+					<a href="p3.html">Previous Part</a> | <a href="p5.html">Next Part</a>
+				</div>
+				
+				<h3><a name="vi">Planning with Value Iteration</a></h3>
+				<p>
+				A common stochastic domain planner is Value Iteration (VI). An advantage of VI is that it will compute the
+				policy for the entire state space that is reachable from the initial state that
+				is passed to the planFromState method. To set up a VI planner, define the following method.
+				</p>
+				<pre class="prettyprint lang-java">
+public void valueIterationExample(String outputPath){
+		
+	Planner planner = new ValueIteration(domain, rf, tf, 0.99, hashingFactory, 0.001, 100);
+	Policy p = planner.planFromState(initialState);
+	p.evaluateBehavior(initialState, rf, tf).writeToFile(outputPath + "vi");
+	
+}
+				</pre>
+				<p>
+				VI is a planning method defined for the classic MDP formalism, so unlike the previous
+				deterministic planners, its constructor takes as input the reward function and terminal function,
+				rather than a goal condition. VI also takes as a parameter a discount 
+				factor which specifies how much future rewards are favored over immediate rewards. In this case,
+				a fairly large value of 0.99 is set (which means the agent will prefer later future rewards almost as much as
+				immediate rewards).
+				</p><p>
+				The last two parameters to the constructor specify stopping conditions for the
+				planning. The second to last parameter specifies that when the maximum
+				change in the <a href="http://en.wikipedia.org/wiki/Value_iteration#Value_iteration">value function</a> of any state is 
+				less than that specified threshold value (0.001 in this case), planning will stop. The last parameter specifies a maximum
+				number of updates for each state that can happen before planning is stopped (100 in this case), regardless
+				of whether the maximum value function change threshold was crossed.
+				</p><p>
+				Since VI is a stochastic domain planning algorithm, rather than a deterministic one like the previous algorithms we
+				used, it's planFromState method returns a <a href="../../doc/burlap/behavior/policy/GreedyQPolicy.html">GreedyQPolicy</a>. This policy looks at the Q-values the planner computes and returns the action with the maximium Q-value (and breaks ties randomly). A Q-value represents the expected future discounted reward for taking each action in each state and then following the optimal policy thereafter and this policy can be used with any planning or learning algorithm that returns Q-values by implementing the <a href="../../doc/burlap/behavior/valuefunction/QFunction.html">QFunction</a> interface.
+				</p><p>
+				Try
+				setting the main method to call our newly defined VI example method now.
+				</p>
+				
+				
+				<h3><a name="qlearn">Learning with Q-Learning</a></h3>
+				<p>
+				All of the previous examples were examples of using planning algorithms to solve our task. In this section,
+				we will diverge from that and use a learning algorithm, Q-learning, to solve the task. Ultimately, learning
+				algorithms are utilized in much the same way as planning algorithms, except you will run multiple
+				episodes of learning in which the agent interacts with an Environment instance to solve it (or one very long episode if it is a continuing task rather than an episodic
+				task). The method you should define to utilize Q-learning is shown below.
+				</p>
+				<pre class="prettyprint lang-java">
+public void QLearningExample(String outputPath){
+		
+	LearningAgent agent = new QLearning(domain, 0.99, hashingFactory, 0., 1.);
+
+	//run learning for 50 episodes
+	for(int i = 0; i < 50; i++){
+		EpisodeAnalysis ea = agent.runLearningEpisode(env);
+
+		ea.writeToFile(outputPath + "ql_" + i);
+		System.out.println(i + ": " + ea.maxTimeStep());
+
+		//reset environment for next learning episode
+		env.resetEnvironment();
+	}
+	
+}				
+				</pre>
+				<p>
+				Lets first look at the constructor. Rather than a planning instance, we're creating a <a href="../../doc/burlap/behavior/singleagent/learning/LearningAgent.html">LearningAgent</a>
+				instance which provides some methods for learning with an environment. <a href="../../doc/burlap/behavior/singleagent/learning/tdmethods/QLearning.html">QLearning</a> is an instance of the LearningAgent interface
+				and takes parameters for the domain, a discount factor, a HashableStateFactory, an initial value for the Q-values, and a learning rate (which for a deterministic domain, 1.0 is a good choice). Note that unlike the planning algorithms we did not have to specify the reward function or terminal function. These elements can be omitted because the agent will learn by interacting with an Environment that is responsible for telling the agent about the reward it received for an interaction and whether that next state is a terminal state. Also note that this
+				constructor will by default set Q-learning to use a 0.1 epsilon greedy policy. There are other constructors
+				that allow you to set which learning policy to use and there is also a setter that allows you to set it
+				if you'd like to use a different policy. Other parameters for Q-learning could also be set, but we will not detail them here.
+				</p>
+				<p>
+				With the QLearning instance created, next we will run 50 learning episodes, so we set up a for loop.
+				To run a learning episode, we call the method <b>runLearningEpisode</b> method on the LearningAgent instance
+				and pass it the Environment in which learning will be performed. The method also returns an EpisodeAnalysis object (similar to policies) so that a record of the interactions can be examined. As before, we can then write the returned episode to disk for viewing later.
+				</p><p>
+				Finally, at the end of the loop, we call the <b>resetEnvironment</b> method on the Environment. This method is the typical way to signal that an Environment needs to reset to an initial state from its current state, which may be a terminal state. When the method returns, it is expected that the environment in a non-terminal state from which an agent can act again.
+				</p><p>
+				After that, you can call this method from your main method and run the agents behavior for each of the 50 episodes of learning! Should find that as learning progessed, the agent got better. By the end, the agent's behavior will still be slightly random since it's follow an epislon greedy policy that always takes some random actions. However, since QLearning implements the QFunction interface, you could always wrap a GreedyQPolicy around it, like with VI, and gets its performance from that.
+				</p>
+				
+				
+				
+				<h3><a name="sarsa">Learning with Sarsa(&lambda;)</a></h3>
+				<p>
+				A similar learning algorithm to Q-learning is Sarsa(&lambda;). The first difference between the two
+				algorithms is that Sarsa(&lambda;) updates Q-values with respect to the Q-value of the next action taken,
+				rather than the maximum Q-value of the next state (see <a href="http://en.wikipedia.org/wiki/SARSA">Wikipedia</a> 
+				for more information). The second, and larger, difference is that at every time step, Sarsa(&lambda;) 
+				will also update the Q-values
+				for state-action pairs experienced previously in an episode with respect to 
+				the amount specified by &lambda; and how long ago the experiences occurred. Define the below method to solve our
+				task with Sarsa(&lambda;).
+				</p>
+				<pre class="prettyprint lang-java">
+public void SarsaLearningExample(String outputPath){
+		
+	LearningAgent agent = new SarsaLam(domain, 0.99, hashingFactory, 0., 0.5, 0.3);
+
+	//run learning for 50 episodes
+	for(int i = 0; i < 50; i++){
+		EpisodeAnalysis ea = agent.runLearningEpisode(env);
+
+		ea.writeToFile(outputPath + "sarsa_" + i);
+		System.out.println(i + ": " + ea.maxTimeStep());
+
+		//reset environment for next learning episode
+		env.resetEnvironment();
+	}
+	
+}				
+				</pre>
+				<p>
+				You will notice that this method looks pretty identical to the Q-learning example, except this time
+				a <a href="../../doc/burlap/behavior/singleagent/learning/tdmethods/SarsaLam.html">SarsaLam</a> instance is constructed. Additionally, we lowered the learning rate to 0.5 (typically
+				you should use lower learning rates when you have a higher value of &lambda;). The last parameter of
+				the constructor is the &lambda; value which we set to 1.0. A value of &lambda;=1.0 effectively makes algorithm run an
+				online Monte Carlo in which the effects of all future interactions are fully considered in updating each Q-value
+				of an episode.
+				</p><p>
+				Otherwise, the rest is the same; you can call this method from the main method and give it shot!
+				</p>
+				
+				
+				
+				
+				<div id="footerControls">
+					<a href="p5.html">Next Part</a>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

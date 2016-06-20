@@ -1,0 +1,123 @@
+`<html>
+	<head>
+		<title>Building a Domain</title>
+		<script src="../../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+		</script>
+		<script type="text/javascript"
+			src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="../../index.html">BURLAP</a>
+			<span id="nav-items"><a href="../../index.html">Home</a> | <a href="../../updates.html">Updates</a> | <a href="../../information.html">Information</a> | <a href="../../faq.html">F.A.Q.</a> | <a href="../index.html">Tutorials</a> | <a href="../../doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>Tutorial: Building an OO-MDP Domain</h1>
+				<h2><a href="../index.html">Tutorials</a> > <a href="p1.html">Building an OO-MDP Domain</a> > Part 1</h2>
+				<div id="index">
+					<b>Tutorial Contents</b>
+					<ul>
+						<li><a href="p1.html#intro"><b>Introduction</b></a></li>
+						<li><a href="p1.html#interfaces">Java Interfaces for OO-MDPs</a></li>
+						<li><a href="p1.html#independent">Object Identifier Independence</a></li>
+						<li><a href="p2.html#state">Grid World OO-MDP States</a></li>
+						<li><a href="p3.html#model">Grid World OO-MDP Model</a></li>
+						<li><a href="p3.html#visualizer">OO-MDP Visualization</a></li>
+						<li><a href="p3.html#testing">Testing it Out</a></li>
+						<li><a href="p4.html#conclusion">Conclusion</a></li>
+						<li><a href="p4.html#code">Final Code</a></li>
+					</ul>
+				</div>
+				<div id="sectionControls">
+					<a href="p2.html">Next Part</a>
+				</div>
+				
+				<br/><br/>
+
+
+				<h3><a name="intro">Introduction</a></h3>
+				<p>
+				In the Building a Domain tutorial, we showed you how to construct an MDP. In this tutorial, we will show you how to construct an Object-oriented MDP (OO-MDP). OO-MDPs are MDPs that have a specific kind of rich state representation and BURLAP provides first class support for defining MDPs as OO-MDPs; many of the existing domains in BURLAP are in fact implemented as OO-MDPs themselves. Although you can probably do fine defining your domains without using the OO-MDP interfaces provided in BURLAP, you may find that the extra richness is useful, or you may be able to write learning algorithms that can exploit this kind of structured state.
+				</p>
+				<p>
+				OO-MDPs represent states as an unordered collection of objects. Each object has its own set of state variables that are defined by an OO-MDP object class from which the object is instantiated. Additionally, OO-MDPs can also include a set of propositional functions; functions that take as input state objects that belong to certain typed state classes, and evaluate properties of, or relationships between, the object arguments. Since Java is an object-oriented programming language, we can make the definition of OO-MDP state objects as simple as defining a Java class for them that implements an interface!
+				</p>
+				<p>In this tutorial we will review the Java interfaces involved in defining OO-MDPs and review an important invariance of states that we can exploit through the OO-MDP definitions: object identifier independence. We will then walk through how to define the Grid World we made in the previous Building a Domain tutorial as an OO-MDP with additional OO-MDP objects for marking important goal locations and a propositional function that will evaluate whether an agent is at one of those locations. As usual, all example code is provided at the end of this tutorial, and is available in the <a href="https://github.com/jmacglashan/burlap_examples/">burlap_examples</a>, github repository.
+				</p>
+				<h3><a name="interfaces">Java Interfaces for OO-MDPs</a></h3>
+				<p>
+				A UML diagram of the Java interfaces and classes related to creating OO-MDPs is shown in the below figure.
+				</p>
+				
+				<center>
+				<img src="images/oomdpUML.png" height="550"/>
+				<p>
+				<font size="2"><b>Figure:</b> UML Digram of OO-MDP interfaces/classes.</font></p>
+				</center>
+				<br/>
+				<h4>OO-MDP States</h4>
+				<p>
+				As indicated by the UML diagram, implementing an OO-MDP state involves implementing the <a href="../../doc/burlap/mdp/core/oo/state/OOState.html">OOState</a> interface. An OOState is ultimately defined by a collection of objects that implement the ObjectInstance interface. ObjectInstance is itself an extension to the State interface, which means objects of an OO-MDP are also just states and can be treated entirely as such, allowing for composition of various tools. Defining the Java class for an ObjectInstance simultaneously serves as defining the OO-MDP object class. To implement an ObjectInstance, in addition to the standard State methods, you must also implement a method for returning the name of the OO-MDP object class, a name that uniquely identifies the object from other objects that will appear alongside it in the same OOState, and a method that can produce a copy of the object with a different identifying name.
+				</p>
+				<p>
+				In addition to implementing an OOState that it is made up of ObjectInstances, you will also need to implement methods for querying the number of ObjectInstances, retrieving an ObjectInstance by name, retrieving a list of all the objects, and retrieving a list of Objects belonging to a specified OO-MDP class. When implementing the State get and variableKeys methods for an OOState, it is recommended that you use keys that are OOVariableKey objects, which is a pair specifying a name of an object and its variable key, which is the information a client would need to query about each variable in the entire OOState. If an ObjectInstance accepts string representations of variable keys, an OOVariableKey can also be constructed from a String representation following the format "obName:variableKey".
+				</p>
+				<p>
+				If you would like a mutable state that is also an OOState, then you may also want to consider implementing the MutableOOState interface, which provides methods for adding objects to the state, removing objects, and renaming an object's identifier.
+				</p>
+				<p>
+				For maximum performance and minimum memory overhead, you should consider implementing your own OOState classes; however, BURLAP also provides a general purpose concrete OOState implementation: GenericOOState. GenericOOState implements MutableOOState and uses ShallowCopying of the ObjectInstances to minimize some of the memory overhead, with the set method using copy-on-write to prevent contamination of ancestor states from which it was copied. GenericOOState also provides some additional methods for causing an object belonging to the state to be replaced with a copy, so that you can directly modify copied ObjectInstances without going through the set method.
+				</p>
+				<p>
+				DeepOOState is a concrete extension of GenericOOState that always performs deep copies so you can directly modify ObjectInstances without having to manually manage the copying of ObjectInstances. In this tutorial, we will make use of GenericOOState and show you how to work with it.
+				</p>
+				<h4>Propositional Functions</h4>
+				<p>
+				In addition to OO-MDP states being made up of collections of objects, OO-MDPs can also have an associated set of propositional functions that provide high-level state information in the form of boolean properties and relationships between objects in the State. In BURLAP, you can create these propositional functions by extending the abstract class <a href="../../doc/burlap/mdp/core/oo/propositional/PropositionalFunction.html">PropositionalFunction</a>. Extending a PropositionalFunction requires giving it a name, a function signature, and implementing the isTrue method. The function signature is the OO-MDP object class types to which the object parameters of the function must belong. The isTrue method defines the function.
+				</p>
+				<p>
+				Since the PropositionalFunction class defines the function, it is useful to have an object that specifies a certain set of parameters on which you can evaluate the function. The GroundedProp class provides that; it is a pair that references a PropositionalFunction and the parameters (names of objects in an OO-MDP state) on which to evaluate the function. It also has a shortcut method, isTrue, that will return the result of the PropositionalFunction isTrue method given the GroundedProp parameters.
+				</p>
+				<p>
+				The PropositionalFunction class also includes the method allGroundings that given a state, will determine all possible parameter assignments on which the PropositionalFunction can be evaluated (given its function signature) and returns the possible assignments as a list of GroundedProp objects. Similarly, there is a static method, allGorundingsFromList, which will take a list of PropositionalFunction objects and return the concatenated list of GroundedProp objects that results from applying the allGroundings method on each of them. 
+				<p>
+				Finally, Propositional functions can also have special signature information, called parameter order groups, specified. This is advanced functionality that allows you to specify whether the order of certain parameters matters. For example, if we defined a proposition function for testing whether two objects were touching, then it follows that touching(ob1, ob2) = touching(ob2, ob1) and you wouldn't need to evaluate both orders of the parameter assignments. By setting both parameters to the same order group, this symmetry is defined and the allGroundings method will only return one grounding for each set of equivalent parameter assignments. By default, the parameter order groups are all set to be different for each parameter; that is, by default, it is assumed that different orderings of parameters can affect the result of the function.
+				</p>
+				<h4>OO-MDP Domains</h4>
+				<p>
+				Finally, <a href="../../doc/burlap/mdp/core/oo/OODomain.html">OODomain</a> is a special domain interface for OO-MDP domains, with <a href="../../doc/burlap/mdp/singleagent/oo/OOSADomain.html">OOSADomain</a> being a concrete implementation of it for single agent domains (and it accordingly also extends SADomain). OODomain implementations should contain the set of PropositionalFunctons for the domain and also provide a method for getting the Java class that is used to define a specific OO-MDP object class (that is, a map from the String name of an OO-MDP object class to the ObjectInstance Java class used to define it).
+				</p>
+				<h3><a name="independent">Object Identifier Independence</a></h3>
+				<p>
+				One useful aspect of using OO-MDPs is the ability to use a state invariance that we call <i>object identifier independence</i>. To understand object identifier independence, consider the following scenario where we have a domain made up of block objects. Each block resides in some location on a 2D grid. Suppose the environment state consists of two blocks identified as block0 and block1 that are otherwise identical, but in different positions. Now suppose an action was taken that swapped the locations of the blocks, as shown in the below figure.
+				</p>
+				<center>
+				<img src="images/identifierInvariance.png" width="400"/>
+				<p>
+				<font size="2"><b>Figure:</b> Swapping the location of two blocks</font></p>
+				</center>
+				<br/>
+				<p>
+				The question is, is the state before the swap and after the swap the same? The only thing that is different is the identifier we use to refer to the blocks at each location. If we used a more standard representation where states were defined by different state variables for each block, these states would be treated differently. But in practice, the difference in these states might not matter. In fact, if the transition dynamics and reward function are independent of the identifier of the blocks, then in fact we don't want to treat these states as different. By exploiting the structure of the OO-MDP representation, we can provide this desired invariance where these two states are treated as the same, thereby decreasing the size of the state space that must be examined by a planning or learning algorithm.
+				</p>
+				<p>
+				In BURLAP, tabular planning and learning methods rely on a method to hash states and test equality that is provided by a <a href="../../doc/burlap/statehashing/HashableStateFactory.html">HashableStateFactory</a> implementation. The concrete provided <a href="../../doc/burlap/statehashing/simple/SimpleHashableStateFactory.html">SimpleHashableStateFactory</a>, and its derivatives, will automatically perform the necessary work to provide this kind of identifier independent state invariance for states that implement the OOState interface. However, if it turns out that your reward function or transition dynamics <i>do</i> depend on object identifiers, then you can optionally set the SimpleHashableStateFactory and its derivatives to not perform the invariance.
+				</p>
+				
+				<div id="footerControls">
+					<a href="p2.html">Next Part</a>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

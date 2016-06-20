@@ -14,6 +14,93 @@
 		</div>
 		<div id="page">
 			<div id="page-content">
+
+				<h1>June 17, 2016</h1>
+				<h2>BURLAP 3 is Here!</h2>
+				<p>
+				If you've been following git or the google groups page, you may be aware of or were even following the development of BURALP 3, which is now finally ready for a more full release, replacing the master branch of the github repo! BURLAP 3 changes can be summarized as follows.
+				</p>
+				<ol>
+				<li>a more simple and flexible State interface;</li>
+				<li>a more simple and flexible action interface and model definition;</li>
+				<li>stochastic games agent indexing by ints;</li>
+				<li>shorter method names and/or classes in some cases</li>
+				<li>abstract classes converted to interfaces;</li>
+				<li>abstract methods/interfaces restructured to be more functional;</li>
+				<li>slight package reorganizations;</li>
+				<li>and a license change to Apache 2.0.
+				</ol>
+				<p>
+				A good way to acquaint yourself with the changes in BURLAP 3 is to review the tutorials which have all been updated for BURALP 3 or to scan the code in the <a href="https://github.com/jmacglashan/burlap_examples/">examples repository</a>. In particular, you may want to review the  updated <a href="tutorials/bd/p1.html">Building a Domain tutorial</a> which will cover the most significant changes to how BURLAP works.
+				</p>
+				<ul>
+					<li>
+					<p>
+					<b>State interface</b><br/>
+					Previously in BURALP 2 and 1, all states in BURLAP were OO-MDP states, and although State was an interface in BURLAP 2 that allowed you to ignore OO-MDP related methods, there were a very large number of methods for which you'd have to throw unsupported operation exceptions if you didn't want your state to be an OO-MDP state, making what was expected rather unclear. Furthermore, all variable values were pushed through nested class wrappers and you had to specify these types and various information about them very explicitly in the domain construction.
+					</p>
+					<p>
+					In BURLAP 3, OO-MDPs are no longer a requirement. <a href="doc/burlap/mdp/core/state/State.html"><b>State</b></a> is now a  simple interface that you implement for your problem, making the state definition equivalent to defining a Java class. The State interface only requires you to implement three methods: variableKeys(), get(Object key), and copy(). variableKeys requires you to return a list of Java type Object that are keys that can be used to refer to variables in your state. Because the list is of type Object, your keys can be any kind of structure that is most convenient for you; be it an int, a String, or something else entirely. The get method takes in a variable key and returns the variable value for that key. The value is also of type Object, meaning your state variables can be any data type you want! Because the key is an Object, you can also handle support for multiple key data representations (e.g., maybe strings and ints). Finally, the copy method simply creates a copy of your State and returns it.
+					</p>
+					<p>
+					If you want to provide more standard functionality with your state, you can also implement <a href="doc/burlap/mdp/core/state/MutableState.html"><b>MutableState</b></a>, which adds a set(Object key, Object value) method to State. Doing so will let things like standard BURALP shell commands change the value of states, or create an set of states centered on grid intersection points. And if you do want to use OO-MDP representations, there are special interfaces for that too, but it's optional. If you want to use OO-MDPs, you should look at the new tutorial specifically about that: <a href="tutorials/oomdp/p1.html">Building and OO-MDP Domain</a>.
+					</p>
+					<p>
+					One of the auxiliary advantages of this new state interface compared to the old methods is that it makes serialization very trivial. As long as your State implementations are JavaBeans (has  a default constructor and getter and setters for all relevant non-public data fields), you can use the Yaml package to save and load data that includes states. For example:
+					</p>
+					<pre class="prettyprint lang-java">
+String strRep = new Yaml().dump(stateObject);
+					</pre>
+					<p>
+					Where stateObject is the State instance you want to serialize. (Naturally, this also works for serializing more complex data structures that contain State objects).
+					</p>
+					<p>
+					And to parse a yaml string of a State, you'd do:
+					</p>
+					<pre class="prettyprint lang-java">
+State s = (State)new Yaml().load(stateStr);
+					</pre>
+					</li>
+					<li>
+					<p>
+					<b>Action interfaces</b><br/>
+					In BURLAP 2 and 1, there were a number of action interfaces and abstract classes and it was often unclear to new users what piece was responsible for what. In BURLAP 3, the <a href="doc/burlap/mdp/core/Action.html">Action</a> interface defines a decision (and is most similar to a GroundedAction in BURALP 2 and 1); it does not request code for transition dynamics or preconditions. Implementing an Action requires implementing only two methods: actionName() and copy(). Anything else you need to distinguish an action is entirely up to you.
+					</p>
+					<p>
+					Although Action is quite simple now, that doesn't mean BURLAP no longer has a means to handle preconditions or parameterized actions. Along with Action is the interface <a href="doc/burlap/mdp/core/action/Action.html">ActionType</a>. ActionType serves as a generator for Actions and requires three methods: typeName(), associatedAction(String), and allApplicableActions(State). The associatedAction method takes a string representation of the action and generates the corresponding Action object. allApplicableActions is the main method of interest, which takes as input a State and returns all applicable actions of that ActionType. This method would handle determining which possible parameterizations there were and checking any preconditions you want to define.
+					</p>
+					<p>
+					Although you can implement your own Action and ActionType classes, when you have an unparameterized action set that you can execute anywhere (as is most common in MDPs), you can define the action set using the <a href="doc/burlap/mdp/core/action/UniversalActionType.html">UniversalActionType</a>, where you create a new UniversalActionType with a different name for each of your actions. (Alternatively, you can manually give a UniversalActionType your own Action instance that it will always generate). For example, for a grid world, defining the action set would look something like this in code:
+					</p>
+					<pre class="prettyprint lang-java">
+domain.addActionTypes(
+	new UniversalActionType("north"),
+	new UniversalActionType("south"),
+	new UniversalActionType("east"),
+	new UniversalActionType("west"));
+					</pre>
+					<p>
+					In the previous version of BURLAP an MDP's state transition dynamics model was stored in one of the Actions. Since the Action interfaces are much simpler now, the model is now its own interface, with <a href="doc/burlap/mdp/singleagent/model/SampleModel.html">SampleModel</a>, and <a href="doc/burlap/mdp/singleagent/model/FullModel.html">FullModel</a> (the former if you can only generate samples from the transition dynamics, and the latter if you can enumerate the probability distribution). The nice thing about this factoring is that for real RL problems you don't have to provide a model at all, and can just specify the action set. Additionally, it makes working with model-based RL algorithms easier, and enables you to easily change the model you're using with an algorithm, independent of even those provided with an existing simulated domain.
+					</p>
+					<p>
+					Finally, this change to a more simple interface also provides  trivial serialization in the same way states do. Since Actions are simple objects, you can serialize data that includes them with standard Yaml serialization methods.
+					</p>
+					</li>
+					<li>
+					<p>
+					<b>Stochastic games agent indexing by int</b><br/>
+					Previously, agents in a stochastic game were identified by a name. This formulation led to more book keeping because you may have needed to ensure that your state representation was compatible with the names of the agents selecting actions. It also required duplication of existing data structures. For example, there needed to be special agent-wise action interfaces that kept track of their name and state generators that were dependent on the names of the agents being used. In BURLAP 3, agents are primarily identified by their int index in the set of agents in the game (with an agent name only providing descriptive information). That means that joint actions now consist of  a list of regular Action objects, and you select an agent's action by the index of the agent in that list. Similarly, a joint reward return is a double array with each entry being the reward for each agent in the game.
+					</p>
+					</li>
+					<li>
+					<p>
+					<b>License change to Apache 2.0</b><br/>
+					Previously, BURALP was licensed under LGPL 3, but we have changed licenses to the more permissive Apache 2.0 license. In short, this change allows you to create modified versions of BURLAP and license your changes under a different license.
+					</p>
+					</li>
+				</ul>
+
+
 				<h1>February 26, 2016</h1>
 				<h2>Changes to BURLAP Master</h2>
 				<p>

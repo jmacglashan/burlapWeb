@@ -75,119 +75,142 @@
 
 				<h3><a name="qlcode">Q-Learning Code</a></h3>
 				<p>
-				Lets begin implementing our Q-learning algorithm code. Our class, called QLTutorial, will extend MDPSolver and implement the LearningAgent and QFunction interfaces. The LearningAgent interface specifies the common methods a learning algorithm is expected to implement so that it can be used by other BURLAP tools.
+				Lets begin implementing our Q-learning algorithm code. Our class, called QLTutorial, will extend MDPSolver and implement the LearningAgent and QProvider interfaces. The LearningAgent interface specifies the common methods a learning algorithm is expected to implement so that it can be used by other BURLAP tools.
 				</p>
 				<p>
 				Below is the skeleton code that is created when we created our class.
 				</p>
 				<pre class="prettyprint lang-java">
-import burlap.behavior.singleagent.EpisodeAnalysis;
+import burlap.behavior.policy.EpsilonGreedy;
+import burlap.behavior.policy.Policy;
+import burlap.behavior.singleagent.Episode;
 import burlap.behavior.singleagent.MDPSolver;
+import burlap.behavior.singleagent.auxiliary.EpisodeSequenceVisualizer;
 import burlap.behavior.singleagent.learning.LearningAgent;
+import burlap.behavior.valuefunction.ConstantValueFunction;
 import burlap.behavior.valuefunction.QFunction;
+import burlap.behavior.valuefunction.QProvider;
 import burlap.behavior.valuefunction.QValue;
-import burlap.oomdp.core.AbstractGroundedAction;
-import burlap.oomdp.core.states.State;
-import burlap.oomdp.singleagent.environment.Environment;
+import burlap.domain.singleagent.gridworld.GridWorldDomain;
+import burlap.domain.singleagent.gridworld.GridWorldTerminalFunction;
+import burlap.domain.singleagent.gridworld.GridWorldVisualizer;
+import burlap.domain.singleagent.gridworld.state.GridAgent;
+import burlap.domain.singleagent.gridworld.state.GridWorldState;
+import burlap.mdp.core.action.Action;
+import burlap.mdp.core.state.State;
+import burlap.mdp.singleagent.SADomain;
+import burlap.mdp.singleagent.environment.Environment;
+import burlap.mdp.singleagent.environment.EnvironmentOutcome;
+import burlap.mdp.singleagent.environment.SimulatedEnvironment;
+import burlap.statehashing.HashableState;
+import burlap.statehashing.HashableStateFactory;
+import burlap.statehashing.simple.SimpleHashableStateFactory;
+import burlap.visualizer.Visualizer;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
-public class QLTutorial extends MDPSolver implements LearningAgent, QFunction {
+public class QLTutorial extends MDPSolver implements LearningAgent, QProvider {
 
 	@Override
-	public EpisodeAnalysis runLearningEpisode(Environment env) {
+	public Episode runLearningEpisode(Environment env) {
 		return null;
 	}
 
 	@Override
-	public EpisodeAnalysis runLearningEpisode(Environment env, int maxSteps) {
+	public Episode runLearningEpisode(Environment env, int maxSteps) {
 		return null;
 	}
 
 	@Override
 	public void resetSolver() {
-
+		
 	}
 
 	@Override
-	public List<QValue> getQs(State s) {
+	public List&lt;QValue> qValues(State s) {
 		return null;
 	}
 
 	@Override
-	public QValue getQ(State s, AbstractGroundedAction a) {
-		return null;
+	public double qValue(State s, Action a) {
+		return 0.;
 	}
+
 
 	@Override
 	public double value(State s) {
-		return 0;
+		return 0.;
 	}
-}
 				</pre>
 				<p>
-				Similar to VI, the primary data we will want to store is a set of estimated Q-values for each state and action pair. We'll also again let the user specify the Q-value function initialization with a ValueFunctionInitialization object. We'll also need a learning rate parameter to be set. Finally, we'll need a learning policy to follow; that is, a policy that dictates how the agent chooses actions at each step. For this tutorial, we'll assume an $\epsilon$-greedy policy and let the client specify the value for $\epsilon$. Lets add data members for those elements now, as well as the value function which needs to return the maximum Q-value.
+				Similar to VI, the primary data we will want to store is a set of estimated Q-values for each state and action pair. We'll also again let the user specify the Q-value function initialization with a QFunction object. We'll also need a learning rate parameter to be set. Finally, we'll need a learning policy to follow; that is, a policy that dictates how the agent chooses actions at each step. For this tutorial, we'll assume an $\epsilon$-greedy policy and let the client specify the value for $\epsilon$. Lets add data members for those elements now.
 				</p>
 				<pre class="prettyprint lang-java">
-protected Map&lt;StateHashTuple, List&lt;QValue>> qValues;
-protected ValueFunctionInitialization qinit;
-protected double learningRate;
-protected Policy learningPolicy;
+Map&lt;HashableState, List&lt;QValue>> qValues;
+QFunction qinit;
+double learningRate;
+Policy learningPolicy;
 				</pre>
 				<p>
 				Lets also add a constructor to initialize our data members and some of those that we inherit from MDPSolver.
 				</p>
 				<pre class="prettyprint lang-java">
-public QLTutorial(Domain domain, double gamma, HashableStateFactory hashingFactory,
-				  ValueFunctionInitialization qinit, double learningRate,  double epsilon){
+public QLTutorial(SADomain domain, double gamma, HashableStateFactory hashingFactory,
+					  QFunction qinit, double learningRate, double epsilon){
 
-	this.solverInit(domain, null, null, gamma, hashingFactory);
+	this.solverInit(domain, gamma, hashingFactory);
 	this.qinit = qinit;
 	this.learningRate = learningRate;
-	this.qValues = new HashMap<HashableState, List<QValue>>();
+	this.qValues = new HashMap&lt;HashableState, List&lt;QValue>>();
 	this.learningPolicy = new EpsilonGreedy(this, epsilon);
 
 }
 				</pre>
 				<p>
-				Note that we did not have to initialize the reward function or terminal function for the MDPSolver (the two null parameters) since these will be handled by the Environment object with which the learning algorithm will interact. The EpsilonGreedy policy object we create takes as input a QFunction, which this class will provide, and the value for epsilon to use.
+				Note that the EpsilonGreedy policy object we create takes as input a QProvider, which this class implements, and the value for epsilon to use.
 				</p>
 				<hr/>
 				<p>
-				One of the primary tools we'll need is a method that grabs our Q-values, or creates and stores them with the proper initialization value if it's for an unseen state. Lets implement our Q-Value methods now as well as the value method which returns the state value: the maximum Q-value of all actions applicable in the state.
+				Getting and storing Q-values is the primary tool we'll need for our algorithm, so lets implement the value function methods now.
 				</p>
 				<pre class="prettyprint lang-java">
 @Override
-public List&lt;QValue> getQs(State s) {
-	
+public List&lt;QValue> qValues(State s) {
 	//first get hashed state
-	StateHashTuple sh = this.hashingFactory.hashState(s);
-	
+	HashableState sh = this.hashingFactory.hashState(s);
+
 	//check if we already have stored values
 	List&lt;QValue> qs = this.qValues.get(sh);
-	
+
 	//create and add initialized Q-values if we don't have them stored for this state
 	if(qs == null){
-		List&lt;GroundedAction> actions = this.getAllGroundedActions(s);
+		List&lt;Action> actions = this.applicableActions(s);
 		qs = new ArrayList&lt;QValue>(actions.size());
 		//create a Q-value for each action
-		for(GroundedAction ga : actions){
+		for(Action a : actions){
 			//add q with initialized value
-			qs.add(new QValue(s, ga, this.qinit.qValue(s, ga)));
+			qs.add(new QValue(s, a, this.qinit.qValue(s, a)));
 		}
 		//store this for later
 		this.qValues.put(sh, qs);
 	}
-	
+
 	return qs;
 }
 
 @Override
-public QValue getQ(State s, AbstractGroundedAction a) {
-	
+public double qValue(State s, Action a) {
+	return storedQ(s, a).q;
+}
+
+
+protected QValue storedQ(State s, Action a){
 	//first get all Q-values
-	List<QValue> qs = this.getQs(s);
+	List<QValue> qs = this.qValues(s);
 
 	//iterate through stored Q-values to find a match for the input action
 	for(QValue q : qs){
@@ -197,19 +220,18 @@ public QValue getQ(State s, AbstractGroundedAction a) {
 	}
 
 	throw new RuntimeException("Could not find matching Q-value.");
-
 }
 
 @Override
 public double value(State s) {
-	return QFunctionHelper.getOptimalValue(this, s);
+	return QProvider.Helper.maxQ(this, s);
 }
 				</pre>
-				<p>Note that for the value method, we used the QFunciton helper class <a href="../../doc/burlap/behavior/valuefunction/QFunction.QFunctionHelper.html">QFunctionHelper</a> whose method getOptimalValue will return the maximum Q-value in a QFunction object by querying its getQs method and returning the maximum Q-value value.
+				<p>Note that the qValues method checks if we've already stored Q-values for the given state. If not, we create them with the initial Q-value defined by our QFunction initialization object. For the qValue method, we go through a helper method that returnes the stored QValue object for a given action; this storedQ method will be useful for updating our Q-values for the actual learning algorithm. The value method, like for our value iteration example, can simply return the result of the QProvider Helper class method maxQ.
 				</p>
 				<hr/>
 				<p>
-				Now that we have all of our helper methods, lets implement the learning algorithm. The LearningAgent interface requires us to implement two methods that cause learning to be run for one episode in some <a href="../../doc/burlap/oomdp/singleagent/environment/Environment.html">Environment</a>; one that will run learning until the agent reaches a terminal state and one that will run learning for a maximum number of steps or until a terminal state is reached. We will have the former call the latter with a -1 for the maximum number of steps to indicate that it should never stop until the agent reaches a terminal state. Both methods also require returning an <a href="../../doc/burlap/behavior/singleagent/EpisodeAnalysis.html">EpisodeAnalysis</a> object, which is a recording of all the states, actions, and rewards that occurred in an episode, so as we write the code to have the agent iteratively select actions, we'll record the results to an EpisodeAnalysis object.
+				Now that we have all of our helper methods, lets implement the learning algorithm. The LearningAgent interface requires us to implement two methods that cause learning to be run for one episode in some <a href="../../doc/burlap/mdp/singleagent/environment/Environment.html">Environment</a>; one that will run learning until the agent reaches a terminal state and one that will run learning for a maximum number of steps or until a terminal state is reached. We will have the former call the latter with a -1 for the maximum number of steps to indicate that it should never stop until the agent reaches a terminal state. Both methods also require returning an <a href="../../doc/burlap/behavior/singleagent/Episode.html">Episode</a> object, which is a recording of all the states, actions, and rewards that occurred in an episode, so as we write the code to have the agent iteratively select actions, we'll record the results to an Episode object.
 				</p>
 				<p>
 				Below is the learning algorithm code for Q-learning.
@@ -217,59 +239,52 @@ public double value(State s) {
 
 				<pre class="prettyprint lang-java">
 @Override
-public EpisodeAnalysis runLearningEpisode(Environment env) {
+public Episode runLearningEpisode(Environment env) {
 	return this.runLearningEpisode(env, -1);
 }
 
 @Override
-public EpisodeAnalysis runLearningEpisode(Environment env, int maxSteps) {
-	//initialize our episode analysis object with the initial state of the environment
-	EpisodeAnalysis ea = new EpisodeAnalysis(env.getCurrentObservation());
+public Episode runLearningEpisode(Environment env, int maxSteps) {
+	//initialize our episode object with the initial state of the environment
+	Episode e = new Episode(env.currentObservation());
 
 	//behave until a terminal state or max steps is reached
-	State curState = env.getCurrentObservation();
+	State curState = env.currentObservation();
 	int steps = 0;
 	while(!env.isInTerminalState() && (steps < maxSteps || maxSteps == -1)){
 
 		//select an action
-		GroundedAction a = (GroundedAction)this.learningPolicy.getAction(curState);
+		Action a = this.learningPolicy.action(curState);
 
 		//take the action and observe outcome
-		EnvironmentOutcome eo = a.executeIn(env);
+		EnvironmentOutcome eo = env.executeAction(a);
 
 		//record result
-		ea.recordTransitionTo(a, eo.o, eo.r);
+		e.transition(eo);
 
 		//get the max Q value of the resulting state if it's not terminal, 0 otherwise
 		double maxQ = eo.terminated ? 0. : this.value(eo.op);
 
 		//update the old Q-value
-		QValue oldQ = this.getQ(curState, a);
+		QValue oldQ = this.storedQ(curState, a);
 		oldQ.q = oldQ.q + this.learningRate * (eo.r + this.gamma * maxQ - oldQ.q);
 
 
-		//move on to next state
+		//update state pointer to next environment state observed
 		curState = eo.op;
 		steps++;
 
 	}
 
-	return ea;
+	return e;
 }
 				</pre>
 				<p>
-				The beginning of the code is fairly straightforward; we construct a new EpisodeAnalysis object rooted in the current state of the environment, which we get back from the Environment method getCurrentObservation(). We then begin an execution loop that lasts either until the Environment reaches a terminal state or until the number of steps we've taken exceeds the number requested.
+				The beginning of the code is fairly straightforward; we construct a new Episode object rooted in the current state of the environment, which we get back from the Environment method getCurrentObservation(). We then begin an execution loop that lasts either until the Environment reaches a terminal state or until the number of steps we've taken exceeds the number requested.
 				</p>
 				<p>
 				Inside the execution loop, we first select an action using our learning policy. Then we execute the action in the environment using the GroundedAction method executeIn(Environment),
-				which returns to us an <a href="../../doc/burlap/oomdp/singleagent/environment/EnvironmentOutcome.html">EnvironmentOutcome</a> object. This object is tuple with the following datamembers.</p>
-				<ul>
-					<li><b>a</b> - a GroundedAction specifying the action taken in the Environment</li>
-					<li><b>o</b> - the observation, represented by a State, from the Environment when the action was taken.
-					<li><b>op</b> - the next observation from the Environment after the action was taken.</li>
-					<li><b>r</b> - a double value specifying the reward returned from the Environment</li>
-					<li><b>terminated</b> - a boolean specifying whether the Environment is now in a terminal state</li>
-				</ul>
+				which returns to us an <a href="../../doc/burlap/mdp/singleagent/environment/EnvironmentOutcome.html">EnvironmentOutcome</a> object.
 				<div class="note">
 					<h2>Environment Observations</h2>
 					<p>
@@ -278,14 +293,14 @@ public EpisodeAnalysis runLearningEpisode(Environment env, int maxSteps) {
 					</p>
 				</div>
 				<p>
-				Using the new observations from the environment, we record the transition in our EpisodeAnalysis and update the previous Q-Value. To update the previous Q-value, we need to get the maximum Q-value for the next state we encounted. However, if that state is a terminal state, then the value should always be zero, because the agent cannot act further from that state. Otherwise, we can get the maximum value by using value method that we previously defined.
+				Using the new observations from the environment, we record the transition in our Episode and update the previous Q-Value. To update the previous Q-value, we need to get the maximum Q-value for the next state we encounted. However, if that state is a terminal state, then the value should always be zero, because the agent cannot act further from that state. Otherwise, we can get the maximum value by using value method that we previously defined.
 				</p> 
 				<p>
-				Finally, we can implement the resetSoverResults method, which only needs to clear our Q-values.
+				Finally, we can implement the resetSover method, which only needs to clear our Q-values.
 				</p>
 				<pre class="prettyprint lang-java">
 @Override
-public void resetSolverResults() {
+public void resetSolver() {
 	this.qValues.clear();
 }
 				</pre>
@@ -295,33 +310,27 @@ public void resetSolverResults() {
 				As before, you can now test your learning algorithm with the previous code developed in the <a href="../bpl/p1.html">Basic Planning and Learning tutorial</a>. Alternatively, you can use the below main method which creates a similar Grid World domain and task as the test code we wrote for our VI implementation, except applies the Q-Learning algorithm to it in a simulated environment. The results of each leaning episode will be presented for you after learning completes. Note that because the domain is stochastic (and follows a nosiy exploration policy), it can take much longer to learn and the resulting policy will not be a straight shot to the goal.
 				</p>
 				<pre class="prettyprint lang-java">
-public static void main(String [] args){
-		
+public static void main(String[] args) {
+
 	GridWorldDomain gwd = new GridWorldDomain(11, 11);
 	gwd.setMapToFourRooms();
 	gwd.setProbSucceedTransitionDynamics(0.8);
+	gwd.setTf(new GridWorldTerminalFunction(10, 10));
 
-	Domain domain = gwd.generateDomain();
+	SADomain domain = gwd.generateDomain();
 
 	//get initial state with agent in 0,0
-	State s = GridWorldDomain.getOneAgentNoLocationState(domain);
-	GridWorldDomain.setAgent(s, 0, 0);
-
-	//all transitions return -1
-	RewardFunction rf = new UniformCostRF();
-
-	//terminate in top right corner
-	TerminalFunction tf = new GridWorldTerminalFunction(10, 10);
+	State s = new GridWorldState(new GridAgent(0, 0));
 
 	//create environment
-	SimulatedEnvironment env = new SimulatedEnvironment(domain,rf, tf, s);
+	SimulatedEnvironment env = new SimulatedEnvironment(domain, s);
 
 	//create Q-learning
 	QLTutorial agent = new QLTutorial(domain, 0.99, new SimpleHashableStateFactory(),
-			new ValueFunctionInitialization.ConstantValueFunctionInitialization(), 0.1, 0.1);
+			new ConstantValueFunction(), 0.1, 0.1);
 
 	//run Q-learning and store results in a list
-	List<EpisodeAnalysis> episodes = new ArrayList<EpisodeAnalysis>(1000);
+	List&lt;Episode> episodes = new ArrayList&lt;Episode>(1000);
 	for(int i = 0; i < 1000; i++){
 		episodes.add(agent.runLearningEpisode(env));
 		env.resetEnvironment();
@@ -329,7 +338,7 @@ public static void main(String [] args){
 
 	Visualizer v = GridWorldVisualizer.getVisualizer(gwd.getMap());
 	new EpisodeSequenceVisualizer(v, domain, episodes);
-	
+
 }
 				</pre>
 

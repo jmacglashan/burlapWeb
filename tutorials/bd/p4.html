@@ -19,18 +19,14 @@
 				<div id="index">
 					<b>Tutorial Contents</b>
 					<ul>
-						<li><a href="p1.html#intro">Introduction</a></li>
+						<li><a href="p1.html#intro"><b>Introduction</b></a></li>
 						<li><a href="p1.html#mdp">Markov Decision Process</a></li>
-						<li><a href="p2.html#oomdp">OO-MDPs</a></li>
-						<li><a href="p2.html#burlapoverview">BURLAP OO-MDP Java Class Overview</a></li>
-						<li><a href="p3.html#oclasses">Defining GridWorld Object Classes</a></li>
-						<li><a href="p3.html#actions">Defining GridWorld Actions</a></li>
-						<li><a href="p3.html#opfs">Defining Propositional Functions</a></li>
-						<li><a href="p3.html#testing">Testing the Domain</a></li>
-						<li><a href="p4.html#viscomps"><b>The Components of a Visualizer</b></a></li>
-						<li><a href="p4.html#painters">Implementing the Painters</a></li>
-						<li><a href="p5.html#rftf">Reward Functions and Terminal Functions</a></li>
-						<li><a href="p5.html#conclusions">Conclusions</a></li>
+						<li><a href="p2.html#burlapoverview">Java Interfaces for MDP Definitions</a></li>
+						<li><a href="p3.html#state">Defining a Grid World State</a></li>
+						<li><a href="p4.html#model"><b>Defining a GridWorld Model</b></a></li>
+						<li><a href="p5.html#visualizer">Creating a State Visualizer</a></li>
+						<li><a href="p5.html#testing">Testing it Out</a></li>
+						<li><a href="p5.html#conclusion">Conclusion</a></li>
 						<li><a href="p5.html#code">Final Code</a></li>
 					</ul>
 				</div>
@@ -38,230 +34,340 @@
 					<a href="p3.html">Previous Part</a> | <a href="p5.html">Next Part</a>
 				</div>
 				
-				<h3><a name="viscomps">The Components of a Visualizer</a></h3>
+				<h3><a name="model">Defining a Grid World Model</a></h3>
 				<p>
-				Different visualization components in BURLAP are built around implementing the <a href="../../doc/burlap/oomdp/visualizer/RenderLayer.html"> RenderLayer</a> interface, which requires being passed a graphics context on which the implementing class will paint. Having everything built around RenderLayer objects
-				means you can trivially stack different kinds of information on
-				top of each other. For example, you might have a render layer to display a state, and another one to display value function information, layered on top. In this tutorial we will focus on
-				rendering the state, for which there is a specific implementation of the RenderLayer interface that we can use called <a href="../../doc/burlap/oomdp/visualizer/StateRenderLayer.html">StateRenderLayer</a>, which after constructing we can pass to the <a href="../../doc/burlap/oomdp/visualizer/StateRenderLayer.html">Visualizer</a> class, which will create a Java canvas to which are StateRenderLayer can paint.
-				</p>
-				<p>
-				The StateRenderLayer is provided a number of different subpainters that it will call sequentially to paint to the canvas. Each subpainter is either a <a href="../../doc/burlap/oomdp/visualizer/StaticPainter.html">StaticPainter</a> or an <a href="../../doc/burlap/oomdp/visualizer/ObjectPainter.html">ObjectPainter</a>. The StaticPainter is an interface that requires implementing a method that takes a graphics context, an OO-MDP State object, and the width and height of the canvas that then paints to the canvas information about the overall state or the domain to which the state belongs. For example, in the grid world we've been creating, walls are not explicitly represented in our OO-MDP state object, but when rendering a state, we'd like to paint where the walls are. 
-				</p>
-				<p>
-				The ObjectPainter is an interface that requires implementing a method that takes a graphics context, an OO-MDP state, a specific OO-MDP ObjectInstance from that state, and the width and height of the canvas that then paints to the canvas information about that specific object instance. In our GridWorld, we would want to provide a different ObjectPainter for
-				the agent class objects and location class objects.
-				</p>
-				<p>
-				When our StateRenderLayer object is provided a bunch of StaticPainter and ObjectPainter objects, during it's state paint method it will first paint to the graphics context with the StaticPainter objects. Then for each OO-MDP object in the state, it will paint to the canvas using the corresponding ObjectPainter
-				that we will associate with that class.
-				</p>
-
-				<h3><a name="painters">Implementing the Painters</a></h3>
-				<p>
-				To implement a StaticPainter for painting the walls of our grid world as black rectangles, add the below inner class to the ExampleGridWord class code we've been writing.
+				Next, we will define the model of our Grid World; how transitions and rewards are generated from actions. Lets start by defining a map of our grid world, that matches the Grid World image we used earlier in the tutorial (an 11x11 world split into 4 "rooms"). We will define this map using a 2D int array, with the first dimension representing x, and the second dimension representing y. Add the following to your ExampleGridWorld domain generator class:
 				</p>
 				<pre class="prettyprint lang-java">
-public class WallPainter implements StaticPainter{
+//ordered so first dimension is x
+protected int [][] map = new int[][]{
+		{0,0,0,0,0,1,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,1,0,0,0,0,0},
+		{0,0,0,0,0,1,0,0,0,0,0},
+		{0,0,0,0,0,1,0,0,0,0,0},
+		{1,0,1,1,1,1,1,1,0,1,1},
+		{0,0,0,0,1,0,0,0,0,0,0},
+		{0,0,0,0,1,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,1,0,0,0,0,0,0},
+		{0,0,0,0,1,0,0,0,0,0,0},
+};
+				</pre>
+				<p>
+				To define our Grid World Model, we're going to use a FactoredModel implemention that is provided with BURLAP. A FactoredModel is a model that divides its duties into three components: a SampleStateModel, which defines the state transitions; a RewardFunction, which defines the rewards for given state transitions; and a TerminalFunction, which defines which states are terminal states of the MDP. Most domains in BURLAP use a FactoredModel, because it is often the case that clients will want to change the task of a domain (defined by the reward function and terminal state), but not the "physics" of the domain (how state transitions occur).
+				</p>
+				<p>
+				Lets start with the most complex part: the state model. Just as there is a SampleModel and a FullModel for the complete model, where the SampleModel merely samples transitions and a FullModel can also enumerate the probability distribution, a state model also has a SampleStateModel and a FullStateModel. We will implement the FullStateModel. Below, we've defined an inner class to ExampleGridWorld for our FullStateModel, with the required methods left as unimplemented, which we will walk through.
+				</p>
+				<pre class="prettyprint lang-java">
+protected class GridWorldStateModel implements FullStateModel{
 
 	@Override
-	public void paint(Graphics2D g2, State s, float cWidth, float cHeight) {
-		
-		//walls will be filled in black
-		g2.setColor(Color.BLACK);
-		
-		//set up floats for the width and height of our domain
-		float fWidth = ExampleGridWorld.this.map.length;
-		float fHeight = ExampleGridWorld.this.map[0].length;
-		
-		//determine the width of a single cell on our canvas 
-		//such that the whole map can be painted
-		float width = cWidth / fWidth;
-		float height = cHeight / fHeight;
-		
-		//pass through each cell of our map and if it's a wall, paint a black 
-		//rectangle on our cavas of dimension widthxheight
-		for(int i = 0; i < ExampleGridWorld.this.map.length; i++){
-			for(int j = 0; j < ExampleGridWorld.this.map[0].length; j++){
-				
-				//is there a wall here?
-				if(ExampleGridWorld.this.map[i][j] == 1){
-				
-					//left corrdinate of cell on our canvas
-					float rx = i*width;
-					
-					//top coordinate of cell on our canvas
-					//coordinate system adjustment because the java canvas
-					//origin is in the top left instead of the bottom right
-					float ry = cHeight - height - j*height;
-				
-					//paint the rectangle
-					g2.fill(new Rectangle2D.Float(rx, ry, width, height));
-					
-				}
-				
-				
+	public List&lt;StateTransitionProb> stateTransitions(State s, Action a) {
+		return null;
+	}
+
+	@Override
+	public State sample(State s, Action a) {
+		return null;
+	}
+
+}
+				</pre>
+				<p>
+				We're going to define our domain so that our four (north, south, east, west) actions are stochastic: with 0.8 probability they will go in the intended direction, and with 0.2 probability, it will randomly go in one of the other directions. To encode this stochasticity, lets define a matrix of direction transition probabilities for each action, so that the first dimension indexes by the selected action, and the next dimension indexes by the actual direction the agent will move, with the values specifying the movement in that direction, given the action selected. We will also implement a constructor that fills out this matrix, which will have 0.8 along the diagonal, and 0.8/3 on the off-diagonal elements. Note that each row will sum to 1, making it a proper probability distribution.
+				</p>
+				<pre class="prettyprint lang-java">
+protected double [][] transitionProbs;
+
+public GridWorldStateModel() {
+	this.transitionProbs = new double[4][4];
+	for(int i = 0; i < 4; i++){
+		for(int j = 0; j < 4; j++){
+			double p = i != j ? 0.2/3 : 0.8;
+			transitionProbs[i][j] = p;
+		}
+	}
+}
+				</pre>
+				<p>
+				Our actions in this domain will be represented with String names (we could alternatively make Actions that are defined by int values, but for simplicity and descriptive reasons, we will use String names). Therefore, we will first want to define a method that converts an action name into an int index for the direction transition matrix we defined:
+				</p>
+				<pre class="prettyprint lang-java">
+protected int actionDir(Action a){
+	int adir = -1;
+	if(a.actionName().equals(ACTION_NORTH)){
+		adir = 0;
+	}
+	else if(a.actionName().equals(ACTION_SOUTH)){
+		adir = 1;
+	}
+	else if(a.actionName().equals(ACTION_EAST)){
+		adir = 2;
+	}
+	else if(a.actionName().equals(ACTION_WEST)){
+		adir = 3;
+	}
+	return adir;
+}
+				</pre>
+				<p>
+				When we either sample a state transition, or enumerate all possible outcomes, we will want to query the outcome of the agent moving in some direction. Lets add a method for doing that now.
+				</p>
+				<pre class="prettyprint lang-java">
+protected int [] moveResult(int curX, int curY, int direction){
+
+	//first get change in x and y from direction using 0: north; 1: south; 2:east; 3: west
+	int xdelta = 0;
+	int ydelta = 0;
+	if(direction == 0){
+		ydelta = 1;
+	}
+	else if(direction == 1){
+		ydelta = -1;
+	}
+	else if(direction == 2){
+		xdelta = 1;
+	}
+	else{
+		xdelta = -1;
+	}
+
+	int nx = curX + xdelta;
+	int ny = curY + ydelta;
+
+	int width = ExampleGridWorld.this.map.length;
+	int height = ExampleGridWorld.this.map[0].length;
+
+	//make sure new position is valid (not a wall or off bounds)
+	if(nx < 0 || nx >= width || ny < 0 || ny >= height ||
+			ExampleGridWorld.this.map[nx][ny] == 1){
+		nx = curX;
+		ny = curY;
+	}
+
+
+	return new int[]{nx,ny};
+
+}
+				</pre>
+				<p>
+				This method will return a 2 element int array, where the first component is the new x position of the agent and the second component is the new y position. Primarily, the method just increments/decrements the x and y values depending on what the action direction was. However, it also checks the map of our world, and if the agent would have moved into a wall, then the agent's position will not change.
+				</p>
+				<p>
+				Now lets implement the sample method.
+				</p>
+				<pre class="prettyprint lang-java">
+@Override
+public State sample(State s, Action a) {
+
+	s = s.copy();
+	EXGridState gs = (EXGridState)s;
+	int curX = gs.x;
+	int curY = gs.y;
+
+	int adir = actionDir(a);
+
+	//sample direction with random roll
+	double r = Math.random();
+	double sumProb = 0.;
+	int dir = 0;
+	for(int i = 0; i < 4; i++){
+		sumProb += this.transitionProbs[adir][i];
+		if(r < sumProb){
+			dir = i;
+			break; //found direction
+		}
+	}
+
+	//get resulting position
+	int [] newPos = this.moveResult(curX, curY, dir);
+
+	//set the new position
+	gs.x = newPos[0];
+	gs.y = newPos[1];
+
+	//return the state we just modified
+	return gs;
+}
+				</pre>
+				<p>
+				The first thing we do is make a copy of the input state, which will be modified and returned. Then we get the agent's x and y position, by type casting the State to our EXGridState class. We also get the index of our action, and then sample a resulting direction from the direction transition matrix. We then get the resulting new position from our moveResult method, and update the copied state to be at that new position.
+				</p>
+				<p>
+				Next we will implement the transitions method.
+				</p>
+				<pre class="prettyprint lang-java">
+@Override
+public List&lt;StateTransitionProb> stateTransitions(State s, Action a) {
+
+	//get agent current position
+	EXGridState gs = (EXGridState)s;
+
+	int curX = gs.x;
+	int curY = gs.y;
+
+	int adir = actionDir(a);
+
+	List&lt;StateTransitionProb> tps = new ArrayList&lt;StateTransitionProb>(4);
+	StateTransitionProb noChange = null;
+	for(int i = 0; i < 4; i++){
+
+		int [] newPos = this.moveResult(curX, curY, i);
+		if(newPos[0] != curX || newPos[1] != curY){
+			//new possible outcome
+			EXGridState ns = gs.copy();
+			ns.x = newPos[0];
+			ns.y = newPos[1];
+
+			//create transition probability object and add to our list of outcomes
+			tps.add(new StateTransitionProb(ns, this.transitionProbs[adir][i]));
+		}
+		else{
+			//this direction didn't lead anywhere new
+			//if there are existing possible directions
+			//that wouldn't lead anywhere, aggregate with them
+			if(noChange != null){
+				noChange.p += this.transitionProbs[adir][i];
+			}
+			else{
+				//otherwise create this new state and transition
+				noChange = new StateTransitionProb(s.copy(), this.transitionProbs[adir][i]);
+				tps.add(noChange);
 			}
 		}
-		
-	}
-	
 
+	}
+
+
+	return tps;
 }
 				</pre>
 				<p>
-				The main idea of this code is to first determine how wide and tall cells in our grid world will be rendered on a canvas of the given size. This is simply with width/height of the canvas divided
-				by the number of cells in our grid world along each dimension.
-				Then we iterate through our map and draw a rectangle in the corresponding position when the map has a wall listed as being there. The only extra thing to take care of is that the Java
-				painting coordinate system is in the top left corner, whereas
-				we've defined our map with a bottom left coordinate system, so we perform a coordinate system switch in the rendering as shown.
+				In many ways, this method is a lot like our sample method, except instead of randomly sampling a direction, we iterate over each possible outcome direction and consider movement in that direction. For each of those possible directions, we make a copy of the input state, change its position based on our moveResult method, and then put it in a StateTransitionProb tuple, which is a pair consisting of the probability of the outcome (determined from the entry in our transition matrix) and the outcome state we created, and we add each StateTransitionProb to a list to be returned by our method.
 				</p>
 				<p>
-				Now lets create a painter for the OO-MDP agent class, which we'll represent as a gray circle in the word. This code
-				will look almost identical to our map painter code except instead of iterating through the map, we'll get the agent x and y position from the OO-MDP ObjectInstance our painter is provided and instead of painting a black rectangle we'll paint a gray circle. As before add the below class inside our ExampleGridWorld class.
+				There is one extra bit of book keeping we perform in this method. If the agent tries to move into a wall, it's position does not change. And if a wall exists on multiple sides of the agent, then there are multiple possible directions that would result in the agent not moving. However, we don't want a separate StateTransitionProb element for multiple occurrences of the agent not changing position. So instead, if the agent's position doesn't change, we simply add the probability mass of the agent attempting to move in that direction to any existing StateTransitionProb element we have created that results in the agent not changing position.
+				</p>
+				<p>
+				We've now completed the state transition model. Next, lets implement a RewardFunction and TerminalFunction. We'll start with the TerminalFunction, which we'll let specify a single location in our grid world to be a terminal (goal) state and we'll let that location be a parameter.
 				</p>
 				<pre class="prettyprint lang-java">
-public class AgentPainter implements ObjectPainter{
+public static class ExampleTF implements TerminalFunction {
+
+	int goalX;
+	int goalY;
+
+	public ExampleTF(int goalX, int goalY){
+		this.goalX = goalX;
+		this.goalY = goalY;
+	}
 
 	@Override
-	public void paintObject(Graphics2D g2, State s, ObjectInstance ob,
-			float cWidth, float cHeight) {
-		
-		//agent will be filled in gray
-		g2.setColor(Color.GRAY);
-		
-		//set up floats for the width and height of our domain
-		float fWidth = ExampleGridWorld.this.map.length;
-		float fHeight = ExampleGridWorld.this.map[0].length;
-		
-		//determine the width of a single cell on our canvas 
-		//such that the whole map can be painted
-		float width = cWidth / fWidth;
-		float height = cHeight / fHeight;
-		
-		int ax = ob.getIntValForAttribute(ATTX);
-		int ay = ob.getIntValForAttribute(ATTY);
-		
-		//left coordinate of cell on our canvas
-		float rx = ax*width;
-		
-		//top coordinate of cell on our canvas
-		//coordinate system adjustment because the java canvas 
-		//origin is in the top left instead of the bottom right
-		float ry = cHeight - height - ay*height;
-	
-		//paint the rectangle
-		g2.fill(new Ellipse2D.Float(rx, ry, width, height));
-		
-		
+	public boolean isTerminal(State s) {
+
+		//get location of agent in next state
+		int ax = (Integer)s.get(VAR_X);
+		int ay = (Integer)s.get(VAR_Y);
+
+		//are they at goal location?
+		if(ax == this.goalX && ay == this.goalY){
+			return true;
+		}
+
+		return false;
 	}
-	
-	
-	
+
 }
 				</pre>
-				<hr/>
 				<p>
-				We'll also do the same for a location object, but we'll use a blue rectangle instead.
+				Our reward function will work similarly, but return a reward of -1 for all transitions, except the transition to a goal location, which will return +100.
 				</p>
 				<pre class="prettyprint lang-java">
-public class LocationPainter implements ObjectPainter{
+public static class ExampleRF implements RewardFunction {
+
+	int goalX;
+	int goalY;
+
+	public ExampleRF(int goalX, int goalY){
+		this.goalX = goalX;
+		this.goalY = goalY;
+	}
 
 	@Override
-	public void paintObject(Graphics2D g2, State s, ObjectInstance ob,
-			float cWidth, float cHeight) {
-		
-		//agent will be filled in blue
-		g2.setColor(Color.BLUE);
-		
-		//set up floats for the width and height of our domain
-		float fWidth = ExampleGridWorld.this.map.length;
-		float fHeight = ExampleGridWorld.this.map[0].length;
-		
-		//determine the width of a single cell on our canvas 
-		//such that the whole map can be painted
-		float width = cWidth / fWidth;
-		float height = cHeight / fHeight;
-		
-		int ax = ob.getIntValForAttribute(ATTX);
-		int ay = ob.getIntValForAttribute(ATTY);
-		
-		//left coordinate of cell on our canvas
-		float rx = ax*width;
-		
-		//top coordinate of cell on our canvas
-		//coordinate system adjustment because the java canvas 
-		//origin is in the top left instead of the bottom right
-		float ry = cHeight - height - ay*height;
-	
-		//paint the rectangle
-		g2.fill(new Rectangle2D.Float(rx, ry, width, height));
-		
-		
+	public double reward(State s, Action a, State sprime) {
+
+		int ax = (Integer)s.get(VAR_X);
+		int ay = (Integer)s.get(VAR_Y);
+
+		//are they at goal location?
+		if(ax == this.goalX && ay == this.goalY){
+			return 100.;
+		}
+
+		return -1;
 	}
-	
-	
-	
+
+
 }
 				</pre>
 				<p>
-				Finally, we'll want to add some methods to our ExampleGridWorld domain generator to create a StateRenderLayer and corresponding
-				Visualizer to hold it. The StateRenderLayer merely needs to be given a WallPainter instance and told to use a AgentPainter instance for objects of OO-MDP class agent and a LocationPainter instance for objects of OO-MDP class location. Once a StateRenderLayer object is created, a Visualizer object merely needs to be pointed to it. To do so, add the following methods to our ExampleGridWorld class.
+				Note that the reward function operates on the sprime method argument, not the s argument. The sprime argument specifies the state to which the agent transitioned, whereas the argument s specifies the state the agent left, and we want the goal reward to occur on transitions <i>to</i> the goal location, so we evaluate sprime.
+				</p>
+				<p>
+				We're just about ready to finish up our domain. Before we do, lets add two data members and ExampleGridWorld methods to allow a client to set the goal location.
+				</p>
+				<p>
+				Add the data members
 				</p>
 				<pre class="prettyprint lang-java">
-public StateRenderLayer getStateRenderLayer(){
-	StateRenderLayer rl = new StateRenderLayer();
-	rl.addStaticPainter(new WallPainter());
-	rl.addObjectClassPainter(CLASSLOCATION, new LocationPainter());
-	rl.addObjectClassPainter(CLASSAGENT, new AgentPainter());
-	
-	return rl;
-}
-
-public Visualizer getVisualizer(){
-	return new Visualizer(this.getStateRenderLayer());
-}
+protected int goalx = 10;
+protected int goaly = 10;
 				</pre>
 				<p>
-				Note that in the getStateRenderLayer method we added the location object painter before the agent object painter. This implicitly tells the StateRenderLayer the order in which objects should be painted; first objects of class location and then objects of class agent. The result is that when an agent is at the same position as a location, the agent will be rendered on top of it.
-				</p>
-				<p>
-				Now that we can construct a visualizer, lets swap out our TermainalExplorer in our main method for a <a href="../../doc/burlap/oomdp/singleagent/explorer/VisualExplorer.html">VisualExplorer</a>. The VisualExplorer can be controlled by manually typing in actions into a text field, but it's often easier to control the agent with the keyboard. To do so, we can specify a binding between a key press and an action name with the addKeyAction method. In this case, we'll set 'w' to correspond to north; 's' south; 'd' east; and 'a' west. Change your main method to now look like the below.
+				And add the method
 				</p>
 				<pre class="prettyprint lang-java">
-public static void main(String [] args){
-		
-	ExampleGridWorld gen = new ExampleGridWorld();
-	Domain domain = gen.generateDomain();
-	
-	State initialState = ExampleGridWorld.getExampleState(domain);
-	
-	//TerminalExplorer exp = new TerminalExplorer(domain);
-	//exp.exploreFromState(initialState);
-	
-	
-	Visualizer v = gen.getVisualizer();
-	VisualExplorer exp = new VisualExplorer(domain, v, initialState);
-
-	exp.addKeyAction("w", ACTIONNORTH);
-	exp.addKeyAction("s", ACTIONSOUTH);
-	exp.addKeyAction("d", ACTIONEAST);
-	exp.addKeyAction("a", ACTIONWEST);
-
-	exp.initGUI();
-	
-	
+public void setGoalLocation(int goalx, int goaly){
+	this.goalx = goalx;
+	this.goaly = goaly;
 }
 				</pre>
 				<p>
-				Now when you run your code, you'll be presented a visualization of the state and you can interact with it with the "wasd" keys, similar to what you see in the below image. Note that you may need to click on the image for it to begin accepting key presses.
+				Now lets finish by implementing our generateDomain method!
 				</p>
-				<center>
-				<img src="images/visualExplorer.png" width="400"/>
-				</center>
+				<pre class="prettyprint lang-java">
+@Override
+public SADomain generateDomain() {
+
+	SADomain domain = new SADomain();
+
+
+	domain.addActionTypes(
+			new UniversalActionType(ACTION_NORTH),
+			new UniversalActionType(ACTION_SOUTH),
+			new UniversalActionType(ACTION_EAST),
+			new UniversalActionType(ACTION_WEST));
+
+	GridWorldStateModel smodel = new GridWorldStateModel();
+	RewardFunction rf = new ExampleRF(this.goalx, this.goaly);
+	TerminalFunction tf = new ExampleTF(this.goalx, this.goaly);
+
+	domain.setModel(new FactoredModel(smodel, rf, tf));
+
+	return domain;
+}
+				</pre>
 				<p>
-				 Remember, since we made movement stochastic, you may find the agent moving in unintended directions some of the time. Also note that when the agent enters the same position as the location object that in the bottom text box in the window you'll see "at(agent0, location0)" appear. This text box always lists all propositional functions that are true in the current state automatically.
-				 </p>
+				The generateDomain method starts by making a new SADomain instance. Then we add an ActionType for each of our actions. Our grid world north, south, east, west actions are unparameterized actions that can be applied anywhere in the world, so we can use BURLAP's provided UnviersalActionType implementation, which simply requires a name for each of the actions.
+				</p>
+				<p>
+				We then create an instance of our state model, and a reward function and terminal function using our implemented methods with a goal location set to the ExampleGridWorld instance's goalx and goaly values. The elements are used to define a FactoredModel, which is added to our domain. Then, we return the created domain!
+				</p>
+				<p>
+				We've now created all the elements we need for our grid world MDP and it's now ready to be used with BURLAP algorithms. However, it is often very useful to be able to visualize a domain. In the next section, we will show you have to create a visualizer for our grid world domain.
+				</p>
 
 				<div id="footerControls">
 					<a href="p5.html">Next Part</a>

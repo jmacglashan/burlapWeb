@@ -1,0 +1,353 @@
+`<html>
+	<head>
+		<title>Building a Domain</title>
+		<script src="../../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+		</script>
+		<script type="text/javascript"
+			src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="../../index.html">BURLAP</a>
+			<span id="nav-items"><a href="../../index.html">Home</a> | <a href="../../updates.html">Updates</a> | <a href="../../information.html">Information</a> | <a href="../../faq.html">F.A.Q.</a> | <a href="../index.html">Tutorials</a> | <a href="../../doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>Tutorial: Building an OO-MDP Domain</h1>
+				<h2><a href="../index.html">Tutorials</a> > <a href="p1.html">Building an OO-MDP Domain</a> > Part 2</h2>
+				<div id="index">
+					<b>Tutorial Contents</b>
+					<ul>
+						<li><a href="p1.html#intro">Introduction</a></li>
+						<li><a href="p1.html#interfaces">Java Interfaces for OO-MDPs</a></li>
+						<li><a href="p1.html#independent">Object Identifier Independence</a></li>
+						<li><a href="p2.html#state"><b>Grid World OO-MDP States</b></a></li>
+						<li><a href="p3.html#model">Grid World OO-MDP Model</a></li>
+						<li><a href="p3.html#visualizer">OO-MDP Visualization</a></li>
+						<li><a href="p3.html#testing">Testing it Out</a></li>
+						<li><a href="p4.html#conclusion">Conclusion</a></li>
+						<li><a href="p4.html#code">Final Code</a></li>
+					</ul>
+				</div>
+				<div id="sectionControls">
+					<a href="p1.html">Previous Part</a> | <a href="p3.html">Next Part</a>
+				</div>
+				
+				<br/><br/>
+
+
+				<h3><a name="state">Grid World OO-MDP States</a></h3>
+				<p>
+				In the remaining sections, we will be reimplementing our previous Grid World from the Building a Domain tutorial as an OO-MDP. Much of the code will remain the same, so in this tutorial, we will assume you are familiar with the work in the previous tutorial, and just describe the aspects that we've changed. 
+				</p>
+				<p>
+				Lets start by creating an OO-MDP Grid World DomainGenerator that will hold constants and generate our domain. Lets call this class ExampleOOGridWorld.
+				</p>
+				<pre class="prettyprint lang-java">
+import burlap.mdp.auxiliary.DomainGenerator;
+import burlap.mdp.auxiliary.common.SinglePFTF;
+import burlap.mdp.core.StateTransitionProb;
+import burlap.mdp.core.TerminalFunction;
+import burlap.mdp.core.action.Action;
+import burlap.mdp.core.action.UniversalActionType;
+import burlap.mdp.core.oo.OODomain;
+import burlap.mdp.core.oo.propositional.PropositionalFunction;
+import burlap.mdp.core.oo.state.OOState;
+import burlap.mdp.core.oo.state.ObjectInstance;
+import burlap.mdp.core.oo.state.generic.GenericOOState;
+import burlap.mdp.core.state.State;
+import burlap.mdp.singleagent.common.SingleGoalPFRF;
+import burlap.mdp.singleagent.environment.SimulatedEnvironment;
+import burlap.mdp.singleagent.model.FactoredModel;
+import burlap.mdp.singleagent.model.RewardFunction;
+import burlap.mdp.singleagent.model.statemodel.FullStateModel;
+import burlap.mdp.singleagent.oo.OOSADomain;
+import burlap.shell.visual.VisualExplorer;
+import burlap.visualizer.*;
+
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
+public class ExampleOOGridWorld implements DomainGenerator{
+
+	public static final String VAR_X = "x";
+	public static final String VAR_Y = "y";
+	public static final String VAR_TYPE = "type";
+
+	public static final String CLASS_AGENT = "agent";
+	public static final String CLASS_LOCATION = "location";
+
+	public static final String ACTION_NORTH = "north";
+	public static final String ACTION_SOUTH = "south";
+	public static final String ACTION_EAST = "east";
+	public static final String ACTION_WEST = "west";
+
+	public static final String PF_AT = "at";
+
+
+	//ordered so first dimension is x
+	protected int [][] map = new int[][]{
+			{0,0,0,0,0,1,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,1,0,0,0,0,0},
+			{0,0,0,0,0,1,0,0,0,0,0},
+			{0,0,0,0,0,1,0,0,0,0,0},
+			{1,0,1,1,1,1,1,1,0,1,1},
+			{0,0,0,0,1,0,0,0,0,0,0},
+			{0,0,0,0,1,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,1,0,0,0,0,0,0},
+			{0,0,0,0,1,0,0,0,0,0,0},
+	};
+
+
+
+	@Override
+	public OOSADomain generateDomain() {
+		//we'll fill this in later
+	}
+
+}
+				</pre>
+				<p>
+				Lets now implement our Grid World State as an OO-MDP. Previously, we had a single ExGridState that we implemented. In our OO-MDP, we will define the OO-MDP to consist of an "agent" object, and any number of "location" objects that we'll use to mark places of interest. Our agent object will look much like our previous ExGridState class that tracks an x and y location. Create the below file for our agent object, named ExGridAgent.
+				</p>
+				<pre class="prettyprint lang-java">
+import burlap.mdp.core.oo.state.ObjectInstance;
+import burlap.mdp.core.state.MutableState;
+import burlap.mdp.core.state.StateUtilities;
+import burlap.mdp.core.state.UnknownKeyException;
+import burlap.mdp.core.state.annotations.DeepCopyState;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static edu.brown.cs.burlap.tutorials.domain.oo.ExampleOOGridWorld.CLASS_AGENT;
+import static edu.brown.cs.burlap.tutorials.domain.oo.ExampleOOGridWorld.VAR_X;
+import static edu.brown.cs.burlap.tutorials.domain.oo.ExampleOOGridWorld.VAR_Y;
+
+
+@DeepCopyState
+public class ExGridAgent implements ObjectInstance, MutableState {
+
+	public int x;
+	public int y;
+
+	public String name = "agent";
+
+	private final static List&lt;Object> keys = Arrays.&lt;Object>asList(VAR_X, VAR_Y);
+
+	public ExGridAgent() {
+	}
+
+	public ExGridAgent(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	public ExGridAgent(int x, int y, String name) {
+		this.x = x;
+		this.y = y;
+		this.name = name;
+	}
+
+	@Override
+	public String className() {
+		return CLASS_AGENT;
+	}
+
+	@Override
+	public String name() {
+		return name;
+	}
+
+	@Override
+	public ObjectInstance copyWithName(String objectName) {
+		return new ExGridAgent(x, y, objectName);
+	}
+
+	@Override
+	public MutableState set(Object variableKey, Object value) {
+		if(variableKey.equals(VAR_X)){
+			this.x = StateUtilities.stringOrNumber(value).intValue();
+		}
+		else if(variableKey.equals(VAR_Y)){
+			this.y = StateUtilities.stringOrNumber(value).intValue();
+		}
+		else{
+			throw new UnknownKeyException(variableKey);
+		}
+		return this;
+	}
+
+	@Override
+	public List&lt;Object> variableKeys() {
+		return keys;
+	}
+
+	@Override
+	public Object get(Object variableKey) {
+		if(variableKey.equals(VAR_X)){
+			return x;
+		}
+		else if(variableKey.equals(VAR_Y)){
+			return y;
+		}
+		throw new UnknownKeyException(variableKey);
+	}
+
+	@Override
+	public ExGridAgent copy() {
+		return new ExGridAgent(x, y, name);
+	}
+
+	@Override
+	public String toString() {
+		return StateUtilities.stateToString(this);
+	}
+
+}
+				</pre>
+				<p>
+				The first change to notice from our ExGridState is that in addition to implementing MutableState, we also implement ObjectInstance to declare this an OO-MDP object that makes up an OO-MDP state. We also added a data member, name, to track this object's name, which we default to the value "agent". The className method simply returns the class name constant we defined in our domain generator; the name method returns the name data member for this object; and the copyWithName method returns a new instance of the object with the same x and y values, and the new name. Otherwise the rest is the same as our previous ExGridState!
+				</p>
+				<p>
+				Now lets define a ObjectInstance for locations. Our location object will also be marked by an x and y position, as well as a type, so that we could have locations of different types. To implement this class, we will simply extend our ExGridAgent, add a type data type, and modify the methods to return a different class, handle the new type key, and return copies of the ExGridLocation instance instead of ExGridAgent in the copy methods.
+				</p>
+				<pre class="prettyprint lang-java">
+import burlap.mdp.core.oo.state.ObjectInstance;
+import burlap.mdp.core.state.MutableState;
+import burlap.mdp.core.state.StateUtilities;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static edu.brown.cs.burlap.tutorials.domain.oo.ExampleOOGridWorld.*;
+
+public class EXGridLocation extends ExGridAgent{
+
+	public int type;
+
+	private final static List&lt;Object> keys = Arrays.&lt;Object>asList(VAR_X, VAR_Y, VAR_TYPE);
+
+	public EXGridLocation() {
+	}
+
+	public EXGridLocation(int x, int y, String name) {
+		super(x, y, name);
+	}
+
+	public EXGridLocation(int x, int y, int type, String name) {
+		super(x, y, name);
+		this.type = type;
+	}
+
+
+	@Override
+	public List&lt;Object> variableKeys() {
+		return keys;
+	}
+
+	@Override
+	public Object get(Object variableKey) {
+		if(variableKey.equals(VAR_TYPE)){
+			return this.type;
+		}
+		return super.get(variableKey);
+	}
+
+	@Override
+	public MutableState set(Object variableKey, Object value) {
+		if(variableKey.equals(VAR_TYPE)){
+			this.type = StateUtilities.stringOrNumber(value).intValue();
+		}
+		else{
+			super.set(variableKey, value);
+		}
+		return this;
+
+	}
+
+	@Override
+	public String className() {
+		return CLASS_LOCATION;
+	}
+
+	@Override
+	public ObjectInstance copyWithName(String objectName) {
+		return new EXGridLocation(x, y, type, objectName);
+	}
+
+	@Override
+	public EXGridLocation copy() {
+		return new EXGridLocation(x, y, type, name);
+	}
+}
+				</pre>
+				<p>
+				So far we've defined the ObjectInstances for our State, but we haven't define the OOState that will be made up of these ObjectInstances. However, for this tutorial we will be making use of BURLAP's provided GenericOOState implementation, so at this point we're done with the explicit state definition code. However, we will now add a propositional function to our domain that evaluates whether the agent object is at a location, indicated by their x and y location being the same. Add the following code to the ExampleOOGridWorld class.
+				</p>
+				<pre class="prettyprint lang-java">
+protected class AtLocation extends PropositionalFunction {
+
+	public AtLocation(){
+		super(PF_AT, new String []{CLASS_AGENT, CLASS_LOCATION});
+	}
+
+	@Override
+	public boolean isTrue(OOState s, String... params) {
+		ObjectInstance agent = s.object(params[0]);
+		ObjectInstance location = s.object(params[1]);
+
+		int ax = (Integer)agent.get(VAR_X);
+		int ay = (Integer)agent.get(VAR_Y);
+
+		int lx = (Integer)location.get(VAR_X);
+		int ly = (Integer)location.get(VAR_Y);
+
+		return ax == lx && ay == ly;
+
+	}
+	
+}
+				</pre>
+				<p>
+				The constructor we added calls the super constructor that will define the PropositionalFunction's signature: that is, its name (the PF_AT constant), and OO-MDP classes to which its parameters must belong. In this case, our "at" propositional function will operate on an agent object and a location object, so we provided parameters with those types.
+				</p>
+				<p>
+				The isTrue method takes as input a OOState to evaluate, and the names of the objects on which to evaluate the function in the variable length String argument params. The first step is to get the agent and location ObjectInstances from the state for the parameters provided to function. Because we defined the function to operate on two parameters, an agent and then a location, we know the params argument passed to the isTrue method has two elements. Then we get the agent and location ObjectInstance by by using the OOState method object on the first and second elements of the params argument. Next, we get the x and y values for each of the objects using the standard State get method, and then check if the agent and location positions are equal to determine whether the agent is at the location.
+				</p>
+				<p>
+				Lets also add a method to our ExampleOOGridWorld class to generate a list of all our propositional functions. In this case we only have one, but this is often a useful method to include.
+				</p>
+				<pre class="prettyprint lang-java">
+public List&lt;PropositionalFunction> generatePfs(){
+	return Arrays.&lt;PropositionalFunction>asList(new AtLocation());
+}
+				</pre>
+				<p>
+				We are now finished defining the OO-MDP state information and next will implement the grid world model.
+				</p>
+
+				
+				<div id="footerControls">
+					<a href="p3.html">Next Part</a>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

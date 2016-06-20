@@ -1,0 +1,527 @@
+<html>
+	<head>
+		<title>Building a Domain</title>
+		<script src="../../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="../../index.html">BURLAP</a>
+			<span id="nav-items"><a href="../../index.html">Home</a> | <a href="../../updates.html">Updates</a> | <a href="../../information.html">Information</a> | <a href="../../faq.html">F.A.Q.</a> | <a href="../index.html">Tutorials</a> | <a href="../../doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>Tutorial: Building a Domain</h1>
+				<h2><a href="../index.html">Tutorials</a> > <a href="p1.html">Building a Domain</a> > Part 3</h2>
+				<div id="index">
+					<b>Tutorial Contents</b>
+					<ul>
+						<li><a href="p1.html#intro">Introduction</a></li>
+						<li><a href="p1.html#mdp">Markov Decision Process</a></li>
+						<li><a href="p2.html#oomdp">OO-MDPs</a></li>
+						<li><a href="p2.html#burlapoverview">BURLAP OO-MDP Java Class Overview</a></li>
+						<li><a href="p3.html#oclasses"><b>Defining GridWorld Object Classes</b></a></li>
+						<li><a href="p3.html#actions">Defining GridWorld Actions</a></li>
+						<li><a href="p3.html#opfs">Defining Propositional Functions</a></li>
+						<li><a href="p3.html#testing">Testing the Domain</a></li>
+						<li><a href="p4.html#viscomps">The Components of a Visualizer</a></li>
+						<li><a href="p4.html#painters">Implementing the Painters</a></li>
+						<li><a href="p5.html#rftf">Reward Functions and Terminal Functions</a></li>
+						<li><a href="p5.html#conclusions">Conclusions</a></li>
+						<li><a href="p5.html#code">Final Code</a></li>
+					</ul>
+				</div>
+				<div id="sectionControls">
+					<a href="p2.html">Previous Part</a> | <a href="p4.html">Next Part</a>
+				</div>
+				
+				<h3><a name="oclasses">Defining GridWorld Object Classes</a></h3>
+				<p>
+				To begin implementing our grid world domain in BURLAP, we will create a class that in this tutorial we will call ExampleGridWorld. Furthermore, we will make it implement the <a href="../../doc/burlap/oomdp/auxiliary/DomainGenerator.html">DomainGenerator</a> interface, which is a common convention in BURLAP when developing domains and requires implementing the generateDomain() method. In that method, we will create an <a href="../../doc/burlap/oomdp/singleagent/SADomain.html">SADomain</a> object that will keep track of all of our attributes, object classes, etc. that we define. (Note that the <a href="../../doc/burlap/oomdp/core/Domain.html">Domain</a> class that is returned by the method is the abstract superclass of SADomain.) 
+				You should have code that looks like the below; to make things easier for the future, the below code has all of the library imports that you'll need for the rest of the tutorial.
+				</p>
+				<pre class="prettyprint lang-java">
+import burlap.oomdp.auxiliary.DomainGenerator;
+import burlap.oomdp.core.*;
+import burlap.oomdp.core.objects.MutableObjectInstance;
+import burlap.oomdp.core.objects.ObjectInstance;
+import burlap.oomdp.core.states.MutableState;
+import burlap.oomdp.core.states.State;
+import burlap.oomdp.singleagent.*;
+import burlap.oomdp.singleagent.common.SimpleAction;
+import burlap.oomdp.singleagent.environment.SimulatedEnvironment;
+import burlap.oomdp.singleagent.explorer.TerminalExplorer;
+import burlap.oomdp.singleagent.explorer.VisualExplorer;
+import burlap.oomdp.visualizer.ObjectPainter;
+import burlap.oomdp.visualizer.StateRenderLayer;
+import burlap.oomdp.visualizer.StaticPainter;
+import burlap.oomdp.visualizer.Visualizer;
+
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.util.*;
+import java.util.List;
+
+public class ExampleGridWorld implements DomainGenerator {
+
+	@Override
+	public Domain generateDomain() {
+		SADomain domain = new SADomain();
+		
+		
+		return domain;
+	}
+
+}
+				</pre>
+				<p>
+				The first thing that we will want to decide in the construction of our domain is what the object classes and attributes that define the domain are. For our grid world, we will define two object classes: an agent class, to represent the agent in the world; and a location class, which we can use to refer to special places in the world. The location class isn't necessary to define grid world problems, but we're going to include it to help illustrate
+				how to define propositional functions in BURLAP. Both the agent and location class will be defined by their x and y position in the 2D world. For convenience, it is often useful to define the names of all attributes, object classes, etc. that the domain defines
+				as string constants so that they can be precisely referenced by code that uses the domain, so lets add those to our code now.
+				</p>
+				<pre class="prettyprint lang-java">
+public static final String ATTX = "x";
+public static final String ATTY = "y";
+
+public static final String CLASSAGENT = "agent";
+public static final String CLASSLOCATION = "location";
+				</pre>
+				<p>
+				Next we will create the actual Attribute objects and the classes associated with them. Since grid worlds have discrete states, but our attributes represent numeric positions, we will
+				set our attributes to be of type int. We will also construct a world that is 11x11 in size, so we will set the attribute limits to be from 0 to 10 inclusively.
+				</p>
+				<pre class="prettyprint lang-java">
+@Override
+public Domain generateDomain() {
+	
+	SADomain domain = new SADomain();
+	
+	Attribute xatt = new Attribute(domain, ATTX, AttributeType.INT);
+	xatt.setLims(0, 10);
+	
+	Attribute yatt = new Attribute(domain, ATTY, AttributeType.INT);
+	yatt.setLims(0, 10);
+
+	ObjectClass agentClass = new ObjectClass(domain, CLASSAGENT);
+	agentClass.addAttribute(xatt);
+	agentClass.addAttribute(yatt);
+	
+	ObjectClass locationClass = new ObjectClass(domain, CLASSLOCATION);
+	locationClass.addAttribute(xatt);
+	locationClass.addAttribute(yatt);
+	
+	return domain;
+}
+				</pre>
+				<p>
+				Notice how we never directly told the domain about the attributes or object classes that we created? That's because the constructor of the attributes and object classes will tell the domain about themselves automatically to streamline construction.
+				</p>
+				<p>
+				With that code written, we're already finished defining the state representation of the domain! The next step will be to define actions.</p>
+
+				<h3><a name="actions">Defining GridWorld Actions</a></h3>
+				<p>
+				Defining actions in BURLAP means specifying the actions the agent can take, their preconditions (if any), their parameters (if any), and their transition dynamics. We will construct four actions: north, south, east, and west. None of these actions will have preconditions and they will not take any parameters. The transition dynamics we define for them will depend on the location of walls in the world. We could have potentially made the walls objects of the OO-MDP themselves,
+				but for simplifying the state representation we will keep the walls embedded in our transition dynamics without explicit state representation. To facilitate the definition of the transition dynamics, we will create a 2D int matrix specifying the location of walls in each cell. We will also create a world with
+				the same wall layout shown in the image at the beginning of this tutorial. To do so, add the following code.
+				</p>
+				<pre class="prettyprint lang-java">
+//ordered so first dimension is x
+protected int [][] map = new int[][]{
+			{0,0,0,0,0,1,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,1,0,0,0,0,0},
+			{0,0,0,0,0,1,0,0,0,0,0},
+			{0,0,0,0,0,1,0,0,0,0,0},
+			{1,0,1,1,1,1,1,1,0,1,1},
+			{0,0,0,0,1,0,0,0,0,0,0},
+			{0,0,0,0,1,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,1,0,0,0,0,0,0},
+			{0,0,0,0,1,0,0,0,0,0,0},
+	};
+
+
+				</pre>
+				<p>
+				Next we will create our actions. We will define north, south, east, and west actions that have a probability of 0.8 of going in the intended direction and a probability of 0.2 of going in any other direction.
+				</p>
+				<p>
+				To define single agent actions in BURLAP, we subclass the <a href="../../doc/burlap/oomdp/singleagent/Action.html">Action</a> class. In this case, we will create a single subclass, called Movement, and instantiate it multiple times for each movement direction. Subclassing Action requires us to implement a number of abstract methods that describe and operationalize the action, such preconditions, parameters, and transition dynamics. Since movement acitons will not have any preconditions or parameters, we can subclass <a href="../../doc/burlap/oomdp/singleagent/common/SimpleAction.html">SimpleAction</a>, which will handle the methods for no preconditions or parameters requiring us only to implement the performActionHelper method of Action. The method performActionHelper method is called whenever an action is applied in simulation to a State and must return the resulting state from applying the action. If our action is stochastic, then this method should randomly sample and return an outcome state according to the probability distribution.
+				</p>
+				<p>
+				In addition to being able sample action transitions from our Action, we would like to specify the full probability distribution of action effects from our action, which means we will want to have our Action implement the <a href="../../doc/burlap/oomdp/singleagent/FullActionModel.html">FullActionModel</a> interface. This interface requires implementing a getTransitions method, which returns a list of all possible outcome states when an action is applied and their probabiltiy of occurring. Implementing this interface will allow our domain to be solved by dynamic programming methods and other algorithms that require enumerating the full probability distribution, so it's useful to implement. However, not all domains will be able to enumerate the full probabiltiy distribution (for example, when it's infinite) so this remains an optional interface. In our case, the number of outcomes is finte and easy to specify, so we will implement it.
+				</p>
+				<hr/>
+				<p>
+				Let us now write the skeleton of our Movement class as an inner class of our GridWorldExample:
+				<pre class="prettyprint lang-java">
+protected class Movement extends SimpleAction implements FullActionModel {
+
+
+	@Override
+	protected State performActionHelper(State s, GroundedAction groundedAction) {
+		return null;
+	}
+
+	@Override
+	public List&lt;TransitionProbability> getTransitions(State s, GroundedAction groundedAction) {
+		return null;
+	}
+
+}
+				</pre>
+				<p>
+				So that we can reuse this Action class for each movement direction, lets define a data member that specifies the probability of going in each direction and let the intended direction (which will succeed with probability 0.8) be specified in the constructor, along with a name for the action and the domain to which it belongs.
+				</p>
+				<pre class="prettyprint lang-java">
+protected class Movement extends SimpleAction implements FullActionModel {
+
+	//0: north; 1: south; 2:east; 3: west
+	protected double [] directionProbs = new double[4];
+
+
+	public Movement(String actionName, Domain domain, int direction){
+		super(actionName, domain);
+		for(int i = 0; i < 4; i++){
+			if(i == direction){
+				directionProbs[i] = 0.8;
+			}
+			else{
+				directionProbs[i] = 0.2/3.;
+			}
+		}
+	}
+
+	@Override
+	protected State performActionHelper(State s, GroundedAction groundedAction) {
+		return null;
+	}
+
+	@Override
+	public List&lt;TransitionProbability> getTransitions(State s, GroundedAction groundedAction) {
+		return null;
+	}
+
+}
+				</pre>
+				<p>
+				Notice how we called a super constructor with the action name and domain? Calling the super constructor will automatically connect the action with the domain object and set its name.
+				</p>
+				<p>
+				Now we'll want to start defining our performActionHelper and getTransitions methods. To do so, lets add a helper method for getting the result of moving in a given direction. As long as the cell is free (that is, there is no wall), the agent will move to that position; if there is a wall there, the agent will stay in the same place. This method will then return the resulting x and y position of the agent.
+				</p>
+				<pre class="prettyprint lang-java">
+protected int [] moveResult(int curX, int curY, int direction){
+			
+		//first get change in x and y from direction using 0: north; 1: south; 2:east; 3: west
+		int xdelta = 0;
+		int ydelta = 0;
+		if(direction == 0){
+			ydelta = 1;
+		}
+		else if(direction == 1){
+			ydelta = -1;
+		}
+		else if(direction == 2){
+			xdelta = 1;
+		}
+		else{
+			xdelta = -1;
+		}
+		
+		int nx = curX + xdelta;
+		int ny = curY + ydelta;
+		
+		int width = ExampleGridWorld.this.map.length;
+		int height = ExampleGridWorld.this.map[0].length;
+		
+		//make sure new position is valid (not a wall or out of bounds)
+		if(nx < 0 || nx >= width || ny < 0 || ny >= height ||  
+			ExampleGridWorld.this.map[nx][ny] == 1){
+			
+			nx = curX;
+			ny = curY;
+		}
+			
+		
+		return new int[]{nx,ny};
+		
+	}
+				</pre>
+				<p>
+				With this helper method defined, all the performActionHelper method needs to do is determine the current position of the agent, sample from the direction distribution, call the moveResult method to get the new position, and set the agent attribute values to the new position. Getting the direction and setting the values can be performed by grabbing agent object instance in the state and using the pertinent value getter and setter methods. Since there is only ever one agent object instance in the state, we can retrieve the agent ObjectInstance using the getFirstObjectOfClass method that returns the first object instance of an object belonging to a specified class in the state.
+				</p>
+				
+				<pre class="prettyprint lang-java">
+@Override
+protected State performActionHelper(State s, GroundedAction groundedAction) {
+	//get agent and current position
+	ObjectInstance agent = s.getFirstObjectOfClass(CLASSAGENT);
+	int curX = agent.getIntValForAttribute(ATTX);
+	int curY = agent.getIntValForAttribute(ATTY);
+
+	//sample directon with random roll
+	double r = Math.random();
+	double sumProb = 0.;
+	int dir = 0;
+	for(int i = 0; i < this.directionProbs.length; i++){
+		sumProb += this.directionProbs[i];
+		if(r < sumProb){
+			dir = i;
+			break; //found direction
+		}
+	}
+
+	//get resulting position
+	int [] newPos = this.moveResult(curX, curY, dir);
+
+	//set the new position
+	agent.setValue(ATTX, newPos[0]);
+	agent.setValue(ATTY, newPos[1]);
+
+	//return the state we just modified
+	return s;
+}
+				</pre>
+				<div class="note">
+				<h2>The anatomy of performActionHelper</h2>
+				<p>
+				You might have two questions about the performActionHelper method that we didn't explain; first you might wonder what the <a href="../../doc/burlap/oomdp/singleagent/GroundedAction.html">GroundedAction</a> method argument is for; second you might wonder if it's safe to directly modify the input State and return it, rather than making a new state and returning it.
+				</p>
+				<p>
+				The GroundedAction argument is provided because BURLAP supports parameterized actions; that is, actions that require the agent to select parameter values to execute the action. For example, in a blocks world, we can imagine a parameterized "stack" action that requires two block parameters to be specified: which block to pick up and on which block to stack it. Since our Action definition is not parameterized, we do not have to worry about which parameter values were specified, but if it was, the GroundedAction class (or rather subclasses of it that depend on the kind of parameterization used) would contain all the parameter information needed to apply the action and in the performActionHelper method, we would look inside the provided GroundedAction to determine the outcome. Note that this paradigm is used for many other Action methods as well (though they are not implemented here since we extended SimpleAction).
+				</p>
+				<p>
+				Regarding modifying the input state directly, this is safe to do because performActionHelper is always called indirectly through the method perfomAction. The performAction method first makes a copy of its input state and then passes that to performActionHelper, thereby ensuring that performActionHelper cannot modify an important state used by the calling code.
+				</p>
+				</div>
+				<p>
+				For the getTransition method, we'll do something similar, except in this case, we'll enumerate all possible outcomes, not just sample one, and create a new state object for each possible outcome. Each outcome will be also be associated with its probability of occurring, and we use the <a href="../../doc/burlap/oomdp/core/TransitionProbability.html">TransitionProbability</a> class to store this paired outcome-probability association.
+				</p>
+				<p>
+				As we assign the probabilities, we need to make sure they sum to one. We need to be careful here, because it's possible for two directions to result in the same outcome state. For example, if the agent is adjacent to a wall to the west and south, then movements in the west and south direction would result in the same outcome: no movement. Therefore, we sum together the probabilities of all movement directions that go into a wall and therefore result in no movement.
+				</p>
+				<pre class="prettyprint lang-java">
+@Override
+public List&lt;TransitionProbability> getTransitions(State s, GroundedAction groundedAction) {
+	//get agent and current position
+	ObjectInstance agent = s.getFirstObjectOfClass(CLASSAGENT);
+	int curX = agent.getIntValForAttribute(ATTX);
+	int curY = agent.getIntValForAttribute(ATTY);
+
+	List&lt;TransitionProbability> tps = new ArrayList&lt;TransitionProbability>(4);
+	TransitionProbability noChangeTransition = null;
+	for(int i = 0; i < this.directionProbs.length; i++){
+		int [] newPos = this.moveResult(curX, curY, i);
+		if(newPos[0] != curX || newPos[1] != curY){
+			//new possible outcome
+			State ns = s.copy();
+			ObjectInstance nagent = ns.getFirstObjectOfClass(CLASSAGENT);
+			nagent.setValue(ATTX, newPos[0]);
+			nagent.setValue(ATTY, newPos[1]);
+
+			//create transition probability object and add to our list of outcomes
+			tps.add(new TransitionProbability(ns, this.directionProbs[i]));
+		}
+		else{
+			//this direction didn't lead anywhere new
+			//if there are existing possible directions
+			//that wouldn't lead anywhere, aggregate with them
+			if(noChangeTransition != null){
+				noChangeTransition.p += this.directionProbs[i];
+			}
+			else{
+				//otherwise create this new state and transition
+				noChangeTransition = new TransitionProbability(s.copy(),
+						this.directionProbs[i]);
+				tps.add(noChangeTransition);
+			}
+		}
+	}
+
+
+	return tps;
+}
+				</pre>
+				<hr/>
+				<p>
+				With the Action class defined, we'll want to hook it up to our domain. First, lets add some string constants for the names of the actions.
+				<pre class="prettyprint lang-java">
+public static final String ACTIONNORTH = "north";
+public static final String ACTIONSOUTH = "south";
+public static final String ACTIONEAST = "east";
+public static final String ACTIONWEST = "west";
+				</pre>
+				<p>
+				Then we just need to call the constructor in our generateDomain method. As with the object classes and attributes, calling the constructor will automatically tell our domain about it, so we don't need to do anything further.
+				</p>
+				<pre class="prettyprint lang-java">
+new Movement(ACTIONNORTH, domain, 0);
+new Movement(ACTIONSOUTH, domain, 1);
+new Movement(ACTIONEAST, domain, 2);
+new Movement(ACTIONWEST, domain, 3);;
+				</pre>
+
+				<h3><a name="opfs">Defining Propositional Functions</a></h3>
+				<p>
+				Although we have a functioning domain at this point, we're going to add an optional propositional function to it to demonstrate how to use them. The propositional function we will create is at(agent, location). Notice that it will take two parameters, one which is an OO-MDP object belonging to OO-MDP class "agent" and the other an OO-MDP object belonging to OO-MDP class "location." The function should evaluate to true when the provided agent object's position is equal to the provided location object's position. To implement this function, we will need to subclass the PropositionalFunction class. Lets first create another string constant for the name of the function.
+				</p>
+				<pre class="prettyprint lang-java">
+public static final String PFAT = "at";
+				</pre>
+				<p>
+				And then lets make the shell of the class implementation with a constructor.
+				</p>
+				<pre class="prettyprint lang-java">
+protected class AtLocation extends PropositionalFunction{
+
+	public AtLocation(Domain domain){
+		super(PFAT, domain, new String []{CLASSAGENT,CLASSLOCATION});
+	}
+	
+	@Override
+	public boolean isTrue(State s, String[] params) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+	
+}
+				</pre>
+				<p>
+				Inside the constructor we called a super constructor that takes as arguments the name of the propositional function, the domain with which it will be associated, and an array specifying the OO-MDP class types to which its parameters must adhere.
+				</p>
+				<p>
+				Now lets implement the isTrue method, which is as simple as getting the object instances of the provided parameters and checking if the attributes are equal. The parameters that are provided to the method are the names (or identifiers) of the objects in the world that it's referencing, so we can retrieve the objects from the provided state object by simply querying for the object with the given identifier.
+				</p>
+				<pre class="prettyprint lang-java">
+@Override
+public boolean isTrue(State s, String[] params) {
+	ObjectInstance agent = s.getObject(params[0]);
+	ObjectInstance location = s.getObject(params[1]);
+	
+	int ax = agent.getIntValForAttribute(ATTX);
+	int ay = agent.getIntValForAttribute(ATTY);
+
+	int lx = location.getIntValForAttribute(ATTX);
+	int ly = location.getIntValForAttribute(ATTY);
+	
+	return ax == lx && ay == ly;
+}
+				</pre>
+				<p>
+				Finally, lets call the constructors from our generateDomain method. As before, the constructor will automatically tell the domain about the propositional function. Our final generateDomain method will look like the below.
+				</p>
+				<pre class="prettyprint lang-java">
+@Override
+public Domain generateDomain() {
+	
+	SADomain domain = new SADomain();
+	
+	Attribute xatt = new Attribute(domain, ATTX, AttributeType.INT);
+	xatt.setLims(0, 10);
+	
+	Attribute yatt = new Attribute(domain, ATTY, AttributeType.INT);
+	yatt.setLims(0, 10);
+	
+	ObjectClass agentClass = new ObjectClass(domain, CLASSAGENT);
+	agentClass.addAttribute(xatt);
+	agentClass.addAttribute(yatt);
+	
+	ObjectClass locationClass = new ObjectClass(domain, CLASSLOCATION);
+	locationClass.addAttribute(xatt);
+	locationClass.addAttribute(yatt);
+	
+	new Movement(ACTIONNORTH, domain, 0);
+	new Movement(ACTIONSOUTH, domain, 1);
+	new Movement(ACTIONEAST, domain, 2);
+	new Movement(ACTIONWEST, domain, 3);
+	
+	new AtLocation(domain);
+	
+	return domain;
+}
+				</pre>
+				<div class="note">
+				<h2>Getting all propositional function bindings</h2>
+				<p>
+				Although we have defined a propositional function, you might be wondering how you can find all possible parameters in a state with which it can be evaluated. The PropositionalFunction super class provides a method for doing just this called <a href="../../doc/burlap/oomdp/core/PropositionalFunction.html#getAllGroundedPropsForState(burlap.oomdp.core.State)">getAllGroundedPropsForState(State)</a>, which will return a list of <a href="../../doc/burlap/oomdp/core/GroundedProp.html">GroundedProp</a> objects that can be evaluated. A GroundedProp is simply a PropositionalFunction object reference and parameters with which to evaluate it. Similarly, if you want all possible GroundedProp objects for a list of different PropositionalFunction objects, you can use the PropositionalFunction static method <a href="../../doc/burlap/oomdp/core/PropositionalFunction.html#getAllGroundedPropsFromPFList(java.util.List, burlap.oomdp.core.State)">getAllGroundedPropsForState(State)</a>.
+				</p>
+				</div>
+
+				<h3><a name="testing">Testing the Domain</a></h3>
+				<p>
+				We now have a functional domain! However, it's probably important to test that the domain actually works as expected. By the end of this tutorial we will have created a visualizer for our domain that we can use to interactively visualize and test it, but we can also test it in the command line. To test our domain, lets first add a method to generate a state with the agent in the bottom left corner and a location object in the top right.
+				</p>
+				<pre class="prettyprint lang-java">
+public static State getExampleState(Domain domain){
+	State s = new MutableState();
+	ObjectInstance agent = new MutableObjectInstance(domain.getObjectClass(CLASSAGENT), "agent0");
+	agent.setValue(ATTX, 0);
+	agent.setValue(ATTY, 0);
+
+	ObjectInstance location = new MutableObjectInstance(domain.getObjectClass(CLASSLOCATION), 
+														"location0");
+	location.setValue(ATTX, 10);
+	location.setValue(ATTY, 10);
+
+	s.addObject(agent);
+	s.addObject(location);
+
+	return s;
+}
+				</pre>
+				<p>
+				Note that we made this method static and had it take as a parameter the domain object. We made the method static because the domain object is only ever created once the generateDomain method is called and that method can produce different Domain objects each time it is called. (Although not especially important for our example, this is useful if you have parameterizable domains.) Since ObjectInstance objects have to belong to a specific ObjectClass, we have to have the have the corresponding domain object from which to retrieve the ObjectClass.
+				</p>
+				<p>
+				Since State and ObjectInstance are interface that can have any number of implementation, we need to choose one. Since we're no doing anything fancy, we can use the simple <a href="../../doc/burlap/oomdp/core/states/MutableState.html">MutableState</a> and <a href="../../doc/burlap/oomdp/core/objects/MutableObjectInstance.html">MutableObjectInstance implementations</a>.
+				</p>
+				<p>
+				In addition to taking an ObjectClass, the MutableObjectInstance constructor also takes as a parameter the name or identifier of the object instance. This name will be used to identify the object from other objects in the state and to further disambiguate it from multiple objects of the same class. This name is also what will be passed to the PropositionalFunction isTrue method parameters.
+				</p>
+				<p>
+				Lets now add a main method that we will launch into to test our domain. To do the testing, we will make use the <a href="../../doc/burlap/oomdp/singleagent/explorer/TerminalExplorer.html">TerminalExplorer</a> which lets us act as the agent through the command line. Create the main method as shown below.
+				</p>
+				<pre class="prettyprint lang-java">
+public static void main(String [] args){
+		
+	ExampleGridWorld gen = new ExampleGridWorld();
+	Domain domain = gen.generateDomain();
+
+	State initialState = ExampleGridWorld.getExampleState(domain);
+
+	TerminalExplorer exp = new TerminalExplorer(domain, initialState);
+	exp.explore();
+	
+	
+}
+				</pre>
+				<div class="note">
+				<h2>TerminalExplorer and Environment instances</h2>
+				<p>
+				It's worth noting that the terminal explorer works by taking command line commands from a user, interpreting them into actions, and feeding them into an <a href="../../doc/burlap/oomdp/singleagent/environment/Environment.html">Environment</a> (it also has some other special commands you can give which you'll see when you start it). When we use a constructor with just a domain and initial state, it creates a <a href="../../doc/burlap/oomdp/singleagent/environment/SimulatedEnvironment.html">SimulatedEnvironment</a> instance using that domain, but we could have provided any other Environment instead using a different constructor.
+				</p>
+				</div>
+				<p>
+				When you run main in the command line/terminal you should see a print out describing the example state. If you now type the name of an action (such as "north") and hit enter, it will change state and print out the new state. Remember that our actions are stochastic, so 20% of the time you'll find yourself going in a different direction!
+				</p>
+				<p>
+				While using the TerminalExplorer works for all domains that you might create, as your domains get more complex it be can be difficult to make sense of them from text alone. Having a visualizer makes understanding what's happening in your domain much easier. Furthermore, you can reuse a visualizer not just for interacting in the world yourself, but for visualizing results of learning and planning algorithms. In the next sections, we will walk through how to create a state visualizer for this domain.
+				</p>
+
+				<div id="footerControls">
+					<a href="p4.html">Next Part</a>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,316 @@
+<html>
+	<head>
+		<title>Creating a Planning and Learning Algorithm</title>
+		<script src="../../google-code-prettify/run_prettify.js?skin=desert"></script>
+		<link href="../../style.css" rel="stylesheet" type="text/css" media="screen" />
+	</head>
+	<body>
+	
+		<div id="nav">
+			<span id="nav-content">
+			<a href="../../index.html">BURLAP</a>
+			<span id="nav-items"><a href="../../index.html">Home</a> | <a href="../../updates.html">Updates</a> | <a href="../../information.html">Information</a> | <a href="../../faq.html">F.A.Q.</a> | <a href="../index.html">Tutorials</a> | <a href="../../doc/index.html">Java Doc</a></span>
+			</span>
+		</div>
+		<div id="page">
+			<div id="page-content">
+				<h1>Tutorial: Creating a Planning and Learning Algorithm</h1>
+				<h2><a href="../index.html">Tutorials</a> > <a href="p1.html">Creating a Planning and Learning Algorithm</a> > Part 2</h2>
+				<div id="index">
+					<b>Tutorial Contents</b>
+					<ul>
+						<li><a href="p1.html#intro">Introduction</a></li>
+						<li><a href="p1.html#vio">Value Iteration Overview</a></li>
+						<li><a href="p2.html#vi"><b>VI Code</b></a></li>
+						<li><a href="p2.html#testvi">Testing VI</a></li>
+						<li><a href="p3.html#qlo">Q-Learning Overview</a></li>
+						<li><a href="p3.html#qlcode">Q-Learning Code</a></li>
+						<li><a href="p3.html#qltest">Testing Q-Learning</a></li>
+						<li><a href="p4.html#conclusions">Conclusions</a></li>
+						<li><a href="p4.html#vicode">Full VI Code</a></li>
+						<li><a href="p4.html#qlcode">Full Q-Learning Code</a></li>
+					</ul>
+				</div>
+				<div id="sectionControls">
+					<a href="p1.html">Previous Part</a> | <a href="p3.html">Next Part</a>
+				</div>
+				
+				<h3><a name="vi">VI Code</a></h3>
+				<p>
+				Lets start by creating our class for VI, which we'll call VITutorial. Our class will extend <a href="../../doc/burlap/behavior/singleagent/MDPSolver.html">MDPSolver</a>, to gain many of the useful datastructures used in solving an MDP, and it will implement the <a href="../../doc/burlap/behavior/singleagent/planning/Planner.html">Planner</a> and <a href="../../doc/burlap/behavior/valuefunction/QFunction.html">QFunction</a> interfaces. The former because we will implement the planFromState method and the latter because ValueIteration computes and ValueFunction and QFunction (the QFunction interface extends the <a href="../../doc/burlap/behavior/valuefunction/ValueFunction.html">ValueFunction</a> interface). We will also add all the imports we will need in developing this class.
+				</p>
+				<pre class="prettyprint lang-java">
+import burlap.behavior.policy.GreedyQPolicy;
+import burlap.behavior.policy.Policy;
+import burlap.behavior.singleagent.EpisodeAnalysis;
+import burlap.behavior.singleagent.MDPSolver;
+import burlap.behavior.singleagent.auxiliary.EpisodeSequenceVisualizer;
+import burlap.behavior.singleagent.auxiliary.StateReachability;
+import burlap.behavior.singleagent.planning.Planner;
+import burlap.behavior.valuefunction.QFunction;
+import burlap.behavior.valuefunction.QValue;
+import burlap.behavior.valuefunction.ValueFunctionInitialization;
+import burlap.domain.singleagent.gridworld.GridWorldDomain;
+import burlap.domain.singleagent.gridworld.GridWorldTerminalFunction;
+import burlap.domain.singleagent.gridworld.GridWorldVisualizer;
+import burlap.oomdp.core.AbstractGroundedAction;
+import burlap.oomdp.core.Domain;
+import burlap.oomdp.core.TerminalFunction;
+import burlap.oomdp.core.TransitionProbability;
+import burlap.oomdp.core.states.State;
+import burlap.oomdp.singleagent.GroundedAction;
+import burlap.oomdp.singleagent.RewardFunction;
+import burlap.oomdp.singleagent.SADomain;
+import burlap.oomdp.singleagent.common.UniformCostRF;
+import burlap.oomdp.statehashing.HashableState;
+import burlap.oomdp.statehashing.HashableStateFactory;
+import burlap.oomdp.statehashing.SimpleHashableStateFactory;
+import burlap.oomdp.visualizer.Visualizer;
+
+import java.util.*;
+
+public class VITutorial extends MDPSolver implements Planner, QFunction{
+
+
+	@Override
+	public double value(State s) {
+		return 0.;
+	}
+
+	@Override
+	public List&lt;QValue> getQs(State s) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public QValue getQ(State s, AbstractGroundedAction a) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Policy planFromState(State initialState) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void resetSolverResults() {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+				</pre>
+				<p>
+				Because we are sub classing MDPSolver, this object will auto create data members that define our domain and task (the Domain, RewardFunction, TerminalFunction, discount factor, and
+				HashableStateFactory that is used to hash and check the equality of states). However, the other critical data that VI needs to store are its estimates of the value function! A value function is ultimately a mapping from states to a real value. Therefore, for fast access we can use a HashMap and use a <a href="../../doc/burlap/oomdp/statehashing/HashableStateFactory.html">HashableStateFactory</a> to provide <a href="f../../doc/burlap/oomdp/statehashing/HashableState.html">HashableState</a> instances from states. One way to make VI run faster is to inititialize its value funciton to something close to the optimal value function. BURLAP has a <a href="../../doc/burlap/behavior/valuefunction/ValueFunctionInitialization.html">ValueFuncitonInitialization</a> interface that can be provided to our code for choosing initialization values. We'll also have a parameter that specifies how long value iteration should run before it terminates (there are others to test for convergence that we will not cover here). Lets create datamembers for these elements and create a constructor.
+				</p>
+				<pre class="prettyprint lang-java">
+protected Map&lt;HashableState, Double> valueFunction;
+protected ValueFunctionInitialization vinit;
+protected int numIterations;
+
+
+public VITutorial(Domain domain, RewardFunction rf, TerminalFunction tf, double gamma,
+				  HashableStateFactory hashingFactory, ValueFunctionInitialization vinit, 
+				  int numIterations){
+	this.solverInit(domain, rf, tf, gamma, hashingFactory);
+	this.vinit = vinit;
+	this.numIterations = numIterations;
+	this.valueFunction = new HashMap&lt;HashableState, Double>();
+}
+				</pre>
+			
+				<p>
+				Note that since our MDPSolver superclass will hold our data members for the domain, reward function, terminal function, discount factor, and HashableStateFactory, we can initialize them with its solverInit method.
+				</p>
+				<p>
+				There is one other critical component VI needs that isn't part of the data we've given it in the constructor: the full state space! One reason we might not want to demand this upfront is because in an OO-MDP, it is possible for the state space to be infinite even though for any given input state there may only be a finite set of states that are reachable. We could require the user to provide to our algorithm up front what the state space is, but it's much easier on the client if we determine the set of possible reachable states for any given seed state ourself and only perform this procedure when planning is requested for a previously unseen state. Lets define a method to get all reachable states from an input state and initialize the value for them with our ValueFunctionInitialization object. Add the below method.
+				<pre class="prettyprint lang-java">
+public void performReachabilityFrom(State seedState){
+
+	Set&lt;HashableState> hashedStates = StateReachability.getReachableHashedStates(seedState, 
+											(SADomain) this.domain, this.hashingFactory);
+	//initialize the value function for all states
+	for(HashableState hs : hashedStates){
+		if(!this.valueFunction.containsKey(hs)){
+			this.valueFunction.put(hs, this.vinit.value(hs.s));
+		}
+	}
+
+}
+				</pre>
+				<p>
+				In the first line, we make use of BURLAP's <a href="../../doc/burlap/behavior/singleagent/auxiliary/StateReachability.html">StateReachability</a> tool to do the heavy lifting of finding all reachable states. Then we simply iterate through the list, and for every HashableState for which we do not already have an entry, we initialize it with the value returned from the ValueFunctionInitialization. You may notice that the value function is passed hs.s. Since our set of states are actually a set of HashableState instances, we retrieve the underlying State object stored in the HashableState by its .s member.
+				</p>
+				<hr/>
+				<p>
+				The other method we'll need to implement is the Bellman Equation. As noted on the previous page, the Bellman Equation is just a max over the Q-values and since we already have methods defined for getting the Q-value of states (a requirement of implementing the QFunction interface), we will implement those methods and a Bellman Equation method next. 
+				</p>
+				<pre class="prettyprint lang-java">
+@Override
+public List&lt;QValue> getQs(State s) {
+	List&lt;GroundedAction> applicableActions = this.getAllGroundedActions(s);
+	List&lt;QValue> qs = new ArrayList&lt;QValue>(applicableActions.size());
+	for(GroundedAction ga : applicableActions){
+		qs.add(this.getQ(s, ga));
+	}
+	return qs;
+}
+
+@Override
+public QValue getQ(State s, AbstractGroundedAction a) {
+
+	//type cast to the type we're using
+	GroundedAction ga = (GroundedAction)a;
+
+	//what are the possible outcomes?
+	List&lt;TransitionProbability> tps = ga.getTransitions(s);
+
+	//aggregate over each possible outcome
+	double q = 0.;
+	for(TransitionProbability tp : tps){
+		//what is reward for this transition?
+		double r = this.rf.reward(s, ga, tp.s);
+
+		//what is the value for the next state?
+		double vp = this.valueFunction.get(this.hashingFactory.hashState(tp.s));
+
+		//add contribution weighted by transition probabiltiy and
+		//discounting the next state
+		q += tp.p * (r + this.gamma * vp);
+	}
+
+	//create Q-value wrapper
+	QValue qValue = new QValue(s, ga, q);
+
+	return qValue;
+}
+
+protected double bellmanEquation(State s){
+
+	if(this.tf.isTerminal(s)){
+		return 0.;
+	}
+
+	List&lt;QValue> qs = this.getQs(s);
+	double maxQ = Double.NEGATIVE_INFINITY;
+	for(QValue q : qs){
+		maxQ = Math.max(maxQ, q.q);
+	}
+	return maxQ;
+}
+				</pre>
+				<p>
+				You'll note that the Q-value methods return <a href="../../doc/burlap/behavior/valuefunction/QValue.html">QValue</a> objects, which are just triples consisting of a <a href="../../doc/burlap/oomdp/core/states/State.html">State</a> object, an <a href="../../doc/burlap/oomdp/core/AbstractGroundedAction.html">AbstractGroundedAction</a> object, and a double for the Q-value associated with them.
+				</p>
+				<div class="note">
+				<h2>AbstractGroundedAction versus Action</h2>
+				<p>
+				You might wonder why we're using AbstractGroundedAction references for actions, rather than a <a href="../../doc/burlap/oomdp/singleagent/Action.html">Action</a> instance that we subclassed to define actions in the <a href="../bd/p1.html">Building a Domain Tutorial</a>. However, recall that the Action class is used for <i>defining</i> actions, whereas the <a href="../../doc/burlap/oomdp/singleagent/GroundedAction.html">GroundedAction</a> class is a reference to an Action definition that also contains any action parameter selections necessary to execute the action. Since actions could be parameterized, we use implementations of the general AbstractGroundedAction interface, of which GroundedAction is an implementation, to reason about decisions, or in this case, estimate the Q-value for the action selection. 
+				</p>
+				</div>
+				<p>
+				In the getQs method, we simply find all possible grounded actions (using a method ineheretied from MDPSolver which we extended; alternatively, we could use an <a href="../../doc/burlap/oomdp/singleagent/Action.html#getAllApplicableGroundedActionsFromActionList(java.util.List,%20burlap.oomdp.core.states.State)">Action static method</a> that takes is list of Aciton objects and State and returns all applicable groundings), ask our getQ method what the Q-value is, and then return the list of all those Q-values. 
+				</p>
+				<p>In the getQ method, we find all possible transitions from the input state and weigh the value of those outcomes by the probability of the transition occurring. The value of each outcome is the reward received, and the discounted value we have estimated for the outcome state.
+				</p>
+				<p>
+				In the bellmanEquation method, we in general just return the maximum Q-value for the state; however, there is a catch. That is, if the input state is a terminal state, then by definition of it being a terminal state the value is zero, because the idea of a terminal state is that no action can follow from it. Therefore, if the state is a terminal state, we return a value of 0 and ignore whatever the domain object would say the possible transitions would be. Note that this check is <b>not</b> just a performance saver; all terminal states are specified by the TerminalFunction interface, so we must always refer to it to handle terminal states and cannot expect that a domain's transition dynamics have it baked in.
+				</p>
+				<hr/>
+				<p>
+				We now have all the tools we need to do planning, so it's time to implement the planFromStateMethod. This method is called whenever a client wants to run planning from a given initial (or seed) state. What we'll do then is first check if we've already performed planning that includes that state. If so, we'll do nothing, having assumed to already have computed the value for it. However, if we haven't seen it before, then we'll first find all reachable states from it, and then run value iteration for a given number of iterations. As a reminder, running value iteration means making iterative sweeps over the entire state space in which the value of each state is re-estimated to what the Bellman equation says it is given the previously estimated value of the states. Finally, all planFromState methods
+				require return a suitable <a href="../../doc/burlap/behavior/policy/Policy.html">Policy</a> object to use the planning results. For value iteration, assuming it converged, the optimal policy is to select the action with the highest Q-value; therefore we'll return a <a href="../../doc/burlap/behavior/policy/GreedyQPolicy.html">GreedyQPolicy</a> object. GreedyQPolicy objects need to be told what their QFunction source is, which in this case, is the instance of our class.
+				</p>
+				<pre class="prettyprint lang-java">
+@Override
+public GreedyQPolicy planFromState(State initialState) {
+	
+	HashableState hashedInitialState = this.hashingFactory.hashState(initialState);
+	if(this.valueFunction.containsKey(hashedInitialState)){
+		return new GreedyQPolicy(this); //already performed planning here!
+	}
+
+	//if the state is new, then find all reachable states from it first
+	this.performReachabilityFrom(initialState);
+
+	//now perform multiple iterations over the whole state space
+	for(int i = 0; i < this.numIterations; i++){
+		//iterate over each state
+		for(HashableState sh : this.valueFunction.keySet()){
+			//update its value using the bellman equation
+			this.valueFunction.put(sh, this.bellmanEquation(sh.s));
+		}
+	}
+
+	return new GreedyQPolicy(this);
+
+}
+				</pre>
+				<hr/>
+				<p>
+				We're now just about finished! The only thing left is that each MDPSolver instance is asked to implement the method resetSolverResults, which when called should have the effect of resetting all data so that it's as if no planning calls had ever been made. For our VI implementation, all this requires is clearing our value function.
+				<pre class="prettyprint lang-java">
+@Override
+public void resetSolverResults() {
+	this.valueFunction.clear();
+}
+				</pre>
+				<h3><a name="testvi">Testing VI</a></h3>
+				<p>
+				To test our code, you can try using this planning algorithm with the grid world task created in the previous <a href="../bpl.p1.html">Basic Planning and Learning</a> tutorial.Alternatively, below is a main method that you can add to test your VI implementation that creates a <i>stochastic</i> grid world, plans for it, and evaluates a single rollout of the resulting policy and visualizes the results.
+				</p>
+				<pre class="prettyprint lang-java">
+public static void main(String [] args){
+		
+	GridWorldDomain gwd = new GridWorldDomain(11, 11);
+	gwd.setMapToFourRooms();
+
+	//only go in intended directon 80% of the time
+	gwd.setProbSucceedTransitionDynamics(0.8);
+
+	Domain domain = gwd.generateDomain();
+
+	//get initial state with agent in 0,0
+	State s = GridWorldDomain.getOneAgentNoLocationState(domain);
+	GridWorldDomain.setAgent(s, 0, 0);
+
+	//all transitions return -1
+	RewardFunction rf = new UniformCostRF();
+
+	//terminate in top right corner
+	TerminalFunction tf = new GridWorldTerminalFunction(10, 10);
+
+	//setup vi with 0.99 discount factor, a value
+	//function initialization that initializes all states to value 0, and which will
+	//run for 30 iterations over the state space
+	VITutorial vi = new VITutorial(domain, rf, tf, 0.99, new SimpleHashableStateFactory(),
+			new ValueFunctionInitialization.ConstantValueFunctionInitialization(0.0), 30);
+
+	//run planning from our initial state
+	Policy p = vi.planFromState(s);
+	
+	//evaluate the policy with one roll out visualize the trajectory
+	EpisodeAnalysis ea = p.evaluateBehavior(s, rf, tf);
+
+	Visualizer v = GridWorldVisualizer.getVisualizer(gwd.getMap());
+	new EpisodeSequenceVisualizer(v, domain, Arrays.asList(ea));
+		
+}
+				</pre>
+				<p>
+				If you're looking to extend this tutorial on VI a little more, you might consider implementing a more intelligent VI termination condition so that rather than always running VI for a fixed number of iterations, VI terminates if the maximum change in the value function is smaller than some small threshold. Otherwise, it's now time to move on to our Q-learning example! If you'd like to see the full code we wrote all together, jump to the <a href="p4.html#vicode">end of this tutorial</a>.
+				</p>
+
+				<div id="footerControls">
+					<a href="p3.html">Next Part</a>
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+</html>

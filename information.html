@@ -29,7 +29,7 @@
 <dependency>
   <groupId>edu.brown.cs.burlap</groupId>
   <artifactId>burlap</artifactId>
-  <version>2.1.1</version>
+  <version>3.0.0</version>
 </dependency>
 				</xmp>
 				and the library will automatically be downloaded and linked to your project! If you do not have Maven installed, you can get it from <a href="https://maven.apache.org/download.cgi">here</a>
@@ -39,17 +39,17 @@
 				<a href="https://github.com/jmacglashan/burlap" target="external">https://github.com/jmacglashan/burlap</a>
 				</p>
 				<p>
-				Alternatively, you can directly download precompiled jars from Maven Central from <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22edu.brown.cs.burlap%22%20AND%20a%3A%22burlap%22">here</a>. Use the jar-with-dependencies if you want all dependencies included.
+				Alternatively, you can directly download precompiled jars from Maven Central from <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22edu.brown.cs.burlap%22%20AND%20a%3A%22burlap%22">here</a>, including older versions of Java. Use the jar-with-dependencies if you want all dependencies included.
 				</p>
 				<p>
-				If you are looking for the older version 1 of BURLAP, you can get the pre-compiled jars for it below, or use the v1 branch on git.
+				If you are looking for the older version 1 of BURLAP that predated Maven, you can get the pre-compiled jars for it below, or use the v1 branch on git.
 				</p>
 				<ul>
 				<li><a href="burlap_v1.jar">version 1 pre-compiled jar</a> with dependencies included, or</li>
 				<li><a href="burlap_v1_no_dep.jar">version 1 pre-compiled jar</a> with<b>out</b> dependencies.</li>
 				</ul>
 				<p>
-				The Java doc for version 1 can also be found <a href="doc_v1/index.html">here</a>.
+				The Java doc for version 2 can be found <a href="doc_v2/index.html">here</a> and version 1 Java doc can be <a href="doc_v1/index.html">here</a>.</p>
 				</p>
 
 				<h1>History and Future</h1>
@@ -68,19 +68,21 @@
 
 				<h1>BURLAP Extensions</h1>
 				<p>
-				Currently there are two BURLAP library extension projects used to connect BURLAP up with other systems.
+				Currently there are three BURLAP library extension projects used to connect BURLAP up with other systems.
 				<ol>
 					<li><b><a href="https://github.com/h2r/burlap_rosbridge" target="external">BURLAP Rosbridge</a></b> This extension allows you to control ROS-powered robots with BURLAP planning and learning algorithms by providing a standard BURLAP <a href="http://burlap.cs.brown.edu/doc/burlap/oomdp/singleagent/environment/Environment.html" target="external">Environment</a> class that communicates to ROS over <a href="http://wiki.ros.org/rosbridge_suite"  target="external">Rosbridge</a>. BURLAP Rosbridge is also on Maven Central, so you can simply add the following dependency along with your BURLAP dependency:
 						<xmp style="background-color: #333333; color: white; padding-left: 1em">
 <dependency>
   <groupId>edu.brown.cs.burlap</groupId>
   <artifactId>burlap_rosbridge</artifactId>
-  <version>2.1.0</version>
+  <version>3.0.0</version>
 </dependency>
 						</xmp>
 					</li>
 
 					<li><b><a href="https://github.com/h2r/burlapcraft" target="external">BurlapCraft</a></b> This extension allows you to use BURLAP planning and learning algorithms to control a player in the video game <a href="http://www.minecraft.net" target="external">Minecraft</a>.</li>
+
+					<li><b><a href="https://github.com/jmacglashan/burlap_weka">BURLAP Weka</a></b> This extensions provides some tools for hooking up BURLAP with <a href="http://www.cs.waikato.ac.nz/ml/weka/">Weka</a>, the machine learning library. Weka, however, is licensed under GPL, so if you use this extension, the whole license is GPL.</li>
 				</ol>
 				</p>
 

@@ -33,23 +33,23 @@
 				</div>
 
 				<br/><br/>
-				<b>You are viewing the tutorial for BURLAP 2; if you'd like the BURLAP version 1 tutorial, go <a href="../../tutorials_v1/scd/p1.html">here</a>.</b>
+				<b>You are viewing the tutorial for BURLAP 3; if you'd like the BURLAP 2 tutorial, go <a href="../../tutorials_v2/scd/p1.html">here</a>.</b>
 				
 				<h3><a name="intro">Introduction</a></h3>
 				<p>
-				In the <a href="../bpl/p1.html">Basic Planning and Learning tutorial</a> we walked through how to use a number of different planning and learning algorithms. However, all the algorithms we covered were exclusively for finite state planning/learning problems and it is not uncommon in real world problems to have to deal with an infinite or continuous state space. Continuous state problems are challenging because there is an infinite number of possible states, which means you're unlikely to ever visit the same state twice. Since many of the previous algorithms rely on being ably to exhaustively enumerate the states or revisit them multiple times to estimate a value function for each state, having an infinite number of states presents a problem that requires a different set of algorithms. For example, methods that generalize the value function to unseen "near by" states is one approach to handling continuous state space problems.
+				In the <a href="../bpl/p1.html">Basic Planning and Learning tutorial</a> we walked through how to use a number of different planning and learning algorithms. However, all the algorithms we covered were exclusively for finite state planning/learning problems and it is not uncommon in real world problems to have to deal with an infinite or continuous state space. Continuous state problems are challenging because there is an infinite number of possible states, which means you're unlikely to ever visit the same state twice. Since many of the previous algorithms rely on being able to exhaustively enumerate the states or revisit them multiple times to estimate a value function for each state, having an infinite number of states presents a problem that requires a different set of algorithms. For example, methods that generalize the value function to unseen "near by" states is one approach to handling continuous state space problems.
 				</p>
 				<p>
 				In this tutorial, we will explain how to solve continuous domains, using the example domains <a href="../../doc/burlap/domain/singleagent/mountaincar/MountainCar.html">Mountain Car</a>, <a href="../../doc/burlap/domain/singleagent/cartpole/InvertedPendulum.html">Inverted Pendulum</a>, and <a href="../../doc/burlap/domain/singleagent/lunarlander/LunarLanderDomain.html">Lunar Lander</a>, with three different algorithms implemented in BURLAP that are capable of handling continuous domains: <a href="../../doc/burlap/behavior/singleagent/learning/lspi/LSPI.html">Least-Squares Policy Iteration</a>, <a href="../../doc/burlap/behavior/singleagent/planning/stochastic/sparsesampling/SparseSampling.html">Sparse Sampling</a>, and <a href="../../doc/burlap/behavior/singleagent/learning/tdmethods/vfa/GradientDescentSarsaLam.html">Gradient Descent Sarsa Lambda</a>.
 				</p>
 				<p>
-				As usual, if you would like to see all the finished code that we will write in this tutorial, you can jump to the <a href="p4.html#finalcode">Final Code</a> section at the end.
+				As usual, if you would like to see all the finished code that we will write in this tutorial, you can jump to the <a href="p4.html#finalcode">Final Code</a> section at the end, or you can get it from the <a href="https://github.com/jmacglashan/burlap_examples/">burlap_examples</a> respoistory.
 
 				<h3><a name="mclspi">Solving Mountain Car with Least-Squares Policy Iteration</a></h3>
 				<p>
 				The Mountain Car domain is a classic continuous state RL domain in which an under-powered car
 				must drive up a steep mountain. However, because the mountain is so steep, the car cannot just
-				accelerate straight up to the top. Since car is in valley, it can, however, make it to its destination by first moving backwards up the opposite slope, and then accelerate down to gain enough
+				accelerate straight up to the top. Since car is in a valley, it can, however, make it to its destination by first moving backwards up the opposite slope, and then accelerate down to gain enough
 				momentum to get up the intended slope.
 				</p>
 				<center>
@@ -60,54 +60,62 @@
 				To solve this problem, we will use <a href="../../doc/burlap/behavior/singleagent/learning/lspi/LSPI.html">Least-Squares Policy Iteration</a> (LSPI). LSPI requires a collection of state-action-reward-state (SARS) transition tuples that are sampled from the domain. In some domains, like Mountain car, this data can be collected rather straight forwardly with random sampling of actions in the world. In other domains, the set of SARS data (and therefore how it is collected) is critical to getting good results out of LSPI, so it is important to keep that in mind.
 				</p>
 				<p>
-				LSPI starts by initializing with a random policy and then uses the collected SARS samples to approximate the Q-value function of that policy for the continuous state space. Afterwards, the policy is updated by choosing actions that have the highest Q-values (this change in policy is known as <i>policy improvement</i>). This process repeats until the approximate Q-value function (and consequentially the policy) stops changing much.</p>
+				LSPI starts by initializing with a random policy and then uses the collected SARS samples to approximate the Q-value function of that policy for the continuous state space. Afterwards, the policy is updated by choosing actions that have the highest Q-values (this change in policy is known as <i>policy improvement</i>). This process repeats until the approximate Q-value function (and consequently the policy) stops changing much.</p>
 				<p>
-				LSPI approximates the Q-value function for its current policy by fitting a linear function of state basis features to the SARS data it collected, similar to a typical regression problem, which is what enables the value function to generalize to unseen states. Choosing a good set of state basis functions that can be used to accurately represent the value function is also critical to getting good performance out of LSPI. In this tutorial, we will show you how to set up <a href="../../doc/burlap/behavior/singleagent/vfa/fourier/FourierBasis.html">Fourier basis functions</a> and <a href="../../doc/burlap/behavior/singleagent/vfa/rbf/RBFFeatureDatabase.html">radial basis functions</a>, which tend to be good starting places.
+				LSPI approximates the Q-value function for its current policy by fitting a linear function of state basis features to the SARS data it collected, similar to a typical regression problem, which is what enables the value function to generalize to unseen states. Choosing a good set of state basis functions that can be used to accurately represent the value function is also critical to getting good performance out of LSPI. In this tutorial, we will show you how to set up <a href="../../doc/burlap/behavior/functionapproximation/dense/fourier/FourierBasis.html">Fourier basis functions</a> and <a href="../../doc/burlap/behavior/functionapproximation/dense/rbf/RBFFeatures.html">radial basis functions</a>, which tend to be good starting places.
 				</p>
 				<hr/>
 				<p>
-				Lets start coding now. We'll begin by making a class shell, called ContinuousDomainTutorial. In it, we will create a different static method that demonstrates solving each domain and algorithm in this tutorial, so we'll start with our method for solving Mountain Car with LSPI using Fourier basis functions (MCLSPIFB). As usual, we've preemptively included all imports that you'll use in the rest of this tutorial.
+				Lets start coding now. We'll begin by making a class shell, called ContinuousDomainTutorial. In it, we will create a different static methods that demonstrates solving each domain and algorithm in this tutorial, so we'll start with our method for solving Mountain Car with LSPI using Fourier basis functions (MCLSPIFB). As usual, we've preemptively included all imports that you'll use in the rest of this tutorial.
 				</p>
 				<pre class="prettyprint lang-java">
 
+import burlap.behavior.functionapproximation.DifferentiableStateActionValue;
+import burlap.behavior.functionapproximation.dense.ConcatenatedObjectFeatures;
+import burlap.behavior.functionapproximation.dense.DenseCrossProductFeatures;
+import burlap.behavior.functionapproximation.dense.NormalizedVariableFeatures;
+import burlap.behavior.functionapproximation.dense.NumericVariableFeatures;
+import burlap.behavior.functionapproximation.dense.fourier.FourierBasis;
+import burlap.behavior.functionapproximation.dense.rbf.DistanceMetric;
+import burlap.behavior.functionapproximation.dense.rbf.RBFFeatures;
+import burlap.behavior.functionapproximation.dense.rbf.functions.GaussianRBF;
+import burlap.behavior.functionapproximation.dense.rbf.metrics.EuclideanDistance;
+import burlap.behavior.functionapproximation.sparse.tilecoding.TileCodingFeatures;
+import burlap.behavior.functionapproximation.sparse.tilecoding.TilingArrangement;
 import burlap.behavior.policy.GreedyQPolicy;
 import burlap.behavior.policy.Policy;
-import burlap.behavior.singleagent.EpisodeAnalysis;
+import burlap.behavior.policy.PolicyUtils;
+import burlap.behavior.singleagent.Episode;
 import burlap.behavior.singleagent.auxiliary.EpisodeSequenceVisualizer;
-import burlap.behavior.singleagent.auxiliary.StateGridder;
+import burlap.behavior.singleagent.auxiliary.gridset.FlatStateGridder;
 import burlap.behavior.singleagent.learning.lspi.LSPI;
 import burlap.behavior.singleagent.learning.lspi.SARSCollector;
 import burlap.behavior.singleagent.learning.lspi.SARSData;
 import burlap.behavior.singleagent.learning.tdmethods.vfa.GradientDescentSarsaLam;
 import burlap.behavior.singleagent.planning.stochastic.sparsesampling.SparseSampling;
-import burlap.behavior.singleagent.vfa.DifferentiableStateActionValue;
-import burlap.behavior.singleagent.vfa.cmac.CMACFeatureDatabase;
-import burlap.behavior.singleagent.vfa.common.ConcatenatedObjectFeatureVectorGenerator;
-import burlap.behavior.singleagent.vfa.fourier.FourierBasis;
-import burlap.behavior.singleagent.vfa.rbf.DistanceMetric;
-import burlap.behavior.singleagent.vfa.rbf.RBFFeatureDatabase;
-import burlap.behavior.singleagent.vfa.rbf.functions.GaussianRBF;
-import burlap.behavior.singleagent.vfa.rbf.metrics.EuclideanDistance;
+import burlap.domain.singleagent.cartpole.CartPoleVisualizer;
 import burlap.domain.singleagent.cartpole.InvertedPendulum;
-import burlap.domain.singleagent.cartpole.InvertedPendulumVisualizer;
+import burlap.domain.singleagent.cartpole.states.InvertedPendulumState;
 import burlap.domain.singleagent.lunarlander.LLVisualizer;
 import burlap.domain.singleagent.lunarlander.LunarLanderDomain;
-import burlap.domain.singleagent.lunarlander.LunarLanderRF;
-import burlap.domain.singleagent.lunarlander.LunarLanderTF;
+import burlap.domain.singleagent.lunarlander.state.LLAgent;
+import burlap.domain.singleagent.lunarlander.state.LLBlock;
+import burlap.domain.singleagent.lunarlander.state.LLState;
 import burlap.domain.singleagent.mountaincar.MCRandomStateGenerator;
+import burlap.domain.singleagent.mountaincar.MCState;
 import burlap.domain.singleagent.mountaincar.MountainCar;
 import burlap.domain.singleagent.mountaincar.MountainCarVisualizer;
-import burlap.oomdp.auxiliary.StateGenerator;
-import burlap.oomdp.core.Domain;
-import burlap.oomdp.core.TerminalFunction;
-import burlap.oomdp.core.states.State;
-import burlap.oomdp.singleagent.RewardFunction;
-import burlap.oomdp.singleagent.common.GoalBasedRF;
-import burlap.oomdp.singleagent.common.VisualActionObserver;
-import burlap.oomdp.singleagent.environment.EnvironmentServer;
-import burlap.oomdp.singleagent.environment.SimulatedEnvironment;
-import burlap.oomdp.statehashing.SimpleHashableStateFactory;
-import burlap.oomdp.visualizer.Visualizer;
+import burlap.mdp.auxiliary.StateGenerator;
+import burlap.mdp.core.TerminalFunction;
+import burlap.mdp.core.state.State;
+import burlap.mdp.core.state.vardomain.VariableDomain;
+import burlap.mdp.singleagent.SADomain;
+import burlap.mdp.singleagent.common.VisualActionObserver;
+import burlap.mdp.singleagent.environment.SimulatedEnvironment;
+import burlap.mdp.singleagent.model.RewardFunction;
+import burlap.mdp.singleagent.oo.OOSADomain;
+import burlap.statehashing.simple.SimpleHashableStateFactory;
+import burlap.visualizer.Visualizer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -127,17 +135,12 @@ public class ContinuousDomainTutorial {
 }
 				</pre>
 				<p>
-				Next we'll create an instance of the Mountain car domain and the typical reward function and terminal function that defines the task in our MCLSPIFB method.
+				Next we'll create an instance of the Mountain car domain and We'll use the standard reward function, physics, and termination conditions, so we don't need to adjust any parameters. (These return a reward of 100 when reaching the top of the mountain on the right side and zero everywhere else.)
 				</p>
 				<pre class="prettyprint lang-java">
 MountainCar mcGen = new MountainCar();
-Domain domain = mcGen.generateDomain();
-TerminalFunction tf = new MountainCar.ClassicMCTF();
-RewardFunction rf = new GoalBasedRF(tf, 100);
+SADomain domain = mcGen.generateDomain();
 				</pre>
-				<p>
-				Our MountainCar instance provides us a means to get a TerminalFunction that sets states in which the car is on the top of the slope on the right-side as terminal states. We then define a Goal-based reward function that returns a reward of 100 when the agent reaches the terminal state and 0 everywhere else (0 is the default reward for a <a href="../../doc/burlap/oomdp/singleagent/common/GoalBasedRF.html">GoalBasedRF</a>, but that value can be changed with a different constructor).
-				</p>
 				<div class = "note">
 				<h2>Other Mountain Car Parameters</h2>
 				<p>
@@ -145,12 +148,12 @@ RewardFunction rf = new GoalBasedRF(tf, 100);
 				</p>
 				</div>
 				<p>
-				The next thing we will want to do is collect SARS data from the Mountain Car domain for LSPI to use for fitting its linear function approximator. For Mountain car, it is sufficient to randomly draw a state from the Mountain Car state space, sample a trajectory from it by selecting actions uniformly randomly, and then repeat the process over again from another random state. Lets collect data in this way until we have 5000 SARS tuple instances for our dataset. To accomplish this data collection, we can make use of a random <a href="../../doc/burlap/oomdp/auxiliary/StateGenerator.html">StateGenerator</a> to select random initial states, and perform random trajectory roll outs from them using a <a href="../../doc/burlap/behavior/singleagent/learning/lspi/SARSCollector.UniformRandomSARSCollector.html">UniformRandomSARSCollector</a>. Lets add code for that now.
+				The next thing we will want to do is collect SARS data from the Mountain Car domain for LSPI to use for fitting its linear function approximator. For Mountain car, it is sufficient to randomly draw a state from the Mountain Car state space, sample a trajectory from it by selecting actions uniformly randomly, and then repeat the process over again from another random state. Lets collect data in this way until we have 5000 SARS tuple instances for our dataset. To accomplish this data collection, we can make use of a random <a href="../../doc/burlap/mdp/auxiliary/StateGenerator.html">StateGenerator</a> to select random initial states, and perform random trajectory roll outs from them using a <a href="../../doc/burlap/behavior/singleagent/learning/lspi/SARSCollector.UniformRandomSARSCollector.html">UniformRandomSARSCollector</a>. Lets add code for that now.
 				</p>
 				<pre class="prettyprint lang-java">
-StateGenerator rStateGen = new MCRandomStateGenerator(domain);
+StateGenerator rStateGen = new MCRandomStateGenerator(mcGen.physParams);
 SARSCollector collector = new SARSCollector.UniformRandomSARSCollector(domain);
-SARSData dataset = collector.collectNInstances(rStateGen, rf, 5000, 20, tf, null);
+SARSData dataset = collector.collectNInstances(rStateGen, domain.getModel(), 5000, 20, null);
 				</pre>
 				<p>
 				The MCRandomStateGenerator class provides a means to generate Mountain Car states with random positions and velocities. The collectNInstances methods will collect our SARS data for us. Specifically, we've told it to perform rollouts from states generated from our Mountain Car state generator for no more than 20 steps at a time or until we hit a terminal state. This process of generating a random state, rolling out a random trajectory for it, and collecting all the observed SARS tuples repeats until we have 5000 SARS instances. The null parameter at the end of the method call means we want it to create a new <a href="../../doc/burlap/behavior/singleagent/learning/lspi/SARSData.html">SARSData</a> instance and fill it up with the results (and return it) rather than adding to an existing SARSData instance.
@@ -165,28 +168,26 @@ SARSData dataset = collector.collectNInstances(rStateGen, rf, 5000, 20, tf, null
 				The next thing we will want to define is the state basis features LSPI will use for its linear estimator of the value function. As noted previously, we will use Fourier basis functions. Fourier basis functions are very easy to implement without having to set many parameters, which makes it a good first approach to try. 
 				</p>
 				<p>
-				Each Fourier basis function takes as input a state variable vector, where each element is a normalized scalar value. Each basis function corresponds to a state feature that LSPI will use for its linear function. The BURLAP <a href="../../doc/burlap/behavior/singleagent/vfa/fourier/FourierBasis.html">FourierBasis</a> class is an implementation of the <a href="../../doc/burlap/behavior/singleagent/vfa/FeatureDatabase.html">FeatureDatabase</a> interface and will automatically make multiple Fourier basis functions based on the <i>order</i> you choose. The larger the order, the more basis functions (which grow exponentially with the dimension of input state feature vector) and the more fine grained the representation becomes, allowing for a more precise linear value function approximation. 
+				Each Fourier basis function takes as input a state variable vector, where each element is a normalized scalar value. Each basis function corresponds to a state feature that LSPI will use for its linear function. The BURLAP <a href="../../doc/burlap/behavior/singleagent/vfa/fourier/FourierBasis.html">FourierBasis</a> class is an implementation of the <a href="../../doc/burlap/behavior/functionapproximation/dense/DenseStateFeatures.html">DenseStateFeatures</a> interface and will automatically make multiple Fourier basis functions based on the <i>order</i> you choose. The larger the order, the more basis functions (which grow exponentially with the dimension of input state feature vector) and the more fine grained the representation becomes, allowing for a more precise linear value function approximation. 
 				</p>
 				<p>
-				Recall that BURLAP states are not defined with state variable vectors, but with sets of objects (adhering to the OO-MDP paradigm); however, we can convert an OO-MDP state into a vector trivially since OO-MDPs tend to provide <i>more</i> information than a standard variable vector definition does. The simplest way to convert an OO-MDP state into a variable vector is to simply concatenate the attributes values of each object in the state into a single large vector. To do so, we can make use of the <a href="../../doc/burlap/behavior/singleagent/vfa/common/ConcatenatedObjectFeatureVectorGenerator.html">ConcatenatedObjectFeatureVectorGenerator</a>, which asks for which object classes to concatenate (and their concatenation order) and whether to normalize the values or not (is required by Fourier basis funcitons). 
-				</p>
-				<div class = "note">
-				<h2>Custom Vector Conversions</h2>
-				<p>
-				If you need to define the vafriable vector conversion differently (perhaps, for instance, you want to use relative variables, or ignore certain attributes of the objects), you can always make your own vector conversion definition by implementing a <a href="../../doc/burlap/behavior/singleagent/vfa/StateToFeatureVectorGenerator.html">StateToFeatureVectorGenerator</a>, which takes as input a <a href="../../doc/burlap/oomdp/core/State.html">State</a> object and returns a double array.
-				</p>
-				</div>
-				<p>
-				In the Mountain Car domain, there is only one object class&mdash;the agent&mdash;which defines the car's position and velocity, so we only need to tell the ConcatenatedObjectFeatureVectorGenerator to use the "agent" class values and to normalize its attribute values. With a state vector conversion method in hand, lets create a set of 4th order Fourier basis functions to use as our state features for LSPI.
+				Fourier basis features will ultimately give us a dense vectorized representation of states, but to construct them we will first need to turn our state objects into a normalized numeric vector of state variables. We can construct that using some standard BURLAP tools:
 				</p>
 				<pre class="prettyprint lang-java">
-ConcatenatedObjectFeatureVectorGenerator featureVectorGenerator = 
-               new ConcatenatedObjectFeatureVectorGenerator(true, MountainCar.CLASSAGENT);
-
-FourierBasis fb = new FourierBasis(featureVectorGenerator, 4);
+NormalizedVariableFeatures inputFeatures = new NormalizedVariableFeatures()
+	.variableDomain("x", new VariableDomain(mcGen.physParams.xmin, mcGen.physParams.xmax))
+	.variableDomain("v", new VariableDomain(mcGen.physParams.vmin, mcGen.physParams.vmax));
 				</pre>
 				<p>
-				Note that the "true" parameter in the ConcatenatedObjectFeatureVectorGenerator constructor tells it that all dimensions should be normalized in the returned vector, which is what Fourier basis functions expect.
+				NormalizedVariableFeatures is an implementation of DenseStateFeatures, which provides a method to take an input State object and turn it into a double array. To construct it, it needs to be told which variable keys to use and what the numeric variable domain of that variable is. The double array output for states is then a array equal to the number of variables we specified with the normalized value according to the variable domain we gave it. Here, we're telling it to use the x and v variable keys from mountain car (specifying the x position and velocity of the car) and we gave it the variable domain by the values in our mountain car physics parameters.
+				</p>
+				<p>
+				With a method of producing a normalized state variable vector, we can now construct our Fourier basis features, using the FourierBasis class, an implementation of DenseStateFeatures itself.
+				<pre class="prettyprint lang-java">
+FourierBasis fb = new FourierBasis(inputFeatures, 4);
+				</pre>
+				<p>
+				In particular, we opted to use 4th order Fourier basis features, which is what the second parameter specifies.
 				</p>
 				<hr/>
 				<p>
@@ -195,31 +196,37 @@ FourierBasis fb = new FourierBasis(featureVectorGenerator, 4);
 				have passed.
 				</p>
 				<pre class="prettyprint lang-java">
-LSPI lspi = new LSPI(domain, 0.99, fb, dataset);
+LSPI lspi = new LSPI(domain, 0.99, new DenseCrossProductFeatures(fb, 3), dataset);
 Policy p = lspi.runPolicyIteration(30, 1e-6);
 				</pre>
+				<p>
+				One thing to note is that we gave LSPI DenseCrossProductFeatures on our constructed FourierBassis object. Note that FourierBasis features are just a mapping from <i>states</i> to features. But to actual learn a control mechanism, LSPI needs <i>state-action</i> features; that is, separate features for each action so that the value of actions can be modeled, from which a policy can be constructed. It is not uncommon in RL to first define a state feature representation, and then construct state-action features by taking the cross product of those features with each action. That is precisely what the DenseCrossProductFeatures will do: it takes as input the state features and creates a cross product of them with the actions actions. The '3' argument we provided it tells it how many actions there are.
+				</p>
 				<p>
 				After LSPI has run until convergence, we will want to analyze the policy is produced. To analyze the resulting policy, we could roll it out and load an EpisodeSequenceVisualizer, as we have in prior tutorials. But for fun, lets watch it in real time.
 				</p>
 				<p>
-				To visualize the animated results, we can simply grab the existing visualizer from the domain (<a href="../../doc/burlap/domain/singleagent/mountaincar/MountainCarVisualizer.html">MountainCarVisualizer</a>), create a <a href="../../doc/burlap/oomdp/singleagent/environment/SimulatedEnvironment.html">SimulatedEnvironment</a> in which to evaluate the policy, and add a <a href="../../doc/burlap/oomdp/singleagent/common/VisualActionObserver.html">VisualActionObserver</a> to the to the environment. Note that we can add an EnvironmentObserver to a SimulatedEnvironment, because it implements the EnvironmentServerInterface (otherwise we could use an EnvironmentServer wrapper for Environment instances that do not implement the observer interface). Specifically, we'll let it run for five policy rollouts.
+				To visualize the animated results, we can simply grab the existing visualizer from the domain (<a href="../../doc/burlap/domain/singleagent/mountaincar/MountainCarVisualizer.html">MountainCarVisualizer</a>), create a <a href="../../doc/burlap/mdp/singleagent/environment/SimulatedEnvironment.html">SimulatedEnvironment</a> in which to evaluate the policy, and add a <a href="../../doc/burlap/mdp/singleagent/common/VisualActionObserver.html">VisualActionObserver</a> to the to the environment. Note that we can add an EnvironmentObserver to a SimulatedEnvironment, because it implements the EnvironmentServerInterface (otherwise we could use an EnvironmentServer wrapper for Environment instances that do not implement the observer interface). Specifically, we'll let it run for five policy rollouts.
 				</p>
 				<pre class="prettyprint lang-java">
 Visualizer v = MountainCarVisualizer.getVisualizer(mcGen);
-VisualActionObserver vob = new VisualActionObserver(domain, v);
+VisualActionObserver vob = new VisualActionObserver(v);
 vob.initGUI();
 
-SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf,
-	MountainCar.getCleanState(domain, mcGen.physParams));
+SimulatedEnvironment env = new SimulatedEnvironment(domain, 
+new MCState(mcGen.physParams.valleyPos(), 0.));
 env.addObservers(vob);
 
 for(int i = 0; i < 5; i++){
-	p.evaluateBehavior(env);
+	PolicyUtils.rollout(p, env);
 	env.resetEnvironment();
 }
 
 System.out.println("Finished");
 				</pre>
+				<p>
+				We also set the initial state of the environment to start in the bottom of the valley. We can get the x position value for the bottom of the valley, but calling the valleyPos() method on mountain car physics parameters object (we also set the initial velocity to zero).
+				</p>
 				<p>
 				If you now run the main method, you see at the start a bunch of print outs to the terminal specifying the maximum change in weight values after each policy iteration. When the change is small enough, LSPI will end and you'll get a window animating the the mountain car task using the results of LSPI. That is, you should see something like the below image.
 				</p>
@@ -241,44 +248,40 @@ System.out.println("Finished");
 				A set of state features defined by a set of radial basis functions distributed across the state space gives an approximation of where a given state is. You can think of the set of radial basis function outputs as compressing the state space. As a consequence, a common approach to using radial basis functions is set up a coarse multi-dimensional grid over the state space with a separate radial basis function centered at each intersection point of the grid. BURLAP provides us tools to easily accomplish such a construction of radial basis functions.
 				</p>
 				<p>
-				Lets start by a creating a new method for running LSPI with radial basis functions. It will look almost identical to the previous Fourier Basis LSPI method we created, except instead of defining Fourier basis functions, we'll define radial basis functions. For the moment, the code below will create an instance of a radial basis function state feature database (<a href="../../doc/burlap/behavior/singleagent/vfa/rbf/RBFFeatureDatabase.html">RBFFeatureDatabase</a>), but we will need to add code to actually add the set of radial basis functions it uses. Also note that we moved the initial state object instantiation to earlier in the code, because we will use it to help define the center states of the radial basis functions we will create. The differences
+				Lets start by a creating a new method for running LSPI with radial basis functions. It will look almost identical to the previous Fourier Basis LSPI method we created, except instead of defining Fourier basis functions, we'll define radial basis functions. For the moment, the code below will create an instance of a radial basis features (<a href="../../doc/burlap/behavior/functionapproximation/dense/rbf/RBFFeatures.html">RBFFeatures</a>), but we will need to add code to actually add the set of radial basis functions it uses. Also note that we moved the initial state object instantiation to earlier in the code, because we will use it to help define the center states of the radial basis functions we will create. The differences
 				are highlighted with comments in the code.
 				</p>
 				<pre class="prettyprint lang-java">
 public static void MCLSPIRBF(){
 
 	MountainCar mcGen = new MountainCar();
-	Domain domain = mcGen.generateDomain();
-	TerminalFunction tf = new MountainCar.ClassicMCTF();
-	RewardFunction rf = new GoalBasedRF(tf, 100);
+	SADomain domain = mcGen.generateDomain();
+	MCState s = new MCState(mcGen.physParams.valleyPos(), 0.);
 
-	//get a state definition earlier, we'll use it soon.
-	State s = mcGen.getCleanState(domain);
+	NormalizedVariableFeatures inputFeatures = new NormalizedVariableFeatures()
+			.variableDomain("x", new VariableDomain(mcGen.physParams.xmin, mcGen.physParams.xmax))
+			.variableDomain("v", new VariableDomain(mcGen.physParams.vmin, mcGen.physParams.vmax));
 
-	StateGenerator rStateGen = new MCRandomStateGenerator(domain);
+	StateGenerator rStateGen = new MCRandomStateGenerator(mcGen.physParams);
 	SARSCollector collector = new SARSCollector.UniformRandomSARSCollector(domain);
-	SARSData dataset = collector.collectNInstances(rStateGen, rf, 5000, 20, tf, null);
+	SARSData dataset = collector.collectNInstances(rStateGen, domain.getModel(), 5000, 20, null);
 
-	//instantiate an RBF feature database, we'll define it more in a moment
-	RBFFeatureDatabase rbf = new RBFFeatureDatabase(true);
+	RBFFeatures rbf = new RBFFeatures(inputFeatures, true);
+	//we will add rbfs next
 
-
-	//notice we pass LSPI our RBF features this time
-	LSPI lspi = new LSPI(domain, rf, tf, 0.99, rbf);
-	lspi.setDataset(dataset);
-
-	LSPI lspi = new LSPI(domain, 0.99, rbf, dataset);
+	LSPI lspi = new LSPI(domain, 0.99, new DenseCrossProductFeatures(rbf, 3), dataset);
 	Policy p = lspi.runPolicyIteration(30, 1e-6);
 
 	Visualizer v = MountainCarVisualizer.getVisualizer(mcGen);
-	VisualActionObserver vob = new VisualActionObserver(domain, v);
+	VisualActionObserver vob = new VisualActionObserver(v);
 	vob.initGUI();
 
-	SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf, s);
+
+	SimulatedEnvironment env = new SimulatedEnvironment(domain, s);
 	env.addObservers(vob);
 
 	for(int i = 0; i < 5; i++){
-		p.evaluateBehavior(env);
+		PolicyUtils.rollout(p, env);
 		env.resetEnvironment();
 	}
 
@@ -287,36 +290,34 @@ public static void MCLSPIRBF(){
 }
 				</pre>
 				<p>
-				You'll notice that we passed "true" to our RBFFeatureDatabase constructor. The true flag indicates that that the feature database should include a constant feature that is always on. This is typically a good idea because it provides a Q-value "y intercept" value to the linear function that will be estimated.
+				You'll notice that we passed "true" to our RBFeatures constructor. The true flag indicates that that the feature database should include a constant feature that is always on. This provides a Q-value "y intercept" value to the linear function that will be estimated. This is often not necessary, but it doesn't hurt.
 				</p>
 				<p>
-				To construct a set of radial basis functions over a grid, we will first want to generate the states that lie at the intersection of grid points on a grid. To construct the set of states, we will make use of the <a href="../../doc/burlap/behavior/singleagent/auxiliary/StateGridder.html">StateGridder</a> class in BURLAP. StateGridder allows you to set up arbitrarily specified grids over a state space and return the set of states that lie on the intersection points of the grid. StateGridder can even do things like include constant values for some attributes or objects (that is, attribute values that remain fixed for every state in the grid). For our current purposes, we just want a fairly simple grid that spans the full state space of Mountain Car.
+				Since RBF features compute distances between states, it too will operate on a numeric vector of state variables. Here we've opted to use our NormalizedVariableFeatures class to provide that since we don't want different domain sizes of the variables to affect the state distance calculation.
 				</p>
 				<p>
-				To get the set of states that span a 5x5 grid over the car position and velocity attributes (for a total of 25 states), add the below code right below the instantiation of the RBFFeatureDatabase. If you want to know how to set up a more specific grid (e.g., an asymmetric grid like a 3x7), see the <a href="../../doc/burlap/behavior/singleagent/auxiliary/StateGridder.html">class's documentation</a>
+				To construct a set of radial basis functions over a grid, we will first want to generate the states that lie at the intersection of grid points on a grid. To construct the set of states, we will make use of the <a href="../../doc/burlap/behavior/singleagent/auxiliary/gridset/FlatStateGridder.html">FlatStateGridder</a> class in BURLAP. FlatStateGridder allows you to set up arbitrarily specified grids over a state space and return the set of states that lie on the intersection points of the grid. FlatStateGridder can even do things like include constant values for some variables. (There is also an OOStateGridder for gridding OO-MDP states.) For our current purposes, we just want a fairly simple grid that spans the full state space of Mountain Car. To use StateGridder, it does require that the State objects implement MutableState, which our mountain car states do (as do the states for just about all standard BURLAP domains).
+				</p>
+				<p>
+				To get the set of states that span a 5x5 grid over the car position and velocity attributes (for a total of 25 states), add the below code right below the instantiation of the RBFFeatures. If you want to know how to set up a more specific grid (e.g., an asymmetric grid like a 3x7), see the <a href="../../doc/burlap/behavior/singleagent/auxiliary/gridset/FlatStateGridder.html">class's documentation</a>
 				</p>
 				<pre class="prettyprint lang-java">
-RBFFeatureDatabase rbf = new RBFFeatureDatabase(true);
-StateGridder gridder = new StateGridder();
-gridder.gridEntireDomainSpace(domain, 5);
-List&lt;State> griddedStates = gridder.gridInputState(s);
+FlatStateGridder gridder = new FlatStateGridder()
+		.gridDimension("x", mcGen.physParams.xmin, mcGen.physParams.xmax, 5)
+		.gridDimension("v", mcGen.physParams.vmin, mcGen.physParams.vmax, 5);
+
+List&lt;State> griddedStates = gridder.gridState(s);
 				</pre>
 				<p>
-				Notice that the gridInputState method requires an example State object? An example state is required because it's what tells the gridder how many objects of each object class need to be gridded (and what any constant ungridded objects/values are, if any).
+				Notice that the gridInputState method requires an example State object? An example state is required because it tells the gridder (1) what the input State Java class is; and (2) only will grid over the values you specified with calls to gridDimension, leaving any other variables in the input state left unchanged in the gridded states.
 				</p>
 				<p>
-				Now that we have a bunch of states distributed over a uniform grid of the state space, we will want to create radial basis functions centered at each of those states. Since a radial basis function also needs a distance metric between states, let us use a Euclidean distance metric. BURLAP already has an Euclidean distance metric implementation, but it requires that a state first be converted to a variable vector, which we can again do using the ConcatenatedObjectFeatureVectorGenerator (and we will again normalize the attribute values). To instantiate the distance metric, add the below code.
+				Now that we have a bunch of states distributed over a uniform grid of the state space, we will want to create radial basis functions centered at each of those states. Specifically, we'll use Gaussian RBFs with a 0.2 bandwidth parameter and a Euclidean distance metric; BURLAP has implementation for both these. However, to define the "center" point of these states, we'll need to convert the state into its numeric state vector  representation, which we provided by passing each of our Gridded states through the NormalizedVariableFeatures object we constructed.
 				</p>
 				<pre class="prettyprint lang-java">
-DistanceMetric metric = new EuclideanDistance(
-                 new ConcatenatedObjectFeatureVectorGenerator(true, MountainCar.CLASSAGENT));
-				</pre>
-				<p>
-				Now we will add a radial basis function to our RBFFeatureDatabase for each state on the grid using the Euclidean distance metric and setting the bandwidth parameter to 0.2. In particular, we will use <a href="../../doc/burlap/behavior/singleagent/vfa/rbf/functions/GaussianRBF.html">Gaussian radial basis functions</a>.
-				</p>
-				<pre class="prettyprint lang-java">
+DistanceMetric metric = new EuclideanDistance();
 for(State g : griddedStates){
-	rbf.addRBF(new GaussianRBF(g, metric, .2));
+	rbf.addRBF(new GaussianRBF(inputFeatures.features(g), metric, 0.2));
 }
 				</pre>
 				<p>
@@ -326,42 +327,46 @@ for(State g : griddedStates){
 public static void MCLSPIRBF(){
 
 	MountainCar mcGen = new MountainCar();
-	Domain domain = mcGen.generateDomain();
-	TerminalFunction tf = new MountainCar.ClassicMCTF();
-	RewardFunction rf = new GoalBasedRF(tf, 100);
-	State s = MountainCar.getCleanState(domain, mcGen.physParams);
+	SADomain domain = mcGen.generateDomain();
+	MCState s = new MCState(mcGen.physParams.valleyPos(), 0.);
 
-	StateGenerator rStateGen = new MCRandomStateGenerator(domain);
+	NormalizedVariableFeatures inputFeatures = new NormalizedVariableFeatures()
+			.variableDomain("x", new VariableDomain(mcGen.physParams.xmin, mcGen.physParams.xmax))
+			.variableDomain("v", new VariableDomain(mcGen.physParams.vmin, mcGen.physParams.vmax));
+
+	StateGenerator rStateGen = new MCRandomStateGenerator(mcGen.physParams);
 	SARSCollector collector = new SARSCollector.UniformRandomSARSCollector(domain);
-	SARSData dataset = collector.collectNInstances(rStateGen, rf, 5000, 20, tf, null);
+	SARSData dataset = collector.collectNInstances(rStateGen, domain.getModel(), 5000, 20, null);
 
-	RBFFeatureDatabase rbf = new RBFFeatureDatabase(true);
-	StateGridder gridder = new StateGridder();
-	gridder.gridEntireDomainSpace(domain, 5);
-	List<State> griddedStates = gridder.gridInputState(s);
-	DistanceMetric metric = new EuclideanDistance(
-			new ConcatenatedObjectFeatureVectorGenerator(true, MountainCar.CLASSAGENT));
+	RBFFeatures rbf = new RBFFeatures(inputFeatures, true);
+	FlatStateGridder gridder = new FlatStateGridder()
+			.gridDimension("x", mcGen.physParams.xmin, mcGen.physParams.xmax, 5)
+			.gridDimension("v", mcGen.physParams.vmin, mcGen.physParams.vmax, 5);
+
+	List&lt;State> griddedStates = gridder.gridState(s);
+	DistanceMetric metric = new EuclideanDistance();
 	for(State g : griddedStates){
-		rbf.addRBF(new GaussianRBF(g, metric, .2));
+		rbf.addRBF(new GaussianRBF(inputFeatures.features(g), metric, 0.2));
 	}
 
-	LSPI lspi = new LSPI(domain, 0.99, rbf, dataset);
+	LSPI lspi = new LSPI(domain, 0.99, new DenseCrossProductFeatures(rbf, 3), dataset);
 	Policy p = lspi.runPolicyIteration(30, 1e-6);
 
 	Visualizer v = MountainCarVisualizer.getVisualizer(mcGen);
-	VisualActionObserver vob = new VisualActionObserver(domain, v);
+	VisualActionObserver vob = new VisualActionObserver(v);
 	vob.initGUI();
 
 
-	SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf, s);
+	SimulatedEnvironment env = new SimulatedEnvironment(domain, s);
 	env.addObservers(vob);
 
 	for(int i = 0; i < 5; i++){
-		p.evaluateBehavior(env);
+		PolicyUtils.rollout(p, env);
 		env.resetEnvironment();
 	}
 
 	System.out.println("Finished");
+
 
 }
 				</pre>

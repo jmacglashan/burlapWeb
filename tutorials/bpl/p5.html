@@ -44,34 +44,24 @@
 				<p>
 				Although we showed how to visualize learning or planning results after they had been performed, sometimes when setting up
 				a new problem and experiment it is useful to watch what is happening immediately. In this part of the tutorial we
-				show how to set up a live visualization of learning algorithms or planning algorithms that operate by trying actions in the
-				world (more on that in a bit). To present a live visualization we make use of the <a href="../../doc/burlap/oomdp/singleagent/ActionObserver.html">ActionObserver</a> and <a href="../../doc/burlap/oomdp/singleagent/environment/EnvironmentObserver.html">EnvironmentObserver</a> interfaces. Objects that implement the ActionObserver interface can be notified about action execution results in simulation; objects that implement the EnvironmentObserver interface can be told about agent interactions with an Environment. In this example, we will instantiate a <a href="../../doc/burlap/oomdp/singleagent/common/VisualActionObserver.html">VisualActionObserver</a> and which implements both interfaces and visualizes state changes.
+				show how to set up a live visualization of learning algorithms interacting with an environment. To present a live visualization we make use of the <a href="../../doc/burlap/mdp/singleagent/environment/extensions/EnvironmentObserver.html">EnvironmentObserver</a> interface. Objects that implement EnvironmentObserver interface can be told about agent interactions with an Environment. In this example, we will instantiate a <a href="../../doc/burlap/mdp/singleagent/common/VisualActionObserver.html">VisualActionObserver</a> and which implements both interfaces and visualizes state changes.
 				</p>
-				<div class = "note">
-				<h2>The scope of ActionObserver</h2>
-				<p>
-				It is worth noting that an ActionObserver is only notifed when the performAction method of
-				Action instances is called. This method is used by various sample based planning algorithms and detemrinistic planning algorithms. However, algorithms like VI do not use this method because they instead operate on the full action probability distribution (returned by the getTransitions method) rather than simulating actions.</p>
-				
-				</div>
+			
 				
 				<p>
 
-				To add a VisualActionObserver, we can modify our constructor by adding the following lines to then end of it:
+				To add a VisualActionObserver, we can modify our constructor by adding the following lines to the end of it:
 				<pre class="prettyprint lang-java">
 VisualActionObserver observer = new VisualActionObserver(domain, 
-		GridWorldVisualizer.getVisualizer(gwdg.getMap()));
-observer.initGUI();
-env = new EnvironmentServer(env, observer);
-//((SADomain)domain).addActionObserverForAllAction(observer);		
+						GridWorldVisualizer.getVisualizer(gwdg.getMap()));
+		observer.initGUI();
+		env.addObservers(observer);	
 				</pre>
 				<p>
 				The first line creates a VisualActionObserver for visualizing our domain with a provided domain state visualizer
-				(we use the same kind of state visualizer that we used for our EpisodeSequenceVisualizer). The second line initializes the Java GUI for its visualization. You can then choose whether to use the third line or the commented out fourth line. The third line is how we set up the VisualActionObserver to receive events from an Environment and requires changing our Environment to an <a href="../../doc/burlap/oomdp/singleagent/environment/EnvironmentServer.html">EnvironmentServer</a>. An EnvironmentServer takes as input a source environment, and a list of EnvironmentObservers. Normal operations for the environment are delegated to the source environment, but the outcomes of the interaction are intercepted and sent to all observers before returning control to the client. The commented out fourth line would tell all the Action objects in the domain to add the action observer that is notified whenever the action is run in simulation.
+				(we use the same kind of state visualizer that we used for our EpisodeSequenceVisualizer). The second line initializes the Java GUI for its visualization. The third line is how we set up the VisualActionObserver to receive events from an Environment. You can add EnviornmentObservers to any Environment that implements the EnvironmentServerInterface interface, with the SimulatedEnvironment does. If your environment does not implement that interface, you can always instantiate an EnvironmentServer, which is an Environment delegator that will intercept environment interactions and send them to observers before (or after) calling the underlying Environment.
 				</p>
-				<p>
-				If you want to test the action observer out with a learning algorithm use the EnvironmentObserver paradigm (third line). If you want to test it with one of the deterministic planners, comment out the third line and uncomment the fourth. Which ever you choose, you should find that when you run the algorithm you observe the agent moving through the environment!
-				</p>
+			
 				
 				<div class = "note">
 				<h2>Performance with VisualActionObservers</h2>
@@ -81,17 +71,19 @@ env = new EnvironmentServer(env, observer);
 				of an event and before the next action can be taken. 
 				Note that this delay also places a cap on the speed at which learning or planning occurs since it stalls everything for that frame delay. Typically,
 				learning in BURLAP occurs at speeds orders of magnitude faster than 60FPS, so using the visual observer will
-				slow down your algorithm considerably. For these reasons, you may prefer the offline visualization. Nevertheless, live visualization is often a useful as a way to confirm that your experiment
-				is working as planned.
+				slow down your algorithm considerably. For these reasons, you may prefer the offline visualization.</p> 
+
+				<p>
+				Alternatively, you can also visualize interactions in the environment with a <a href="../../doc/burlap/shell/visual/VisualExplorer.html">VisualExplorer</a> without stalling performance. In previous tutorials, we used VisualExplorer to manually interact with our environment as the agent. Alternatively, you can launch the visual explorer around the environment with which your learning agent is interacting, and then call the <a href="file://localhost/Users/alerus/Documents/PostdocResearch/burlapWeb/doc/burlap/shell/visual/VisualExplorer.html#startLiveStatePolling-int-">stateLiveStatePolling</a> method, with a specified inteval which will cause the visualizer to draw the currnet state of the environment on the interval you specified. This approach allows the agent to take more steps than can be rendered in the rendering interval.
 				</p>
 				</div>
 
 			
 				<h3><a name="vfvis">Value Function and Policy Visualization</a></h3>
 				<p>
-				While visualizing the agent in the state space is useful, in this next section, we will show how to visualize the value function that is estimated
+				While visualizing the agent in the state space is useful, in this next section, we will show you how to visualize the value function that is estimated
 				from value function estimating planning or learning algorithms, along with the corresponding policy. The value function assigns a value to each state that represents the expected future discounted reward when following the optimal policy from that state. In particular,
-				we will show how to visualize the value function for the ValueIteration results, but you could do the same with Q-Learning, or any
+				we will show you how to visualize the value function for the ValueIteration results, but you could do the same with Q-Learning, or any
 				planning/learning algorithm that implements the <a href="../../doc/burlap/behavior/valuefunction/ValueFunction.html">ValueFuncton interface</a> (which the QFunction interface extends).
 				
 				</p><p>
@@ -100,9 +92,9 @@ env = new EnvironmentServer(env, observer);
 public void simpleValueFunctionVis(ValueFunction valueFunction, Policy p){
 
 	List&lt;State> allStates = StateReachability.getReachableStates(initialState, 
-						(SADomain)domain, hashingFactory);
+			domain, hashingFactory);
 	ValueFunctionVisualizerGUI gui = GridWorldDomain.getGridWorldValueFunctionVisualization(
-					allStates, valueFunction, p);
+		allStates, 11, 11, valueFunction, p);
 	gui.initGUI();
 
 }
@@ -111,17 +103,17 @@ public void simpleValueFunctionVis(ValueFunction valueFunction, Policy p){
 				Note that this method takes as input a ValueFunction instance and a Policy object (since along with the value function, we will also render the policy). Before we do anything with it, we are going to have to tell the renderer for which states we'd like to visualize the value function. Although Domain objects are not required to enumerate the entire state space (since for many domains that might be impossible), we can use the BURLAP tool <a href="../../doc/burlap/behavior/singleagent/auxiliary/StateReachability.html">StateReachability</a> to find all states that are reachable from some input state. (Algorithms like ValueIteraiton also have a method to return all states that they enumerated that we could have used.)
 				</p>
 				<p>
-				Next we call the GridWorldDomain method <b>getGridWorldValueFunctionVisualization</b>, which takes the set of states for which the value function will be rendered, the ValueFunction instance, and the Policy to render and returns a <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/ValueFunctionVisualizerGUI.html">ValueFunctionVisualizationGUI</a> instance that will do it for us. Finally, we launch the return GUI with the <b>initGUI</b> method.
+				Next we call the GridWorldDomain method <b>getGridWorldValueFunctionVisualization</b>, which takes the set of states for which the value function will be rendered, the ValueFunction instance, and the Policy to render, and returns a <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/ValueFunctionVisualizerGUI.html">ValueFunctionVisualizationGUI</a> instance that will do it for us. Finally, we launch the return GUI with the <b>initGUI</b> method.
 				<p>
 				The last step is to direct our value iteration method to this method once planning is complete. Your new value iteration method should look like the following.
 				<pre class="prettyprint lang-java">
 public void valueIterationExample(String outputPath){
 
-	Planner planner = new ValueIteration(domain, rf, tf, 0.99, hashingFactory, 0.001, 100);
+	Planner planner = new ValueIteration(domain, 0.99, hashingFactory, 0.001, 100);
 	Policy p = planner.planFromState(initialState);
-	p.evaluateBehavior(initialState, rf, tf).writeToFile(outputPath + "vi");
 
-	//visualize the value function and policy.
+	PolicyUtils.rollout(p, initialState, domain.getModel()).write(outputPath + "vi");
+
 	simpleValueFunctionVis((ValueFunction)planner, p);
 
 }
@@ -139,19 +131,20 @@ public void valueIterationExample(String outputPath){
 				<pre class="prettyprint lang-java">
 public void manualValueFunctionVis(ValueFunction valueFunction, Policy p){
 
-	List&lt;State> allStates = StateReachability.getReachableStates(initialState, 
-						(SADomain)domain, hashingFactory);
+	List&lt;State> allStates = StateReachability.getReachableStates(
+			initialState, domain, hashingFactory);
 
 	//define color function
 	LandmarkColorBlendInterpolation rb = new LandmarkColorBlendInterpolation();
 	rb.addNextLandMark(0., Color.RED);
 	rb.addNextLandMark(1., Color.BLUE);
 
-	//define a 2D painter of state values, specifying which attributes correspond 
-	//to the x and y coordinates of the canvas
+	//define a 2D painter of state values, specifying 
+	//which variables correspond to the x and y coordinates of the canvas
 	StateValuePainter2D svp = new StateValuePainter2D(rb);
-	svp.setXYAttByObjectClass(GridWorldDomain.CLASSAGENT, GridWorldDomain.ATTX,
-			GridWorldDomain.CLASSAGENT, GridWorldDomain.ATTY);
+	svp.setXYKeys("agent:x", "agent:y", 
+		new VariableDomain(0, 11), new VariableDomain(0, 11), 
+		1, 1);
 
 	//create our ValueFunctionVisualizer that paints for all states
 	//using the ValueFunction source and the state value painter we defined
@@ -159,13 +152,16 @@ public void manualValueFunctionVis(ValueFunction valueFunction, Policy p){
 
 	//define a policy painter that uses arrow glyphs for each of the grid world actions
 	PolicyGlyphPainter2D spp = new PolicyGlyphPainter2D();
-	spp.setXYAttByObjectClass(GridWorldDomain.CLASSAGENT, GridWorldDomain.ATTX,
-			GridWorldDomain.CLASSAGENT, GridWorldDomain.ATTY);
-	spp.setActionNameGlyphPainter(GridWorldDomain.ACTIONNORTH, new ArrowActionGlyph(0));
-	spp.setActionNameGlyphPainter(GridWorldDomain.ACTIONSOUTH, new ArrowActionGlyph(1));
-	spp.setActionNameGlyphPainter(GridWorldDomain.ACTIONEAST, new ArrowActionGlyph(2));
-	spp.setActionNameGlyphPainter(GridWorldDomain.ACTIONWEST, new ArrowActionGlyph(3));
+	spp.setXYKeys("agent:x", "agent:y", 
+		new VariableDomain(0, 11), new VariableDomain(0, 11), 
+		1, 1);
+
+	spp.setActionNameGlyphPainter(GridWorldDomain.ACTION_NORTH, new ArrowActionGlyph(0));
+	spp.setActionNameGlyphPainter(GridWorldDomain.ACTION_SOUTH, new ArrowActionGlyph(1));
+	spp.setActionNameGlyphPainter(GridWorldDomain.ACTION_EAST, new ArrowActionGlyph(2));
+	spp.setActionNameGlyphPainter(GridWorldDomain.ACTION_WEST, new ArrowActionGlyph(3));
 	spp.setRenderStyle(PolicyGlyphPainter2D.PolicyGlyphRenderStyle.DISTSCALED);
+
 
 	//add our policy renderer to it
 	gui.setSpp(spp);
@@ -184,12 +180,12 @@ public void manualValueFunctionVis(ValueFunction valueFunction, Policy p){
 				The method signature looks the same as before and also as before we will use StateReachability to get all the states for which the value function will be rendered. Since we will be rendering the value of a cell of the grid world with a color that blends from red to blue, we will create an instance of the <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/common/ColorBlend.html">ColorBlend</a> interface. In particular, we will use the <a href="file:///Users/alerus/Documents/PostdocResearch/burlapWeb/doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/common/LandmarkColorBlendInterpolation.html">LandmarkColorBlendInterpolation</a>. This class lets you input a real value that spits out a color that is interpolated between various specified colors. So in this case, we defined the interpolation to blend from red to blue (we could have added additional points of color in between; feel free to experiment). The numeric values to which we assign these colors are normalized, so 0 is the minimum value and 1 is the maximum.
 				</p>
 				<p>
-				Next we want to define a <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/StateValuePainter.html">StateValuePainter</a> instance, which is an interface that has a method that takes as input a graphics context, a State and a value for that state and renders it to the graphics context. In particular, we will use the <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/common/StateValuePainter2D.html">StateValuePainter2D</a> implementation, which will rendered colored cells for each state where the color to render is based on a ColorBlend instance (which we defined above). For this class to determine where in a graphics context to render a state's cell, it needs to be told what object class and attributes in the state represent the x and y position in the 2D world. So in this case, we tell it to use the agent's x and y positions.
+				Next we want to define a <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/StateValuePainter.html">StateValuePainter</a> instance, which is an interface that has a method that takes as input a graphics context, a State and a value for that state and renders it to the graphics context. In particular, we will use the <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/common/StateValuePainter2D.html">StateValuePainter2D</a> implementation, which will rendered colored cells for each state where the color to render is based on a ColorBlend instance (which we defined above). For this class to determine where in a graphics context to render a state's cell, it needs to be told what the x and y state variables are. It also needs to know the variable domain, and how wide in the variable domain each rendered call will span.
 				</p>
 				<p>
 				At this point, we create our ValueFunctionVisualizerGUI instance, which takes
 				the states for which to render the value, the StateValuePainter to use, and the source
-				ValueFunction that specifies the value for the states. However, before we finish, we also added a Policy renderer that can overlay the value function visualization. For this rendering, we will need a <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/StatePolicyPainter.html">StatePolicyPainter</a> implementation and in the code we use a <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/common/PolicyGlyphPainter2D.html">PolicyGlyphPainter2D</a> that renders a policy at some position in a 2D graphics context by drawing glyphs for the selected action (or actions if there are a set of actions that the policy selects). Like the StateValuePainter2D, this class needs to be told what the object class attributes in a State indicate the 2D position in the graphics context. It also needs to be told which <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/common/ActionGlyphPainter.html">ActionGlyphPainter</a>to use to paint a glyph for each action (by action name). Here we used the existing <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/common/ArrowActionGlyph.html">ArrowActionGlyph</a> for each action, where the parameter in its constructor for 0 to 3 indicates a north, south east, and west arrow respectively. The PolicyGlyphPainter2D also have various ways to render the glyphs. Here we use DISTSCALED which means each action glyph is rendered at a size proportional to the probability that the agent will select that action.
+				ValueFunction that specifies the value for the states. However, before we finish, we also added a Policy renderer that can overlay the value function visualization. For this rendering, we will need a <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/StatePolicyPainter.html">StatePolicyPainter</a> implementation and in the code we use a <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/common/PolicyGlyphPainter2D.html">PolicyGlyphPainter2D</a> that renders a policy at some position in a 2D graphics context by drawing glyphs for the selected action (or actions if there are a set of actions that the policy selects). Like the StateValuePainter2D, this class needs to be told about the state variables to use for the x and y position. It also needs to be told which <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/common/ActionGlyphPainter.html">ActionGlyphPainter</a>to use to paint a glyph for each action (by action name). Here we used the existing <a href="../../doc/burlap/behavior/singleagent/auxiliary/valuefunctionvis/common/ArrowActionGlyph.html">ArrowActionGlyph</a> for each action, where the parameter in its constructor for 0 to 3 indicates a north, south east, and west arrow respectively. The PolicyGlyphPainter2D also have various ways to render the glyphs. Here we use DISTSCALED which means each action glyph is rendered at a size proportional to the probability that the agent will select that action.
 				</p>
 				<p>
 				Finally, we set the ValueFunctionVisualizerGUI to use the StatePolicyPainter we created, and set the Policy it should render. Then we set the background color to gray, and launch the GUI. If you now point the value iteration method to this value function visualization method instead of the simple one, you should find that your get the same visualization.
